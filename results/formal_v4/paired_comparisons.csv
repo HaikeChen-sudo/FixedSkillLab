@@ -1,0 +1,5 @@
+condition,baseline,difference,ci_low,ci_high,bootstrap_p_value
+all_skills,no_skill,-0.02222222222222222,-0.05555555555555555,0.0,0.25
+body_aware_retrieval,no_skill,-0.02222222222222222,-0.06666666666666667,0.0,0.7248
+bm25_body_retrieval,no_skill,-0.03333333333333333,-0.07777777777777778,0.0,0.0823
+oracle_skill,no_skill,-0.02222222222222222,-0.06666666666666667,0.0,0.7248

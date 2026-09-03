@@ -1,0 +1,166 @@
+{
+  "manifest": {
+    "run_id": "alfworld-v4-heldout-30x3",
+    "records": 450,
+    "tasks": 30,
+    "conditions": [
+      "no_skill",
+      "all_skills",
+      "body_aware_retrieval",
+      "bm25_body_retrieval",
+      "oracle_skill"
+    ],
+    "repeats": 3,
+    "frozen_file": "results/formal_v4/alfworld-v4-heldout-30x3.jsonl",
+    "sha256": "6e20e518bc56960cc7f676c40cdb2892651f973ca57282bd2432ad732a0a1123",
+    "source_file": "results/alfworld_results.jsonl"
+  },
+  "condition_summary": [
+    {
+      "condition": "no_skill",
+      "label": "No Skill",
+      "episodes": 90,
+      "successes": 89,
+      "task_success_rate": 0.9888888888888889,
+      "success_rate_repeat_std": 0.01924500897298752,
+      "success_ci_low": 0.9666666666666667,
+      "success_ci_high": 1.0,
+      "average_input_tokens": 24392.277777777777,
+      "average_output_tokens": 756.3555555555556,
+      "average_total_tokens": 25148.633333333335,
+      "average_latency_ms": 15430.944444444445,
+      "cost_per_successful_task_usd": 0.00048425987415730363,
+      "average_tool_calls": 14.088888888888889,
+      "efficiency_per_1k_tokens": 0.03932177449890142
+    },
+    {
+      "condition": "all_skills",
+      "label": "All Skills",
+      "episodes": 90,
+      "successes": 87,
+      "task_success_rate": 0.9666666666666667,
+      "success_rate_repeat_std": 0.033333333333333326,
+      "success_ci_low": 0.9111111111111111,
+      "success_ci_high": 1.0,
+      "average_input_tokens": 74443.94444444444,
+      "average_output_tokens": 997.8111111111111,
+      "average_total_tokens": 75441.75555555556,
+      "average_latency_ms": 19883.71111111111,
+      "cost_per_successful_task_usd": 0.0007796621885057472,
+      "average_tool_calls": 17.7,
+      "efficiency_per_1k_tokens": 0.012813416914122711
+    },
+    {
+      "condition": "body_aware_retrieval",
+      "label": "Body-aware",
+      "episodes": 90,
+      "successes": 87,
+      "task_success_rate": 0.9666666666666667,
+      "success_rate_repeat_std": 0.0,
+      "success_ci_low": 0.9,
+      "success_ci_high": 1.0,
+      "average_input_tokens": 32438.78888888889,
+      "average_output_tokens": 849.2111111111111,
+      "average_total_tokens": 33288.0,
+      "average_latency_ms": 17087.155555555557,
+      "cost_per_successful_task_usd": 0.0005657213333333333,
+      "average_tool_calls": 15.488888888888889,
+      "efficiency_per_1k_tokens": 0.029039493711447567
+    },
+    {
+      "condition": "bm25_body_retrieval",
+      "label": "BM25 Body",
+      "episodes": 90,
+      "successes": 86,
+      "task_success_rate": 0.9555555555555556,
+      "success_rate_repeat_std": 0.05091750772173154,
+      "success_ci_low": 0.9,
+      "success_ci_high": 1.0,
+      "average_input_tokens": 47622.57777777778,
+      "average_output_tokens": 1140.4555555555555,
+      "average_total_tokens": 48763.03333333333,
+      "average_latency_ms": 21626.588888888888,
+      "cost_per_successful_task_usd": 0.000779751423255814,
+      "average_tool_calls": 19.466666666666665,
+      "efficiency_per_1k_tokens": 0.019595900628732194
+    },
+    {
+      "condition": "oracle_skill",
+      "label": "Oracle Skill",
+      "episodes": 90,
+      "successes": 87,
+      "task_success_rate": 0.9666666666666667,
+      "success_rate_repeat_std": 0.0,
+      "success_ci_low": 0.9,
+      "success_ci_high": 1.0,
+      "average_input_tokens": 32308.411111111112,
+      "average_output_tokens": 833.8333333333334,
+      "average_total_tokens": 33142.24444444444,
+      "average_latency_ms": 16986.166666666668,
+      "cost_per_successful_task_usd": 0.0005740764045977013,
+      "average_tool_calls": 15.5,
+      "efficiency_per_1k_tokens": 0.02916720586884413
+    }
+  ],
+  "paired_comparisons": [
+    {
+      "condition": "all_skills",
+      "baseline": "no_skill",
+      "difference": -0.02222222222222222,
+      "ci_low": -0.05555555555555555,
+      "ci_high": 0.0,
+      "bootstrap_p_value": 0.25
+    },
+    {
+      "condition": "body_aware_retrieval",
+      "baseline": "no_skill",
+      "difference": -0.02222222222222222,
+      "ci_low": -0.06666666666666667,
+      "ci_high": 0.0,
+      "bootstrap_p_value": 0.7248
+    },
+    {
+      "condition": "bm25_body_retrieval",
+      "baseline": "no_skill",
+      "difference": -0.03333333333333333,
+      "ci_low": -0.07777777777777778,
+      "ci_high": 0.0,
+      "bootstrap_p_value": 0.0823
+    },
+    {
+      "condition": "oracle_skill",
+      "baseline": "no_skill",
+      "difference": -0.02222222222222222,
+      "ci_low": -0.06666666666666667,
+      "ci_high": 0.0,
+      "bootstrap_p_value": 0.7248
+    }
+  ],
+  "failure_taxonomy": [
+    {
+      "category": "routing_error",
+      "failures": 1,
+      "share": 0.07142857142857142
+    },
+    {
+      "category": "shared_execution_error",
+      "failures": 4,
+      "share": 0.2857142857142857
+    },
+    {
+      "category": "skill_condition_interference",
+      "failures": 9,
+      "share": 0.6428571428571429
+    }
+  ],
+  "retrieval_audit": {
+    "episodes": 90,
+    "primary_gold_hit_at_3_episodes": 69,
+    "primary_gold_hit_at_3_episode_rate": 0.7666666666666667,
+    "unique_tasks": 30,
+    "primary_gold_hit_at_3_tasks": 23,
+    "primary_gold_hit_at_3_task_rate": 0.7666666666666667,
+    "success_when_hit": 0.9855072463768116,
+    "success_when_missed": 0.8571428571428571
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "run_id": "alfworld-v4-heldout-30x3",
+  "records": 450,
+  "tasks": 30,
+  "conditions": [
+    "no_skill",
+    "all_skills",
+    "body_aware_retrieval",
+    "bm25_body_retrieval",
+    "oracle_skill"
+  ],
+  "repeats": 3,
+  "frozen_file": "results/formal_v4/alfworld-v4-heldout-30x3.jsonl",
+  "sha256": "6e20e518bc56960cc7f676c40cdb2892651f973ca57282bd2432ad732a0a1123",
+  "source_file": "results/alfworld_results.jsonl"
+}
