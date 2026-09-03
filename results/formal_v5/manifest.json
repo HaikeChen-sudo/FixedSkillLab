@@ -1,0 +1,16 @@
+{
+  "run_id": "alfworld-v5-test-30x3",
+  "records": 450,
+  "tasks": 30,
+  "conditions": [
+    "no_skill",
+    "all_skills",
+    "body_aware_retrieval",
+    "bm25_body_retrieval",
+    "oracle_skill"
+  ],
+  "repeats": 3,
+  "frozen_file": "results/formal_v5/alfworld-v5-test-30x3.jsonl",
+  "sha256": "5af35e91fb510bbef295f5ba7ef1eab780742b02a8398f53547320f5b79c8b71",
+  "source_file": "results/alfworld_results.jsonl"
+}

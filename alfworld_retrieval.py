@@ -13,6 +13,13 @@ from alfworld_skills import AlfworldSkill, SKILL_LIST, render
 EMBEDDER_NAME = "hash-embedding-v1"
 BM25_RETRIEVER_NAME = "bm25-v1-body"
 _WORD = re.compile(r"[a-z0-9_]+")
+_TASK_GOAL = re.compile(r"Your task is to:\s*(.+)", re.IGNORECASE | re.DOTALL)
+
+
+def routing_query(text: str) -> str:
+    """Use the same goal-only query in online and offline retrieval."""
+    match = _TASK_GOAL.search(text)
+    return match.group(1).strip() if match else text.strip()
 
 
 @dataclass(frozen=True)

@@ -117,12 +117,13 @@ def main() -> int:
         rate_std = row["task_success_rate"]["std"] * 100
         ax.errorbar(cost, rate, xerr=cost_std, yerr=rate_std, fmt="o", color=row["color"], markersize=8, capsize=3)
         ax.annotate(row["label"], (cost, rate), xytext=label_offsets[row["condition"]], textcoords="offset points")
-    no_skill = next(row for row in rows if row["condition"] == "no_skill")
-    ax.annotate("Pareto-efficient", (
-        no_skill["cost_per_successful_task_usd"]["mean"] * 1000,
-        no_skill["task_success_rate"]["mean"] * 100,
-    ), xytext=(24, -24), textcoords="offset points", color="#243447", fontsize=9,
-        arrowprops={"arrowstyle": "->", "color": "#243447", "lw": 0.8})
+    frontier = [next(row for row in rows if row["condition"] == name) for name in ("no_skill", "all_skills")]
+    ax.plot(
+        [row["cost_per_successful_task_usd"]["mean"] * 1000 for row in frontier],
+        [row["task_success_rate"]["mean"] * 100 for row in frontier],
+        color="#243447", linestyle="--", linewidth=0.9,
+    )
+    ax.text(0.72, 0.93, "Observed Pareto frontier", transform=ax.transAxes, color="#243447", fontsize=9)
     ax.set_xlabel("Cost per successful task (USD × 10⁻³)")
     ax.set_ylabel("Task success rate (%)")
     ax.set_title("Quality-cost comparison (mean ± sample std, 3 repeats)", loc="left", fontweight="bold")

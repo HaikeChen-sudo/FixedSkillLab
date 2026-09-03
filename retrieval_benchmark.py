@@ -8,7 +8,7 @@ from collections import defaultdict
 from pathlib import Path
 from statistics import mean
 
-from alfworld_retrieval import retrieve, retrieve_bm25, skill_text
+from alfworld_retrieval import retrieve, retrieve_bm25, routing_query, skill_text
 from alfworld_skills import SKILL_LIST, library_hash
 from result_utils import deduplicate_records
 
@@ -73,7 +73,7 @@ def load_tasks(results, run_id):
             "task_id": row["task_id"],
             "task_index": row["task_index"],
             "task_family": row.get("task_family") or "unknown",
-            "query": task_query(row["game_file"]),
+            "query": routing_query(task_query(row["game_file"])),
             "gold_skills": row["gold_skills"],
         })
     return [tasks[index] for index in sorted(tasks)]
@@ -148,7 +148,7 @@ def main():
     args.summary.parent.mkdir(parents=True, exist_ok=True)
     args.summary.write_text(json.dumps({
         "run_id": args.run_id,
-        "query_source": "game.tw-pddl grammar task",
+        "query_source": "goal text after 'Your task is to:'; identical to the online router",
         "tasks": len(tasks),
         "skills": len(SKILL_LIST),
         "skill_library_sha256": library_hash(),
@@ -159,7 +159,7 @@ def main():
     args.details.parent.mkdir(parents=True, exist_ok=True)
     fields = ("method", "task_id", "task_index", "task_family", "query", "gold_skills", "primary_gold", "top_3", "gold_ranks", "primary_rank", "recall_at_1", "recall_at_3", "hit_at_1", "hit_at_3", "all_gold_at_3", "mrr", "primary_hit_at_1", "primary_hit_at_3", "primary_mrr", "latency_ms")
     with args.details.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for row in details:
             writer.writerow({name: json.dumps(row[name], ensure_ascii=False) if isinstance(row[name], list) else row[name] for name in fields})

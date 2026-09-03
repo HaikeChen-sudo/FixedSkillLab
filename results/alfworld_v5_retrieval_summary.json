@@ -1,6 +1,6 @@
 {
   "run_id": "alfworld-v5-test-offline",
-  "query_source": "game.tw-pddl grammar task",
+  "query_source": "goal text after 'Your task is to:'; identical to the online router",
   "tasks": 30,
   "skills": 30,
   "skill_library_sha256": "d6cb0489ae5dfc6135d868c95fdcca6828b83355ae7a6a19fb3232ff6ccd631b",
@@ -9,16 +9,16 @@
     {
       "method": "bm25_body",
       "tasks": 30,
-      "recall_at_1": 0.14444444444444443,
-      "recall_at_3": 0.3333333333333333,
-      "hit_at_1": 0.43333333333333335,
-      "hit_at_3": 0.9333333333333333,
+      "recall_at_1": 0.1111111111111111,
+      "recall_at_3": 0.3222222222222222,
+      "hit_at_1": 0.3333333333333333,
+      "hit_at_3": 0.8666666666666667,
       "all_gold_at_3": 0.0,
-      "mrr": 0.6816666666666666,
-      "primary_hit_at_1": 0.43333333333333335,
-      "primary_hit_at_3": 0.9333333333333333,
-      "primary_mrr": 0.6816666666666666,
-      "latency_ms": 0.622137500000002
+      "mrr": 0.6138888888888889,
+      "primary_hit_at_1": 0.3333333333333333,
+      "primary_hit_at_3": 0.8666666666666667,
+      "primary_mrr": 0.6103174603174604,
+      "latency_ms": 2.9136416666666656
     }
   ],
   "by_task_family": [
@@ -35,7 +35,7 @@
       "primary_hit_at_1": 0.6,
       "primary_hit_at_3": 1.0,
       "primary_mrr": 0.8,
-      "latency_ms": 0.5904664000000059
+      "latency_ms": 2.6078417999999965
     },
     {
       "method": "bm25_body",
@@ -50,7 +50,7 @@
       "primary_hit_at_1": 0.4,
       "primary_hit_at_3": 1.0,
       "primary_mrr": 0.7,
-      "latency_ms": 0.6236584000000045
+      "latency_ms": 4.517874799999993
     },
     {
       "method": "bm25_body",
@@ -61,33 +61,33 @@
       "hit_at_1": 0.0,
       "hit_at_3": 0.6,
       "all_gold_at_3": 0.0,
-      "mrr": 0.39,
+      "mrr": 0.3833333333333333,
       "primary_hit_at_1": 0.0,
       "primary_hit_at_3": 0.6,
-      "primary_mrr": 0.39,
-      "latency_ms": 0.6276583999999974
+      "primary_mrr": 0.3619047619047619,
+      "latency_ms": 3.3430918000000007
     },
     {
       "method": "bm25_body",
       "task_family": "light_inspection",
       "tasks": 5,
       "recall_at_1": 0.0,
-      "recall_at_3": 0.3333333333333333,
+      "recall_at_3": 0.19999999999999998,
       "hit_at_1": 0.0,
-      "hit_at_3": 1.0,
+      "hit_at_3": 0.6,
       "all_gold_at_3": 0.0,
-      "mrr": 0.39999999999999997,
+      "mrr": 0.3,
       "primary_hit_at_1": 0.0,
-      "primary_hit_at_3": 1.0,
-      "primary_mrr": 0.39999999999999997,
-      "latency_ms": 0.6401332000000037
+      "primary_hit_at_3": 0.6,
+      "primary_mrr": 0.3,
+      "latency_ms": 0.9568332000000068
     },
     {
       "method": "bm25_body",
       "task_family": "simple_pick_place",
       "tasks": 5,
       "recall_at_1": 0.3333333333333333,
-      "recall_at_3": 0.4666666666666666,
+      "recall_at_3": 0.5333333333333333,
       "hit_at_1": 1.0,
       "hit_at_3": 1.0,
       "all_gold_at_3": 0.0,
@@ -95,22 +95,22 @@
       "primary_hit_at_1": 1.0,
       "primary_hit_at_3": 1.0,
       "primary_mrr": 1.0,
-      "latency_ms": 0.6431168000000043
+      "latency_ms": 0.8577500000000016
     },
     {
       "method": "bm25_body",
       "task_family": "two_object_place",
       "tasks": 5,
-      "recall_at_1": 0.19999999999999998,
+      "recall_at_1": 0.0,
       "recall_at_3": 0.3333333333333333,
-      "hit_at_1": 0.6,
+      "hit_at_1": 0.0,
       "hit_at_3": 1.0,
       "all_gold_at_3": 0.0,
-      "mrr": 0.8,
-      "primary_hit_at_1": 0.6,
+      "mrr": 0.5,
+      "primary_hit_at_1": 0.0,
       "primary_hit_at_3": 1.0,
-      "primary_mrr": 0.8,
-      "latency_ms": 0.607791799999996
+      "primary_mrr": 0.5,
+      "latency_ms": 5.1984583999999945
     }
   ]
 }

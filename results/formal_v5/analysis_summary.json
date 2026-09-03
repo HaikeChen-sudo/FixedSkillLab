@@ -1,0 +1,204 @@
+{
+  "manifest": {
+    "run_id": "alfworld-v5-test-30x3",
+    "records": 450,
+    "tasks": 30,
+    "conditions": [
+      "no_skill",
+      "all_skills",
+      "body_aware_retrieval",
+      "bm25_body_retrieval",
+      "oracle_skill"
+    ],
+    "repeats": 3,
+    "frozen_file": "results/formal_v5/alfworld-v5-test-30x3.jsonl",
+    "sha256": "5af35e91fb510bbef295f5ba7ef1eab780742b02a8398f53547320f5b79c8b71",
+    "source_file": "results/alfworld_results.jsonl"
+  },
+  "condition_summary": [
+    {
+      "condition": "no_skill",
+      "label": "No Skill",
+      "episodes": 90,
+      "successes": 88,
+      "task_success_rate": 0.9777777777777777,
+      "success_rate_repeat_std": 0.01924500897298752,
+      "success_ci_low": 0.9333333333333333,
+      "success_ci_high": 1.0,
+      "average_input_tokens": 27546.78888888889,
+      "average_output_tokens": 1065.0333333333333,
+      "average_total_tokens": 28611.82222222222,
+      "average_latency_ms": 16666.67777777778,
+      "cost_per_successful_task_usd": 0.0005985685363636362,
+      "average_tool_calls": 14.477777777777778,
+      "efficiency_per_1k_tokens": 0.03417390791063834
+    },
+    {
+      "condition": "all_skills",
+      "label": "All Skills",
+      "episodes": 90,
+      "successes": 89,
+      "task_success_rate": 0.9888888888888889,
+      "success_rate_repeat_std": 0.01924500897298752,
+      "success_ci_low": 0.9666666666666667,
+      "success_ci_high": 1.0,
+      "average_input_tokens": 94034.58888888889,
+      "average_output_tokens": 1243.3,
+      "average_total_tokens": 95277.88888888889,
+      "average_latency_ms": 23230.78888888889,
+      "cost_per_successful_task_usd": 0.000940530382022472,
+      "average_tool_calls": 20.8,
+      "efficiency_per_1k_tokens": 0.010378996642569513
+    },
+    {
+      "condition": "body_aware_retrieval",
+      "label": "Body-aware",
+      "episodes": 90,
+      "successes": 85,
+      "task_success_rate": 0.9444444444444444,
+      "success_rate_repeat_std": 0.01924500897298752,
+      "success_ci_low": 0.8777777777777778,
+      "success_ci_high": 1.0,
+      "average_input_tokens": 46403.64444444444,
+      "average_output_tokens": 1313.9777777777779,
+      "average_total_tokens": 47717.62222222222,
+      "average_latency_ms": 20660.477777777778,
+      "cost_per_successful_task_usd": 0.0008297178729411768,
+      "average_tool_calls": 18.444444444444443,
+      "efficiency_per_1k_tokens": 0.019792361824865077
+    },
+    {
+      "condition": "bm25_body_retrieval",
+      "label": "BM25 Body",
+      "episodes": 90,
+      "successes": 88,
+      "task_success_rate": 0.9777777777777777,
+      "success_rate_repeat_std": 0.03849001794597504,
+      "success_ci_low": 0.9444444444444444,
+      "success_ci_high": 1.0,
+      "average_input_tokens": 38804.811111111114,
+      "average_output_tokens": 1107.0333333333333,
+      "average_total_tokens": 39911.84444444445,
+      "average_latency_ms": 18897.62222222222,
+      "cost_per_successful_task_usd": 0.0006964767727272729,
+      "average_tool_calls": 17.18888888888889,
+      "efficiency_per_1k_tokens": 0.024498436275948155
+    },
+    {
+      "condition": "oracle_skill",
+      "label": "Oracle Skill",
+      "episodes": 90,
+      "successes": 86,
+      "task_success_rate": 0.9555555555555556,
+      "success_rate_repeat_std": 0.03849001794597504,
+      "success_ci_low": 0.8888888888888888,
+      "success_ci_high": 1.0,
+      "average_input_tokens": 42409.71111111111,
+      "average_output_tokens": 1023.1888888888889,
+      "average_total_tokens": 43432.9,
+      "average_latency_ms": 19151.355555555554,
+      "cost_per_successful_task_usd": 0.0006986065116279069,
+      "average_tool_calls": 17.866666666666667,
+      "efficiency_per_1k_tokens": 0.022000731140576744
+    }
+  ],
+  "paired_comparisons": [
+    {
+      "condition": "all_skills",
+      "baseline": "no_skill",
+      "difference": 0.01111111111111111,
+      "ci_low": -0.03333333333333333,
+      "ci_high": 0.06666666666666667,
+      "bootstrap_p_value": 0.9357
+    },
+    {
+      "condition": "body_aware_retrieval",
+      "baseline": "no_skill",
+      "difference": -0.03333333333333333,
+      "ci_low": -0.08888888888888888,
+      "ci_high": 0.0,
+      "bootstrap_p_value": 0.2531
+    },
+    {
+      "condition": "bm25_body_retrieval",
+      "baseline": "no_skill",
+      "difference": 0.0,
+      "ci_low": -0.03333333333333333,
+      "ci_high": 0.03333333333333333,
+      "bootstrap_p_value": 1.0
+    },
+    {
+      "condition": "oracle_skill",
+      "baseline": "no_skill",
+      "difference": -0.02222222222222222,
+      "ci_low": -0.08888888888888888,
+      "ci_high": 0.04444444444444444,
+      "bootstrap_p_value": 0.783
+    }
+  ],
+  "failure_taxonomy": [
+    {
+      "category": "execution_error_other",
+      "failures": 2,
+      "share": 0.14285714285714285
+    },
+    {
+      "category": "routing_error",
+      "failures": 2,
+      "share": 0.14285714285714285
+    },
+    {
+      "category": "skill_condition_interference",
+      "failures": 10,
+      "share": 0.7142857142857143
+    }
+  ],
+  "retrieval_audit": {
+    "episodes": 90,
+    "primary_gold_hit_at_3_episodes": 78,
+    "primary_gold_hit_at_3_episode_rate": 0.8666666666666667,
+    "unique_tasks": 30,
+    "primary_gold_hit_at_3_tasks": 26,
+    "primary_gold_hit_at_3_task_rate": 0.8666666666666667,
+    "success_when_hit": 0.9743589743589743,
+    "success_when_missed": 1
+  },
+  "validation": {
+    "unique_episode_keys": 450,
+    "expected_episode_keys": 450,
+    "task_count": 30,
+    "family_task_counts": {
+      "clean_then_place": 5,
+      "cool_then_place": 5,
+      "heat_then_place": 5,
+      "light_inspection": 5,
+      "simple_pick_place": 5,
+      "two_object_place": 5
+    },
+    "condition_episode_counts": {
+      "no_skill": 90,
+      "all_skills": 90,
+      "body_aware_retrieval": 90,
+      "bm25_body_retrieval": 90,
+      "oracle_skill": 90
+    },
+    "repeat_values": [
+      0,
+      1,
+      2
+    ],
+    "models": [
+      "deepseek-v4-flash"
+    ],
+    "temperatures": [
+      0.0
+    ],
+    "agent_protocol_versions": [
+      "v5-goal-only-router"
+    ],
+    "skill_library_sha256_values": [
+      "d6cb0489ae5dfc6135d868c95fdcca6828b83355ae7a6a19fb3232ff6ccd631b"
+    ],
+    "missing_success_values": 0
+  }
+}

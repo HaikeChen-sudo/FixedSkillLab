@@ -198,6 +198,12 @@ class MiniLabTest(unittest.TestCase):
         self.assertEqual(metrics["primary_rank"], 3)
         self.assertEqual(metrics["primary_hit_at_3"], 1.0)
 
+    def test_primary_gold_rank_does_not_use_a_support_skill(self):
+        from analyze_alfworld_formal import primary_gold_rank
+
+        self.assertEqual(primary_gold_rank({"gold_skill_ranks": [1, 3, 2]}), 3)
+        self.assertIsNone(primary_gold_rank({"gold_skill_ranks": [1, None, 2]}))
+
     def test_simple_pick_place_uses_task_language(self):
         from alfworld_skills import SKILLS as ALFWORLD_SKILLS, render as render_alfworld_skill
 

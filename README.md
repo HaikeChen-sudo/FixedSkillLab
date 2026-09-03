@@ -166,6 +166,19 @@ Pilot 无程序错误后，再跑独立测试集三次重复。`--resume` 可在
 .venv/alfworld-native/bin/python alfworld_experiment.py --model deepseek-v4-flash --temperature 0 --suite alfworld-v5-test-30 --conditions no_skill,all_skills,body_aware_retrieval,bm25_body_retrieval,oracle_skill --repeats 3 --run-id alfworld-v5-test-30x3 --resume
 ```
 
+### v5 正式结果
+
+`alfworld-v5-test-30x3` 共 450 个 episode，数据完整且无重复。All Skills 的原始成功率最高（98.89%），但相对 No Skill 的差值只有 +1.11 个百分点，任务级配对 bootstrap 的 95% CI 为 -3.33 至 6.67 个百分点。No Skill 与 BM25 Body 均为 97.78%，No Skill 的平均总 token 最低（28,612），单次成功成本也最低（$0.000599）。现有结果不支持固定 Skill 带来稳定成功率收益。
+
+BM25 离线评测与 Agent 在线运行现在共用同一个目标句提取函数。30 道题的 Top-3 结果完全一致，主 Skill Hit@3 为 86.7%。冻结数据、统计表、图和失败记录在 [`results/formal_v5`](results/formal_v5)，中文报告见 [`ALFWorld_固定Skill正式实验报告_v5.docx`](ALFWorld_固定Skill正式实验报告_v5.docx)。
+
+复现正式统计和图：
+
+```bash
+python3 analyze_alfworld_formal.py results/alfworld_results.jsonl --run-id alfworld-v5-test-30x3 --output-dir results/formal_v5
+python3 plot_alfworld_results.py results/alfworld_results.jsonl --run-id alfworld-v5-test-30x3 --output-dir results/formal_v5/figures --deduplicate
+```
+
 逐题检查 Flat 与 Oracle 的失败：
 
 ```bash

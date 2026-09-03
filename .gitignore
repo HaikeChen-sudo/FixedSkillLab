@@ -2,6 +2,7 @@
 .idea/
 __pycache__/
 *.py[cod]
+~$*.docx
 
 .env
 .env.*
@@ -25,6 +26,18 @@ results/formal_v4/*
 !results/formal_v4/paired_comparisons.csv
 !results/formal_v4/figures/
 !results/formal_v4/figures/*.png
+!results/formal_v5/
+results/formal_v5/*
+!results/formal_v5/alfworld-v5-test-30x3.jsonl
+!results/formal_v5/analysis_summary.json
+!results/formal_v5/condition_summary.csv
+!results/formal_v5/failure_taxonomy.csv
+!results/formal_v5/failures.jsonl
+!results/formal_v5/family_summary.csv
+!results/formal_v5/manifest.json
+!results/formal_v5/paired_comparisons.csv
+!results/formal_v5/figures/
+!results/formal_v5/figures/*.png
 !results/alfworld_v3_heldout_manifest.jsonl
 !results/alfworld_v5_test_manifest.jsonl
 !results/alfworld_v5_retrieval_summary.json

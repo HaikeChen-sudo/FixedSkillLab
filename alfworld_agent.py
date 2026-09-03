@@ -2,7 +2,6 @@
 
 import argparse
 import json
-import re
 import time
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
@@ -11,7 +10,7 @@ from typing import Any, Dict, List, Optional
 
 from agent import DeepSeekChatClient
 from alfworld_gold_skills import gold_skills_for_game
-from alfworld_retrieval import BM25_RETRIEVER_NAME, EMBEDDER_NAME, retrieve, retrieve_bm25
+from alfworld_retrieval import BM25_RETRIEVER_NAME, EMBEDDER_NAME, retrieve, retrieve_bm25, routing_query
 from alfworld_skills import SKILL_LIST, library_hash, loaded_skill_text
 from alfworld.agents.environment import get_environment
 
@@ -52,13 +51,6 @@ PRICING_PER_MILLION = {
 }
 CONDITIONS = ("no_skill", "all_skills", "flat_retrieval", "body_aware_retrieval", "bm25_body_retrieval", "oracle_skill")
 AGENT_PROTOCOL_VERSION = "v5-goal-only-router"
-
-
-def routing_query(initial_observation: str) -> str:
-    """Keep scene inventory out of retrieval because it overwhelms the task goal."""
-    match = re.search(r"Your task is to:\s*(.+)", initial_observation, flags=re.IGNORECASE | re.DOTALL)
-    return match.group(1).strip() if match else initial_observation.strip()
-
 
 @dataclass(frozen=True)
 class SkillSelection:
@@ -263,6 +255,7 @@ def run_episode(
             "retrieval": selection.retrieved,
             "gold_skill_ranks": selection.gold_skill_ranks,
             "retrieval_rank": min((rank for rank in selection.gold_skill_ranks if rank is not None), default=None),
+            "primary_gold_skill_rank": selection.gold_skill_ranks[1] if len(selection.gold_skill_ranks) > 1 else None,
             "skill_library_sha256": library_hash(),
             "final_text": final_text,
             "trace": trace,

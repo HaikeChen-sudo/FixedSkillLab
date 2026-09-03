@@ -29,6 +29,13 @@ LABELS = {
 }
 
 
+def primary_gold_rank(row):
+    if "primary_gold_skill_rank" in row:
+        return row["primary_gold_skill_rank"]
+    ranks = row.get("gold_skill_ranks", [])
+    return ranks[1] if len(ranks) > 1 else None
+
+
 def percentile(values, probability):
     ordered = sorted(values)
     position = (len(ordered) - 1) * probability
@@ -81,7 +88,7 @@ def failure_category(row, lookup):
     no_skill_success = lookup[(key, "no_skill")]["success"]
     oracle_success = lookup[(key, "oracle_skill")]["success"]
     selective = row["condition"] in {"body_aware_retrieval", "bm25_body_retrieval"}
-    if selective and row.get("retrieval_rank") is None and oracle_success:
+    if selective and primary_gold_rank(row) is None and oracle_success:
         return "routing_error"
     if row["condition"] != "no_skill" and no_skill_success:
         return "skill_condition_interference"
@@ -94,7 +101,7 @@ def failure_category(row, lookup):
 
 def write_csv(path, rows, fields):
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -103,7 +110,7 @@ def main():
     parser = argparse.ArgumentParser(description="Analyze a completed 30-task x 5-condition x 3-repeat ALFWorld run")
     parser.add_argument("results", type=Path)
     parser.add_argument("--run-id", required=True)
-    parser.add_argument("--output-dir", type=Path, default=Path("results/formal_v4"))
+    parser.add_argument("--output-dir", type=Path, default=Path("results/formal"))
     args = parser.parse_args()
 
     records = [json.loads(line) for line in args.results.read_text(encoding="utf-8").splitlines() if line.strip()]
@@ -170,7 +177,7 @@ def main():
             "category": failure_category(row, lookup),
             "steps": row["steps"],
             "rejected_actions": rejected,
-            "retrieval_rank": row.get("retrieval_rank"),
+            "primary_gold_skill_rank": primary_gold_rank(row),
             "skills_loaded": row.get("skills_loaded", []),
             "gold_skills": row.get("gold_skills", []),
             "last_actions": [step.get("command") for step in row["trace"][-8:]],
@@ -181,16 +188,31 @@ def main():
     write_csv(output / "failure_taxonomy.csv", taxonomy_rows, ["category", "failures", "share"])
 
     bm25 = [row for row in records if row["condition"] == "bm25_body_retrieval"]
-    unique_bm25 = {row["task_id"]: row.get("retrieval_rank") for row in bm25}
+    unique_bm25 = {row["task_id"]: primary_gold_rank(row) for row in bm25}
     retrieval_audit = {
         "episodes": len(bm25),
-        "primary_gold_hit_at_3_episodes": sum(row.get("retrieval_rank") is not None for row in bm25),
-        "primary_gold_hit_at_3_episode_rate": mean(row.get("retrieval_rank") is not None for row in bm25),
+        "primary_gold_hit_at_3_episodes": sum(primary_gold_rank(row) is not None for row in bm25),
+        "primary_gold_hit_at_3_episode_rate": mean(primary_gold_rank(row) is not None for row in bm25),
         "unique_tasks": len({row["task_id"] for row in bm25}),
         "primary_gold_hit_at_3_tasks": sum(rank is not None for rank in unique_bm25.values()),
         "primary_gold_hit_at_3_task_rate": mean(rank is not None for rank in unique_bm25.values()),
-        "success_when_hit": mean(row["success"] for row in bm25 if row.get("retrieval_rank") is not None),
-        "success_when_missed": mean(row["success"] for row in bm25 if row.get("retrieval_rank") is None),
+        "success_when_hit": mean(row["success"] for row in bm25 if primary_gold_rank(row) is not None),
+        "success_when_missed": mean(row["success"] for row in bm25 if primary_gold_rank(row) is None),
+    }
+    task_ids = {row["task_id"] for row in records}
+    task_family = {row["task_id"]: row["task_family"] for row in records}
+    validation = {
+        "unique_episode_keys": len({(row["task_id"], row["condition"], row["repeat"]) for row in records}),
+        "expected_episode_keys": 450,
+        "task_count": len(task_ids),
+        "family_task_counts": dict(sorted(Counter(task_family.values()).items())),
+        "condition_episode_counts": {condition: counts[condition] for condition in CONDITIONS},
+        "repeat_values": sorted({row["repeat"] for row in records}),
+        "models": sorted({row["model"] for row in records}),
+        "temperatures": sorted({row["temperature"] for row in records}),
+        "agent_protocol_versions": sorted({row.get("agent_protocol_version") for row in records}),
+        "skill_library_sha256_values": sorted({row.get("skill_library_sha256") for row in records}),
+        "missing_success_values": sum(row.get("success") is None for row in records),
     }
     manifest = {
         "run_id": args.run_id,
@@ -209,6 +231,7 @@ def main():
         "paired_comparisons": paired_rows,
         "failure_taxonomy": taxonomy_rows,
         "retrieval_audit": retrieval_audit,
+        "validation": validation,
     }, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({"output_dir": str(output), "sha256": digest, "failures": len(failure_rows), **retrieval_audit}, ensure_ascii=False))
     return 0

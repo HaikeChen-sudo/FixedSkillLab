@@ -1,7 +1,7 @@
 import unittest
 
 from alfworld_gold_skills import gold_skills_for_game
-from alfworld_retrieval import BM25_RETRIEVER_NAME, retrieve, retrieve_bm25
+from alfworld_retrieval import BM25_RETRIEVER_NAME, retrieve, retrieve_bm25, routing_query
 from alfworld_skills import SKILL_LIST, SKILLS, validate_library
 from alfworld_suites import ALFWORLD_V2_30, ALFWORLD_V3_HELDOUT_30, ALFWORLD_V5_TEST_30, SUITE_FAMILIES, validate_suites
 
@@ -26,6 +26,7 @@ class AlfworldSkillTests(unittest.TestCase):
         bm25_hits = retrieve_bm25("put some vase on safe")
         self.assertEqual(len(bm25_hits), 3)
         self.assertIn("simple-pick-place", [hit.name for hit in bm25_hits])
+        self.assertEqual(routing_query("Room description.\nYour task is to: put two pillow in sofa."), "put two pillow in sofa.")
 
     def test_manual_oracle_labels_known_task_family(self):
         labels = gold_skills_for_game(".alfworld-data/json_2.1.1/valid_unseen/pick_heat_then_place_in_recep-Apple-None-GarbageCan-10/trial_x/game.tw-pddl")
@@ -55,7 +56,7 @@ class AlfworldSkillTests(unittest.TestCase):
 
     @unittest.skipIf(action_result is None, "ALFWorld is installed only in .venv/alfworld-native")
     def test_agent_prompt_uses_desk_lamp(self):
-        from alfworld_agent import AGENT_PROTOCOL_VERSION, SYSTEM_PROMPT, routing_query
+        from alfworld_agent import AGENT_PROTOCOL_VERSION, SYSTEM_PROMPT
 
         self.assertEqual(AGENT_PROTOCOL_VERSION, "v5-goal-only-router")
         self.assertIn("use <desklamp>", SYSTEM_PROMPT)
