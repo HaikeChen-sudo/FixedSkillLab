@@ -2,7 +2,7 @@
 
 固定 Skill 加载与检索的 LLM Agent 实验平台。仓库包含一个只用 Python 标准库的确定性 Mini Lab，以及 ALFWorld text-only 实验。成功条件均由程序或环境判断，模型不能给自己打分。
 
-定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v7 综合研究报告](output/pdf/ALFWorld_固定Skill研究报告_v7.pdf)。Word 只用于本地校订，不收录到仓库。
+定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v7 综合研究报告](output/pdf/ALFWorld_固定Skill研究报告_v7.pdf)
 
 ## 运行
 
