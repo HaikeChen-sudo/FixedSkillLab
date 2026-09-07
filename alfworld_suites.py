@@ -38,12 +38,18 @@ ALFWORLD_V7_TARGETED_TEST_10 = (
     120, 121,                                # place two objects, valid_unseen
 )
 
+ALFWORLD_V8_CONFIRM_20 = (
+    120, 123, 125, 135, 136, 139,                 # heat then place, valid_seen
+    10, 13, 47, 58, 59, 70, 78, 80, 87, 89, 92, 104, 121, 128,  # place two objects, valid_seen
+)
+
 SUITES = {
     "alfworld-v2-30": ALFWORLD_V2_30,
     "alfworld-v3-heldout-30": ALFWORLD_V3_HELDOUT_30,
     "alfworld-v5-test-30": ALFWORLD_V5_TEST_30,
     "alfworld-v6-dev-20": ALFWORLD_V6_DEV_20,
     "alfworld-v7-targeted-test-10": ALFWORLD_V7_TARGETED_TEST_10,
+    "alfworld-v8-confirm-20": ALFWORLD_V8_CONFIRM_20,
 }
 SUITE_SPLITS = {
     "alfworld-v2-30": "valid_unseen",
@@ -51,6 +57,7 @@ SUITE_SPLITS = {
     "alfworld-v5-test-30": "valid_unseen",
     "alfworld-v6-dev-20": "valid_seen",
     "alfworld-v7-targeted-test-10": "valid_unseen",
+    "alfworld-v8-confirm-20": "valid_seen",
 }
 SUITE_FAMILIES = {
     "alfworld-v2-30": {
@@ -85,6 +92,10 @@ SUITE_FAMILIES = {
         **{index: "heat_then_place" for index in ALFWORLD_V7_TARGETED_TEST_10[0:8]},
         **{index: "two_object_place" for index in ALFWORLD_V7_TARGETED_TEST_10[8:10]},
     },
+    "alfworld-v8-confirm-20": {
+        **{index: "heat_then_place" for index in ALFWORLD_V8_CONFIRM_20[0:6]},
+        **{index: "two_object_place" for index in ALFWORLD_V8_CONFIRM_20[6:20]},
+    },
 }
 
 SUITE_EXPECTED_FAMILIES = {
@@ -93,6 +104,7 @@ SUITE_EXPECTED_FAMILIES = {
     "alfworld-v5-test-30": {"heat_then_place": 5, "clean_then_place": 5, "cool_then_place": 5, "two_object_place": 5, "light_inspection": 5, "simple_pick_place": 5},
     "alfworld-v6-dev-20": {"heat_then_place": 10, "two_object_place": 10},
     "alfworld-v7-targeted-test-10": {"heat_then_place": 8, "two_object_place": 2},
+    "alfworld-v8-confirm-20": {"heat_then_place": 6, "two_object_place": 14},
 }
 
 

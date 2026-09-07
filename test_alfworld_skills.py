@@ -3,7 +3,7 @@ import unittest
 from alfworld_gold_skills import gold_skills_for_game
 from alfworld_retrieval import BM25_RETRIEVER_NAME, retrieve, retrieve_bm25, routing_query
 from alfworld_skills import SKILL_LIST, SKILLS, V6_SKILL_OVERRIDES, V7_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
-from alfworld_suites import ALFWORLD_V2_30, ALFWORLD_V3_HELDOUT_30, ALFWORLD_V5_TEST_30, ALFWORLD_V6_DEV_20, ALFWORLD_V7_TARGETED_TEST_10, SUITE_FAMILIES, SUITE_SPLITS, validate_suites
+from alfworld_suites import ALFWORLD_V2_30, ALFWORLD_V3_HELDOUT_30, ALFWORLD_V5_TEST_30, ALFWORLD_V6_DEV_20, ALFWORLD_V7_TARGETED_TEST_10, ALFWORLD_V8_CONFIRM_20, SUITE_FAMILIES, SUITE_SPLITS, validate_suites
 
 try:
     from alfworld_agent import action_result
@@ -77,6 +77,11 @@ class AlfworldSkillTests(unittest.TestCase):
         self.assertEqual(SUITE_SPLITS["alfworld-v7-targeted-test-10"], "valid_unseen")
         self.assertEqual(list(SUITE_FAMILIES["alfworld-v7-targeted-test-10"].values()).count("heat_then_place"), 8)
         self.assertEqual(list(SUITE_FAMILIES["alfworld-v7-targeted-test-10"].values()).count("two_object_place"), 2)
+        self.assertEqual(len(ALFWORLD_V8_CONFIRM_20), 20)
+        self.assertFalse(set(ALFWORLD_V6_DEV_20) & set(ALFWORLD_V8_CONFIRM_20))
+        self.assertEqual(SUITE_SPLITS["alfworld-v8-confirm-20"], "valid_seen")
+        self.assertEqual(list(SUITE_FAMILIES["alfworld-v8-confirm-20"].values()).count("heat_then_place"), 6)
+        self.assertEqual(list(SUITE_FAMILIES["alfworld-v8-confirm-20"].values()).count("two_object_place"), 14)
         self.assertEqual({family: list(SUITE_FAMILIES["alfworld-v2-30"].values()).count(family) for family in set(SUITE_FAMILIES["alfworld-v2-30"].values())}, {
             "heat_then_place": 5, "clean_then_place": 5, "cool_then_place": 5,
             "two_object_place": 5, "light_inspection": 5, "simple_pick_place": 5,
@@ -140,6 +145,7 @@ class AlfworldSkillTests(unittest.TestCase):
     def test_v6_suite_chooses_valid_seen(self):
         self.assertEqual(resolve_split("alfworld-v6-dev-20", None), "valid_seen")
         self.assertEqual(resolve_split("alfworld-v7-targeted-test-10", None), "valid_unseen")
+        self.assertEqual(resolve_split("alfworld-v8-confirm-20", None), "valid_seen")
         with self.assertRaises(ValueError):
             resolve_split("alfworld-v6-dev-20", "valid_unseen")
 

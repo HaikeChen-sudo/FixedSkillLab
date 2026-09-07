@@ -215,6 +215,18 @@ v6 Pilot 暴露出加热流程与环境动作语义不一致。v7 保留 v6 的�
 python3 summarize_results.py results/alfworld_results.jsonl --run-id alfworld-v7-targeted-test-10x3 --deduplicate --repeat-stats
 ```
 
+### v8 独立确认实验
+
+`alfworld-v8-confirm-20` 冻结了 20 道未参与 v6/v7 开发的 `valid_seen` 任务，包括 6 道加热任务和 14 道双物体任务。v7 Skill 和 Agent 协议在运行前冻结。该套件与开发题在任务层面不重叠，但同属 `valid_seen`，不作为新的 OOD 证据。
+
+```bash
+.venv/alfworld-native/bin/python alfworld_experiment.py --model deepseek-v4-flash --temperature 0 --suite alfworld-v8-confirm-20 --conditions no_skill,oracle_v5,oracle_v7 --max-steps 100 --repeats 3 --run-id alfworld-v8-confirm-20x3 --resume
+```
+
+```bash
+python3 summarize_results.py results/alfworld_results.jsonl --run-id alfworld-v8-confirm-20x3 --deduplicate --repeat-stats
+```
+
 逐题检查 Flat 与 Oracle 的失败：
 
 ```bash
