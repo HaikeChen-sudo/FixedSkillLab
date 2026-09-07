@@ -3,6 +3,8 @@
 __pycache__/
 *.py[cod]
 ~$*.docx
+*.docx
+document-fonts.conf
 
 .env
 .env.*
@@ -38,6 +40,20 @@ results/formal_v5/*
 !results/formal_v5/paired_comparisons.csv
 !results/formal_v5/figures/
 !results/formal_v5/figures/*.png
+!results/formal_v7/
+results/formal_v7/*
+!results/formal_v7/alfworld-v7-targeted-test-10x3.jsonl
+!results/formal_v7/analysis_summary.json
+!results/formal_v7/condition_summary.csv
+!results/formal_v7/development_condition_summary.csv
+!results/formal_v7/failure_taxonomy.csv
+!results/formal_v7/failures.jsonl
+!results/formal_v7/family_summary.csv
+!results/formal_v7/manifest.json
+!results/formal_v7/paired_comparisons.csv
+!results/formal_v7/task_summary.csv
+!results/formal_v7/figures/
+!results/formal_v7/figures/*.png
 !results/alfworld_v3_heldout_manifest.jsonl
 !results/alfworld_v5_test_manifest.jsonl
 !results/alfworld_v5_retrieval_summary.json

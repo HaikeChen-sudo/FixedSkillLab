@@ -1,0 +1,17 @@
+{
+  "test_run_id": "alfworld-v7-targeted-test-10x3",
+  "development_run_id": "alfworld-v7-oracle-dev-20x3",
+  "test_records": 90,
+  "development_records": 180,
+  "test_tasks": 10,
+  "development_tasks": 20,
+  "test_conditions": [
+    "no_skill",
+    "oracle_v5",
+    "oracle_v7"
+  ],
+  "repeats": 3,
+  "frozen_test_file": "results/formal_v7/alfworld-v7-targeted-test-10x3.jsonl",
+  "frozen_test_sha256": "5fcac9e5b23ec3b70bbefcc94330b048a71a2855995b1888b6bc7aea8b6b5f2e",
+  "source_file": "results/alfworld_results.jsonl"
+}

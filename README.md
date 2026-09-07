@@ -2,6 +2,8 @@
 
 固定 Skill 加载与检索的 LLM Agent 实验平台。仓库包含一个只用 Python 标准库的确定性 Mini Lab，以及 ALFWorld text-only 实验。成功条件均由程序或环境判断，模型不能给自己打分。
 
+定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v7 综合研究报告](output/pdf/ALFWorld_固定Skill研究报告_v7.pdf)。Word 只用于本地校订，不收录到仓库。
+
 ## 运行
 
 Mini Lab 需要 Python 3.9+，不安装第三方依赖。
@@ -170,13 +172,47 @@ Pilot 无程序错误后，再跑独立测试集三次重复。`--resume` 可在
 
 `alfworld-v5-test-30x3` 共 450 个 episode，数据完整且无重复。All Skills 的原始成功率最高（98.89%），但相对 No Skill 的差值只有 +1.11 个百分点，任务级配对 bootstrap 的 95% CI 为 -3.33 至 6.67 个百分点。No Skill 与 BM25 Body 均为 97.78%，No Skill 的平均总 token 最低（28,612），单次成功成本也最低（$0.000599）。现有结果不支持固定 Skill 带来稳定成功率收益。
 
-BM25 离线评测与 Agent 在线运行现在共用同一个目标句提取函数。30 道题的 Top-3 结果完全一致，主 Skill Hit@3 为 86.7%。冻结数据、统计表、图和失败记录在 [`results/formal_v5`](results/formal_v5)，中文报告见 [`ALFWorld_固定Skill正式实验报告_v5.docx`](ALFWorld_固定Skill正式实验报告_v5.docx)。
+BM25 离线评测与 Agent 在线运行现在共用同一个目标句提取函数。30 道题的 Top-3 结果完全一致，主 Skill Hit@3 为 86.7%。冻结数据、统计表、图和失败记录在 [`results/formal_v5`](results/formal_v5)。Word 仅用于本地校订，仓库只发布定稿 PDF。
 
 复现正式统计和图：
 
 ```bash
 python3 analyze_alfworld_formal.py results/alfworld_results.jsonl --run-id alfworld-v5-test-30x3 --output-dir results/formal_v5
 python3 plot_alfworld_results.py results/alfworld_results.jsonl --run-id alfworld-v5-test-30x3 --output-dir results/formal_v5/figures --deduplicate
+```
+
+### v6 Oracle 诊断
+
+v5 测试集已经冻结，不再用于修改 Skill。`alfworld-v6-dev-20` 使用独立的 `valid_seen` 开发分区，包含 10 道加热任务和 10 道双物体放置任务。`oracle_v5` 加载原始 Skill；`oracle_v6` 只替换 `execute-heat-place` 和 `two-object-placement`，其余 28 个 Skill 保持不变。先运行 6 题 Pilot：
+
+```bash
+.venv/alfworld-native/bin/python alfworld_experiment.py --model deepseek-v4-flash --temperature 0 --tasks 2,39,46,16,43,82 --split valid_seen --conditions no_skill,oracle_v5,oracle_v6 --max-steps 100 --repeats 1 --run-id alfworld-v6-oracle-pilot-6x1 --resume
+```
+
+Pilot 正常后再运行 20 题三次重复：
+
+```bash
+.venv/alfworld-native/bin/python alfworld_experiment.py --model deepseek-v4-flash --temperature 0 --suite alfworld-v6-dev-20 --conditions no_skill,oracle_v5,oracle_v6 --max-steps 100 --repeats 3 --run-id alfworld-v6-oracle-dev-20x3 --resume
+```
+
+v6 Pilot 暴露出加热流程与环境动作语义不一致。v7 保留 v6 的目标辨别和双物体 Skill，只把加热步骤改为手持目标直接调用 `heat <target> with <microwave>`。原 v6 内容和哈希保持不变。运行同一批 6 题：
+
+```bash
+.venv/alfworld-native/bin/python alfworld_experiment.py --model deepseek-v4-flash --temperature 0 --tasks 2,39,46,16,43,82 --split valid_seen --conditions no_skill,oracle_v5,oracle_v7 --max-steps 100 --repeats 1 --run-id alfworld-v7-oracle-pilot-6x1 --resume
+```
+
+### v7 独立目标类型测试
+
+`alfworld-v7-targeted-test-10` 冻结了未参与 v2、v3、v5 正式实验和 v6/v7 开发的 10 道 `valid_unseen` 任务，包括 8 道加热任务和 2 道双物体任务。该结果只支持这两类目标，不能外推到全部 ALFWorld 任务。v7 在本测试后不再修改。
+
+冻结轨迹、统计表、失败分类和图表位于 [`results/formal_v7`](results/formal_v7)。
+
+```bash
+.venv/alfworld-native/bin/python alfworld_experiment.py --model deepseek-v4-flash --temperature 0 --suite alfworld-v7-targeted-test-10 --conditions no_skill,oracle_v5,oracle_v7 --max-steps 100 --repeats 3 --run-id alfworld-v7-targeted-test-10x3 --resume
+```
+
+```bash
+python3 summarize_results.py results/alfworld_results.jsonl --run-id alfworld-v7-targeted-test-10x3 --deduplicate --repeat-stats
 ```
 
 逐题检查 Flat 与 Oracle 的失败：

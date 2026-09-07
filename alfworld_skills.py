@@ -53,18 +53,68 @@ SKILL_LIST = [
 
 SKILLS: Dict[str, AlfworldSkill] = {item.name: item for item in SKILL_LIST}
 
+V6_SKILL_OVERRIDES = {
+    "execute-heat-place": skill(
+        "execute-heat-place",
+        "Heat only the named target, then place that same object in the named destination.",
+        "Use for pick_heat_then_place_in_recep goals.",
+        "Write down the target noun, numbered target ID, and final receptacle; never move a different object.",
+        "Search each plausible source once until the named target is found, then take it.",
+        "Go directly to a microwave, open it if needed, move the target inside, close it, and heat the target.",
+        "Open the microwave, take the heated target back, then go directly to the final receptacle.",
+        "Move the same target to the final receptacle. After a rejected action, fix its precondition instead of restarting the search.",
+        termination="Stop only when the environment marks the task won, or the episode step budget leaves no justified action.",
+    ),
+    "two-object-placement": skill(
+        "two-object-placement",
+        "Place two distinct instances of the named target in the same named destination.",
+        "Use for pick_two_obj_and_place goals.",
+        "Write down the target noun and destination; never take or move an object with another noun.",
+        "Find one numbered target, take it, move it to the destination, and remember that numbered ID as placed.",
+        "Search only for a different numbered instance; do not revisit or retrieve the first placed object.",
+        "Take the second target and move it to the same destination.",
+        "Inspect each candidate receptacle at most once and never repeat a rejected action without changing its precondition.",
+        termination="Stop only when the environment marks the task won; one placed object is not completion.",
+    ),
+}
+
+V7_SKILL_OVERRIDES = {
+    "execute-heat-place": skill(
+        "execute-heat-place",
+        "Heat only the exactly named target, then place that same object in the named destination.",
+        "Use for pick_heat_then_place_in_recep goals.",
+        "Write down the exact target noun and destination; treat similar nouns such as cup and mug as different objects.",
+        "Search each plausible source once until the exact target is found, then take it and keep it in inventory.",
+        "Go to a microwave and, while holding the target, call heat <target> with <microwave>. Do not put the target inside the microwave or operate its door first.",
+        "Go directly to the destination, open it only if needed, and move the same target there.",
+        "After a rejected action, fix its stated precondition instead of repeating it or changing to another object.",
+        termination="Stop only when the environment marks the task won, or the episode step budget leaves no justified action.",
+    ),
+}
+
+
+def versioned_skills(version: str = "v5") -> List[AlfworldSkill]:
+    if version == "v5":
+        return SKILL_LIST
+    if version == "v6":
+        return [V6_SKILL_OVERRIDES.get(item.name, item) for item in SKILL_LIST]
+    if version == "v7":
+        return [V7_SKILL_OVERRIDES.get(item.name, V6_SKILL_OVERRIDES.get(item.name, item)) for item in SKILL_LIST]
+    raise ValueError(f"unknown skill library version: {version}")
+
 
 def render(item: AlfworldSkill) -> str:
     procedure = "\n".join(f"{index}. {step}" for index, step in enumerate(item.procedure, 1))
     return f"Name\n{item.name}\n\nDescription\n{item.description}\n\nActivation Condition\n{item.activation_condition}\n\nProcedure\n{procedure}\n\nTermination Condition\n{item.termination_condition}\n"
 
 
-def loaded_skill_text(names: Iterable[str]) -> str:
-    return "\n---\n".join(render(SKILLS[name]) for name in names)
+def loaded_skill_text(names: Iterable[str], version: str = "v5") -> str:
+    selected = {item.name: item for item in versioned_skills(version)}
+    return "\n---\n".join(render(selected[name]) for name in names)
 
 
-def library_hash() -> str:
-    return hashlib.sha256("\n".join(render(item) for item in SKILL_LIST).encode("utf-8")).hexdigest()
+def library_hash(version: str = "v5") -> str:
+    return hashlib.sha256("\n".join(render(item) for item in versioned_skills(version)).encode("utf-8")).hexdigest()
 
 
 def validate_library() -> List[str]:
@@ -73,6 +123,10 @@ def validate_library() -> List[str]:
         errors.append(f"expected 30 skills, got {len(SKILL_LIST)}")
     if len(SKILLS) != len(SKILL_LIST):
         errors.append("skill names must be unique")
+    if any(name not in SKILLS or item.name != name for name, item in V6_SKILL_OVERRIDES.items()):
+        errors.append("v6 overrides must replace existing skills without renaming them")
+    if any(name not in SKILLS or item.name != name for name, item in V7_SKILL_OVERRIDES.items()):
+        errors.append("v7 overrides must replace existing skills without renaming them")
     for item in SKILL_LIST:
         if not all((item.name, item.description, item.activation_condition, item.procedure, item.termination_condition)):
             errors.append(f"{item.name}: all five fields are required")

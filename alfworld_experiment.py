@@ -6,10 +6,10 @@ import random
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
-from alfworld_agent import CONDITIONS, run_episode
-from alfworld_suites import SUITE_FAMILIES, SUITES
+from alfworld_agent import CONDITIONS, DEFAULT_CONDITIONS, run_episode
+from alfworld_suites import SUITE_FAMILIES, SUITE_SPLITS, SUITES
 
 
 def condition_list(value: str) -> List[str]:
@@ -48,15 +48,22 @@ def completed_episodes(path: Path, run_id: str) -> set:
         }
 
 
+def resolve_split(suite: Optional[str], requested: Optional[str]) -> str:
+    expected = SUITE_SPLITS.get(suite)
+    if expected and requested and requested != expected:
+        raise ValueError(f"{suite} uses --split {expected}")
+    return requested or expected or "valid_unseen"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run fixed-Skill A-E ALFWorld experiments")
     parser.add_argument("--model", required=True)
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--tasks", type=task_list, help="comma-separated zero-based game indexes; default: 0 through 9")
     parser.add_argument("--suite", choices=sorted(SUITES), help="frozen named task suite; cannot be combined with --tasks")
-    parser.add_argument("--conditions", type=condition_list, default=list(CONDITIONS))
+    parser.add_argument("--conditions", type=condition_list, default=list(DEFAULT_CONDITIONS))
     parser.add_argument("--repeats", type=int, default=1)
-    parser.add_argument("--split", default="valid_unseen", choices=("valid_seen", "valid_unseen"))
+    parser.add_argument("--split", choices=("valid_seen", "valid_unseen"))
     parser.add_argument("--max-steps", type=int, default=50)
     parser.add_argument("--data-dir", type=Path, default=Path(".alfworld-data"))
     parser.add_argument("--results", type=Path, default=Path("results/alfworld_results.jsonl"))
@@ -68,6 +75,10 @@ def main() -> int:
         parser.error("--repeats and --max-steps must be positive")
     if args.tasks is not None and args.suite:
         parser.error("--tasks and --suite cannot be used together")
+    try:
+        split = resolve_split(args.suite, args.split)
+    except ValueError as error:
+        parser.error(str(error))
     task_indexes = list(SUITES[args.suite]) if args.suite else args.tasks or list(range(10))
 
     completed = completed_episodes(args.results, args.run_id) if args.resume else set()
@@ -77,15 +88,15 @@ def main() -> int:
             random.Random(f"{args.order_seed}:{task_index}:{repeat}").shuffle(conditions)
             for condition in conditions:
                 if (task_index, condition, repeat) in completed:
-                    print(json.dumps({"run_id": args.run_id, "task_id": f"{args.split}:{task_index:03d}", "condition": condition, "status": "skipped_existing"}, ensure_ascii=False))
+                    print(json.dumps({"run_id": args.run_id, "task_id": f"{split}:{task_index:03d}", "condition": condition, "status": "skipped_existing"}, ensure_ascii=False))
                     continue
                 started = time.perf_counter()
-                record = run_episode(args.model, args.temperature, args.data_dir, args.split, args.max_steps, task_index, condition)
+                record = run_episode(args.model, args.temperature, args.data_dir, split, args.max_steps, task_index, condition)
                 record.update({
                     "schema_version": 1,
                     "run_id": args.run_id,
                     "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-                    "split": args.split,
+                    "split": split,
                     "repeat": repeat,
                     "thinking": "disabled",
                     "suite": args.suite,

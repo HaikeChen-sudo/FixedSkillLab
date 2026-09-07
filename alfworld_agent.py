@@ -49,8 +49,9 @@ PRICING_PER_MILLION = {
     "deepseek-v4-flash": {"cache_hit": 0.0028, "cache_miss": 0.14, "output": 0.28},
     "deepseek-v4-pro": {"cache_hit": 0.003625, "cache_miss": 0.435, "output": 0.87},
 }
-CONDITIONS = ("no_skill", "all_skills", "flat_retrieval", "body_aware_retrieval", "bm25_body_retrieval", "oracle_skill")
-AGENT_PROTOCOL_VERSION = "v5-goal-only-router"
+DEFAULT_CONDITIONS = ("no_skill", "all_skills", "flat_retrieval", "body_aware_retrieval", "bm25_body_retrieval", "oracle_skill")
+CONDITIONS = DEFAULT_CONDITIONS + ("oracle_v5", "oracle_v6", "oracle_v7")
+AGENT_PROTOCOL_VERSION = "v7-versioned-oracle"
 
 @dataclass(frozen=True)
 class SkillSelection:
@@ -59,6 +60,7 @@ class SkillSelection:
     gold_skill_ranks: List[Optional[int]]
     retriever: Optional[str]
     gold_skills: List[str]
+    library_version: str
 
 
 def select_skills(condition: str, task_text: str, game_file: str) -> SkillSelection:
@@ -66,11 +68,12 @@ def select_skills(condition: str, task_text: str, game_file: str) -> SkillSelect
         raise ValueError(f"unknown condition: {condition}")
     gold = list(gold_skills_for_game(game_file))
     if condition == "no_skill":
-        return SkillSelection([], [], [], None, gold)
+        return SkillSelection([], [], [], None, gold, "v5")
     if condition == "all_skills":
-        return SkillSelection([item.name for item in SKILL_LIST], [], [], None, gold)
-    if condition == "oracle_skill":
-        return SkillSelection(gold, [], [], None, gold)
+        return SkillSelection([item.name for item in SKILL_LIST], [], [], None, gold, "v5")
+    if condition in {"oracle_skill", "oracle_v5", "oracle_v6", "oracle_v7"}:
+        version = "v5" if condition == "oracle_skill" else condition.removeprefix("oracle_")
+        return SkillSelection(gold, [], [], None, gold, version)
     if condition == "bm25_body_retrieval":
         hits = retrieve_bm25(task_text)
         retriever = BM25_RETRIEVER_NAME
@@ -84,6 +87,7 @@ def select_skills(condition: str, task_text: str, game_file: str) -> SkillSelect
         [ranks.get(name) for name in gold],
         retriever,
         gold,
+        "v5",
     )
 
 
@@ -186,7 +190,7 @@ def run_episode(
             {"role": "system", "content": SYSTEM_PROMPT},
         ]
         if selection.names:
-            messages.append({"role": "system", "content": "Fixed Skill guidance:\n" + loaded_skill_text(selection.names)})
+            messages.append({"role": "system", "content": "Fixed Skill guidance:\n" + loaded_skill_text(selection.names, selection.library_version)})
         messages.append({"role": "user", "content": "Observation:\n" + observation[0]})
         client = DeepSeekChatClient(model, temperature, tools=[ACT_TOOL])
         won = False
@@ -256,7 +260,8 @@ def run_episode(
             "gold_skill_ranks": selection.gold_skill_ranks,
             "retrieval_rank": min((rank for rank in selection.gold_skill_ranks if rank is not None), default=None),
             "primary_gold_skill_rank": selection.gold_skill_ranks[1] if len(selection.gold_skill_ranks) > 1 else None,
-            "skill_library_sha256": library_hash(),
+            "skill_library_version": selection.library_version,
+            "skill_library_sha256": library_hash(selection.library_version),
             "final_text": final_text,
             "trace": trace,
         }

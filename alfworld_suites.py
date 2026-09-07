@@ -28,10 +28,29 @@ ALFWORLD_V5_TEST_30 = (
     66, 82, 83, 84, 85,       # simple pick and place
 )
 
+ALFWORLD_V6_DEV_20 = (
+    2, 39, 46, 56, 74, 98, 100, 101, 110, 115,  # heat then place, valid_seen
+    1, 16, 35, 41, 43, 66, 75, 82, 83, 91,       # place two objects, valid_seen
+)
+
+ALFWORLD_V7_TARGETED_TEST_10 = (
+    79, 80, 101, 102, 103, 113, 114, 115,  # heat then place, valid_unseen
+    120, 121,                                # place two objects, valid_unseen
+)
+
 SUITES = {
     "alfworld-v2-30": ALFWORLD_V2_30,
     "alfworld-v3-heldout-30": ALFWORLD_V3_HELDOUT_30,
     "alfworld-v5-test-30": ALFWORLD_V5_TEST_30,
+    "alfworld-v6-dev-20": ALFWORLD_V6_DEV_20,
+    "alfworld-v7-targeted-test-10": ALFWORLD_V7_TARGETED_TEST_10,
+}
+SUITE_SPLITS = {
+    "alfworld-v2-30": "valid_unseen",
+    "alfworld-v3-heldout-30": "valid_unseen",
+    "alfworld-v5-test-30": "valid_unseen",
+    "alfworld-v6-dev-20": "valid_seen",
+    "alfworld-v7-targeted-test-10": "valid_unseen",
 }
 SUITE_FAMILIES = {
     "alfworld-v2-30": {
@@ -58,21 +77,40 @@ SUITE_FAMILIES = {
         **{index: "light_inspection" for index in ALFWORLD_V5_TEST_30[20:25]},
         **{index: "simple_pick_place" for index in ALFWORLD_V5_TEST_30[25:30]},
     },
+    "alfworld-v6-dev-20": {
+        **{index: "heat_then_place" for index in ALFWORLD_V6_DEV_20[0:10]},
+        **{index: "two_object_place" for index in ALFWORLD_V6_DEV_20[10:20]},
+    },
+    "alfworld-v7-targeted-test-10": {
+        **{index: "heat_then_place" for index in ALFWORLD_V7_TARGETED_TEST_10[0:8]},
+        **{index: "two_object_place" for index in ALFWORLD_V7_TARGETED_TEST_10[8:10]},
+    },
+}
+
+SUITE_EXPECTED_FAMILIES = {
+    "alfworld-v2-30": {"heat_then_place": 5, "clean_then_place": 5, "cool_then_place": 5, "two_object_place": 5, "light_inspection": 5, "simple_pick_place": 5},
+    "alfworld-v3-heldout-30": {"heat_then_place": 5, "clean_then_place": 5, "cool_then_place": 5, "two_object_place": 5, "light_inspection": 5, "simple_pick_place": 5},
+    "alfworld-v5-test-30": {"heat_then_place": 5, "clean_then_place": 5, "cool_then_place": 5, "two_object_place": 5, "light_inspection": 5, "simple_pick_place": 5},
+    "alfworld-v6-dev-20": {"heat_then_place": 10, "two_object_place": 10},
+    "alfworld-v7-targeted-test-10": {"heat_then_place": 8, "two_object_place": 2},
 }
 
 
 def validate_suites():
     errors = []
     for name, indexes in SUITES.items():
-        if len(indexes) != 30 or len(set(indexes)) != 30:
-            errors.append(f"{name}: expected 30 unique task indexes")
+        expected = SUITE_EXPECTED_FAMILIES[name]
+        expected_size = sum(expected.values())
+        if len(indexes) != expected_size or len(set(indexes)) != expected_size:
+            errors.append(f"{name}: expected {expected_size} unique task indexes")
         families = SUITE_FAMILIES.get(name, {})
-        if len(families) != 30 or len(set(families.values())) != 6 or any(list(families.values()).count(family) != 5 for family in set(families.values())):
-            errors.append(f"{name}: expected six task families with five tasks each")
+        counts = {family: list(families.values()).count(family) for family in set(families.values())}
+        if len(families) != expected_size or counts != expected:
+            errors.append(f"{name}: unexpected task-family distribution")
     suite_items = list(SUITES.items())
     for offset, (left_name, left) in enumerate(suite_items):
         for right_name, right in suite_items[offset + 1:]:
-            if set(left) & set(right):
+            if SUITE_SPLITS[left_name] == SUITE_SPLITS[right_name] and set(left) & set(right):
                 errors.append(f"{left_name} and {right_name} must be disjoint")
     return errors
 
