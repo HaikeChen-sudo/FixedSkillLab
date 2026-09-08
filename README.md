@@ -2,7 +2,7 @@
 
 固定 Skill 加载与检索的 LLM Agent 实验平台。仓库包含一个只用 Python 标准库的确定性 Mini Lab，以及 ALFWorld text-only 实验。成功条件均由程序或环境判断，模型不能给自己打分。
 
-定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v7 综合研究报告](output/pdf/ALFWorld_固定Skill研究报告_v7.pdf)
+定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf)
 
 ## 运行
 
@@ -225,6 +225,17 @@ python3 summarize_results.py results/alfworld_results.jsonl --run-id alfworld-v7
 
 ```bash
 python3 summarize_results.py results/alfworld_results.jsonl --run-id alfworld-v8-confirm-20x3 --deduplicate --repeat-stats
+```
+
+### v8 确认结果
+
+`alfworld-v8-confirm-20x3` 共 180 个 episode。No Skill 与 Oracle v7 都是 60/60；Oracle v7 的平均 Total Tokens 高 33.3%，端到端延迟高 16.5%，单次成功成本高 15.0%。任务级配对 bootstrap 的成本区间均跨过 0，因此不能断言 Skill 必然增加成本；这批确认数据能支持的结论是，v7 在定向测试中的效率优势没有复现。
+
+冻结轨迹、统计表、任务级差异、失败摘要和图件位于 [`results/formal_v8`](results/formal_v8)。复现统计与图：
+
+```bash
+python3 analyze_alfworld_v8.py results/alfworld_results.jsonl
+python3 plot_alfworld_v8.py results/formal_v8
 ```
 
 逐题检查 Flat 与 Oracle 的失败：

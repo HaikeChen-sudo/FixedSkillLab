@@ -1,0 +1,14 @@
+{
+  "run_id": "alfworld-v8-confirm-20x3",
+  "records": 180,
+  "tasks": 20,
+  "conditions": [
+    "no_skill",
+    "oracle_v5",
+    "oracle_v7"
+  ],
+  "repeats": 3,
+  "source_file": "results/alfworld_results.jsonl",
+  "frozen_file": "results/formal_v8/alfworld-v8-confirm-20x3.jsonl",
+  "frozen_sha256": "210b2f05db7d85fa20210cda624677a37d2cb0059648aa4ae2079ebfb80cdecc"
+}
