@@ -1,0 +1,19 @@
+{
+  "run_id": "scienceworld-v2-pilot-6x1",
+  "purpose": "development pilot; not a held-out benchmark result",
+  "episodes": 12,
+  "tasks": 6,
+  "repeats": 1,
+  "conditions": ["no_skill", "oracle_v2"],
+  "model": "deepseek-v4-flash",
+  "temperature": 0.0,
+  "scienceworld_version": "1.2.3",
+  "agent_protocol_version": "scienceworld-v2",
+  "skill_library_version": "v2",
+  "skill_library_sha256": "ffc28070b6f7abeb50c36ba21a33a0675437600e5d97a1b49a1c29ce78ed9b34",
+  "data_sha256": "5673977f423e773a86e89b8456f20beb6db10776c8373d42230f3666d0be4d3e",
+  "simplification": "easy",
+  "variation": 0,
+  "official_variation_split": "train",
+  "success_rule": "environment score >= 100"
+}

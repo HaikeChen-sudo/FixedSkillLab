@@ -4,8 +4,9 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from scienceworld_agent import DEFAULT_CONDITIONS, objective_success, skill_names, skill_selection
-from scienceworld_experiment import PILOT_TASKS, completed_episodes
+from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -14,6 +15,19 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertEqual(len(PILOT_TASKS), 6)
         self.assertEqual(set(PILOT_TASKS), set(GOLD_SKILLS))
         self.assertEqual(len(SKILL_LIST), 6)
+
+    def test_heldout_suite_uses_frozen_test_variations(self):
+        self.assertEqual(validate_suites(), [])
+        self.assertEqual(SCIENCEWORLD_PILOT_6, tuple((task, 0) for task in GOLD_SKILLS))
+        self.assertEqual(SCIENCEWORLD_V3_HELDOUT_6, (
+            ("boil", 21), ("melt", 21), ("freeze", 21),
+            ("use-thermometer", 405), ("find-living-thing", 225),
+            ("find-non-living-thing", 225),
+        ))
+        self.assertEqual(SUITE_VARIATION_SPLITS["scienceworld-v3-heldout-6"], "test")
+        self.assertEqual(experiment_cases("scienceworld-v3-heldout-6", None, None), list(SCIENCEWORLD_V3_HELDOUT_6))
+        with self.assertRaises(ValueError):
+            experiment_cases("scienceworld-v3-heldout-6", ["boil"], None)
 
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])

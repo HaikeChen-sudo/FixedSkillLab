@@ -285,6 +285,40 @@ python3 summarize_results.py results/scienceworld_results.jsonl \
 
 Pilot 只检查软件链路和 Oracle Skill 是否有值得继续测的信号，不用来声称正式结论。
 
+### v3 held-out 测试
+
+`scienceworld-v3-heldout-6` 对六类任务分别使用官方 test split 的第一个 variation，与用于修改 Skill 的 variation 0 不重叠。选题和本地 gold 验收记录在 [`results/scienceworld_v3_heldout_manifest.jsonl`](results/scienceworld_v3_heldout_manifest.jsonl)。v2 Skill 不再修改。
+
+先复现六题的本地 gold 检查，不调用 API：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --suite scienceworld-v3-heldout-6 \
+  --max-steps 100 \
+  --gold-check
+```
+
+运行 `6 tasks × 2 conditions × 3 repeats = 36 episodes`：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --suite scienceworld-v3-heldout-6 \
+  --conditions no_skill,oracle_v2 \
+  --max-steps 100 \
+  --repeats 3 \
+  --run-id scienceworld-v3-heldout-6x3 \
+  --resume
+```
+
+```bash
+python3 summarize_results.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-v3-heldout-6x3 \
+  --deduplicate \
+  --repeat-stats
+```
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`
