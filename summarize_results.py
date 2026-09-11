@@ -14,7 +14,7 @@ def episode_metrics(rows):
     total_tokens = sum(row["total_tokens"] for row in rows)
     average_tokens = total_tokens / len(rows)
     costs = [row["cost_usd"] for row in rows]
-    return {
+    metrics = {
         "task_success_rate": successes / len(rows),
         "average_input_tokens": sum(row["input_tokens"] for row in rows) / len(rows),
         "average_output_tokens": sum(row["output_tokens"] for row in rows) / len(rows),
@@ -24,6 +24,11 @@ def episode_metrics(rows):
         "average_tool_calls": sum(row["tool_calls"] for row in rows) / len(rows),
         "efficiency_per_1k_tokens": 1000 * (successes / len(rows)) / average_tokens if average_tokens else None,
     }
+    if all("score" in row for row in rows):
+        metrics["average_score"] = sum(row["score"] for row in rows) / len(rows)
+    if all("environment_moves" in row for row in rows):
+        metrics["average_environment_moves"] = sum(row["environment_moves"] for row in rows) / len(rows)
+    return metrics
 
 
 def summarize_by_repeat(records):

@@ -1,6 +1,6 @@
 # FixedSkillLab
 
-固定 Skill 加载与检索的 LLM Agent 实验平台。仓库包含一个只用 Python 标准库的确定性 Mini Lab，以及 ALFWorld text-only 实验。成功条件均由程序或环境判断，模型不能给自己打分。
+固定 Skill 加载与检索的 LLM Agent 实验平台。仓库包含一个只用 Python 标准库的确定性 Mini Lab，以及 ALFWorld 和 ScienceWorld 的文字交互实验。成功条件均由程序或环境判断，模型不能给自己打分。
 
 定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf)
 
@@ -245,6 +245,45 @@ python3 failure_matrix.py results/results.jsonl --run-id baseline-v1
 ```
 
 输出只包含发生过失败的 `task_id × condition`，附带加载的 Skill、Gold Skill、检索排名和每次失败的工具 trace。
+
+## ScienceWorld：第一个 6 题 Pilot
+
+ScienceWorld 第一版只比较 `no_skill` 和 `oracle_skill`，不做检索。Pilot 含 6 个任务类型：沸腾、熔化、冻结、温度测量、寻找生物和寻找非生物。每个 Oracle Skill 都是人工固定文本。成功条件是 ScienceWorld 返回 `score >= 100`，不读取模型声明。v1 原始数据和失败摘要已冻结在 [`results/formal_scienceworld_v1`](results/formal_scienceworld_v1)。
+
+依赖安装在项目文件夹内：
+
+```bash
+python3 -m venv .venv/scienceworld
+.venv/scienceworld/bin/python -m pip install -r requirements-scienceworld.txt
+```
+
+先做本地启动和客观评分检查，两条都不调用 DeepSeek：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_agent.py --smoke --task boil
+.venv/scienceworld/bin/python scienceworld_agent.py --gold-check --task boil
+```
+
+根据 v1 Pilot 修订的 v2 只替换熔化、冻结和生物识别三个 Skill，原 v1 文本和哈希保持不变。Agent 同时记录 `environment_moves`，因为 ScienceWorld 的 `wait` 会消耗 10 个环境时间步。运行新的 `6 tasks × 2 conditions × 1 repeat = 12 episodes`：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --repeats 1 \
+  --run-id scienceworld-v2-pilot-6x1 \
+  --resume
+```
+
+结果追加到 `results/scienceworld_results.jsonl`。查看六项核心指标和环境平均分：
+
+```bash
+python3 summarize_results.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-v2-pilot-6x1 \
+  --deduplicate
+```
+
+Pilot 只检查软件链路和 Oracle Skill 是否有值得继续测的信号，不用来声称正式结论。
 
 ## 工具
 

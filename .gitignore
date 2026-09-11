@@ -73,6 +73,12 @@ results/formal_v8/*
 !results/alfworld_v5_test_manifest.jsonl
 !results/alfworld_v5_retrieval_summary.json
 !results/alfworld_v5_retrieval_details.csv
+!results/formal_scienceworld_v1/
+results/formal_scienceworld_v1/*
+!results/formal_scienceworld_v1/scienceworld-pilot-6x1.jsonl
+!results/formal_scienceworld_v1/manifest.json
+!results/formal_scienceworld_v1/condition_summary.csv
+!results/formal_scienceworld_v1/failure_summary.csv
 
 ALFWorld_固定Skill阶段实验报告.docx
 Mini_Lab_阶段科研报告.docx

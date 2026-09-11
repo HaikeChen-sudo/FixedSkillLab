@@ -1,0 +1,6 @@
+task_name,condition,score,category,evidence
+boil,no_skill,-100,execution_error,Focused on the sink instead of the water target and terminated immediately
+melt,no_skill,37,step_budget_error,Spent the remaining budget searching rooms and drawers after focusing on water
+melt,oracle_skill,37,skill_quality_and_execution_error,Found water late and only reached the freezing stage at the step limit
+freeze,oracle_skill,77,target_identity_error,Focused on toilet water but froze a different sample obtained from the sink
+find-living-thing,oracle_skill,-100,execution_error,Focused on flower pot 5 instead of the pea plant inside it
