@@ -1,4 +1,5 @@
 import json
+import hashlib
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -7,7 +8,8 @@ from unittest.mock import patch
 from scienceworld_agent import DEFAULT_CONDITIONS, objective_success, run_episode, skill_names, skill_selection
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
-from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SUITE_VARIATION_SPLITS, validate_suites
+from analyze_scienceworld_formal import validation_errors
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -29,6 +31,20 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertEqual(experiment_cases("scienceworld-v3-heldout-6", None, None), list(SCIENCEWORLD_V3_HELDOUT_6))
         with self.assertRaises(ValueError):
             experiment_cases("scienceworld-v3-heldout-6", ["boil"], None)
+
+    def test_v4_suite_was_frozen_before_oracle_v3(self):
+        self.assertEqual(SCIENCEWORLD_V4_HELDOUT_6, (
+            ("boil", 22), ("melt", 22), ("freeze", 22),
+            ("use-thermometer", 406), ("find-living-thing", 226),
+            ("find-non-living-thing", 226),
+        ))
+        self.assertFalse(set(SCIENCEWORLD_V3_HELDOUT_6) & set(SCIENCEWORLD_V4_HELDOUT_6))
+
+    def test_formal_v3_data_is_complete_and_immutable(self):
+        path = Path("results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl")
+        records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(validation_errors(records, "scienceworld-v3-heldout-6", ("no_skill", "oracle_v2"), 3), [])
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), "d9aa310b50395bce111e23e851a11f0ea6b372aad0f0a8561546a9bc76929f1e")
 
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])

@@ -86,6 +86,17 @@ results/formal_scienceworld_v2/*
 !results/formal_scienceworld_v2/condition_summary.csv
 !results/formal_scienceworld_v2/failure_summary.csv
 !results/scienceworld_v3_heldout_manifest.jsonl
+!results/formal_scienceworld_v3/
+results/formal_scienceworld_v3/*
+!results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl
+!results/formal_scienceworld_v3/manifest.json
+!results/formal_scienceworld_v3/analysis_summary.json
+!results/formal_scienceworld_v3/condition_summary.csv
+!results/formal_scienceworld_v3/task_summary.csv
+!results/formal_scienceworld_v3/paired_comparisons.csv
+!results/formal_scienceworld_v3/failures.jsonl
+!results/formal_scienceworld_v3/failure_taxonomy.csv
+!results/scienceworld_v4_heldout_manifest.jsonl
 
 ALFWorld_固定Skill阶段实验报告.docx
 Mini_Lab_阶段科研报告.docx

@@ -1,0 +1,81 @@
+{
+  "manifest": {
+    "run_id": "scienceworld-v3-heldout-6x3",
+    "purpose": "held-out evaluation",
+    "records": 36,
+    "tasks": 6,
+    "conditions": [
+      "no_skill",
+      "oracle_v2"
+    ],
+    "repeats": 3,
+    "suite": "scienceworld-v3-heldout-6",
+    "frozen_file": "results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl",
+    "sha256": "d9aa310b50395bce111e23e851a11f0ea6b372aad0f0a8561546a9bc76929f1e",
+    "source_file": "results/scienceworld_results.jsonl",
+    "models": [
+      "deepseek-v4-flash"
+    ],
+    "temperatures": [
+      0.0
+    ],
+    "agent_protocol_versions": [
+      "scienceworld-v2"
+    ],
+    "skill_library_versions": [
+      "None",
+      "v2"
+    ],
+    "success_rule": "environment score >= 100"
+  },
+  "condition_summary": [
+    {
+      "condition": "no_skill",
+      "label": "No Skill",
+      "episodes": 18,
+      "successes": 12,
+      "task_success_rate": 0.6666666666666666,
+      "task_success_rate_repeat_std": 0.0,
+      "average_input_tokens": 135548.33333333334,
+      "average_output_tokens": 1667.111111111111,
+      "average_total_tokens": 137215.44444444444,
+      "average_latency_ms": 33680.72222222222,
+      "cost_per_successful_task_usd": 0.002685599466666667,
+      "average_tool_calls": 33.333333333333336,
+      "efficiency_per_1k_tokens": 0.004858539571590176,
+      "average_score": 87.5,
+      "average_environment_moves": 42.333333333333336
+    },
+    {
+      "condition": "oracle_v2",
+      "label": "Oracle v2",
+      "episodes": 18,
+      "successes": 12,
+      "task_success_rate": 0.6666666666666666,
+      "task_success_rate_repeat_std": 0.0,
+      "average_input_tokens": 105869.44444444444,
+      "average_output_tokens": 1414.5,
+      "average_total_tokens": 107283.94444444444,
+      "average_latency_ms": 29738.166666666668,
+      "cost_per_successful_task_usd": 0.0023074300666666666,
+      "average_tool_calls": 29.61111111111111,
+      "efficiency_per_1k_tokens": 0.006214039482971201,
+      "average_score": 87.66666666666667,
+      "average_environment_moves": 43.55555555555556
+    }
+  ],
+  "paired_outcomes": {
+    "both_fail": 6,
+    "both_success": 12
+  },
+  "failure_taxonomy": {
+    "environment_move_budget_exhausted": 11,
+    "premature_model_stop": 1
+  },
+  "validation": {
+    "records_loaded": 36,
+    "records_kept": 36,
+    "duplicates_removed": 0,
+    "unique_episode_keys": 36
+  }
+}
