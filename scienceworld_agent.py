@@ -33,7 +33,7 @@ Focus is a scored commitment: focusing on the wrong object can immediately end t
 
 Do not invent observations or claim success. Only the environment score decides success. Stop issuing actions when done is true. The only available tool is act."""
 
-CONDITIONS = ("no_skill", "oracle_skill", "oracle_v2")
+CONDITIONS = ("no_skill", "oracle_skill", "oracle_v2", "oracle_v3")
 DEFAULT_CONDITIONS = ("no_skill", "oracle_v2")
 AGENT_PROTOCOL_VERSION = "scienceworld-v2"
 PRICING_PER_MILLION = {
@@ -54,7 +54,7 @@ def skill_selection(condition: str, task_name: str):
         raise ValueError(f"no frozen Oracle label for task: {task_name}")
     if condition == "no_skill":
         return [], None
-    version = "v2" if condition == "oracle_v2" else "v1"
+    version = {"oracle_skill": "v1", "oracle_v2": "v2", "oracle_v3": "v3"}[condition]
     return [GOLD_SKILLS[task_name]], version
 
 

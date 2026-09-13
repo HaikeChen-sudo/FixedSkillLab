@@ -319,6 +319,55 @@ python3 summarize_results.py results/scienceworld_results.jsonl \
   --repeat-stats
 ```
 
+v3 的 36 条完整结果、条件汇总、逐题汇总、配对差异和失败证据已冻结在 [`results/formal_scienceworld_v3`](results/formal_scienceworld_v3)。No Skill 与 Oracle v2 的成功率均为 `66.67%`；Oracle v2 的平均 Total Tokens 低 `21.8%`，但节省主要来自 `find-living-thing`，不能据此声称 Skill 普遍有效。
+
+### Oracle v3 与下一组 held-out 测试
+
+Oracle v3 只改写 `boil-substance`、`melt-substance` 和 `freeze-substance`。修改依据是 v3 中已经冻结的失败轨迹：模型把熔化误当成沸腾，或试图冻结原本就是固体的样本。下一套 `scienceworld-v4-heldout-6` 在 Oracle v3 编写前已经提交，使用每类任务的第二个官方 test variation。选择和 gold 验收记录见 [`results/scienceworld_v4_heldout_manifest.jsonl`](results/scienceworld_v4_heldout_manifest.jsonl)。
+
+先执行不调用 API 的 gold 检查：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --suite scienceworld-v4-heldout-6 \
+  --max-steps 200 \
+  --gold-check
+```
+
+v4 使用统一的 200 环境步预算，因为该套件中观察到的最长 gold path 为 166 个动作。这个预算只用于 v4 内部条件比较，不把 v4 的绝对成功率与 v3 的 100 步结果直接比较。
+
+运行 `6 tasks × 3 conditions × 3 repeats = 54 episodes`：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --suite scienceworld-v4-heldout-6 \
+  --conditions no_skill,oracle_v2,oracle_v3 \
+  --max-steps 200 \
+  --repeats 3 \
+  --run-id scienceworld-v4-heldout-6x3 \
+  --resume
+```
+
+```bash
+python3 summarize_results.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-v4-heldout-6x3 \
+  --deduplicate \
+  --repeat-stats
+```
+
+完成后冻结：
+
+```bash
+python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-v4-heldout-6x3 \
+  --suite scienceworld-v4-heldout-6 \
+  --conditions no_skill,oracle_v2,oracle_v3 \
+  --repeats 3 \
+  --output-dir results/formal_scienceworld_v4
+```
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`

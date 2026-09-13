@@ -111,6 +111,38 @@ V2_SKILL_OVERRIDES = {
     ),
 }
 
+V3_SKILL_OVERRIDES = {
+    "boil-substance": skill(
+        "boil-substance",
+        "Drive the named sample past melting until it boils or acceptably combusts.",
+        "Use when the task asks to boil a substance.",
+        "Find the exact named sample and focus on it before changing its state; keep that same sample or its container throughout.",
+        "Put it in a heat-resistant movable container such as a metal pot. Use the strongest working heat source; if a kitchen appliance is broken or too weak, use the blast furnace in the foundry.",
+        "Stay with the active heat source and alternate short waits with examining or measuring the current substance referent.",
+        "A change from solid to liquid is only melting. Continue heating the liquid sample until the environment score reaches 100; do not wander away or declare completion at an intermediate score.",
+        termination="The environment score reaches 100 or done is true; a liquid state or partial score alone is not termination.",
+    ),
+    "melt-substance": skill(
+        "melt-substance",
+        "Turn the exact named solid sample into liquid without unnecessary preparation.",
+        "Use when the task asks to melt a substance.",
+        "Find and focus on the named sample. If it is already liquid, freeze that same contained sample first; otherwise skip any water-specific preparation.",
+        "Move the solid or its heat-resistant container to a working heat source. If the stove or oven is broken or too weak, use the foundry blast furnace.",
+        "Activate the heat source, stay nearby, and use short waits with examine or thermometer checks while preserving the sample identity after its referent changes.",
+        termination="The environment score reaches 100 or done is true after the focused sample becomes liquid.",
+    ),
+    "freeze-substance": skill(
+        "freeze-substance",
+        "Freeze the named sample after ensuring that the focused sample is liquid.",
+        "Use when the task asks to freeze a substance.",
+        "Find the exact named sample and focus on it. Inspect its current state before choosing the cooling procedure.",
+        "If the sample starts solid, first put that same sample in a heat-resistant container and melt it with a working heat source such as the foundry blast furnace; never try to freeze an already-solid sample.",
+        "After the referent becomes liquid, retrieve the same container, open a freezer, move the container inside, and close the freezer.",
+        "Use short waits, then examine or measure the same contained sample until it becomes solid; do not switch to another sample with the same name.",
+        termination="The environment score reaches 100 or done is true; a focused but unchanged sample and partial score are not termination.",
+    ),
+}
+
 GOLD_SKILLS = {
     "boil": "boil-substance",
     "melt": "melt-substance",
@@ -126,6 +158,8 @@ def versioned_skills(version: str = "v1") -> Tuple[ScienceWorldSkill, ...]:
         return SKILL_LIST
     if version == "v2":
         return tuple(V2_SKILL_OVERRIDES.get(item.name, item) for item in SKILL_LIST)
+    if version == "v3":
+        return tuple(V3_SKILL_OVERRIDES.get(item.name, item) for item in versioned_skills("v2"))
     raise ValueError(f"unknown skill library version: {version}")
 
 
@@ -151,6 +185,8 @@ def validate_library() -> list:
         errors.append("every pilot Skill must have exactly one task-family label")
     if any(name not in SKILLS or item.name != name for name, item in V2_SKILL_OVERRIDES.items()):
         errors.append("v2 overrides must replace existing Skills without renaming them")
+    if any(name not in SKILLS or item.name != name for name, item in V3_SKILL_OVERRIDES.items()):
+        errors.append("v3 overrides must replace existing Skills without renaming them")
     for item in SKILL_LIST:
         if not all((item.name, item.description, item.activation_condition, item.procedure, item.termination_condition)):
             errors.append(f"{item.name}: all five fields are required")

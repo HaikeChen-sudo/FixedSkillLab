@@ -1,5 +1,5 @@
-import json
 import hashlib
+import json
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from scienceworld_agent import DEFAULT_CONDITIONS, objective_success, run_episode, skill_names, skill_selection
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
-from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
+from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
 from analyze_scienceworld_formal import validation_errors
 from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SUITE_VARIATION_SPLITS, validate_suites
 
@@ -39,6 +39,10 @@ class ScienceWorldTests(unittest.TestCase):
             ("find-non-living-thing", 226),
         ))
         self.assertFalse(set(SCIENCEWORLD_V3_HELDOUT_6) & set(SCIENCEWORLD_V4_HELDOUT_6))
+        rows = [json.loads(line) for line in Path("results/scienceworld_v4_heldout_manifest.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(len(rows), 6)
+        self.assertTrue(all(row["frozen_before_oracle_v3"] and row["gold_success"] and row["gold_score"] == 100 for row in rows))
+        self.assertEqual({row["gold_check_max_steps"] for row in rows}, {200})
 
     def test_formal_v3_data_is_complete_and_immutable(self):
         path = Path("results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl")
@@ -61,6 +65,13 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertNotEqual(library_hash("v1"), library_hash("v2"))
         self.assertIn("never focus on its flower pot", loaded_skill_text(["find-living-object"], "v2"))
         self.assertIn("wait1 rather than wait", loaded_skill_text(["freeze-substance"], "v2"))
+
+    def test_v3_fixes_only_the_state_change_workflows(self):
+        self.assertEqual(set(V3_SKILL_OVERRIDES), {"boil-substance", "melt-substance", "freeze-substance"})
+        self.assertEqual(skill_selection("oracle_v3", "boil"), (["boil-substance"], "v3"))
+        self.assertIn("solid to liquid is only melting", loaded_skill_text(["boil-substance"], "v3"))
+        self.assertIn("never try to freeze an already-solid sample", loaded_skill_text(["freeze-substance"], "v3"))
+        self.assertEqual(library_hash("v3"), "fdd9d917af6528933d71f744e57b88aae6e7e52113354e20bec3ffbf8cd0f322")
 
     def test_environment_score_is_the_only_success_rule(self):
         self.assertFalse(objective_success(-1))
