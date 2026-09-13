@@ -2,8 +2,9 @@ import json
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
-from scienceworld_agent import DEFAULT_CONDITIONS, objective_success, skill_names, skill_selection
+from scienceworld_agent import DEFAULT_CONDITIONS, objective_success, run_episode, skill_names, skill_selection
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
 from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SUITE_VARIATION_SPLITS, validate_suites
@@ -56,6 +57,51 @@ class ScienceWorldTests(unittest.TestCase):
             row = {"run_id": "pilot", "task_name": "boil", "variation": 0, "condition": "no_skill", "repeat": 0}
             path.write_text(json.dumps(row) + "\n", encoding="utf-8")
             self.assertEqual(completed_episodes(path, "pilot"), {("boil", 0, "no_skill", 0)})
+
+    def test_multiple_act_calls_receive_responses_without_extra_environment_steps(self):
+        class FakeEnv:
+            def __init__(self):
+                self.commands = []
+
+            def load(self, *_args, **_kwargs):
+                pass
+
+            def reset(self):
+                return "room", {"taskDesc": "test", "score": 0, "moves": 0}
+
+            def step(self, command):
+                self.commands.append(command)
+                return f"ran {command}", 0, False, {"score": 0, "moves": 1}
+
+            def close(self):
+                pass
+
+        class MultipleActClient:
+            def __init__(self, *_args, **_kwargs):
+                self.turn = 0
+
+            def respond(self, messages):
+                if self.turn == 0:
+                    self.turn += 1
+                    return {"role": "assistant", "content": None, "tool_calls": [
+                        {"id": "call-1", "type": "function", "function": {"name": "act", "arguments": '{"command":"look around"}'}},
+                        {"id": "call-2", "type": "function", "function": {"name": "act", "arguments": '{"command":"inventory"}'}},
+                    ]}
+                assistant_index = max(index for index, message in enumerate(messages) if message["role"] == "assistant")
+                expected = {call["id"] for call in messages[assistant_index]["tool_calls"]}
+                answered = {message["tool_call_id"] for message in messages[assistant_index + 1:] if message["role"] == "tool"}
+                if answered != expected:
+                    raise RuntimeError("insufficient tool messages following tool_calls")
+                return {"role": "assistant", "content": "done"}
+
+            def metrics(self):
+                return {"input_tokens": 0, "output_tokens": 0, "prompt_cache_hit_tokens": 0, "prompt_cache_miss_tokens": 0}
+
+        env = FakeEnv()
+        with patch("scienceworld_agent.make_env", return_value=env), patch("scienceworld_agent.DeepSeekChatClient", MultipleActClient):
+            record = run_episode("test", 0, "boil", 0, "easy", 5, "no_skill")
+        self.assertEqual(env.commands, ["look around"])
+        self.assertEqual(record["tool_calls"], 1)
 
 
 if __name__ == "__main__":

@@ -177,6 +177,15 @@ def run_episode(
                 "tool_call_id": call.get("id", "missing-call-id"),
                 "content": json.dumps(result, ensure_ascii=False),
             })
+            for ignored_call in calls[1:]:
+                messages.append({
+                    "role": "tool",
+                    "tool_call_id": ignored_call.get("id", "missing-call-id"),
+                    "content": json.dumps({
+                        "ok": False,
+                        "error": "not executed: call act once per turn and read its observation before the next action",
+                    }),
+                })
 
         metrics = client.metrics()
         return {
