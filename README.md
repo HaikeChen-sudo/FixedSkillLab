@@ -398,6 +398,16 @@ Router 使用冻结的 v3 Skill 库。`all_skills` 加载全部 6 个 Skill；`f
 
 每个 episode 会记录 `skills_loaded`、完整检索排名、Gold Skill 排名、检索器版本和实际任务描述。Pilot 通过后，再预注册未见 variation 做三次重复的正式比较。
 
+Pilot 已完成全部 30 个 episode，记录完整且没有重复。证据冻结在 [`results/pilot_scienceworld_v5`](results/pilot_scienceworld_v5)，并明确标记为复用 v4 任务的调试实验：
+
+- No Skill：成功率 `66.67%`，平均 Total Tokens `151,263.7`。
+- All Skills：成功率 `100%`，平均 Total Tokens `268,189.3`。
+- Flat Retrieval：成功率 `66.67%`，平均 Total Tokens `367,334.5`。
+- Body-aware Retrieval：成功率 `100%`，平均 Total Tokens `153,472.0`。
+- Oracle v3：成功率 `100%`，平均 Total Tokens `265,444.8`。
+
+Flat 在 `boil` 上漏检 Gold Skill并失败；在 `freeze` 上虽然 Gold Skill 排第 3，仍因执行过程耗尽步数而失败。Body-aware 的 Gold Hit@3 为 `5/6`，但六题全部成功；它在成功率相同的三组中 token、延迟和成功成本最低。单次 Pilot 只能说明 Router 链路可运行，并为正式实验提供方法选择，不能估计稳定收益。
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`

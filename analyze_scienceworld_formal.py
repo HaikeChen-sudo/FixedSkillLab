@@ -81,6 +81,7 @@ def main():
     parser.add_argument("--conditions", required=True)
     parser.add_argument("--repeats", type=int, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--purpose", default="held-out evaluation")
     args = parser.parse_args()
     conditions = tuple(args.conditions.split(","))
 
@@ -193,9 +194,27 @@ def main():
         for category, count in sorted(taxonomy.items())
     ])
 
+    retrieval_rows = []
+    for condition in conditions:
+        selected = [row for row in records if row["condition"] == condition and row.get("retriever")]
+        if not selected:
+            continue
+        hits = [row for row in selected if row.get("retrieval_rank") is not None]
+        misses = [row for row in selected if row.get("retrieval_rank") is None]
+        retrieval_rows.append({
+            "condition": condition,
+            "episodes": len(selected),
+            "gold_hit_at_3": len(hits),
+            "gold_hit_at_3_rate": len(hits) / len(selected),
+            "success_rate_when_hit": sum(row["success"] for row in hits) / len(hits) if hits else None,
+            "success_rate_when_missed": sum(row["success"] for row in misses) / len(misses) if misses else None,
+            "missed_tasks": ",".join(row["task_id"] for row in misses),
+        })
+    write_csv(output / "retrieval_summary.csv", retrieval_rows)
+
     manifest = {
         "run_id": args.run_id,
-        "purpose": "held-out evaluation",
+        "purpose": args.purpose,
         "records": len(records),
         "tasks": len(SUITES[args.suite]),
         "conditions": list(conditions),
@@ -215,6 +234,7 @@ def main():
         "manifest": manifest,
         "condition_summary": condition_rows,
         "paired_outcomes": dict(sorted(Counter(row["outcome"] for row in paired_rows).items())),
+        "retrieval_summary": retrieval_rows,
         "failure_taxonomy": dict(sorted(taxonomy.items())),
         "validation": {
             "records_loaded": len(loaded),

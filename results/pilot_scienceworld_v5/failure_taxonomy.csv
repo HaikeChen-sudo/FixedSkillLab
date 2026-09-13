@@ -1,0 +1,3 @@
+category,failures,share
+environment_move_budget_exhausted,3,0.75
+premature_model_stop,1,0.25

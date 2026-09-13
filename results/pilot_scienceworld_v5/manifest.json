@@ -1,0 +1,32 @@
+{
+  "run_id": "scienceworld-v5-router-pilot-6x1",
+  "purpose": "router pilot; reused v4 tasks; not a formal benchmark result",
+  "records": 30,
+  "tasks": 6,
+  "conditions": [
+    "no_skill",
+    "all_skills",
+    "flat_retrieval",
+    "body_aware_retrieval",
+    "oracle_v3"
+  ],
+  "repeats": 1,
+  "suite": "scienceworld-v4-heldout-6",
+  "frozen_file": "results/pilot_scienceworld_v5/scienceworld-v5-router-pilot-6x1.jsonl",
+  "sha256": "048ff35c2d2b7418b6376f850b463890f5b8423cad839cc5a48b99592dbcff24",
+  "source_file": "results/scienceworld_results.jsonl",
+  "models": [
+    "deepseek-v4-flash"
+  ],
+  "temperatures": [
+    0.0
+  ],
+  "agent_protocol_versions": [
+    "scienceworld-v2"
+  ],
+  "skill_library_versions": [
+    "None",
+    "v3"
+  ],
+  "success_rule": "environment score >= 100"
+}
