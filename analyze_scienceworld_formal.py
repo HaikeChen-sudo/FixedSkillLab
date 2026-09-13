@@ -14,6 +14,9 @@ from summarize_results import episode_metrics, summarize_by_repeat
 
 LABELS = {
     "no_skill": "No Skill",
+    "all_skills": "All Skills",
+    "flat_retrieval": "Flat Retrieval",
+    "body_aware_retrieval": "Body-aware Retrieval",
     "oracle_skill": "Oracle v1",
     "oracle_v2": "Oracle v2",
     "oracle_v3": "Oracle v3",

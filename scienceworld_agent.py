@@ -3,12 +3,14 @@
 import argparse
 import json
 import time
+from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 from agent import DeepSeekChatClient
-from scienceworld_skills import GOLD_SKILLS, library_hash, loaded_skill_text
+from scienceworld_retrieval import EMBEDDER_NAME, retrieve
+from scienceworld_skills import GOLD_SKILLS, library_hash, loaded_skill_text, versioned_skills
 
 
 ACT_TOOL = {
@@ -33,7 +35,10 @@ Focus is a scored commitment: focusing on the wrong object can immediately end t
 
 Do not invent observations or claim success. Only the environment score decides success. Stop issuing actions when done is true. The only available tool is act."""
 
-CONDITIONS = ("no_skill", "oracle_skill", "oracle_v2", "oracle_v3")
+CONDITIONS = (
+    "no_skill", "all_skills", "flat_retrieval", "body_aware_retrieval",
+    "oracle_skill", "oracle_v2", "oracle_v3",
+)
 DEFAULT_CONDITIONS = ("no_skill", "oracle_v2")
 AGENT_PROTOCOL_VERSION = "scienceworld-v2"
 PRICING_PER_MILLION = {
@@ -42,24 +47,48 @@ PRICING_PER_MILLION = {
 }
 
 
+@dataclass(frozen=True)
+class SkillSelection:
+    names: List[str]
+    retrieved: List[Dict[str, Any]]
+    gold_skill_ranks: List[Optional[int]]
+    retriever: Optional[str]
+    gold_skills: List[str]
+    library_version: Optional[str]
+
+
 def objective_success(score: int) -> bool:
     """ScienceWorld exposes normalized task score on a 0--100 scale."""
     return score >= 100
 
 
-def skill_selection(condition: str, task_name: str):
+def skill_selection(condition: str, task_name: str, task_text: str = "") -> SkillSelection:
     if condition not in CONDITIONS:
         raise ValueError(f"unknown condition: {condition}")
     if task_name not in GOLD_SKILLS:
         raise ValueError(f"no frozen Oracle label for task: {task_name}")
+    gold = [GOLD_SKILLS[task_name]]
     if condition == "no_skill":
-        return [], None
-    version = {"oracle_skill": "v1", "oracle_v2": "v2", "oracle_v3": "v3"}[condition]
-    return [GOLD_SKILLS[task_name]], version
+        return SkillSelection([], [], [], None, gold, None)
+    if condition == "all_skills":
+        return SkillSelection([item.name for item in versioned_skills("v3")], [], [], None, gold, "v3")
+    if condition in {"oracle_skill", "oracle_v2", "oracle_v3"}:
+        version = {"oracle_skill": "v1", "oracle_v2": "v2", "oracle_v3": "v3"}[condition]
+        return SkillSelection(gold, [], [], None, gold, version)
+    hits = retrieve(task_text, body_aware=condition == "body_aware_retrieval")
+    ranks = {item.name: item.rank for item in hits}
+    return SkillSelection(
+        [item.name for item in hits],
+        [asdict(item) for item in hits],
+        [ranks.get(name) for name in gold],
+        EMBEDDER_NAME,
+        gold,
+        "v3",
+    )
 
 
 def skill_names(condition: str, task_name: str) -> List[str]:
-    return skill_selection(condition, task_name)[0]
+    return skill_selection(condition, task_name).names
 
 
 def calculate_cost(model: str, metrics: Dict[str, int]):
@@ -126,13 +155,16 @@ def run_episode(
     try:
         env.load(task_name, variationIdx=variation, simplificationStr=simplification)
         observation, info = env.reset()
-        selected, skill_version = skill_selection(condition, task_name)
+        task_description = info["taskDesc"]
+        selection = skill_selection(condition, task_name, task_description)
+        selected = selection.names
+        skill_version = selection.library_version
         messages: List[Dict[str, Any]] = [{"role": "system", "content": SYSTEM_PROMPT}]
         if selected:
             messages.append({"role": "system", "content": "Fixed Skill guidance:\n" + loaded_skill_text(selected, skill_version)})
         messages.append({
             "role": "user",
-            "content": f"Task:\n{info['taskDesc']}\n\nInitial observation:\n{observation}",
+            "content": f"Task:\n{task_description}\n\nInitial observation:\n{observation}",
         })
         client = DeepSeekChatClient(model, temperature, tools=[ACT_TOOL])
         done = False
@@ -213,7 +245,12 @@ def run_episode(
             "latency_ms": round((time.perf_counter() - started) * 1000),
             "cost_usd": calculate_cost(model, metrics),
             "skills_loaded": selected,
-            "gold_skills": [GOLD_SKILLS[task_name]],
+            "gold_skills": selection.gold_skills,
+            "gold_skill_ranks": selection.gold_skill_ranks,
+            "retriever": selection.retriever,
+            "retrieval_query": task_description,
+            "retrieval": selection.retrieved,
+            "retrieval_rank": min((rank for rank in selection.gold_skill_ranks if rank is not None), default=None),
             "skill_library_version": skill_version,
             "skill_library_sha256": library_hash(skill_version) if skill_version else None,
             "final_text": final_text,

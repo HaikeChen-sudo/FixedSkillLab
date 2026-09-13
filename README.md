@@ -378,6 +378,26 @@ v4 已完成全部 54 个 episode，记录完整且没有重复。冻结结果�
 
 这组结果支持“正确的固定过程 Skill 能改善特定长程任务”的判断，但不能外推为任意 Skill、检索式 Skill 或任意环境都有效。实验只覆盖六个任务类型，Oracle v3 还是人工指定的 gold Skill；下一步应把同一 Skill 接入检索条件，并扩大未见 variation 的数量。
 
+### ScienceWorld Router Pilot
+
+Router 使用冻结的 v3 Skill 库。`all_skills` 加载全部 6 个 Skill；`flat_retrieval` 只索引 Name 与 Description；`body_aware_retrieval` 同时索引 Procedure 与 Termination Condition。两种检索都使用项目内确定性的 `hash-embedding-v1`，返回 Top-3，不调用外部 embedding API。
+
+对 v4 六道任务的离线核验中，Flat Gold Hit@3 为 `4/6`，Body-aware 为 `5/6`。两者都漏掉 `boil`，Flat 还漏掉 `melt`。这批任务已经用于 Oracle v3 测试，因此下面的 30-episode 运行只检查程序、记录和路由行为，不用于正式结论：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --suite scienceworld-v4-heldout-6 \
+  --conditions no_skill,all_skills,flat_retrieval,body_aware_retrieval,oracle_v3 \
+  --max-steps 200 \
+  --repeats 1 \
+  --run-id scienceworld-v5-router-pilot-6x1 \
+  --resume
+```
+
+每个 episode 会记录 `skills_loaded`、完整检索排名、Gold Skill 排名、检索器版本和实际任务描述。Pilot 通过后，再预注册未见 variation 做三次重复的正式比较。
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`

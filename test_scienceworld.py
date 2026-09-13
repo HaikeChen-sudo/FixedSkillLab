@@ -5,7 +5,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
-from scienceworld_agent import DEFAULT_CONDITIONS, objective_success, run_episode, skill_names, skill_selection
+from scienceworld_agent import CONDITIONS, DEFAULT_CONDITIONS, objective_success, run_episode, skill_names, skill_selection
+from scienceworld_retrieval import EMBEDDER_NAME, retrieve
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
 from analyze_scienceworld_formal import validation_errors
@@ -50,10 +51,17 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertEqual(validation_errors(records, "scienceworld-v3-heldout-6", ("no_skill", "oracle_v2"), 3), [])
         self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), "d9aa310b50395bce111e23e851a11f0ea6b372aad0f0a8561546a9bc76929f1e")
 
+    def test_formal_v4_data_is_complete_and_immutable(self):
+        path = Path("results/formal_scienceworld_v4/scienceworld-v4-heldout-6x3.jsonl")
+        records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(validation_errors(records, "scienceworld-v4-heldout-6", ("no_skill", "oracle_v2", "oracle_v3"), 3), [])
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), "4357856023e93471020852dadf6184cba024506e7b283ad2417579a56469906e")
+
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])
         self.assertEqual(skill_names("oracle_skill", "boil"), ["boil-substance"])
-        self.assertEqual(skill_selection("oracle_v2", "boil"), (["boil-substance"], "v2"))
+        self.assertEqual(skill_selection("oracle_v2", "boil").names, ["boil-substance"])
+        self.assertEqual(skill_selection("oracle_v2", "boil").library_version, "v2")
         self.assertEqual(DEFAULT_CONDITIONS, ("no_skill", "oracle_v2"))
         rendered = loaded_skill_text(["boil-substance"])
         for heading in ("Name", "Description", "Activation Condition", "Procedure", "Termination Condition"):
@@ -68,10 +76,20 @@ class ScienceWorldTests(unittest.TestCase):
 
     def test_v3_fixes_only_the_state_change_workflows(self):
         self.assertEqual(set(V3_SKILL_OVERRIDES), {"boil-substance", "melt-substance", "freeze-substance"})
-        self.assertEqual(skill_selection("oracle_v3", "boil"), (["boil-substance"], "v3"))
+        self.assertEqual(skill_selection("oracle_v3", "boil").names, ["boil-substance"])
         self.assertIn("solid to liquid is only melting", loaded_skill_text(["boil-substance"], "v3"))
         self.assertIn("never try to freeze an already-solid sample", loaded_skill_text(["freeze-substance"], "v3"))
         self.assertEqual(library_hash("v3"), "fdd9d917af6528933d71f744e57b88aae6e7e52113354e20bec3ffbf8cd0f322")
+
+    def test_router_conditions_load_v3_skills_and_record_rank(self):
+        self.assertTrue({"all_skills", "flat_retrieval", "body_aware_retrieval"} <= set(CONDITIONS))
+        self.assertEqual(len(skill_selection("all_skills", "boil").names), 6)
+        for condition in ("flat_retrieval", "body_aware_retrieval"):
+            selection = skill_selection(condition, "boil", "Your task is to boil tin.")
+            self.assertEqual(len(selection.names), 3)
+            self.assertEqual(selection.library_version, "v3")
+            self.assertEqual(selection.retriever, EMBEDDER_NAME)
+            self.assertEqual(selection.gold_skill_ranks[0], next(item.rank for item in retrieve("Your task is to boil tin.", condition == "body_aware_retrieval") if item.name == "boil-substance"))
 
     def test_environment_score_is_the_only_success_rule(self):
         self.assertFalse(objective_success(-1))
