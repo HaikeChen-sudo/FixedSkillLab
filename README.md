@@ -368,6 +368,16 @@ python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
   --output-dir results/formal_scienceworld_v4
 ```
 
+v4 已完成全部 54 个 episode，记录完整且没有重复。冻结结果见 [`results/formal_scienceworld_v4`](results/formal_scienceworld_v4)：
+
+- No Skill：成功率 `66.67%`，平均分 `87.17`，平均 Total Tokens `254,214.5`。
+- Oracle v2：成功率 `66.67%`，平均分 `87.50`，平均 Total Tokens `242,745.4`。
+- Oracle v3：成功率 `94.44%`，平均分 `98.72`，平均 Total Tokens `183,179.2`。
+
+相对 No Skill，Oracle v3 的成功率提高 `27.78` 个百分点，平均 Total Tokens 减少 `27.94%`，平均延迟减少 `15.99%`，每个成功任务的成本减少 `42.96%`。逐题结果显示，Oracle v3 把 `freeze:v022` 从 `0/3` 修到 `3/3`，把 `boil:v022` 从 `0/3` 修到 `2/3`；其余四题没有降低成功率。唯一一次 Oracle v3 失败是 `boil:v022` 耗尽 200 个环境步。
+
+这组结果支持“正确的固定过程 Skill 能改善特定长程任务”的判断，但不能外推为任意 Skill、检索式 Skill 或任意环境都有效。实验只覆盖六个任务类型，Oracle v3 还是人工指定的 gold Skill；下一步应把同一 Skill 接入检索条件，并扩大未见 variation 的数量。
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`

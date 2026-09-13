@@ -1,0 +1,31 @@
+{
+  "run_id": "scienceworld-v4-heldout-6x3",
+  "purpose": "held-out evaluation",
+  "records": 54,
+  "tasks": 6,
+  "conditions": [
+    "no_skill",
+    "oracle_v2",
+    "oracle_v3"
+  ],
+  "repeats": 3,
+  "suite": "scienceworld-v4-heldout-6",
+  "frozen_file": "results/formal_scienceworld_v4/scienceworld-v4-heldout-6x3.jsonl",
+  "sha256": "4357856023e93471020852dadf6184cba024506e7b283ad2417579a56469906e",
+  "source_file": "results/scienceworld_results.jsonl",
+  "models": [
+    "deepseek-v4-flash"
+  ],
+  "temperatures": [
+    0.0
+  ],
+  "agent_protocol_versions": [
+    "scienceworld-v2"
+  ],
+  "skill_library_versions": [
+    "None",
+    "v2",
+    "v3"
+  ],
+  "success_rule": "environment score >= 100"
+}

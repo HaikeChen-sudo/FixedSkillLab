@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "run_id": "scienceworld-v4-heldout-6x3",
+    "purpose": "held-out evaluation",
+    "records": 54,
+    "tasks": 6,
+    "conditions": [
+      "no_skill",
+      "oracle_v2",
+      "oracle_v3"
+    ],
+    "repeats": 3,
+    "suite": "scienceworld-v4-heldout-6",
+    "frozen_file": "results/formal_scienceworld_v4/scienceworld-v4-heldout-6x3.jsonl",
+    "sha256": "4357856023e93471020852dadf6184cba024506e7b283ad2417579a56469906e",
+    "source_file": "results/scienceworld_results.jsonl",
+    "models": [
+      "deepseek-v4-flash"
+    ],
+    "temperatures": [
+      0.0
+    ],
+    "agent_protocol_versions": [
+      "scienceworld-v2"
+    ],
+    "skill_library_versions": [
+      "None",
+      "v2",
+      "v3"
+    ],
+    "success_rule": "environment score >= 100"
+  },
+  "condition_summary": [
+    {
+      "condition": "no_skill",
+      "label": "No Skill",
+      "episodes": 18,
+      "successes": 12,
+      "task_success_rate": 0.6666666666666666,
+      "task_success_rate_repeat_std": 0.0,
+      "average_input_tokens": 252035.94444444444,
+      "average_output_tokens": 2178.5555555555557,
+      "average_total_tokens": 254214.5,
+      "average_latency_ms": 51182.166666666664,
+      "cost_per_successful_task_usd": 0.004118334733333333,
+      "average_tool_calls": 51.333333333333336,
+      "efficiency_per_1k_tokens": 0.002622457281809915,
+      "average_score": 87.16666666666667,
+      "average_environment_moves": 79.72222222222223
+    },
+    {
+      "condition": "oracle_v2",
+      "label": "Oracle v2",
+      "episodes": 18,
+      "successes": 12,
+      "task_success_rate": 0.6666666666666666,
+      "task_success_rate_repeat_std": 0.0,
+      "average_input_tokens": 240710.94444444444,
+      "average_output_tokens": 2034.5,
+      "average_total_tokens": 242745.44444444444,
+      "average_latency_ms": 50785.555555555555,
+      "cost_per_successful_task_usd": 0.003864537133333333,
+      "average_tool_calls": 48.27777777777778,
+      "efficiency_per_1k_tokens": 0.002746361185860451,
+      "average_score": 87.5,
+      "average_environment_moves": 82.83333333333333
+    },
+    {
+      "condition": "oracle_v3",
+      "label": "Oracle v3",
+      "episodes": 18,
+      "successes": 17,
+      "task_success_rate": 0.9444444444444444,
+      "task_success_rate_repeat_std": 0.0962250448649376,
+      "average_input_tokens": 181208.61111111112,
+      "average_output_tokens": 1970.5555555555557,
+      "average_total_tokens": 183179.16666666666,
+      "average_latency_ms": 42999.27777777778,
+      "cost_per_successful_task_usd": 0.0023491640941176468,
+      "average_tool_calls": 41.111111111111114,
+      "efficiency_per_1k_tokens": 0.00515585075328496,
+      "average_score": 98.72222222222223,
+      "average_environment_moves": 51.333333333333336
+    }
+  ],
+  "paired_outcomes": {
+    "both_fail": 7,
+    "both_success": 24,
+    "condition_only": 5
+  },
+  "failure_taxonomy": {
+    "environment_move_budget_exhausted": 12,
+    "premature_model_stop": 1
+  },
+  "validation": {
+    "records_loaded": 54,
+    "records_kept": 54,
+    "duplicates_removed": 0,
+    "unique_episode_keys": 54
+  }
+}
