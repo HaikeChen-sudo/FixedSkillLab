@@ -97,6 +97,7 @@ results/formal_scienceworld_v3/*
 !results/formal_scienceworld_v3/failures.jsonl
 !results/formal_scienceworld_v3/failure_taxonomy.csv
 !results/scienceworld_v4_heldout_manifest.jsonl
+!results/scienceworld_v6_router_manifest.jsonl
 !results/formal_scienceworld_v4/
 results/formal_scienceworld_v4/*
 !results/formal_scienceworld_v4/scienceworld-v4-heldout-6x3.jsonl

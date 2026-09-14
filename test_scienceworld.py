@@ -10,7 +10,7 @@ from scienceworld_retrieval import EMBEDDER_NAME, retrieve
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
 from analyze_scienceworld_formal import validation_errors
-from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SUITE_VARIATION_SPLITS, validate_suites
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -44,6 +44,20 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertEqual(len(rows), 6)
         self.assertTrue(all(row["frozen_before_oracle_v3"] and row["gold_success"] and row["gold_score"] == 100 for row in rows))
         self.assertEqual({row["gold_check_max_steps"] for row in rows}, {200})
+
+    def test_v6_router_suite_is_new_and_preregistered(self):
+        self.assertEqual(SCIENCEWORLD_V6_ROUTER_FORMAL_12, (
+            ("boil", 23), ("boil", 24), ("melt", 23), ("melt", 24),
+            ("freeze", 23), ("freeze", 24),
+            ("use-thermometer", 407), ("use-thermometer", 408),
+            ("find-living-thing", 227), ("find-living-thing", 228),
+            ("find-non-living-thing", 227), ("find-non-living-thing", 228),
+        ))
+        earlier = set(SCIENCEWORLD_PILOT_6) | set(SCIENCEWORLD_V3_HELDOUT_6) | set(SCIENCEWORLD_V4_HELDOUT_6)
+        self.assertFalse(earlier & set(SCIENCEWORLD_V6_ROUTER_FORMAL_12))
+        rows = [json.loads(line) for line in Path("results/scienceworld_v6_router_manifest.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual([(row["task_name"], row["variation"]) for row in rows], list(SCIENCEWORLD_V6_ROUTER_FORMAL_12))
+        self.assertTrue(all(row["frozen_before_gold_check"] and row["gold_success"] is None for row in rows))
 
     def test_formal_v3_data_is_complete_and_immutable(self):
         path = Path("results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl")
