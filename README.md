@@ -446,6 +446,20 @@ python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
   --output-dir results/formal_scienceworld_v6
 ```
 
+正式实验已完成全部 180 个 episode，未发现缺失或重复记录。原始轨迹的 SHA-256 为 `c978ce0568f89fecaff48848327817cdd3493a18162df1bc0b99bcdaf9b043fd`，冻结文件与分析结果位于 [`results/formal_scienceworld_v6`](results/formal_scienceworld_v6)。
+
+- No Skill：成功率 `69.44%`，平均 Total Tokens `743,891`，平均延迟 `73.83 s`，每个成功任务成本 `$0.00716`。
+- All Skills：成功率 `91.67%`，平均 Total Tokens `657,441`，平均延迟 `62.10 s`，每个成功任务成本 `$0.00464`。
+- Flat Retrieval：成功率 `75.00%`，平均 Total Tokens `786,855`，平均延迟 `71.04 s`，每个成功任务成本 `$0.00661`。
+- Body-aware Retrieval：成功率 `88.89%`，平均 Total Tokens `244,086`，平均延迟 `40.45 s`，每个成功任务成本 `$0.00271`。
+- Oracle v3：成功率 `94.44%`，平均 Total Tokens `282,217`，平均延迟 `42.92 s`，每个成功任务成本 `$0.00270`。
+
+与 No Skill 配对比较，Body-aware 的成功率高 `19.44` 个百分点，任务聚类 Bootstrap 95% CI 为 `[8.33, 30.56]` 个百分点；12 道任务中 6 道改善、0 道变差、6 道持平，双侧精确符号检验 `p=0.031`。其平均 Total Tokens 低 `67.19%`，延迟低 `45.21%`，每个成功任务成本低 `62.10%`。Flat 的成功率差仅 `+5.56` 个百分点，95% CI 跨过 0，且平均 Total Tokens 高 `5.78%`，没有稳定收益。
+
+检索结果解释了两者差异：Flat 的 Gold Hit@3 为 `66.67%`，命中时成功率 `87.50%`、漏检时 `50.00%`；Body-aware 的 Gold Hit@3 为 `83.33%`，命中时成功率 `93.33%`、漏检时 `66.67%`。29 次失败中，18 次耗尽环境动作预算，8 次模型提前停止，3 次属于其他执行错误。
+
+这组数据支持一个有限结论：在这 12 道预先固定的 ScienceWorld test variation 上，读取 Skill 正文的检索方式比 No Skill 更成功，也更省推理成本。它不证明所有 Skill 或所有环境都有效；唯一任务数仍是 12，Router 使用的是本地确定性哈希向量，不是预训练语义向量。完整指标见 [`condition_summary.csv`](results/formal_scienceworld_v6/condition_summary.csv)，配对统计见 [`paired_statistics.csv`](results/formal_scienceworld_v6/paired_statistics.csv)。
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`

@@ -1,0 +1,4 @@
+category,failures,share
+environment_move_budget_exhausted,18,0.6206896551724138
+execution_error_other,3,0.10344827586206896
+premature_model_stop,8,0.27586206896551724

@@ -1,0 +1,5 @@
+condition,baseline,success_rate_difference,task_cluster_bootstrap_ci_low,task_cluster_bootstrap_ci_high,condition_only_successes,baseline_only_successes,exact_mcnemar_p_value,tasks_positive,tasks_negative,tasks_tied,exact_task_sign_p_value
+all_skills,no_skill,0.2222222222222222,0.027777777777777776,0.4444444444444444,9,1,0.021484375,5,1,6,0.21875
+flat_retrieval,no_skill,0.05555555555555555,-0.05555555555555555,0.16666666666666666,4,2,0.6875,3,1,8,0.625
+body_aware_retrieval,no_skill,0.19444444444444442,0.08333333333333333,0.3055555555555555,9,2,0.0654296875,6,0,6,0.03125
+oracle_v3,no_skill,0.25,0.08333333333333333,0.4444444444444444,11,2,0.0224609375,6,0,6,0.03125

@@ -1,0 +1,463 @@
+{
+  "manifest": {
+    "run_id": "scienceworld-v6-router-formal-12x3",
+    "purpose": "preregistered held-out Router evaluation",
+    "records": 180,
+    "tasks": 12,
+    "conditions": [
+      "no_skill",
+      "all_skills",
+      "flat_retrieval",
+      "body_aware_retrieval",
+      "oracle_v3"
+    ],
+    "repeats": 3,
+    "suite": "scienceworld-v6-router-formal-12",
+    "frozen_file": "results/formal_scienceworld_v6/scienceworld-v6-router-formal-12x3.jsonl",
+    "sha256": "c978ce0568f89fecaff48848327817cdd3493a18162df1bc0b99bcdaf9b043fd",
+    "source_file": "results/scienceworld_results.jsonl",
+    "models": [
+      "deepseek-v4-flash"
+    ],
+    "temperatures": [
+      0.0
+    ],
+    "agent_protocol_versions": [
+      "scienceworld-v2"
+    ],
+    "skill_library_versions": [
+      "None",
+      "v3"
+    ],
+    "success_rule": "environment score >= 100"
+  },
+  "condition_summary": [
+    {
+      "condition": "no_skill",
+      "label": "No Skill",
+      "episodes": 36,
+      "successes": 25,
+      "task_success_rate": 0.6944444444444444,
+      "task_success_rate_repeat_std": 0.048112522432468836,
+      "average_input_tokens": 740334.6666666666,
+      "average_output_tokens": 3556.6111111111113,
+      "average_total_tokens": 743891.2777777778,
+      "average_latency_ms": 73832.88888888889,
+      "cost_per_successful_task_usd": 0.007157643807999999,
+      "average_tool_calls": 69.63888888888889,
+      "efficiency_per_1k_tokens": 0.0009335294890389823,
+      "average_score": 79.55555555555556,
+      "average_environment_moves": 111.88888888888889
+    },
+    {
+      "condition": "all_skills",
+      "label": "All Skills",
+      "episodes": 36,
+      "successes": 33,
+      "task_success_rate": 0.9166666666666666,
+      "task_success_rate_repeat_std": 0.0,
+      "average_input_tokens": 653760.0555555555,
+      "average_output_tokens": 3681.3055555555557,
+      "average_total_tokens": 657441.3611111111,
+      "average_latency_ms": 62098.666666666664,
+      "cost_per_successful_task_usd": 0.004643429127272727,
+      "average_tool_calls": 50.083333333333336,
+      "efficiency_per_1k_tokens": 0.0013942941848341438,
+      "average_score": 95.63888888888889,
+      "average_environment_moves": 53.97222222222222
+    },
+    {
+      "condition": "flat_retrieval",
+      "label": "Flat Retrieval",
+      "episodes": 36,
+      "successes": 27,
+      "task_success_rate": 0.75,
+      "task_success_rate_repeat_std": 0.08333333333333337,
+      "average_input_tokens": 783635.9722222222,
+      "average_output_tokens": 3218.722222222222,
+      "average_total_tokens": 786854.6944444445,
+      "average_latency_ms": 71036.97222222222,
+      "cost_per_successful_task_usd": 0.006609076962962962,
+      "average_tool_calls": 66.63888888888889,
+      "efficiency_per_1k_tokens": 0.0009531620072871706,
+      "average_score": 90.13888888888889,
+      "average_environment_moves": 102.77777777777777
+    },
+    {
+      "condition": "body_aware_retrieval",
+      "label": "Body-aware Retrieval",
+      "episodes": 36,
+      "successes": 32,
+      "task_success_rate": 0.8888888888888888,
+      "task_success_rate_repeat_std": 0.0962250448649376,
+      "average_input_tokens": 241812.97222222222,
+      "average_output_tokens": 2272.75,
+      "average_total_tokens": 244085.72222222222,
+      "average_latency_ms": 40450.52777777778,
+      "cost_per_successful_task_usd": 0.0027129373250000008,
+      "average_tool_calls": 38.69444444444444,
+      "efficiency_per_1k_tokens": 0.003641707842622685,
+      "average_score": 95.83333333333333,
+      "average_environment_moves": 61.22222222222222
+    },
+    {
+      "condition": "oracle_v3",
+      "label": "Oracle v3",
+      "episodes": 36,
+      "successes": 34,
+      "task_success_rate": 0.9444444444444444,
+      "task_success_rate_repeat_std": 0.048112522432468836,
+      "average_input_tokens": 279928.3333333333,
+      "average_output_tokens": 2288.75,
+      "average_total_tokens": 282217.0833333333,
+      "average_latency_ms": 42918.083333333336,
+      "cost_per_successful_task_usd": 0.0027005346117647067,
+      "average_tool_calls": 39.638888888888886,
+      "efficiency_per_1k_tokens": 0.003346517628519811,
+      "average_score": 97.11111111111111,
+      "average_environment_moves": 52.138888888888886
+    }
+  ],
+  "repeat_statistics": [
+    {
+      "condition": "no_skill",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        12,
+        12,
+        12
+      ],
+      "task_success_rate": {
+        "mean": 0.6944444444444444,
+        "std": 0.048112522432468836
+      },
+      "average_input_tokens": {
+        "mean": 740334.6666666666,
+        "std": 375984.651203122
+      },
+      "average_output_tokens": {
+        "mean": 3556.611111111111,
+        "std": 613.780930049633
+      },
+      "average_total_tokens": {
+        "mean": 743891.2777777778,
+        "std": 376227.2774021296
+      },
+      "average_latency_ms": {
+        "mean": 73832.88888888889,
+        "std": 16281.255167696625
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.007083290977777778,
+        "std": 0.0016399924114634359
+      },
+      "average_tool_calls": {
+        "mean": 69.63888888888889,
+        "std": 15.763515658821982
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.0010560998028212969,
+        "std": 0.0003636176195380144
+      },
+      "average_score": {
+        "mean": 79.55555555555556,
+        "std": 10.536093168687307
+      },
+      "average_environment_moves": {
+        "mean": 111.88888888888889,
+        "std": 13.4345980932042
+      }
+    },
+    {
+      "condition": "all_skills",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        12,
+        12,
+        12
+      ],
+      "task_success_rate": {
+        "mean": 0.9166666666666666,
+        "std": 0.0
+      },
+      "average_input_tokens": {
+        "mean": 653760.0555555555,
+        "std": 515604.5361371818
+      },
+      "average_output_tokens": {
+        "mean": 3681.3055555555557,
+        "std": 1729.5469006307637
+      },
+      "average_total_tokens": {
+        "mean": 657441.3611111111,
+        "std": 517209.19051776716
+      },
+      "average_latency_ms": {
+        "mean": 62098.666666666664,
+        "std": 15377.970073560859
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.004643429127272727,
+        "std": 0.0024028863816250062
+      },
+      "average_tool_calls": {
+        "mean": 50.08333333333333,
+        "std": 10.654615588247815
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.0020640309943814974,
+        "std": 0.0013795015894151079
+      },
+      "average_score": {
+        "mean": 95.63888888888889,
+        "std": 0.38490017945974503
+      },
+      "average_environment_moves": {
+        "mean": 53.97222222222222,
+        "std": 10.96849444410537
+      }
+    },
+    {
+      "condition": "flat_retrieval",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        12,
+        12,
+        12
+      ],
+      "task_success_rate": {
+        "mean": 0.75,
+        "std": 0.08333333333333337
+      },
+      "average_input_tokens": {
+        "mean": 783635.9722222222,
+        "std": 426331.56233695504
+      },
+      "average_output_tokens": {
+        "mean": 3218.722222222222,
+        "std": 1056.3739944753013
+      },
+      "average_total_tokens": {
+        "mean": 786854.6944444444,
+        "std": 427382.1042192215
+      },
+      "average_latency_ms": {
+        "mean": 71036.97222222222,
+        "std": 21207.264335588807
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.006829492094444446,
+        "std": 0.0032535386399911497
+      },
+      "average_tool_calls": {
+        "mean": 66.63888888888889,
+        "std": 21.128629427425754
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.0013902829308570217,
+        "std": 0.0012186358538438017
+      },
+      "average_score": {
+        "mean": 90.13888888888889,
+        "std": 3.3647822008651977
+      },
+      "average_environment_moves": {
+        "mean": 102.77777777777777,
+        "std": 33.39518566988251
+      }
+    },
+    {
+      "condition": "body_aware_retrieval",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        12,
+        12,
+        12
+      ],
+      "task_success_rate": {
+        "mean": 0.888888888888889,
+        "std": 0.0962250448649376
+      },
+      "average_input_tokens": {
+        "mean": 241812.97222222222,
+        "std": 100925.91023143652
+      },
+      "average_output_tokens": {
+        "mean": 2272.75,
+        "std": 1019.2629111001952
+      },
+      "average_total_tokens": {
+        "mean": 244085.72222222222,
+        "std": 101515.84873734458
+      },
+      "average_latency_ms": {
+        "mean": 40450.527777777774,
+        "std": 7982.775600443559
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.0027848365066666667,
+        "std": 0.00101018728262941
+      },
+      "average_tool_calls": {
+        "mean": 38.69444444444444,
+        "std": 7.142076676937827
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.004458215661895914,
+        "std": 0.00294870047719191
+      },
+      "average_score": {
+        "mean": 95.83333333333333,
+        "std": 3.612286133615541
+      },
+      "average_environment_moves": {
+        "mean": 61.22222222222222,
+        "std": 26.862863323293105
+      }
+    },
+    {
+      "condition": "oracle_v3",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        12,
+        12,
+        12
+      ],
+      "task_success_rate": {
+        "mean": 0.9444444444444444,
+        "std": 0.048112522432468836
+      },
+      "average_input_tokens": {
+        "mean": 279928.3333333333,
+        "std": 118033.34456318195
+      },
+      "average_output_tokens": {
+        "mean": 2288.75,
+        "std": 542.3013525194681
+      },
+      "average_total_tokens": {
+        "mean": 282217.0833333334,
+        "std": 118562.64311925409
+      },
+      "average_latency_ms": {
+        "mean": 42918.083333333336,
+        "std": 6430.3382854464
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.002695220634343434,
+        "std": 0.0006445904455397179
+      },
+      "average_tool_calls": {
+        "mean": 39.638888888888886,
+        "std": 5.000231476123362
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.003912387483939376,
+        "std": 0.0020214553653585756
+      },
+      "average_score": {
+        "mean": 97.11111111111111,
+        "std": 2.5018511664883754
+      },
+      "average_environment_moves": {
+        "mean": 52.138888888888886,
+        "std": 8.559567962444348
+      }
+    }
+  ],
+  "paired_outcomes": {
+    "baseline_only": 7,
+    "both_fail": 11,
+    "both_success": 93,
+    "condition_only": 33
+  },
+  "paired_statistics": [
+    {
+      "condition": "all_skills",
+      "baseline": "no_skill",
+      "success_rate_difference": 0.2222222222222222,
+      "task_cluster_bootstrap_ci_low": 0.027777777777777776,
+      "task_cluster_bootstrap_ci_high": 0.4444444444444444,
+      "condition_only_successes": 9,
+      "baseline_only_successes": 1,
+      "exact_mcnemar_p_value": 0.021484375,
+      "tasks_positive": 5,
+      "tasks_negative": 1,
+      "tasks_tied": 6,
+      "exact_task_sign_p_value": 0.21875
+    },
+    {
+      "condition": "flat_retrieval",
+      "baseline": "no_skill",
+      "success_rate_difference": 0.05555555555555555,
+      "task_cluster_bootstrap_ci_low": -0.05555555555555555,
+      "task_cluster_bootstrap_ci_high": 0.16666666666666666,
+      "condition_only_successes": 4,
+      "baseline_only_successes": 2,
+      "exact_mcnemar_p_value": 0.6875,
+      "tasks_positive": 3,
+      "tasks_negative": 1,
+      "tasks_tied": 8,
+      "exact_task_sign_p_value": 0.625
+    },
+    {
+      "condition": "body_aware_retrieval",
+      "baseline": "no_skill",
+      "success_rate_difference": 0.19444444444444442,
+      "task_cluster_bootstrap_ci_low": 0.08333333333333333,
+      "task_cluster_bootstrap_ci_high": 0.3055555555555555,
+      "condition_only_successes": 9,
+      "baseline_only_successes": 2,
+      "exact_mcnemar_p_value": 0.0654296875,
+      "tasks_positive": 6,
+      "tasks_negative": 0,
+      "tasks_tied": 6,
+      "exact_task_sign_p_value": 0.03125
+    },
+    {
+      "condition": "oracle_v3",
+      "baseline": "no_skill",
+      "success_rate_difference": 0.25,
+      "task_cluster_bootstrap_ci_low": 0.08333333333333333,
+      "task_cluster_bootstrap_ci_high": 0.4444444444444444,
+      "condition_only_successes": 11,
+      "baseline_only_successes": 2,
+      "exact_mcnemar_p_value": 0.0224609375,
+      "tasks_positive": 6,
+      "tasks_negative": 0,
+      "tasks_tied": 6,
+      "exact_task_sign_p_value": 0.03125
+    }
+  ],
+  "retrieval_summary": [
+    {
+      "condition": "flat_retrieval",
+      "episodes": 36,
+      "gold_hit_at_3": 24,
+      "gold_hit_at_3_rate": 0.6666666666666666,
+      "success_rate_when_hit": 0.875,
+      "success_rate_when_missed": 0.5,
+      "missed_tasks": "boil:v023,boil:v023,boil:v023,boil:v024,boil:v024,boil:v024,melt:v023,melt:v023,melt:v023,melt:v024,melt:v024,melt:v024"
+    },
+    {
+      "condition": "body_aware_retrieval",
+      "episodes": 36,
+      "gold_hit_at_3": 30,
+      "gold_hit_at_3_rate": 0.8333333333333334,
+      "success_rate_when_hit": 0.9333333333333333,
+      "success_rate_when_missed": 0.6666666666666666,
+      "missed_tasks": "boil:v023,boil:v023,boil:v023,boil:v024,boil:v024,boil:v024"
+    }
+  ],
+  "failure_taxonomy": {
+    "environment_move_budget_exhausted": 18,
+    "execution_error_other": 3,
+    "premature_model_stop": 8
+  },
+  "validation": {
+    "records_loaded": 180,
+    "records_kept": 180,
+    "duplicates_removed": 0,
+    "unique_episode_keys": 180
+  }
+}

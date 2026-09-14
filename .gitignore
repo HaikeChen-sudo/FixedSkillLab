@@ -108,6 +108,7 @@ results/formal_scienceworld_v6/*
 !results/formal_scienceworld_v6/condition_summary.csv
 !results/formal_scienceworld_v6/task_summary.csv
 !results/formal_scienceworld_v6/paired_comparisons.csv
+!results/formal_scienceworld_v6/paired_statistics.csv
 !results/formal_scienceworld_v6/retrieval_summary.csv
 !results/formal_scienceworld_v6/failures.jsonl
 !results/formal_scienceworld_v6/failure_taxonomy.csv

@@ -4,8 +4,11 @@ import argparse
 import csv
 import hashlib
 import json
+import math
+import random
 from collections import Counter, defaultdict
 from pathlib import Path
+from statistics import mean
 
 from result_utils import deduplicate_records
 from scienceworld_suites import SUITES
@@ -45,6 +48,60 @@ def write_csv(path, rows):
 
 def episode_key(row):
     return row["task_name"], row["variation"], row["condition"], row["repeat"]
+
+
+def percentile(values, probability):
+    ordered = sorted(values)
+    position = (len(ordered) - 1) * probability
+    lower = int(position)
+    upper = min(lower + 1, len(ordered) - 1)
+    fraction = position - lower
+    return ordered[lower] * (1 - fraction) + ordered[upper] * fraction
+
+
+def exact_sign_p_value(positive, negative):
+    discordant = positive + negative
+    if not discordant:
+        return 1.0
+    tail = sum(math.comb(discordant, value) for value in range(min(positive, negative) + 1))
+    return min(1.0, 2 * tail / 2 ** discordant)
+
+
+def paired_statistics(records, tasks, conditions, repeats, iterations=20000, seed=20260914):
+    baseline = conditions[0]
+    lookup = {episode_key(row): row for row in records}
+    output = []
+    for offset, condition in enumerate(conditions[1:]):
+        task_differences = []
+        condition_only = baseline_only = 0
+        for task, variation in tasks:
+            differences = []
+            for repeat in range(repeats):
+                base_success = bool(lookup[(task, variation, baseline, repeat)]["success"])
+                condition_success = bool(lookup[(task, variation, condition, repeat)]["success"])
+                condition_only += condition_success and not base_success
+                baseline_only += base_success and not condition_success
+                differences.append(int(condition_success) - int(base_success))
+            task_differences.append(mean(differences))
+        rng = random.Random(seed + offset)
+        samples = [mean(rng.choice(task_differences) for _ in tasks) for _ in range(iterations)]
+        positive = sum(value > 0 for value in task_differences)
+        negative = sum(value < 0 for value in task_differences)
+        output.append({
+            "condition": condition,
+            "baseline": baseline,
+            "success_rate_difference": mean(task_differences),
+            "task_cluster_bootstrap_ci_low": percentile(samples, 0.025),
+            "task_cluster_bootstrap_ci_high": percentile(samples, 0.975),
+            "condition_only_successes": condition_only,
+            "baseline_only_successes": baseline_only,
+            "exact_mcnemar_p_value": exact_sign_p_value(condition_only, baseline_only),
+            "tasks_positive": positive,
+            "tasks_negative": negative,
+            "tasks_tied": len(tasks) - positive - negative,
+            "exact_task_sign_p_value": exact_sign_p_value(positive, negative),
+        })
+    return output
 
 
 def validation_errors(records, suite, conditions, repeats, duplicates=0):
@@ -169,6 +226,8 @@ def main():
                     "tool_calls_difference": compared["tool_calls"] - base["tool_calls"],
                 })
     write_csv(output / "paired_comparisons.csv", paired_rows)
+    paired_stats = paired_statistics(records, SUITES[args.suite], conditions, args.repeats)
+    write_csv(output / "paired_statistics.csv", paired_stats)
 
     failures = []
     for row in records:
@@ -233,7 +292,9 @@ def main():
     (output / "analysis_summary.json").write_text(json.dumps({
         "manifest": manifest,
         "condition_summary": condition_rows,
+        "repeat_statistics": [repeat_stats[condition] for condition in conditions],
         "paired_outcomes": dict(sorted(Counter(row["outcome"] for row in paired_rows).items())),
+        "paired_statistics": paired_stats,
         "retrieval_summary": retrieval_rows,
         "failure_taxonomy": dict(sorted(taxonomy.items())),
         "validation": {

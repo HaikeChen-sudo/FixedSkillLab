@@ -9,7 +9,7 @@ from scienceworld_agent import CONDITIONS, DEFAULT_CONDITIONS, objective_success
 from scienceworld_retrieval import EMBEDDER_NAME, retrieve
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
-from analyze_scienceworld_formal import validation_errors
+from analyze_scienceworld_formal import exact_sign_p_value, validation_errors
 from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SUITE_VARIATION_SPLITS, validate_suites
 
 
@@ -77,6 +77,14 @@ class ScienceWorldTests(unittest.TestCase):
         records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
         self.assertEqual(validation_errors(records, "scienceworld-v4-heldout-6", ("no_skill", "oracle_v2", "oracle_v3"), 3), [])
         self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), "4357856023e93471020852dadf6184cba024506e7b283ad2417579a56469906e")
+
+    def test_formal_v6_data_is_complete_and_immutable(self):
+        path = Path("results/formal_scienceworld_v6/scienceworld-v6-router-formal-12x3.jsonl")
+        records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+        conditions = ("no_skill", "all_skills", "flat_retrieval", "body_aware_retrieval", "oracle_v3")
+        self.assertEqual(validation_errors(records, "scienceworld-v6-router-formal-12", conditions, 3), [])
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), "c978ce0568f89fecaff48848327817cdd3493a18162df1bc0b99bcdaf9b043fd")
+        self.assertEqual(exact_sign_p_value(9, 1), 0.021484375)
 
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])
