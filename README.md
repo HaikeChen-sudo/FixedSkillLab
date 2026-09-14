@@ -460,6 +460,57 @@ python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
 
 这组数据支持一个有限结论：在这 12 道预先固定的 ScienceWorld test variation 上，读取 Skill 正文的检索方式比 No Skill 更成功，也更省推理成本。它不证明所有 Skill 或所有环境都有效；唯一任务数仍是 12，Router 使用的是本地确定性哈希向量，不是预训练语义向量。完整指标见 [`condition_summary.csv`](results/formal_scienceworld_v6/condition_summary.csv)，配对统计见 [`paired_statistics.csv`](results/formal_scienceworld_v6/paired_statistics.csv)。
 
+图表和 Word 报告可由冻结数据重新生成：
+
+```bash
+python3 plot_scienceworld_v6.py results/formal_scienceworld_v6
+python3 build_scienceworld_v6_report.py \
+  results/formal_scienceworld_v6/analysis_summary.json \
+  --figures-dir results/formal_scienceworld_v6/figures \
+  --output ScienceWorld_固定Skill检索正式实验报告_v9.docx
+```
+
+脚本名中的 `v6` 是实验批次，文档名中的 `v9` 是报告修订号，两者不是同一套编号。
+
+### ScienceWorld v10 独立确认实验
+
+确认集在 Gold 验证和 API 运行前固定。它机械选取六类任务各自第 5、6 个官方 test variation，共 12 道新题，与 Pilot、v3、v4 和 v6 均不重叠。预注册清单、条件、指标和文件哈希见 [`results/scienceworld_v10_confirmation_manifest.json`](results/scienceworld_v10_confirmation_manifest.json)。
+
+本轮只比较 No Skill、Flat Retrieval 和 Body-aware Retrieval。每题每条件重复 3 次，共 `12 × 3 × 3 = 108` 个 episode。先运行不调用模型的本地 Gold 验证：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --suite scienceworld-v10-confirm-12 \
+  --max-steps 400 \
+  --gold-check
+```
+
+Gold 验证通过后，再运行正式实验：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --suite scienceworld-v10-confirm-12 \
+  --conditions no_skill,flat_retrieval,body_aware_retrieval \
+  --max-steps 400 \
+  --repeats 3 \
+  --run-id scienceworld-v10-confirm-12x3 \
+  --resume
+```
+
+完成后校验 108 个 episode，并冻结分析文件：
+
+```bash
+python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-v10-confirm-12x3 \
+  --suite scienceworld-v10-confirm-12 \
+  --conditions no_skill,flat_retrieval,body_aware_retrieval \
+  --repeats 3 \
+  --output-dir results/formal_scienceworld_v10 \
+  --purpose "independent confirmation of body-aware retrieval"
+```
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`

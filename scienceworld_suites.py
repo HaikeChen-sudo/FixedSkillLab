@@ -41,11 +41,28 @@ SCIENCEWORLD_V6_ROUTER_FORMAL_12 = (
     ("find-non-living-thing", 228),
 )
 
+# Fifth and sixth official test variations for each family. Frozen before gold or API evaluation.
+SCIENCEWORLD_V10_CONFIRM_12 = (
+    ("boil", 25),
+    ("boil", 26),
+    ("melt", 25),
+    ("melt", 26),
+    ("freeze", 25),
+    ("freeze", 26),
+    ("use-thermometer", 409),
+    ("use-thermometer", 410),
+    ("find-living-thing", 229),
+    ("find-living-thing", 230),
+    ("find-non-living-thing", 229),
+    ("find-non-living-thing", 230),
+)
+
 SUITES = {
     "scienceworld-pilot-6": SCIENCEWORLD_PILOT_6,
     "scienceworld-v3-heldout-6": SCIENCEWORLD_V3_HELDOUT_6,
     "scienceworld-v4-heldout-6": SCIENCEWORLD_V4_HELDOUT_6,
     "scienceworld-v6-router-formal-12": SCIENCEWORLD_V6_ROUTER_FORMAL_12,
+    "scienceworld-v10-confirm-12": SCIENCEWORLD_V10_CONFIRM_12,
 }
 
 SUITE_VARIATION_SPLITS = {
@@ -53,6 +70,7 @@ SUITE_VARIATION_SPLITS = {
     "scienceworld-v3-heldout-6": "test",
     "scienceworld-v4-heldout-6": "test",
     "scienceworld-v6-router-formal-12": "test",
+    "scienceworld-v10-confirm-12": "test",
 }
 
 
@@ -66,13 +84,11 @@ def validate_suites() -> list:
         counts = [sum(task == expected for task, _ in cases) for expected in GOLD_SKILLS]
         if len(set(counts)) != 1:
             errors.append(f"{name}: every task family must have the same number of cases")
-    if set(SCIENCEWORLD_PILOT_6) & set(SCIENCEWORLD_V3_HELDOUT_6):
-        errors.append("pilot and held-out cases must not overlap")
-    if set(SCIENCEWORLD_V3_HELDOUT_6) & set(SCIENCEWORLD_V4_HELDOUT_6):
-        errors.append("successive held-out suites must not overlap")
-    earlier = set(SCIENCEWORLD_PILOT_6) | set(SCIENCEWORLD_V3_HELDOUT_6) | set(SCIENCEWORLD_V4_HELDOUT_6)
-    if earlier & set(SCIENCEWORLD_V6_ROUTER_FORMAL_12):
-        errors.append("the formal Router suite must not reuse earlier cases")
+    suite_items = list(SUITES.items())
+    for index, (left_name, left_cases) in enumerate(suite_items):
+        for right_name, right_cases in suite_items[index + 1:]:
+            if set(left_cases) & set(right_cases):
+                errors.append(f"{left_name} and {right_name} must not overlap")
     return errors
 
 

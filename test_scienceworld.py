@@ -10,7 +10,7 @@ from scienceworld_retrieval import EMBEDDER_NAME, retrieve
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
 from analyze_scienceworld_formal import exact_sign_p_value, validation_errors
-from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SUITE_VARIATION_SPLITS, validate_suites
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -65,6 +65,29 @@ class ScienceWorldTests(unittest.TestCase):
         audit = [json.loads(line) for line in Path("results/scienceworld_v6_router_offline.jsonl").read_text(encoding="utf-8").splitlines()]
         self.assertEqual(sum(row["flat_gold_rank"] is not None for row in audit), 8)
         self.assertEqual(sum(row["body_gold_rank"] is not None for row in audit), 10)
+
+    def test_v10_confirmation_suite_is_new_and_preregistered(self):
+        self.assertEqual(SCIENCEWORLD_V10_CONFIRM_12, (
+            ("boil", 25), ("boil", 26), ("melt", 25), ("melt", 26),
+            ("freeze", 25), ("freeze", 26),
+            ("use-thermometer", 409), ("use-thermometer", 410),
+            ("find-living-thing", 229), ("find-living-thing", 230),
+            ("find-non-living-thing", 229), ("find-non-living-thing", 230),
+        ))
+        earlier = (
+            set(SCIENCEWORLD_PILOT_6)
+            | set(SCIENCEWORLD_V3_HELDOUT_6)
+            | set(SCIENCEWORLD_V4_HELDOUT_6)
+            | set(SCIENCEWORLD_V6_ROUTER_FORMAL_12)
+        )
+        self.assertFalse(earlier & set(SCIENCEWORLD_V10_CONFIRM_12))
+        self.assertEqual(SUITE_VARIATION_SPLITS["scienceworld-v10-confirm-12"], "test")
+        manifest = json.loads(Path("results/scienceworld_v10_confirmation_manifest.json").read_text(encoding="utf-8"))
+        cases = [(row["task_name"], row["variation"]) for row in manifest["cases"]]
+        self.assertEqual(cases, list(SCIENCEWORLD_V10_CONFIRM_12))
+        self.assertTrue(manifest["frozen_before_gold_check"])
+        self.assertTrue(manifest["frozen_before_api_evaluation"])
+        self.assertEqual(manifest["planned_episodes"], 108)
 
     def test_formal_v3_data_is_complete_and_immutable(self):
         path = Path("results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl")
