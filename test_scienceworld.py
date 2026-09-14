@@ -88,6 +88,10 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertTrue(manifest["frozen_before_gold_check"])
         self.assertTrue(manifest["frozen_before_api_evaluation"])
         self.assertEqual(manifest["planned_episodes"], 108)
+        gold = [json.loads(line) for line in Path("results/scienceworld_v10_gold_validation.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual([(row["task_name"], row["variation"]) for row in gold], list(SCIENCEWORLD_V10_CONFIRM_12))
+        self.assertTrue(all(row["gold_success"] and row["gold_score"] == 100 for row in gold))
+        self.assertLessEqual(max(row["gold_environment_moves"] for row in gold), 400)
 
     def test_formal_v3_data_is_complete_and_immutable(self):
         path = Path("results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl")

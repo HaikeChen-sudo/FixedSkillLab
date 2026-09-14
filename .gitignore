@@ -101,6 +101,7 @@ results/formal_scienceworld_v3/*
 !results/scienceworld_v6_gold_validation.jsonl
 !results/scienceworld_v6_router_offline.jsonl
 !results/scienceworld_v10_confirmation_manifest.json
+!results/scienceworld_v10_gold_validation.jsonl
 !results/formal_scienceworld_v6/
 results/formal_scienceworld_v6/*
 !results/formal_scienceworld_v6/scienceworld-v6-router-formal-12x3.jsonl

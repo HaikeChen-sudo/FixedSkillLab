@@ -485,7 +485,7 @@ python3 build_scienceworld_v6_report.py \
   --gold-check
 ```
 
-Gold 验证通过后，再运行正式实验：
+本地 Gold 验证已经通过：12 道题均达到 100 分，最长路径为 `melt:v025` 的 365 个环境步。验收记录见 [`results/scienceworld_v10_gold_validation.jsonl`](results/scienceworld_v10_gold_validation.jsonl)。正式实验尚未运行；运行命令如下：
 
 ```bash
 .venv/scienceworld/bin/python scienceworld_experiment.py \

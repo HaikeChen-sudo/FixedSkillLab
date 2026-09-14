@@ -1,0 +1,12 @@
+{"suite":"scienceworld-v10-confirm-12","task_name":"boil","variation":25,"gold_success":true,"gold_score":100,"gold_steps":56,"gold_environment_moves":48,"gold_check_max_steps":400,"formal_max_steps":400}
+{"suite":"scienceworld-v10-confirm-12","task_name":"boil","variation":26,"gold_success":true,"gold_score":100,"gold_steps":167,"gold_environment_moves":155,"gold_check_max_steps":400,"formal_max_steps":400}
+{"suite":"scienceworld-v10-confirm-12","task_name":"melt","variation":25,"gold_success":true,"gold_score":100,"gold_steps":147,"gold_environment_moves":365,"gold_check_max_steps":400,"formal_max_steps":400}
+{"suite":"scienceworld-v10-confirm-12","task_name":"melt","variation":26,"gold_success":true,"gold_score":100,"gold_steps":53,"gold_environment_moves":43,"gold_check_max_steps":400,"formal_max_steps":400}
+{"suite":"scienceworld-v10-confirm-12","task_name":"freeze","variation":25,"gold_success":true,"gold_score":100,"gold_steps":127,"gold_environment_moves":325,"gold_check_max_steps":400,"formal_max_steps":400}
+{"suite":"scienceworld-v10-confirm-12","task_name":"freeze","variation":26,"gold_success":true,"gold_score":100,"gold_steps":65,"gold_environment_moves":75,"gold_check_max_steps":400,"formal_max_steps":400}
+{"suite":"scienceworld-v10-confirm-12","task_name":"use-thermometer","variation":409,"gold_success":true,"gold_score":100,"gold_steps":21,"gold_environment_moves":18,"gold_check_max_steps":400,"formal_max_steps":400}
+{"suite":"scienceworld-v10-confirm-12","task_name":"use-thermometer","variation":410,"gold_success":true,"gold_score":100,"gold_steps":17,"gold_environment_moves":14,"gold_check_max_steps":400,"formal_max_steps":400}
+{"suite":"scienceworld-v10-confirm-12","task_name":"find-living-thing","variation":229,"gold_success":true,"gold_score":100,"gold_steps":12,"gold_environment_moves":11,"gold_check_max_steps":400,"formal_max_steps":400}
+{"suite":"scienceworld-v10-confirm-12","task_name":"find-living-thing","variation":230,"gold_success":true,"gold_score":100,"gold_steps":12,"gold_environment_moves":11,"gold_check_max_steps":400,"formal_max_steps":400}
+{"suite":"scienceworld-v10-confirm-12","task_name":"find-non-living-thing","variation":229,"gold_success":true,"gold_score":100,"gold_steps":7,"gold_environment_moves":6,"gold_check_max_steps":400,"formal_max_steps":400}
+{"suite":"scienceworld-v10-confirm-12","task_name":"find-non-living-thing","variation":230,"gold_success":true,"gold_score":100,"gold_steps":7,"gold_environment_moves":6,"gold_check_max_steps":400,"formal_max_steps":400}
