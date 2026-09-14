@@ -66,7 +66,7 @@ def validation_errors(records, suite, conditions, repeats, duplicates=0):
 
 
 def failure_category(row):
-    if row.get("done") and row.get("environment_moves", 0) >= 100:
+    if row.get("done") and row.get("environment_moves", 0) >= row.get("max_steps", 100):
         return "environment_move_budget_exhausted"
     if not row.get("done") and row.get("final_text"):
         return "premature_model_stop"

@@ -226,6 +226,7 @@ def run_episode(
             "task_name": task_name,
             "variation": variation,
             "simplification": simplification,
+            "max_steps": max_steps,
             "condition": condition,
             "agent_protocol_version": AGENT_PROTOCOL_VERSION,
             "model": model,

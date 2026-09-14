@@ -406,7 +406,45 @@ Pilot 已完成全部 30 个 episode，记录完整且没有重复。证据冻�
 - Body-aware Retrieval：成功率 `100%`，平均 Total Tokens `153,472.0`。
 - Oracle v3：成功率 `100%`，平均 Total Tokens `265,444.8`。
 
-Flat 在 `boil` 上漏检 Gold Skill并失败；在 `freeze` 上虽然 Gold Skill 排第 3，仍因执行过程耗尽步数而失败。Body-aware 的 Gold Hit@3 为 `5/6`，但六题全部成功；它在成功率相同的三组中 token、延迟和成功成本最低。单次 Pilot 只能说明 Router 链路可运行，并为正式实验提供方法选择，不能估计稳定收益。
+Flat 在 `boil` 上漏检 Gold Skill 并失败；在 `freeze` 上虽然 Gold Skill 排第 3，仍因执行过程耗尽步数而失败。Body-aware 的 Gold Hit@3 为 `5/6`，但六题全部成功；它在成功率相同的三组中 token、延迟和成功成本最低。单次 Pilot 只能说明 Router 链路可运行，并为正式实验提供方法选择，不能估计稳定收益。
+
+### ScienceWorld Router 正式实验
+
+`scienceworld-v6-router-formal-12` 在 Pilot 后固定，但没有根据 Pilot 成败挑题。它机械选取六类任务各自第 3、4 个官方 test variation，共 12 道新题；选择提交见 [`results/scienceworld_v6_router_manifest.jsonl`](results/scienceworld_v6_router_manifest.jsonl)。所有题均未出现在此前的 Pilot、v3 或 v4 套件中。
+
+本地 Gold 验证显示 12 题均可达到 100 分，最长路径是 `melt:v024` 的 366 个环境步，因此正式条件统一使用 400 步。Gold 记录见 [`results/scienceworld_v6_gold_validation.jsonl`](results/scienceworld_v6_gold_validation.jsonl)。离线 Router 审计已冻结且没有据此调参：Flat Gold Hit@3 为 `8/12`，Body-aware 为 `10/12`；逐题排名见 [`results/scienceworld_v6_router_offline.jsonl`](results/scienceworld_v6_router_offline.jsonl)。
+
+运行 `12 tasks × 5 conditions × 3 repeats = 180 episodes`：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --suite scienceworld-v6-router-formal-12 \
+  --conditions no_skill,all_skills,flat_retrieval,body_aware_retrieval,oracle_v3 \
+  --max-steps 400 \
+  --repeats 3 \
+  --run-id scienceworld-v6-router-formal-12x3 \
+  --resume
+```
+
+```bash
+python3 summarize_results.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-v6-router-formal-12x3 \
+  --deduplicate \
+  --repeat-stats
+```
+
+完成后冻结：
+
+```bash
+python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-v6-router-formal-12x3 \
+  --suite scienceworld-v6-router-formal-12 \
+  --conditions no_skill,all_skills,flat_retrieval,body_aware_retrieval,oracle_v3 \
+  --repeats 3 \
+  --output-dir results/formal_scienceworld_v6
+```
 
 ## 工具
 

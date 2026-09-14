@@ -58,6 +58,13 @@ class ScienceWorldTests(unittest.TestCase):
         rows = [json.loads(line) for line in Path("results/scienceworld_v6_router_manifest.jsonl").read_text(encoding="utf-8").splitlines()]
         self.assertEqual([(row["task_name"], row["variation"]) for row in rows], list(SCIENCEWORLD_V6_ROUTER_FORMAL_12))
         self.assertTrue(all(row["frozen_before_gold_check"] and row["gold_success"] is None for row in rows))
+        gold = [json.loads(line) for line in Path("results/scienceworld_v6_gold_validation.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual([(row["task_name"], row["variation"]) for row in gold], list(SCIENCEWORLD_V6_ROUTER_FORMAL_12))
+        self.assertTrue(all(row["gold_success"] and row["gold_score"] == 100 and row["formal_max_steps"] == 400 for row in gold))
+        self.assertLessEqual(max(row["gold_environment_moves"] for row in gold), 400)
+        audit = [json.loads(line) for line in Path("results/scienceworld_v6_router_offline.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(sum(row["flat_gold_rank"] is not None for row in audit), 8)
+        self.assertEqual(sum(row["body_gold_rank"] is not None for row in audit), 10)
 
     def test_formal_v3_data_is_complete_and_immutable(self):
         path = Path("results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl")
