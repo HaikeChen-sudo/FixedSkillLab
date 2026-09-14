@@ -1,0 +1,313 @@
+{
+  "manifest": {
+    "run_id": "scienceworld-v10-confirm-12x3",
+    "purpose": "independent confirmation of body-aware retrieval",
+    "records": 108,
+    "tasks": 12,
+    "conditions": [
+      "no_skill",
+      "flat_retrieval",
+      "body_aware_retrieval"
+    ],
+    "repeats": 3,
+    "suite": "scienceworld-v10-confirm-12",
+    "frozen_file": "results/formal_scienceworld_v10/scienceworld-v10-confirm-12x3.jsonl",
+    "sha256": "d6614857fe39458c0e8f23e04c96d75d15d6b7f9cb90c131f0a391b6cfd9a4e2",
+    "source_file": "results/scienceworld_results.jsonl",
+    "models": [
+      "deepseek-v4-flash"
+    ],
+    "temperatures": [
+      0.0
+    ],
+    "agent_protocol_versions": [
+      "scienceworld-v2"
+    ],
+    "skill_library_versions": [
+      "None",
+      "v3"
+    ],
+    "success_rule": "environment score >= 100"
+  },
+  "condition_summary": [
+    {
+      "condition": "no_skill",
+      "label": "No Skill",
+      "episodes": 36,
+      "successes": 29,
+      "task_success_rate": 0.8055555555555556,
+      "task_success_rate_repeat_std": 0.048112522432468836,
+      "average_input_tokens": 460744.8333333333,
+      "average_output_tokens": 2208.5555555555557,
+      "average_total_tokens": 462953.3888888889,
+      "average_latency_ms": 77426.44444444444,
+      "cost_per_successful_task_usd": 0.004255819255172414,
+      "average_tool_calls": 52.916666666666664,
+      "efficiency_per_1k_tokens": 0.001740035983944148,
+      "average_score": 85.33333333333333,
+      "average_environment_moves": 81.41666666666667
+    },
+    {
+      "condition": "flat_retrieval",
+      "label": "Flat Retrieval",
+      "episodes": 36,
+      "successes": 34,
+      "task_success_rate": 0.9444444444444444,
+      "task_success_rate_repeat_std": 0.048112522432468836,
+      "average_input_tokens": 300464.47222222225,
+      "average_output_tokens": 1887.7222222222222,
+      "average_total_tokens": 302352.19444444444,
+      "average_latency_ms": 55834.38888888889,
+      "cost_per_successful_task_usd": 0.002703849647058824,
+      "average_tool_calls": 40.55555555555556,
+      "efficiency_per_1k_tokens": 0.0031236566553777103,
+      "average_score": 96.88888888888889,
+      "average_environment_moves": 60.25
+    },
+    {
+      "condition": "body_aware_retrieval",
+      "label": "Body-aware Retrieval",
+      "episodes": 36,
+      "successes": 34,
+      "task_success_rate": 0.9444444444444444,
+      "task_success_rate_repeat_std": 0.048112522432468836,
+      "average_input_tokens": 280218.8611111111,
+      "average_output_tokens": 1761.0,
+      "average_total_tokens": 281979.8611111111,
+      "average_latency_ms": 50078.25,
+      "cost_per_successful_task_usd": 0.002550966352941177,
+      "average_tool_calls": 38.666666666666664,
+      "efficiency_per_1k_tokens": 0.003349332965563439,
+      "average_score": 96.94444444444444,
+      "average_environment_moves": 51.888888888888886
+    }
+  ],
+  "repeat_statistics": [
+    {
+      "condition": "no_skill",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        12,
+        12,
+        12
+      ],
+      "task_success_rate": {
+        "mean": 0.8055555555555556,
+        "std": 0.048112522432468836
+      },
+      "average_input_tokens": {
+        "mean": 460744.8333333333,
+        "std": 6261.791986479931
+      },
+      "average_output_tokens": {
+        "mean": 2208.5555555555557,
+        "std": 40.673525150251635
+      },
+      "average_total_tokens": {
+        "mean": 462953.3888888889,
+        "std": 6225.288715601267
+      },
+      "average_latency_ms": {
+        "mean": 77426.44444444444,
+        "std": 7761.06652193308
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.004264608994074074,
+        "std": 0.0002209156421150613
+      },
+      "average_tool_calls": {
+        "mean": 52.916666666666664,
+        "std": 1.1273124382057236
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.0017404403384901788,
+        "std": 0.00011120775744658594
+      },
+      "average_score": {
+        "mean": 85.33333333333333,
+        "std": 9.598538661923723
+      },
+      "average_environment_moves": {
+        "mean": 81.41666666666667,
+        "std": 1.460117955661272
+      }
+    },
+    {
+      "condition": "flat_retrieval",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        12,
+        12,
+        12
+      ],
+      "task_success_rate": {
+        "mean": 0.9444444444444444,
+        "std": 0.048112522432468836
+      },
+      "average_input_tokens": {
+        "mean": 300464.47222222225,
+        "std": 117273.4008011814
+      },
+      "average_output_tokens": {
+        "mean": 1887.7222222222222,
+        "std": 336.3637388524732
+      },
+      "average_total_tokens": {
+        "mean": 302352.19444444444,
+        "std": 117578.75680044599
+      },
+      "average_latency_ms": {
+        "mean": 55834.38888888889,
+        "std": 16836.548004583605
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.002727125276767677,
+        "std": 0.0007431437483834507
+      },
+      "average_tool_calls": {
+        "mean": 40.55555555555556,
+        "std": 6.948387769302503
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.003590701863568471,
+        "std": 0.0018414636415317756
+      },
+      "average_score": {
+        "mean": 96.88888888888889,
+        "std": 2.695589676435139
+      },
+      "average_environment_moves": {
+        "mean": 60.25,
+        "std": 16.895101196632247
+      }
+    },
+    {
+      "condition": "body_aware_retrieval",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        12,
+        12,
+        12
+      ],
+      "task_success_rate": {
+        "mean": 0.9444444444444444,
+        "std": 0.048112522432468836
+      },
+      "average_input_tokens": {
+        "mean": 280218.8611111111,
+        "std": 119142.69714035063
+      },
+      "average_output_tokens": {
+        "mean": 1761.0,
+        "std": 210.65781561047706
+      },
+      "average_total_tokens": {
+        "mean": 281979.8611111111,
+        "std": 119350.1443703548
+      },
+      "average_latency_ms": {
+        "mean": 50078.25,
+        "std": 13760.986046256927
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.0025747301010101017,
+        "std": 0.0006998053537499367
+      },
+      "average_tool_calls": {
+        "mean": 38.66666666666667,
+        "std": 6.711826212821002
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.004053730690237926,
+        "std": 0.002496368421052016
+      },
+      "average_score": {
+        "mean": 96.94444444444444,
+        "std": 2.651432177633929
+      },
+      "average_environment_moves": {
+        "mean": 51.88888888888889,
+        "std": 13.942922670394204
+      }
+    }
+  ],
+  "paired_outcomes": {
+    "both_fail": 4,
+    "both_success": 58,
+    "condition_only": 10
+  },
+  "paired_statistics": [
+    {
+      "condition": "flat_retrieval",
+      "baseline": "no_skill",
+      "success_rate_difference": 0.1388888888888889,
+      "task_cluster_bootstrap_ci_low": 0.0,
+      "task_cluster_bootstrap_ci_high": 0.3333333333333333,
+      "condition_only_successes": 5,
+      "baseline_only_successes": 0,
+      "exact_mcnemar_p_value": 0.0625,
+      "tasks_positive": 3,
+      "tasks_negative": 0,
+      "tasks_tied": 9,
+      "exact_task_sign_p_value": 0.25,
+      "average_total_tokens_difference": -160601.19444444444,
+      "total_tokens_cluster_bootstrap_ci_low": -478374.2729166667,
+      "total_tokens_cluster_bootstrap_ci_high": 31182.19791666665,
+      "tasks_with_lower_total_tokens": 7,
+      "tasks_with_higher_total_tokens": 5,
+      "tasks_with_tied_total_tokens": 0,
+      "exact_total_tokens_task_sign_p_value": 0.7744140625
+    },
+    {
+      "condition": "body_aware_retrieval",
+      "baseline": "no_skill",
+      "success_rate_difference": 0.1388888888888889,
+      "task_cluster_bootstrap_ci_low": 0.0,
+      "task_cluster_bootstrap_ci_high": 0.3333333333333333,
+      "condition_only_successes": 5,
+      "baseline_only_successes": 0,
+      "exact_mcnemar_p_value": 0.0625,
+      "tasks_positive": 3,
+      "tasks_negative": 0,
+      "tasks_tied": 9,
+      "exact_task_sign_p_value": 0.25,
+      "average_total_tokens_difference": -180973.52777777778,
+      "total_tokens_cluster_bootstrap_ci_low": -518501.5458333333,
+      "total_tokens_cluster_bootstrap_ci_high": 12434.806944444445,
+      "tasks_with_lower_total_tokens": 5,
+      "tasks_with_higher_total_tokens": 7,
+      "tasks_with_tied_total_tokens": 0,
+      "exact_total_tokens_task_sign_p_value": 0.7744140625
+    }
+  ],
+  "retrieval_summary": [
+    {
+      "condition": "flat_retrieval",
+      "episodes": 36,
+      "gold_hit_at_3": 24,
+      "gold_hit_at_3_rate": 0.6666666666666666,
+      "success_rate_when_hit": 1.0,
+      "success_rate_when_missed": 0.8333333333333334,
+      "missed_tasks": "boil:v025,boil:v025,boil:v025,boil:v026,boil:v026,boil:v026,melt:v025,melt:v025,melt:v025,melt:v026,melt:v026,melt:v026"
+    },
+    {
+      "condition": "body_aware_retrieval",
+      "episodes": 36,
+      "gold_hit_at_3": 27,
+      "gold_hit_at_3_rate": 0.75,
+      "success_rate_when_hit": 0.9259259259259259,
+      "success_rate_when_missed": 1.0,
+      "missed_tasks": "boil:v025,boil:v025,boil:v025,boil:v026,boil:v026,boil:v026,find-non-living-thing:v229,find-non-living-thing:v229,find-non-living-thing:v229"
+    }
+  ],
+  "failure_taxonomy": {
+    "environment_move_budget_exhausted": 10,
+    "execution_error_other": 1
+  },
+  "validation": {
+    "records_loaded": 108,
+    "records_kept": 108,
+    "duplicates_removed": 0,
+    "unique_episode_keys": 108
+  }
+}

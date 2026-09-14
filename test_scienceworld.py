@@ -113,6 +113,13 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), "c978ce0568f89fecaff48848327817cdd3493a18162df1bc0b99bcdaf9b043fd")
         self.assertEqual(exact_sign_p_value(9, 1), 0.021484375)
 
+    def test_formal_v10_data_is_complete_and_immutable(self):
+        path = Path("results/formal_scienceworld_v10/scienceworld-v10-confirm-12x3.jsonl")
+        records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+        conditions = ("no_skill", "flat_retrieval", "body_aware_retrieval")
+        self.assertEqual(validation_errors(records, "scienceworld-v10-confirm-12", conditions, 3), [])
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), "d6614857fe39458c0e8f23e04c96d75d15d6b7f9cb90c131f0a391b6cfd9a4e2")
+
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])
         self.assertEqual(skill_names("oracle_skill", "boil"), ["boil-substance"])

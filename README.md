@@ -511,6 +511,16 @@ python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
   --purpose "independent confirmation of body-aware retrieval"
 ```
 
+确认实验已完成 108 个 episode，记录完整且没有重复。冻结轨迹的 SHA-256 为 `d6614857fe39458c0e8f23e04c96d75d15d6b7f9cb90c131f0a391b6cfd9a4e2`，分析文件位于 [`results/formal_scienceworld_v10`](results/formal_scienceworld_v10)。
+
+- No Skill：成功率 `80.56%`，平均 Total Tokens `462,953`。
+- Flat Retrieval：成功率 `94.44%`，平均 Total Tokens `302,352`。
+- Body-aware Retrieval：成功率 `94.44%`，平均 Total Tokens `281,980`。
+
+Body-aware 相对 No Skill 的成功率高 `13.89` 个百分点，平均 Total Tokens 低 `39.09%`，延迟低 `35.32%`，每个成功任务成本低 `40.06%`。成功率的任务聚类 Bootstrap 95% CI 为 `[0.00, 33.33]` 个百分点；任务级符号检验 `p=0.250`，episode 级精确 McNemar 检验 `p=0.0625`。Total Tokens 的任务聚类 95% CI 为 `[-518,502, 12,435]`，12 道题中 5 道更省、7 道更费，任务级符号检验 `p=0.774`。平均节省来自少数高开销任务，不是多数任务上的一致下降。两项预注册假设的点估计方向都与 v6 一致，但任务级区间和精确检验没有在常用的 0.05 阈值下完成统计确认。
+
+Flat 与 Body-aware 的成功率相同。Body-aware 的平均 Total Tokens 比 Flat 低 `6.74%`，延迟低 `10.31%`，每个成功任务成本低 `5.65%`。Flat 的 Gold Hit@3 为 `66.67%`，Body-aware 为 `75.00%`；本轮检索命中率差距缩小，不能把成本差异单独归因于 Gold Skill 排名。
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`

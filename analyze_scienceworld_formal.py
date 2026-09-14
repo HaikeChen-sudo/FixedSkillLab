@@ -72,27 +72,37 @@ def paired_statistics(records, tasks, conditions, repeats, iterations=20000, see
     lookup = {episode_key(row): row for row in records}
     output = []
     for offset, condition in enumerate(conditions[1:]):
-        task_differences = []
+        task_success_differences = []
+        task_token_differences = []
         condition_only = baseline_only = 0
         for task, variation in tasks:
-            differences = []
+            success_differences = []
+            token_differences = []
             for repeat in range(repeats):
-                base_success = bool(lookup[(task, variation, baseline, repeat)]["success"])
-                condition_success = bool(lookup[(task, variation, condition, repeat)]["success"])
+                base = lookup[(task, variation, baseline, repeat)]
+                compared = lookup[(task, variation, condition, repeat)]
+                base_success = bool(base["success"])
+                condition_success = bool(compared["success"])
                 condition_only += condition_success and not base_success
                 baseline_only += base_success and not condition_success
-                differences.append(int(condition_success) - int(base_success))
-            task_differences.append(mean(differences))
+                success_differences.append(int(condition_success) - int(base_success))
+                token_differences.append(compared["total_tokens"] - base["total_tokens"])
+            task_success_differences.append(mean(success_differences))
+            task_token_differences.append(mean(token_differences))
         rng = random.Random(seed + offset)
-        samples = [mean(rng.choice(task_differences) for _ in tasks) for _ in range(iterations)]
-        positive = sum(value > 0 for value in task_differences)
-        negative = sum(value < 0 for value in task_differences)
+        sample_indices = [[rng.randrange(len(tasks)) for _ in tasks] for _ in range(iterations)]
+        success_samples = [mean(task_success_differences[index] for index in indices) for indices in sample_indices]
+        token_samples = [mean(task_token_differences[index] for index in indices) for indices in sample_indices]
+        positive = sum(value > 0 for value in task_success_differences)
+        negative = sum(value < 0 for value in task_success_differences)
+        lower_tokens = sum(value < 0 for value in task_token_differences)
+        higher_tokens = sum(value > 0 for value in task_token_differences)
         output.append({
             "condition": condition,
             "baseline": baseline,
-            "success_rate_difference": mean(task_differences),
-            "task_cluster_bootstrap_ci_low": percentile(samples, 0.025),
-            "task_cluster_bootstrap_ci_high": percentile(samples, 0.975),
+            "success_rate_difference": mean(task_success_differences),
+            "task_cluster_bootstrap_ci_low": percentile(success_samples, 0.025),
+            "task_cluster_bootstrap_ci_high": percentile(success_samples, 0.975),
             "condition_only_successes": condition_only,
             "baseline_only_successes": baseline_only,
             "exact_mcnemar_p_value": exact_sign_p_value(condition_only, baseline_only),
@@ -100,6 +110,13 @@ def paired_statistics(records, tasks, conditions, repeats, iterations=20000, see
             "tasks_negative": negative,
             "tasks_tied": len(tasks) - positive - negative,
             "exact_task_sign_p_value": exact_sign_p_value(positive, negative),
+            "average_total_tokens_difference": mean(task_token_differences),
+            "total_tokens_cluster_bootstrap_ci_low": percentile(token_samples, 0.025),
+            "total_tokens_cluster_bootstrap_ci_high": percentile(token_samples, 0.975),
+            "tasks_with_lower_total_tokens": lower_tokens,
+            "tasks_with_higher_total_tokens": higher_tokens,
+            "tasks_with_tied_total_tokens": len(tasks) - lower_tokens - higher_tokens,
+            "exact_total_tokens_task_sign_p_value": exact_sign_p_value(lower_tokens, higher_tokens),
         })
     return output
 

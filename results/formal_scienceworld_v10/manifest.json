@@ -1,0 +1,30 @@
+{
+  "run_id": "scienceworld-v10-confirm-12x3",
+  "purpose": "independent confirmation of body-aware retrieval",
+  "records": 108,
+  "tasks": 12,
+  "conditions": [
+    "no_skill",
+    "flat_retrieval",
+    "body_aware_retrieval"
+  ],
+  "repeats": 3,
+  "suite": "scienceworld-v10-confirm-12",
+  "frozen_file": "results/formal_scienceworld_v10/scienceworld-v10-confirm-12x3.jsonl",
+  "sha256": "d6614857fe39458c0e8f23e04c96d75d15d6b7f9cb90c131f0a391b6cfd9a4e2",
+  "source_file": "results/scienceworld_results.jsonl",
+  "models": [
+    "deepseek-v4-flash"
+  ],
+  "temperatures": [
+    0.0
+  ],
+  "agent_protocol_versions": [
+    "scienceworld-v2"
+  ],
+  "skill_library_versions": [
+    "None",
+    "v3"
+  ],
+  "success_rule": "environment score >= 100"
+}
