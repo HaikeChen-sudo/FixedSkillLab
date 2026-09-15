@@ -2,7 +2,7 @@
 
 固定 Skill 加载与检索的 LLM Agent 实验平台。仓库包含一个只用 Python 标准库的确定性 Mini Lab，以及 ALFWorld 和 ScienceWorld 的文字交互实验。成功条件均由程序或环境判断，模型不能给自己打分。
 
-定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v9 正式实验报告](output/pdf/ScienceWorld_固定Skill检索正式实验报告_v9.pdf)
+定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v10 发现与确认报告](output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf)
 
 ## 运行
 
@@ -520,6 +520,54 @@ python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
 Body-aware 相对 No Skill 的成功率高 `13.89` 个百分点，平均 Total Tokens 低 `39.09%`，延迟低 `35.32%`，每个成功任务成本低 `40.06%`。成功率的任务聚类 Bootstrap 95% CI 为 `[0.00, 33.33]` 个百分点；任务级符号检验 `p=0.250`，episode 级精确 McNemar 检验 `p=0.0625`。Total Tokens 的任务聚类 95% CI 为 `[-518,502, 12,435]`，12 道题中 5 道更省、7 道更费，任务级符号检验 `p=0.774`。平均节省来自少数高开销任务，不是多数任务上的一致下降。两项预注册假设的点估计方向都与 v6 一致，但任务级区间和精确检验没有在常用的 0.05 阈值下完成统计确认。
 
 Flat 与 Body-aware 的成功率相同。Body-aware 的平均 Total Tokens 比 Flat 低 `6.74%`，延迟低 `10.31%`，每个成功任务成本低 `5.65%`。Flat 的 Gold Hit@3 为 `66.67%`，Body-aware 为 `75.00%`；本轮检索命中率差距缩小，不能把成本差异单独归因于 Gold Skill 排名。
+
+### ScienceWorld v11 大样本确认实验
+
+v11 在六类任务中各冻结 5 个未使用的官方 test variation，共 30 题。Skill 库、检索器、Agent 协议和主要比较均保持不变。本轮只运行 No Skill、Flat Retrieval 和 Body-aware Retrieval，每个条件重复 3 次，共 `30 × 3 × 3 = 270` 个 episode。预注册信息见 [`results/scienceworld_v11_large_confirmation_manifest.json`](results/scienceworld_v11_large_confirmation_manifest.json)。
+
+先做两项不调用 DeepSeek 的本地检查。检索审计确认所有 variation 属于 test split，并保存两种 Router 的 Top-3 和 Gold 排名：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_retrieval_audit.py \
+  --suite scienceworld-v11-large-confirm-30 \
+  --output results/scienceworld_v11_retrieval_audit.jsonl
+```
+
+Gold 路径检查确认30题可在400个环境动作内由环境专家完成：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --suite scienceworld-v11-large-confirm-30 \
+  --max-steps 400 \
+  --gold-check \
+  --check-results results/scienceworld_v11_gold_validation.jsonl
+```
+
+两项检查通过后运行正式实验。网络中断或手工停止后，原命令再次执行即可从缺失 episode 继续：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --suite scienceworld-v11-large-confirm-30 \
+  --conditions no_skill,flat_retrieval,body_aware_retrieval \
+  --max-steps 400 \
+  --repeats 3 \
+  --run-id scienceworld-v11-large-confirm-30x3 \
+  --resume
+```
+
+270 个 episode 完成后校验并冻结分析文件：
+
+```bash
+python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-v11-large-confirm-30x3 \
+  --suite scienceworld-v11-large-confirm-30 \
+  --conditions no_skill,flat_retrieval,body_aware_retrieval \
+  --repeats 3 \
+  --output-dir results/formal_scienceworld_v11 \
+  --purpose "larger held-out confirmation of fixed-Skill retrieval"
+```
 
 ## 工具
 

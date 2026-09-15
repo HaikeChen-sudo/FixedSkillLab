@@ -70,6 +70,7 @@ def main() -> int:
     parser.add_argument("--order-seed", type=int, default=0)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--gold-check", action="store_true", help="validate every selected case with local gold paths; no API")
+    parser.add_argument("--check-results", type=Path, help="save --gold-check records as JSONL")
     args = parser.parse_args()
     if (args.variation is not None and args.variation < 0) or args.max_steps < 1 or args.repeats < 1:
         parser.error("--variation must be non-negative; --max-steps and --repeats must be positive")
@@ -77,14 +78,24 @@ def main() -> int:
         cases = experiment_cases(args.suite, args.tasks, args.variation)
     except ValueError as error:
         parser.error(str(error))
+    if args.check_results and not args.gold_check:
+        parser.error("--check-results requires --gold-check")
     if args.gold_check:
         success = True
+        records = []
         for task_name, variation in cases:
             record = run_gold_check(task_name, variation, args.simplification, args.max_steps)
+            records.append(record)
             success = success and record["success"]
             print(json.dumps({key: record[key] for key in (
                 "task_id", "success", "score", "steps", "environment_moves",
             )}, ensure_ascii=False))
+        if args.check_results:
+            args.check_results.parent.mkdir(parents=True, exist_ok=True)
+            args.check_results.write_text(
+                "".join(json.dumps(record, ensure_ascii=False, separators=(",", ":")) + "\n" for record in records),
+                encoding="utf-8",
+            )
         return 0 if success else 1
     if not args.model:
         parser.error("--model is required unless --gold-check is used")

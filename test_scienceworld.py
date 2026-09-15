@@ -9,8 +9,8 @@ from scienceworld_agent import CONDITIONS, DEFAULT_CONDITIONS, objective_success
 from scienceworld_retrieval import EMBEDDER_NAME, retrieve
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
-from analyze_scienceworld_formal import exact_sign_p_value, validation_errors
-from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SUITE_VARIATION_SPLITS, validate_suites
+from analyze_scienceworld_formal import exact_sign_p_value, paired_statistics, validation_errors
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11_LARGE_CONFIRM_30, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -93,6 +93,30 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertTrue(all(row["gold_success"] and row["gold_score"] == 100 for row in gold))
         self.assertLessEqual(max(row["gold_environment_moves"] for row in gold), 400)
 
+    def test_v11_large_confirmation_suite_is_new_and_preregistered(self):
+        self.assertEqual(len(SCIENCEWORLD_V11_LARGE_CONFIRM_30), 30)
+        self.assertEqual(
+            {task: sum(name == task for name, _ in SCIENCEWORLD_V11_LARGE_CONFIRM_30) for task in GOLD_SKILLS},
+            {task: 5 for task in GOLD_SKILLS},
+        )
+        earlier = (
+            set(SCIENCEWORLD_PILOT_6)
+            | set(SCIENCEWORLD_V3_HELDOUT_6)
+            | set(SCIENCEWORLD_V4_HELDOUT_6)
+            | set(SCIENCEWORLD_V6_ROUTER_FORMAL_12)
+            | set(SCIENCEWORLD_V10_CONFIRM_12)
+        )
+        self.assertFalse(earlier & set(SCIENCEWORLD_V11_LARGE_CONFIRM_30))
+        self.assertEqual(SUITE_VARIATION_SPLITS["scienceworld-v11-large-confirm-30"], "test")
+        manifest = json.loads(Path("results/scienceworld_v11_large_confirmation_manifest.json").read_text(encoding="utf-8"))
+        cases = [(row["task_name"], row["variation"]) for row in manifest["cases"]]
+        self.assertEqual(cases, list(SCIENCEWORLD_V11_LARGE_CONFIRM_30))
+        self.assertTrue(manifest["frozen_before_gold_check"])
+        self.assertTrue(manifest["frozen_before_retrieval_audit"])
+        self.assertTrue(manifest["frozen_before_api_evaluation"])
+        self.assertEqual(manifest["planned_conditions"], ["no_skill", "flat_retrieval", "body_aware_retrieval"])
+        self.assertEqual(manifest["planned_episodes"], 270)
+
     def test_formal_v3_data_is_complete_and_immutable(self):
         path = Path("results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl")
         records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
@@ -158,6 +182,18 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertFalse(objective_success(-1))
         self.assertFalse(objective_success(99))
         self.assertTrue(objective_success(100))
+
+    def test_paired_statistics_can_compare_retrieval_conditions_directly(self):
+        tasks = (("boil", 27),)
+        records = [
+            {"task_name": "boil", "variation": 27, "condition": "flat_retrieval", "repeat": 0, "success": False, "total_tokens": 20},
+            {"task_name": "boil", "variation": 27, "condition": "body_aware_retrieval", "repeat": 0, "success": True, "total_tokens": 10},
+        ]
+        result = paired_statistics(records, tasks, ("flat_retrieval", "body_aware_retrieval"), 1, iterations=10)
+        self.assertEqual(result[0]["baseline"], "flat_retrieval")
+        self.assertEqual(result[0]["condition"], "body_aware_retrieval")
+        self.assertEqual(result[0]["success_rate_difference"], 1)
+        self.assertEqual(result[0]["average_total_tokens_difference"], -10)
 
     def test_resume_uses_task_variation_condition_and_repeat(self):
         with TemporaryDirectory() as directory:

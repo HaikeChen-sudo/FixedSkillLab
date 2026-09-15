@@ -7,6 +7,7 @@ import json
 import math
 import random
 from collections import Counter, defaultdict
+from itertools import combinations
 from pathlib import Path
 from statistics import mean
 
@@ -217,11 +218,11 @@ def main():
 
     lookup = {episode_key(row): row for row in records}
     paired_rows = []
-    baseline = conditions[0]
+    comparison_pairs = list(combinations(conditions, 2))
     for task_name, variation in SUITES[args.suite]:
         for repeat in range(args.repeats):
-            base = lookup[(task_name, variation, baseline, repeat)]
-            for condition in conditions[1:]:
+            for baseline, condition in comparison_pairs:
+                base = lookup[(task_name, variation, baseline, repeat)]
                 compared = lookup[(task_name, variation, condition, repeat)]
                 outcome = {
                     (True, True): "both_success",
@@ -243,7 +244,11 @@ def main():
                     "tool_calls_difference": compared["tool_calls"] - base["tool_calls"],
                 })
     write_csv(output / "paired_comparisons.csv", paired_rows)
-    paired_stats = paired_statistics(records, SUITES[args.suite], conditions, args.repeats)
+    paired_stats = []
+    for index, pair in enumerate(comparison_pairs):
+        paired_stats.extend(paired_statistics(
+            records, SUITES[args.suite], pair, args.repeats, seed=20260914 + index,
+        ))
     write_csv(output / "paired_statistics.csv", paired_stats)
 
     failures = []

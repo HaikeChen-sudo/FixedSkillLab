@@ -57,12 +57,48 @@ SCIENCEWORLD_V10_CONFIRM_12 = (
     ("find-non-living-thing", 230),
 )
 
+# Seventh through eleventh official test variations for each family. Frozen
+# before local gold validation, retrieval audit, or API evaluation.
+SCIENCEWORLD_V11_LARGE_CONFIRM_30 = (
+    ("boil", 27),
+    ("boil", 28),
+    ("boil", 29),
+    ("boil", 30),
+    ("boil", 31),
+    ("melt", 27),
+    ("melt", 28),
+    ("melt", 29),
+    ("melt", 30),
+    ("melt", 31),
+    ("freeze", 27),
+    ("freeze", 28),
+    ("freeze", 29),
+    ("freeze", 30),
+    ("freeze", 31),
+    ("use-thermometer", 411),
+    ("use-thermometer", 412),
+    ("use-thermometer", 413),
+    ("use-thermometer", 414),
+    ("use-thermometer", 415),
+    ("find-living-thing", 231),
+    ("find-living-thing", 232),
+    ("find-living-thing", 233),
+    ("find-living-thing", 234),
+    ("find-living-thing", 235),
+    ("find-non-living-thing", 231),
+    ("find-non-living-thing", 232),
+    ("find-non-living-thing", 233),
+    ("find-non-living-thing", 234),
+    ("find-non-living-thing", 235),
+)
+
 SUITES = {
     "scienceworld-pilot-6": SCIENCEWORLD_PILOT_6,
     "scienceworld-v3-heldout-6": SCIENCEWORLD_V3_HELDOUT_6,
     "scienceworld-v4-heldout-6": SCIENCEWORLD_V4_HELDOUT_6,
     "scienceworld-v6-router-formal-12": SCIENCEWORLD_V6_ROUTER_FORMAL_12,
     "scienceworld-v10-confirm-12": SCIENCEWORLD_V10_CONFIRM_12,
+    "scienceworld-v11-large-confirm-30": SCIENCEWORLD_V11_LARGE_CONFIRM_30,
 }
 
 SUITE_VARIATION_SPLITS = {
@@ -71,6 +107,7 @@ SUITE_VARIATION_SPLITS = {
     "scienceworld-v4-heldout-6": "test",
     "scienceworld-v6-router-formal-12": "test",
     "scienceworld-v10-confirm-12": "test",
+    "scienceworld-v11-large-confirm-30": "test",
 }
 
 
