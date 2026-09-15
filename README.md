@@ -535,6 +535,8 @@ Flat 与 Body-aware 的成功率相同。Body-aware 的平均 Total Tokens 比 F
   --output results/scienceworld_v11b_retrieval_audit.jsonl
 ```
 
+检索审计已通过18题的 test split 校验。Flat Gold Hit@3 为 `12/18`（66.67%），Body-aware 为 `15/18`（83.33%）；逐题记录见 [`results/scienceworld_v11b_retrieval_audit.jsonl`](results/scienceworld_v11b_retrieval_audit.jsonl)。
+
 Gold 路径检查确认18题可在400个环境动作内由环境专家完成：
 
 ```bash
@@ -544,6 +546,8 @@ Gold 路径检查确认18题可在400个环境动作内由环境专家完成：
   --gold-check \
   --check-results results/scienceworld_v11b_gold_validation.jsonl
 ```
+
+Gold 检查18题全部达到100分，最长路径使用122个环境动作；逐题记录见 [`results/scienceworld_v11b_gold_validation.jsonl`](results/scienceworld_v11b_gold_validation.jsonl)。
 
 两项检查通过后运行正式实验。网络中断或手工停止后，原命令再次执行即可从缺失 episode 继续：
 

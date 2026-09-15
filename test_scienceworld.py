@@ -126,6 +126,14 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertTrue(manifest["frozen_before_api_evaluation"])
         self.assertEqual(manifest["planned_conditions"], ["no_skill", "flat_retrieval", "body_aware_retrieval"])
         self.assertEqual(manifest["planned_episodes"], 162)
+        audit = [json.loads(line) for line in Path("results/scienceworld_v11b_retrieval_audit.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual([(row["task_name"], row["variation"]) for row in audit], list(SCIENCEWORLD_V11B_CONFIRM_18))
+        self.assertEqual(sum(row["flat_gold_rank"] is not None for row in audit), 12)
+        self.assertEqual(sum(row["body_gold_rank"] is not None for row in audit), 15)
+        gold = [json.loads(line) for line in Path("results/scienceworld_v11b_gold_validation.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual([(row["task_name"], row["variation"]) for row in gold], list(SCIENCEWORLD_V11B_CONFIRM_18))
+        self.assertTrue(all(row["success"] and row["score"] == 100 for row in gold))
+        self.assertLessEqual(max(row["environment_moves"] for row in gold), 400)
 
     def test_formal_v3_data_is_complete_and_immutable(self):
         path = Path("results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl")
