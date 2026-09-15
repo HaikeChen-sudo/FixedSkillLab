@@ -103,8 +103,9 @@ results/formal_scienceworld_v3/*
 !results/scienceworld_v10_confirmation_manifest.json
 !results/scienceworld_v10_gold_validation.jsonl
 !results/scienceworld_v11_large_confirmation_manifest.json
-!results/scienceworld_v11_retrieval_audit.jsonl
-!results/scienceworld_v11_gold_validation.jsonl
+!results/scienceworld_v11b_confirmation_manifest.json
+!results/scienceworld_v11b_retrieval_audit.jsonl
+!results/scienceworld_v11b_gold_validation.jsonl
 !results/formal_scienceworld_v6/
 results/formal_scienceworld_v6/*
 !results/formal_scienceworld_v6/scienceworld-v6-router-formal-12x3.jsonl
@@ -131,7 +132,7 @@ results/formal_scienceworld_v10/*
 !results/formal_scienceworld_v10/failure_taxonomy.csv
 !results/formal_scienceworld_v11/
 results/formal_scienceworld_v11/*
-!results/formal_scienceworld_v11/scienceworld-v11-large-confirm-30x3.jsonl
+!results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl
 !results/formal_scienceworld_v11/manifest.json
 !results/formal_scienceworld_v11/analysis_summary.json
 !results/formal_scienceworld_v11/condition_summary.csv

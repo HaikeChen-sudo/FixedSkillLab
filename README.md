@@ -521,26 +521,28 @@ Body-aware 相对 No Skill 的成功率高 `13.89` 个百分点，平均 Total T
 
 Flat 与 Body-aware 的成功率相同。Body-aware 的平均 Total Tokens 比 Flat 低 `6.74%`，延迟低 `10.31%`，每个成功任务成本低 `5.65%`。Flat 的 Gold Hit@3 为 `66.67%`，Body-aware 为 `75.00%`；本轮检索命中率差距缩小，不能把成本差异单独归因于 Gold Skill 排名。
 
-### ScienceWorld v11 大样本确认实验
+### ScienceWorld v11b 平衡确认实验
 
-v11 在六类任务中各冻结 5 个未使用的官方 test variation，共 30 题。Skill 库、检索器、Agent 协议和主要比较均保持不变。本轮只运行 No Skill、Flat Retrieval 和 Body-aware Retrieval，每个条件重复 3 次，共 `30 × 3 × 3 = 270` 个 episode。预注册信息见 [`results/scienceworld_v11_large_confirmation_manifest.json`](results/scienceworld_v11_large_confirmation_manifest.json)。
+原 v11 计划按六类各5题抽取30题，但本地预检发现 `boil`、`melt` 和 `freeze` 的官方 test variation 只到29，计划中的30和31无效。该计划在调用 API 前作废，记录保留在 [`results/scienceworld_v11_large_confirmation_manifest.json`](results/scienceworld_v11_large_confirmation_manifest.json)。
+
+替代协议 v11b 机械选取每类前三个未用的官方 test variation，共18题。这样不复用旧题，也不改变六类任务的权重。Skill 库、检索器、Agent 协议和主要比较均保持不变。本轮只运行 No Skill、Flat Retrieval 和 Body-aware Retrieval，每个条件重复3次，共 `18 × 3 × 3 = 162` 个 episode。预注册信息见 [`results/scienceworld_v11b_confirmation_manifest.json`](results/scienceworld_v11b_confirmation_manifest.json)。
 
 先做两项不调用 DeepSeek 的本地检查。检索审计确认所有 variation 属于 test split，并保存两种 Router 的 Top-3 和 Gold 排名：
 
 ```bash
 .venv/scienceworld/bin/python scienceworld_retrieval_audit.py \
-  --suite scienceworld-v11-large-confirm-30 \
-  --output results/scienceworld_v11_retrieval_audit.jsonl
+  --suite scienceworld-v11b-confirm-18 \
+  --output results/scienceworld_v11b_retrieval_audit.jsonl
 ```
 
-Gold 路径检查确认30题可在400个环境动作内由环境专家完成：
+Gold 路径检查确认18题可在400个环境动作内由环境专家完成：
 
 ```bash
 .venv/scienceworld/bin/python scienceworld_experiment.py \
-  --suite scienceworld-v11-large-confirm-30 \
+  --suite scienceworld-v11b-confirm-18 \
   --max-steps 400 \
   --gold-check \
-  --check-results results/scienceworld_v11_gold_validation.jsonl
+  --check-results results/scienceworld_v11b_gold_validation.jsonl
 ```
 
 两项检查通过后运行正式实验。网络中断或手工停止后，原命令再次执行即可从缺失 episode 继续：
@@ -549,20 +551,20 @@ Gold 路径检查确认30题可在400个环境动作内由环境专家完成：
 .venv/scienceworld/bin/python scienceworld_experiment.py \
   --model deepseek-v4-flash \
   --temperature 0 \
-  --suite scienceworld-v11-large-confirm-30 \
+  --suite scienceworld-v11b-confirm-18 \
   --conditions no_skill,flat_retrieval,body_aware_retrieval \
   --max-steps 400 \
   --repeats 3 \
-  --run-id scienceworld-v11-large-confirm-30x3 \
+  --run-id scienceworld-v11b-confirm-18x3 \
   --resume
 ```
 
-270 个 episode 完成后校验并冻结分析文件：
+162 个 episode 完成后校验并冻结分析文件：
 
 ```bash
 python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
-  --run-id scienceworld-v11-large-confirm-30x3 \
-  --suite scienceworld-v11-large-confirm-30 \
+  --run-id scienceworld-v11b-confirm-18x3 \
+  --suite scienceworld-v11b-confirm-18 \
   --conditions no_skill,flat_retrieval,body_aware_retrieval \
   --repeats 3 \
   --output-dir results/formal_scienceworld_v11 \

@@ -1,0 +1,72 @@
+{
+  "suite": "scienceworld-v11b-confirm-18",
+  "run_id": "scienceworld-v11b-confirm-18x3",
+  "status": "preregistered",
+  "purpose": "Balanced held-out confirmation of fixed-Skill retrieval against No Skill",
+  "selection_rule": "First three unused official test variations for each of the six frozen task families",
+  "variation_split": "test",
+  "frozen_before_gold_check": true,
+  "frozen_before_retrieval_audit": true,
+  "frozen_before_api_evaluation": true,
+  "cases": [
+    {"task_name": "boil", "variation": 27},
+    {"task_name": "boil", "variation": 28},
+    {"task_name": "boil", "variation": 29},
+    {"task_name": "melt", "variation": 27},
+    {"task_name": "melt", "variation": 28},
+    {"task_name": "melt", "variation": 29},
+    {"task_name": "freeze", "variation": 27},
+    {"task_name": "freeze", "variation": 28},
+    {"task_name": "freeze", "variation": 29},
+    {"task_name": "use-thermometer", "variation": 411},
+    {"task_name": "use-thermometer", "variation": 412},
+    {"task_name": "use-thermometer", "variation": 413},
+    {"task_name": "find-living-thing", "variation": 231},
+    {"task_name": "find-living-thing", "variation": 232},
+    {"task_name": "find-living-thing", "variation": 233},
+    {"task_name": "find-non-living-thing", "variation": 231},
+    {"task_name": "find-non-living-thing", "variation": 232},
+    {"task_name": "find-non-living-thing", "variation": 233}
+  ],
+  "planned_conditions": [
+    "no_skill",
+    "flat_retrieval",
+    "body_aware_retrieval"
+  ],
+  "planned_repeats": 3,
+  "planned_episodes": 162,
+  "max_environment_steps": 400,
+  "primary_comparison": "body_aware_retrieval versus no_skill",
+  "primary_endpoints": [
+    "task_success_rate",
+    "average_total_tokens"
+  ],
+  "secondary_comparisons": [
+    "flat_retrieval versus no_skill",
+    "body_aware_retrieval versus flat_retrieval"
+  ],
+  "secondary_endpoints": [
+    "average_input_tokens",
+    "average_output_tokens",
+    "average_latency_ms",
+    "cost_per_successful_task_usd",
+    "average_tool_calls",
+    "gold_hit_at_3_rate"
+  ],
+  "confirmatory_hypotheses": [
+    "body_aware_retrieval task_success_rate is higher than no_skill",
+    "body_aware_retrieval average_total_tokens is lower than no_skill"
+  ],
+  "analysis_unit": "18 task-variation pairs; three repeats are repeated measurements, not independent tasks",
+  "analysis_plan": "Paired episode summaries, task-cluster bootstrap confidence intervals, exact McNemar tests, and exact task-level sign tests",
+  "failure_rule": "Every scheduled model-completed episode is retained; API transport failures produce no episode and are resumed at the same key",
+  "preflight_rule": "If any case is not in the official test split or its local gold path cannot reach score 100 within 400 moves, stop before API evaluation and publish a new protocol version",
+  "model_request_name": "deepseek-v4-flash",
+  "temperature": 0,
+  "condition_order_seed": 0,
+  "skill_library_version": "v3",
+  "skill_library_sha256": "fdd9d917af6528933d71f744e57b88aae6e7e52113354e20bec3ffbf8cd0f322",
+  "retriever": "hash-embedding-v1",
+  "retriever_file_sha256": "32a1043c422a33516cad720477052a72097019293f39b3596f30f2a581606a6f",
+  "success_rule": "ScienceWorld environment score >= 100"
+}

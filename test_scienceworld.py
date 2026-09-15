@@ -10,7 +10,7 @@ from scienceworld_retrieval import EMBEDDER_NAME, retrieve
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
 from analyze_scienceworld_formal import exact_sign_p_value, paired_statistics, validation_errors
-from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11_LARGE_CONFIRM_30, SUITE_VARIATION_SPLITS, validate_suites
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -93,11 +93,17 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertTrue(all(row["gold_success"] and row["gold_score"] == 100 for row in gold))
         self.assertLessEqual(max(row["gold_environment_moves"] for row in gold), 400)
 
-    def test_v11_large_confirmation_suite_is_new_and_preregistered(self):
-        self.assertEqual(len(SCIENCEWORLD_V11_LARGE_CONFIRM_30), 30)
+    def test_invalid_v11_protocol_is_retained_as_an_audit_record(self):
+        manifest = json.loads(Path("results/scienceworld_v11_large_confirmation_manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["status"], "invalidated_during_preflight")
+        self.assertEqual(manifest["api_episodes_collected"], 0)
+        self.assertEqual(manifest["replacement_suite"], "scienceworld-v11b-confirm-18")
+
+    def test_v11b_confirmation_suite_is_new_valid_and_preregistered(self):
+        self.assertEqual(len(SCIENCEWORLD_V11B_CONFIRM_18), 18)
         self.assertEqual(
-            {task: sum(name == task for name, _ in SCIENCEWORLD_V11_LARGE_CONFIRM_30) for task in GOLD_SKILLS},
-            {task: 5 for task in GOLD_SKILLS},
+            {task: sum(name == task for name, _ in SCIENCEWORLD_V11B_CONFIRM_18) for task in GOLD_SKILLS},
+            {task: 3 for task in GOLD_SKILLS},
         )
         earlier = (
             set(SCIENCEWORLD_PILOT_6)
@@ -106,16 +112,20 @@ class ScienceWorldTests(unittest.TestCase):
             | set(SCIENCEWORLD_V6_ROUTER_FORMAL_12)
             | set(SCIENCEWORLD_V10_CONFIRM_12)
         )
-        self.assertFalse(earlier & set(SCIENCEWORLD_V11_LARGE_CONFIRM_30))
-        self.assertEqual(SUITE_VARIATION_SPLITS["scienceworld-v11-large-confirm-30"], "test")
-        manifest = json.loads(Path("results/scienceworld_v11_large_confirmation_manifest.json").read_text(encoding="utf-8"))
+        self.assertFalse(earlier & set(SCIENCEWORLD_V11B_CONFIRM_18))
+        self.assertTrue(all(
+            variation in SCIENCEWORLD_TEST_VARIATIONS[task]
+            for task, variation in SCIENCEWORLD_V11B_CONFIRM_18
+        ))
+        self.assertEqual(SUITE_VARIATION_SPLITS["scienceworld-v11b-confirm-18"], "test")
+        manifest = json.loads(Path("results/scienceworld_v11b_confirmation_manifest.json").read_text(encoding="utf-8"))
         cases = [(row["task_name"], row["variation"]) for row in manifest["cases"]]
-        self.assertEqual(cases, list(SCIENCEWORLD_V11_LARGE_CONFIRM_30))
+        self.assertEqual(cases, list(SCIENCEWORLD_V11B_CONFIRM_18))
         self.assertTrue(manifest["frozen_before_gold_check"])
         self.assertTrue(manifest["frozen_before_retrieval_audit"])
         self.assertTrue(manifest["frozen_before_api_evaluation"])
         self.assertEqual(manifest["planned_conditions"], ["no_skill", "flat_retrieval", "body_aware_retrieval"])
-        self.assertEqual(manifest["planned_episodes"], 270)
+        self.assertEqual(manifest["planned_episodes"], 162)
 
     def test_formal_v3_data_is_complete_and_immutable(self):
         path = Path("results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl")

@@ -1,6 +1,18 @@
 {
   "suite": "scienceworld-v11-large-confirm-30",
   "run_id": "scienceworld-v11-large-confirm-30x3",
+  "status": "invalidated_during_preflight",
+  "invalidated_reason": "boil, melt, and freeze variations 30 and 31 are outside the official test split in the installed ScienceWorld version",
+  "invalid_cases": [
+    "boil:v030",
+    "boil:v031",
+    "melt:v030",
+    "melt:v031",
+    "freeze:v030",
+    "freeze:v031"
+  ],
+  "api_episodes_collected": 0,
+  "replacement_suite": "scienceworld-v11b-confirm-18",
   "purpose": "Larger held-out confirmation of fixed-Skill retrieval against No Skill",
   "selection_rule": "Seventh through eleventh official test variations for each of the six frozen task families",
   "variation_split": "test",

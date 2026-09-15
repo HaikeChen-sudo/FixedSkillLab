@@ -57,39 +57,27 @@ SCIENCEWORLD_V10_CONFIRM_12 = (
     ("find-non-living-thing", 230),
 )
 
-# Seventh through eleventh official test variations for each family. Frozen
-# before local gold validation, retrieval audit, or API evaluation.
-SCIENCEWORLD_V11_LARGE_CONFIRM_30 = (
+# First three unused official test variations for each family. This balanced
+# replacement was frozen after v11 failed preflight and before any API run.
+SCIENCEWORLD_V11B_CONFIRM_18 = (
     ("boil", 27),
     ("boil", 28),
     ("boil", 29),
-    ("boil", 30),
-    ("boil", 31),
     ("melt", 27),
     ("melt", 28),
     ("melt", 29),
-    ("melt", 30),
-    ("melt", 31),
     ("freeze", 27),
     ("freeze", 28),
     ("freeze", 29),
-    ("freeze", 30),
-    ("freeze", 31),
     ("use-thermometer", 411),
     ("use-thermometer", 412),
     ("use-thermometer", 413),
-    ("use-thermometer", 414),
-    ("use-thermometer", 415),
     ("find-living-thing", 231),
     ("find-living-thing", 232),
     ("find-living-thing", 233),
-    ("find-living-thing", 234),
-    ("find-living-thing", 235),
     ("find-non-living-thing", 231),
     ("find-non-living-thing", 232),
     ("find-non-living-thing", 233),
-    ("find-non-living-thing", 234),
-    ("find-non-living-thing", 235),
 )
 
 SUITES = {
@@ -98,7 +86,7 @@ SUITES = {
     "scienceworld-v4-heldout-6": SCIENCEWORLD_V4_HELDOUT_6,
     "scienceworld-v6-router-formal-12": SCIENCEWORLD_V6_ROUTER_FORMAL_12,
     "scienceworld-v10-confirm-12": SCIENCEWORLD_V10_CONFIRM_12,
-    "scienceworld-v11-large-confirm-30": SCIENCEWORLD_V11_LARGE_CONFIRM_30,
+    "scienceworld-v11b-confirm-18": SCIENCEWORLD_V11B_CONFIRM_18,
 }
 
 SUITE_VARIATION_SPLITS = {
@@ -107,7 +95,14 @@ SUITE_VARIATION_SPLITS = {
     "scienceworld-v4-heldout-6": "test",
     "scienceworld-v6-router-formal-12": "test",
     "scienceworld-v10-confirm-12": "test",
-    "scienceworld-v11-large-confirm-30": "test",
+    "scienceworld-v11b-confirm-18": "test",
+}
+
+SCIENCEWORLD_TEST_VARIATIONS = {
+    **{task: range(21, 30) for task in ("boil", "melt", "freeze")},
+    "use-thermometer": range(405, 540),
+    "find-living-thing": range(225, 300),
+    "find-non-living-thing": range(225, 300),
 }
 
 
@@ -121,6 +116,14 @@ def validate_suites() -> list:
         counts = [sum(task == expected for task, _ in cases) for expected in GOLD_SKILLS]
         if len(set(counts)) != 1:
             errors.append(f"{name}: every task family must have the same number of cases")
+        if SUITE_VARIATION_SPLITS[name] == "test":
+            invalid = [
+                f"{task}:v{variation:03d}"
+                for task, variation in cases
+                if variation not in SCIENCEWORLD_TEST_VARIATIONS[task]
+            ]
+            if invalid:
+                errors.append(f"{name}: cases outside the official test split: {', '.join(invalid)}")
     suite_items = list(SUITES.items())
     for index, (left_name, left_cases) in enumerate(suite_items):
         for right_name, right_cases in suite_items[index + 1:]:
