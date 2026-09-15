@@ -80,6 +80,17 @@ SCIENCEWORLD_V11B_CONFIRM_18 = (
     ("find-non-living-thing", 233),
 )
 
+# Mechanism pilot deliberately reuses one v11b case per family. It tests prompt
+# content controls and is not an independent held-out confirmation.
+SCIENCEWORLD_V12_MECHANISM_PILOT_6 = (
+    ("boil", 27),
+    ("melt", 27),
+    ("freeze", 27),
+    ("use-thermometer", 411),
+    ("find-living-thing", 231),
+    ("find-non-living-thing", 231),
+)
+
 SUITES = {
     "scienceworld-pilot-6": SCIENCEWORLD_PILOT_6,
     "scienceworld-v3-heldout-6": SCIENCEWORLD_V3_HELDOUT_6,
@@ -87,6 +98,7 @@ SUITES = {
     "scienceworld-v6-router-formal-12": SCIENCEWORLD_V6_ROUTER_FORMAL_12,
     "scienceworld-v10-confirm-12": SCIENCEWORLD_V10_CONFIRM_12,
     "scienceworld-v11b-confirm-18": SCIENCEWORLD_V11B_CONFIRM_18,
+    "scienceworld-v12-mechanism-pilot-6": SCIENCEWORLD_V12_MECHANISM_PILOT_6,
 }
 
 SUITE_VARIATION_SPLITS = {
@@ -96,7 +108,10 @@ SUITE_VARIATION_SPLITS = {
     "scienceworld-v6-router-formal-12": "test",
     "scienceworld-v10-confirm-12": "test",
     "scienceworld-v11b-confirm-18": "test",
+    "scienceworld-v12-mechanism-pilot-6": "test",
 }
+
+REUSED_MECHANISM_SUITES = {"scienceworld-v12-mechanism-pilot-6"}
 
 SCIENCEWORLD_TEST_VARIATIONS = {
     **{task: range(21, 30) for task in ("boil", "melt", "freeze")},
@@ -127,6 +142,8 @@ def validate_suites() -> list:
     suite_items = list(SUITES.items())
     for index, (left_name, left_cases) in enumerate(suite_items):
         for right_name, right_cases in suite_items[index + 1:]:
+            if {left_name, right_name} & REUSED_MECHANISM_SUITES:
+                continue
             if set(left_cases) & set(right_cases):
                 errors.append(f"{left_name} and {right_name} must not overlap")
     return errors

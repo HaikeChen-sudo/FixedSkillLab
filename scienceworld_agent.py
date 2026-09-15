@@ -1,6 +1,7 @@
 """Run one objectively scored ScienceWorld episode with DeepSeek."""
 
 import argparse
+import hashlib
 import json
 import time
 from dataclasses import asdict, dataclass
@@ -37,7 +38,7 @@ Do not invent observations or claim success. Only the environment score decides 
 
 CONDITIONS = (
     "no_skill", "all_skills", "flat_retrieval", "body_aware_retrieval",
-    "oracle_skill", "oracle_v2", "oracle_v3",
+    "body_metadata_only", "body_placebo", "oracle_skill", "oracle_v2", "oracle_v3",
 )
 DEFAULT_CONDITIONS = ("no_skill", "oracle_v2")
 AGENT_PROTOCOL_VERSION = "scienceworld-v2"
@@ -75,7 +76,8 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
     if condition in {"oracle_skill", "oracle_v2", "oracle_v3"}:
         version = {"oracle_skill": "v1", "oracle_v2": "v2", "oracle_v3": "v3"}[condition]
         return SkillSelection(gold, [], [], None, gold, version)
-    hits = retrieve(task_text, body_aware=condition == "body_aware_retrieval")
+    body_aware = condition in {"body_aware_retrieval", "body_metadata_only", "body_placebo"}
+    hits = retrieve(task_text, body_aware=body_aware)
     ranks = {item.name: item.rank for item in hits}
     return SkillSelection(
         [item.name for item in hits],
@@ -159,9 +161,14 @@ def run_episode(
         selection = skill_selection(condition, task_name, task_description)
         selected = selection.names
         skill_version = selection.library_version
+        skill_render_mode = {
+            "body_metadata_only": "metadata_only",
+            "body_placebo": "placebo",
+        }.get(condition, "full")
+        skill_prompt = loaded_skill_text(selected, skill_version, skill_render_mode) if selected else ""
         messages: List[Dict[str, Any]] = [{"role": "system", "content": SYSTEM_PROMPT}]
         if selected:
-            messages.append({"role": "system", "content": "Fixed Skill guidance:\n" + loaded_skill_text(selected, skill_version)})
+            messages.append({"role": "system", "content": "Fixed Skill guidance:\n" + skill_prompt})
         messages.append({
             "role": "user",
             "content": f"Task:\n{task_description}\n\nInitial observation:\n{observation}",
@@ -254,6 +261,8 @@ def run_episode(
             "retrieval_rank": min((rank for rank in selection.gold_skill_ranks if rank is not None), default=None),
             "skill_library_version": skill_version,
             "skill_library_sha256": library_hash(skill_version) if skill_version else None,
+            "skill_render_mode": skill_render_mode if selected else None,
+            "skill_prompt_sha256": hashlib.sha256(skill_prompt.encode("utf-8")).hexdigest() if selected else None,
             "final_text": final_text,
             "trace": trace,
         }

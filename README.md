@@ -577,6 +577,30 @@ python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
 
 v11b 已完成全部 162 个 episode，无缺失、无重复。Body-aware Retrieval 成功率为 `88.89%`，No Skill 为 `77.78%`，配对差为 `+11.11` 个百分点，任务聚类 Bootstrap 95% CI 为 `[1.85, 22.22]`。Body-aware 的平均 Total Tokens 低 `66.57%`，延迟低 `45.56%`。收益集中在少数长轨迹任务；详细配对统计、敏感性分析和彩色图见 [v11b Markdown 报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)。
 
+### ScienceWorld v12 机制消融 Pilot
+
+v12 不再检验“Body-aware 是否有效”，而是检查 v11b 的收益是否来自任务专用 Procedure。它有意复用 v11b 中每类一道题，因此是机制 Pilot，不是新的独立确认。预注册设置见 [`scienceworld_v12_mechanism_pilot_manifest.json`](results/scienceworld_v12_mechanism_pilot_manifest.json)。
+
+- `body_aware_retrieval`：加载完整 Top-3 Skill。
+- `body_metadata_only`：Top-3 完全相同，只加载 Name、Description 和 Activation Condition。
+- `body_placebo`：Top-3 和元数据不变，用与原文空格分词数相同的通用词替换 Procedure 和 Termination Condition。
+
+运行 `6 tasks × 4 conditions × 1 repeat = 24 episodes`：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --suite scienceworld-v12-mechanism-pilot-6 \
+  --conditions no_skill,body_aware_retrieval,body_metadata_only,body_placebo \
+  --max-steps 400 \
+  --repeats 1 \
+  --run-id scienceworld-v12-mechanism-pilot-6x1 \
+  --resume
+```
+
+Pilot 只看程序、提示控制和方向性信号，不报统计显著性。
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`

@@ -10,7 +10,7 @@ from scienceworld_retrieval import EMBEDDER_NAME, retrieve
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
 from analyze_scienceworld_formal import exact_sign_p_value, paired_statistics, validation_errors
-from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SUITE_VARIATION_SPLITS, validate_suites
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -168,6 +168,42 @@ class ScienceWorldTests(unittest.TestCase):
         conditions = ("no_skill", "flat_retrieval", "body_aware_retrieval")
         self.assertEqual(validation_errors(records, "scienceworld-v11b-confirm-18", conditions, 3), [])
         self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), "fb46b8f603d68f9e4baea76de912d68d1edac54299018b3b3bd51b7923177956")
+
+    def test_v12_mechanism_pilot_reuses_six_declared_v11b_cases(self):
+        self.assertEqual(SCIENCEWORLD_V12_MECHANISM_PILOT_6, (
+            ("boil", 27), ("melt", 27), ("freeze", 27),
+            ("use-thermometer", 411), ("find-living-thing", 231),
+            ("find-non-living-thing", 231),
+        ))
+        self.assertTrue(set(SCIENCEWORLD_V12_MECHANISM_PILOT_6) <= set(SCIENCEWORLD_V11B_CONFIRM_18))
+        manifest = json.loads(Path("results/scienceworld_v12_mechanism_pilot_manifest.json").read_text(encoding="utf-8"))
+        self.assertTrue(manifest["frozen_before_api_evaluation"])
+        self.assertEqual(manifest["planned_episodes"], 24)
+
+    def test_v12_controls_keep_body_router_selection_and_match_placebo_words(self):
+        records = [
+            json.loads(line)
+            for line in Path("results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl").read_text(encoding="utf-8").splitlines()
+        ]
+        queries = {
+            (row["task_name"], row["variation"]): row["retrieval_query"]
+            for row in records
+        }
+        for task_name, variation in SCIENCEWORLD_V12_MECHANISM_PILOT_6:
+            query = queries[(task_name, variation)]
+            full = skill_selection("body_aware_retrieval", task_name, query)
+            for condition in ("body_metadata_only", "body_placebo"):
+                control = skill_selection(condition, task_name, query)
+                self.assertEqual(control.names, full.names)
+                self.assertEqual(control.retrieved, full.retrieved)
+                self.assertEqual(control.gold_skill_ranks, full.gold_skill_ranks)
+            full_text = loaded_skill_text(full.names, "v3")
+            metadata = loaded_skill_text(full.names, "v3", "metadata_only")
+            placebo = loaded_skill_text(full.names, "v3", "placebo")
+            self.assertLess(len(metadata.split()), len(full_text.split()))
+            self.assertEqual(len(placebo.split()), len(full_text.split()))
+            self.assertLess(abs(len(placebo) - len(full_text)) / len(full_text), 0.15)
+            self.assertNotEqual(placebo, full_text)
 
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])

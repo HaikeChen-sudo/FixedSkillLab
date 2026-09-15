@@ -1,0 +1,55 @@
+{
+  "protocol_id": "scienceworld-v12-mechanism-pilot-6x1",
+  "status": "preregistered_before_api_evaluation",
+  "created_date": "2026-09-15",
+  "purpose": "test whether task-specific Skill procedures explain the v11b Body-aware advantage",
+  "parent_run_id": "scienceworld-v11b-confirm-18x3",
+  "suite": "scienceworld-v12-mechanism-pilot-6",
+  "reuse_disclosure": "This mechanism pilot deliberately reuses one v11b test variation per task family and is not an independent performance confirmation.",
+  "cases": [
+    {"task_name": "boil", "variation": 27},
+    {"task_name": "melt", "variation": 27},
+    {"task_name": "freeze", "variation": 27},
+    {"task_name": "use-thermometer", "variation": 411},
+    {"task_name": "find-living-thing", "variation": 231},
+    {"task_name": "find-non-living-thing", "variation": 231}
+  ],
+  "conditions": [
+    "no_skill",
+    "body_aware_retrieval",
+    "body_metadata_only",
+    "body_placebo"
+  ],
+  "condition_definitions": {
+    "no_skill": "load no Skill text",
+    "body_aware_retrieval": "retrieve Top-3 using the full v3 Skill body and load the complete selected Skills",
+    "body_metadata_only": "use the identical Body-aware Top-3 selection but load only Name, Description, and Activation Condition",
+    "body_placebo": "use the identical Body-aware Top-3 selection and metadata but replace Procedure and Termination Condition with task-irrelevant generic words matched to the original whitespace word count"
+  },
+  "primary_comparisons": [
+    "body_aware_retrieval versus body_metadata_only",
+    "body_aware_retrieval versus body_placebo"
+  ],
+  "model": "deepseek-v4-flash",
+  "temperature": 0,
+  "agent_protocol_version": "scienceworld-v2",
+  "skill_library_version": "v3",
+  "top_k": 3,
+  "max_steps": 400,
+  "repeats": 1,
+  "planned_episodes": 24,
+  "success_rule": "ScienceWorld score >= 100",
+  "metrics": [
+    "task_success_rate",
+    "input_tokens",
+    "output_tokens",
+    "total_tokens",
+    "end_to_end_latency_ms",
+    "cost_per_successful_task_usd",
+    "tool_calls",
+    "environment_moves",
+    "environment_score"
+  ],
+  "decision_rule": "The pilot checks implementation, prompt controls, and directional signal. It is not used for a confirmatory claim.",
+  "frozen_before_api_evaluation": true
+}

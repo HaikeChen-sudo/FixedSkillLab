@@ -163,14 +163,34 @@ def versioned_skills(version: str = "v1") -> Tuple[ScienceWorldSkill, ...]:
     raise ValueError(f"unknown skill library version: {version}")
 
 
-def render(item: ScienceWorldSkill) -> str:
-    procedure = "\n".join(f"{index}. {step}" for index, step in enumerate(item.procedure, 1))
-    return f"Name\n{item.name}\n\nDescription\n{item.description}\n\nActivation Condition\n{item.activation_condition}\n\nProcedure\n{procedure}\n\nTermination Condition\n{item.termination_condition}\n"
+PLACEBO_WORDS = (
+    "read", "the", "current", "view", "then", "choose", "one", "valid",
+    "action", "check", "the", "new", "state", "and", "continue", "while",
+    "the", "task", "is", "unfinished",
+)
 
 
-def loaded_skill_text(names: Iterable[str], version: str = "v1") -> str:
+def placebo_text(source: str, offset: int = 0) -> str:
+    count = len(source.split())
+    return " ".join(PLACEBO_WORDS[(offset + index) % len(PLACEBO_WORDS)] for index in range(count)) + "."
+
+
+def render(item: ScienceWorldSkill, mode: str = "full") -> str:
+    if mode == "metadata_only":
+        return f"Name\n{item.name}\n\nDescription\n{item.description}\n\nActivation Condition\n{item.activation_condition}\n"
+    if mode not in {"full", "placebo"}:
+        raise ValueError(f"unknown Skill render mode: {mode}")
+    steps = item.procedure if mode == "full" else tuple(
+        placebo_text(step, index * 5) for index, step in enumerate(item.procedure)
+    )
+    termination = item.termination_condition if mode == "full" else placebo_text(item.termination_condition)
+    procedure = "\n".join(f"{index}. {step}" for index, step in enumerate(steps, 1))
+    return f"Name\n{item.name}\n\nDescription\n{item.description}\n\nActivation Condition\n{item.activation_condition}\n\nProcedure\n{procedure}\n\nTermination Condition\n{termination}\n"
+
+
+def loaded_skill_text(names: Iterable[str], version: str = "v1", mode: str = "full") -> str:
     selected = {item.name: item for item in versioned_skills(version)}
-    return "\n---\n".join(render(selected[name]) for name in names)
+    return "\n---\n".join(render(selected[name], mode) for name in names)
 
 
 def library_hash(version: str = "v1") -> str:
