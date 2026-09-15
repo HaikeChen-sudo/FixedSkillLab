@@ -1,0 +1,357 @@
+{
+  "scope": "The pooled analysis is exploratory and does not replace the preregistered v11b analysis.",
+  "compatibility": {
+    "models": [
+      "deepseek-v4-flash"
+    ],
+    "temperatures": [
+      0.0
+    ],
+    "agent_protocol_versions": [
+      "scienceworld-v2"
+    ],
+    "skill_library_versions": [
+      "None",
+      "v3"
+    ]
+  },
+  "batches": [
+    {
+      "study": "v9_discovery",
+      "tasks": 12,
+      "episodes_per_condition": 36,
+      "no_skill": {
+        "episodes": 36,
+        "successes": 25,
+        "task_success_rate": 0.6944444444444444,
+        "average_total_tokens": 743891.2777777778
+      },
+      "body_aware_retrieval": {
+        "episodes": 36,
+        "successes": 32,
+        "task_success_rate": 0.8888888888888888,
+        "average_total_tokens": 244085.72222222222
+      },
+      "success_rate_difference": 0.19444444444444442,
+      "success_rate_ci": [
+        0.08333333333333333,
+        0.3055555555555555
+      ],
+      "average_total_tokens_difference": -499805.55555555556,
+      "total_tokens_difference_ci": [
+        -1198891.284722222,
+        -3384.2409722222446
+      ],
+      "relative_total_tokens_change_pct": -67.18798438511362
+    },
+    {
+      "study": "v10_confirmation",
+      "tasks": 12,
+      "episodes_per_condition": 36,
+      "no_skill": {
+        "episodes": 36,
+        "successes": 29,
+        "task_success_rate": 0.8055555555555556,
+        "average_total_tokens": 462953.3888888889
+      },
+      "body_aware_retrieval": {
+        "episodes": 36,
+        "successes": 34,
+        "task_success_rate": 0.9444444444444444,
+        "average_total_tokens": 281979.8611111111
+      },
+      "success_rate_difference": 0.1388888888888889,
+      "success_rate_ci": [
+        0.0,
+        0.3333333333333333
+      ],
+      "average_total_tokens_difference": -180973.52777777778,
+      "total_tokens_difference_ci": [
+        -518501.5458333333,
+        12434.806944444445
+      ],
+      "relative_total_tokens_change_pct": -39.09109040374954
+    },
+    {
+      "study": "v11b_balanced_confirmation",
+      "tasks": 18,
+      "episodes_per_condition": 54,
+      "no_skill": {
+        "episodes": 54,
+        "successes": 42,
+        "task_success_rate": 0.7777777777777778,
+        "average_total_tokens": 880705.2962962963
+      },
+      "body_aware_retrieval": {
+        "episodes": 54,
+        "successes": 48,
+        "task_success_rate": 0.8888888888888888,
+        "average_total_tokens": 294462.2962962963
+      },
+      "success_rate_difference": 0.1111111111111111,
+      "success_rate_ci": [
+        0.018518518518518517,
+        0.2222222222222222
+      ],
+      "average_total_tokens_difference": -586243.0,
+      "total_tokens_difference_ci": [
+        -1261769.4592592593,
+        -128184.2615740743
+      ],
+      "relative_total_tokens_change_pct": -66.56517253448762
+    }
+  ],
+  "exploratory_pooled": {
+    "tasks": 42,
+    "episodes_per_condition": 126,
+    "no_skill": {
+      "episodes": 126,
+      "successes": 96,
+      "task_success_rate": 0.7619047619047619,
+      "average_total_tokens": 722257.8888888889
+    },
+    "body_aware_retrieval": {
+      "episodes": 126,
+      "successes": 114,
+      "task_success_rate": 0.9047619047619048,
+      "average_total_tokens": 276502.57936507935
+    },
+    "paired_statistics": {
+      "condition": "body_aware_retrieval",
+      "baseline": "no_skill",
+      "success_rate_difference": 0.14285714285714285,
+      "task_cluster_bootstrap_ci_low": 0.07142857142857142,
+      "task_cluster_bootstrap_ci_high": 0.2222222222222222,
+      "condition_only_successes": 20,
+      "baseline_only_successes": 2,
+      "exact_mcnemar_p_value": 0.00012111663818359375,
+      "tasks_positive": 13,
+      "tasks_negative": 0,
+      "tasks_tied": 29,
+      "exact_task_sign_p_value": 0.000244140625,
+      "average_total_tokens_difference": -445755.3095238095,
+      "total_tokens_cluster_bootstrap_ci_low": -802998.7037698412,
+      "total_tokens_cluster_bootstrap_ci_high": -166444.6128968253,
+      "tasks_with_lower_total_tokens": 25,
+      "tasks_with_higher_total_tokens": 17,
+      "tasks_with_tied_total_tokens": 0,
+      "exact_total_tokens_task_sign_p_value": 0.27995623852893914
+    }
+  },
+  "v11b_token_sensitivity": {
+    "median_task_total_tokens_difference": -5648.666666666668,
+    "median_task_relative_change_pct": -10.684845051767194,
+    "tasks_with_lower_total_tokens": 11,
+    "tasks_with_higher_total_tokens": 7,
+    "leave_one_task_out_relative_change_pct_min": -74.4517099935745,
+    "leave_one_task_out_relative_change_pct_max": -50.10315604269988,
+    "largest_absolute_reductions": [
+      {
+        "task_id": "find-living-thing:v232",
+        "no_skill_mean_total_tokens": 5280362.666666667,
+        "body_aware_mean_total_tokens": 25061,
+        "difference": -5255301.666666667,
+        "relative_change_pct": -99.52539244779146
+      },
+      {
+        "task_id": "freeze:v027",
+        "no_skill_mean_total_tokens": 2251577,
+        "body_aware_mean_total_tokens": 478871.3333333333,
+        "difference": -1772705.6666666667,
+        "relative_change_pct": -78.73173631932937
+      },
+      {
+        "task_id": "boil:v027",
+        "no_skill_mean_total_tokens": 1890001.3333333333,
+        "body_aware_mean_total_tokens": 323724.3333333333,
+        "difference": -1566277.0,
+        "relative_change_pct": -82.87174047848997
+      },
+      {
+        "task_id": "find-living-thing:v231",
+        "no_skill_mean_total_tokens": 699375,
+        "body_aware_mean_total_tokens": 23836,
+        "difference": -675539,
+        "relative_change_pct": -96.59181411974977
+      },
+      {
+        "task_id": "freeze:v029",
+        "no_skill_mean_total_tokens": 2435687.3333333335,
+        "body_aware_mean_total_tokens": 1784911.3333333333,
+        "difference": -650776.0000000002,
+        "relative_change_pct": -26.71837189830879
+      },
+      {
+        "task_id": "freeze:v028",
+        "no_skill_mean_total_tokens": 2401085.3333333335,
+        "body_aware_mean_total_tokens": 1863665,
+        "difference": -537420.3333333335,
+        "relative_change_pct": -22.382392073806624
+      }
+    ]
+  },
+  "v11b_family_summary": [
+    {
+      "task_name": "boil",
+      "condition": "no_skill",
+      "episodes": 9,
+      "successes": 7,
+      "task_success_rate": 0.7777777777777778,
+      "average_total_tokens": 794316.7777777778,
+      "average_environment_moves": 152
+    },
+    {
+      "task_name": "boil",
+      "condition": "flat_retrieval",
+      "episodes": 9,
+      "successes": 6,
+      "task_success_rate": 0.6666666666666666,
+      "average_total_tokens": 1359197,
+      "average_environment_moves": 169.66666666666666
+    },
+    {
+      "task_name": "boil",
+      "condition": "body_aware_retrieval",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_total_tokens": 238201.66666666666,
+      "average_environment_moves": 52.888888888888886
+    },
+    {
+      "task_name": "melt",
+      "condition": "no_skill",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_total_tokens": 61376.11111111111,
+      "average_environment_moves": 18.555555555555557
+    },
+    {
+      "task_name": "melt",
+      "condition": "flat_retrieval",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_total_tokens": 52814.555555555555,
+      "average_environment_moves": 14.88888888888889
+    },
+    {
+      "task_name": "melt",
+      "condition": "body_aware_retrieval",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_total_tokens": 66634.33333333333,
+      "average_environment_moves": 17
+    },
+    {
+      "task_name": "freeze",
+      "condition": "no_skill",
+      "episodes": 9,
+      "successes": 0,
+      "task_success_rate": 0,
+      "average_total_tokens": 2362783.222222222,
+      "average_environment_moves": 401.55555555555554
+    },
+    {
+      "task_name": "freeze",
+      "condition": "flat_retrieval",
+      "episodes": 9,
+      "successes": 3,
+      "task_success_rate": 0.3333333333333333,
+      "average_total_tokens": 1081068.5555555555,
+      "average_environment_moves": 300.22222222222223
+    },
+    {
+      "task_name": "freeze",
+      "condition": "body_aware_retrieval",
+      "episodes": 9,
+      "successes": 3,
+      "task_success_rate": 0.3333333333333333,
+      "average_total_tokens": 1375815.888888889,
+      "average_environment_moves": 318.3333333333333
+    },
+    {
+      "task_name": "use-thermometer",
+      "condition": "no_skill",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_total_tokens": 46258.77777777778,
+      "average_environment_moves": 14.666666666666666
+    },
+    {
+      "task_name": "use-thermometer",
+      "condition": "flat_retrieval",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_total_tokens": 42251,
+      "average_environment_moves": 12
+    },
+    {
+      "task_name": "use-thermometer",
+      "condition": "body_aware_retrieval",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_total_tokens": 44007.11111111111,
+      "average_environment_moves": 12
+    },
+    {
+      "task_name": "find-living-thing",
+      "condition": "no_skill",
+      "episodes": 9,
+      "successes": 8,
+      "task_success_rate": 0.8888888888888888,
+      "average_total_tokens": 2003828,
+      "average_environment_moves": 54.44444444444444
+    },
+    {
+      "task_name": "find-living-thing",
+      "condition": "flat_retrieval",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_total_tokens": 21820.88888888889,
+      "average_environment_moves": 6.666666666666667
+    },
+    {
+      "task_name": "find-living-thing",
+      "condition": "body_aware_retrieval",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_total_tokens": 22479.11111111111,
+      "average_environment_moves": 6.666666666666667
+    },
+    {
+      "task_name": "find-non-living-thing",
+      "condition": "no_skill",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_total_tokens": 15668.888888888889,
+      "average_environment_moves": 6.555555555555555
+    },
+    {
+      "task_name": "find-non-living-thing",
+      "condition": "flat_retrieval",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_total_tokens": 19630.666666666668,
+      "average_environment_moves": 6.666666666666667
+    },
+    {
+      "task_name": "find-non-living-thing",
+      "condition": "body_aware_retrieval",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_total_tokens": 19635.666666666668,
+      "average_environment_moves": 6.666666666666667
+    }
+  ]
+}

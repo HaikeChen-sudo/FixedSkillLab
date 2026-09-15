@@ -2,7 +2,7 @@
 
 固定 Skill 加载与检索的 LLM Agent 实验平台。仓库包含一个只用 Python 标准库的确定性 Mini Lab，以及 ALFWorld 和 ScienceWorld 的文字交互实验。成功条件均由程序或环境判断，模型不能给自己打分。
 
-定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v10 发现与确认报告](output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf)
+定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v10 发现与确认报告](output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf) · [ScienceWorld v11b 平衡确认报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)
 
 ## 运行
 
@@ -572,8 +572,10 @@ python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
   --conditions no_skill,flat_retrieval,body_aware_retrieval \
   --repeats 3 \
   --output-dir results/formal_scienceworld_v11 \
-  --purpose "larger held-out confirmation of fixed-Skill retrieval"
+  --purpose "balanced held-out confirmation of fixed-Skill retrieval"
 ```
+
+v11b 已完成全部 162 个 episode，无缺失、无重复。Body-aware Retrieval 成功率为 `88.89%`，No Skill 为 `77.78%`，配对差为 `+11.11` 个百分点，任务聚类 Bootstrap 95% CI 为 `[1.85, 22.22]`。Body-aware 的平均 Total Tokens 低 `66.57%`，延迟低 `45.56%`。收益集中在少数长轨迹任务；详细配对统计、敏感性分析和彩色图见 [v11b Markdown 报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)。
 
 ## 工具
 

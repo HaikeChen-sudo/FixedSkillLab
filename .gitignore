@@ -142,6 +142,7 @@ results/formal_scienceworld_v11/*
 !results/formal_scienceworld_v11/retrieval_summary.csv
 !results/formal_scienceworld_v11/failures.jsonl
 !results/formal_scienceworld_v11/failure_taxonomy.csv
+!results/formal_scienceworld_v11/derived_analysis.json
 !results/formal_scienceworld_v11/figures/
 !results/formal_scienceworld_v11/figures/*.png
 !results/formal_scienceworld_v4/
