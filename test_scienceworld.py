@@ -10,7 +10,7 @@ from scienceworld_retrieval import EMBEDDER_NAME, retrieve
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
 from analyze_scienceworld_formal import exact_sign_p_value, paired_statistics, validation_errors
-from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SUITE_VARIATION_SPLITS, validate_suites
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -204,6 +204,63 @@ class ScienceWorldTests(unittest.TestCase):
             self.assertEqual(len(placebo.split()), len(full_text.split()))
             self.assertLess(abs(len(placebo) - len(full_text)) / len(full_text), 0.15)
             self.assertNotEqual(placebo, full_text)
+
+    def test_v13_controls_load_the_same_single_gold_skill(self):
+        self.assertEqual(SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6, SCIENCEWORLD_V12_MECHANISM_PILOT_6)
+        manifest = json.loads(Path("results/scienceworld_v13_oracle_mechanism_pilot_manifest.json").read_text(encoding="utf-8"))
+        self.assertTrue(manifest["frozen_before_api_evaluation"])
+        self.assertEqual(manifest["conditions"], [
+            "no_skill", "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo",
+        ])
+        self.assertEqual(manifest["planned_episodes"], 24)
+        for task_name in GOLD_SKILLS:
+            selections = [
+                skill_selection(condition, task_name)
+                for condition in ("oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo")
+            ]
+            self.assertTrue(all(item.names == [GOLD_SKILLS[task_name]] for item in selections))
+            self.assertTrue(all(item.retrieved == [] and item.retriever is None for item in selections))
+            self.assertTrue(all(item.library_version == "v3" for item in selections))
+            full = loaded_skill_text(selections[0].names, "v3", "full")
+            metadata = loaded_skill_text(selections[0].names, "v3", "metadata_only")
+            placebo = loaded_skill_text(selections[0].names, "v3", "placebo")
+            self.assertLess(len(metadata.split()), len(full.split()))
+            self.assertEqual(len(placebo.split()), len(full.split()))
+            self.assertLess(abs(len(placebo) - len(full)) / len(full), 0.15)
+
+    def test_v13_episode_records_the_requested_gold_render_mode(self):
+        class FakeEnv:
+            def load(self, *_args, **_kwargs):
+                pass
+
+            def reset(self):
+                return "room", {"taskDesc": "Your task is to boil gallium.", "score": 0, "moves": 0}
+
+            def close(self):
+                pass
+
+        class StopClient:
+            def __init__(self, *_args, **_kwargs):
+                pass
+
+            def respond(self, _messages):
+                return {"role": "assistant", "content": "stop"}
+
+            def metrics(self):
+                return {"input_tokens": 0, "output_tokens": 0, "prompt_cache_hit_tokens": 0, "prompt_cache_miss_tokens": 0}
+
+        expected = {
+            "oracle_v3_full": "full",
+            "oracle_v3_metadata": "metadata_only",
+            "oracle_v3_placebo": "placebo",
+        }
+        records = {}
+        with patch("scienceworld_agent.make_env", return_value=FakeEnv()), patch("scienceworld_agent.DeepSeekChatClient", StopClient):
+            for condition, mode in expected.items():
+                records[condition] = run_episode("test", 0, "boil", 27, "easy", 1, condition)
+                self.assertEqual(records[condition]["skill_render_mode"], mode)
+                self.assertEqual(records[condition]["skills_loaded"], ["boil-substance"])
+        self.assertEqual(len({row["skill_prompt_sha256"] for row in records.values()}), 3)
 
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])

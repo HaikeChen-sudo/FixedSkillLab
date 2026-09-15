@@ -601,6 +601,39 @@ v12 不再检验“Body-aware 是否有效”，而是检查 v11b 的收益是�
 
 Pilot 只看程序、提示控制和方向性信号，不报统计显著性。
 
+### ScienceWorld v13 Oracle 内容消融 Pilot
+
+v12 的 Body-aware Top-3 没有稳定包含正确 Skill，因此无法单独判断 Procedure 的作用。v13 去掉 Router：三个 Skill 条件都只加载人工标注的同一个正确 v3 Skill，差别仅是正文呈现方式。预注册设置见 [`scienceworld_v13_oracle_mechanism_pilot_manifest.json`](results/scienceworld_v13_oracle_mechanism_pilot_manifest.json)。
+
+- `oracle_v3_full`：加载正确 Skill 的完整五段内容。
+- `oracle_v3_metadata`：加载同一 Skill 的 Name、Description 和 Activation Condition。
+- `oracle_v3_placebo`：保留同一元数据，用等词数通用文本替换 Procedure 和 Termination Condition。
+- `no_skill`：不加载 Skill，作为背景基线。
+
+先运行 `6 tasks × 4 conditions × 1 repeat = 24 episodes`：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --suite scienceworld-v13-oracle-mechanism-pilot-6 \
+  --conditions no_skill,oracle_v3_full,oracle_v3_metadata,oracle_v3_placebo \
+  --max-steps 400 \
+  --repeats 1 \
+  --run-id scienceworld-v13-oracle-mechanism-pilot-6x1 \
+  --resume
+```
+
+汇总：
+
+```bash
+python3 summarize_results.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-v13-oracle-mechanism-pilot-6x1 \
+  --deduplicate
+```
+
+主比较是 `oracle_v3_full` 对 `oracle_v3_metadata`；`oracle_v3_placebo` 用于检查无关正文是否造成干扰。Pilot 通过后才冻结扩大实验。
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`

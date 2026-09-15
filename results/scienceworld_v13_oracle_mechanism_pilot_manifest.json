@@ -1,0 +1,56 @@
+{
+  "protocol_id": "scienceworld-v13-oracle-mechanism-pilot-6x1",
+  "status": "preregistered_before_api_evaluation",
+  "created_date": "2026-09-16",
+  "purpose": "isolate the incremental effect of task-specific Procedure content without retrieval errors or Top-3 Skill interference",
+  "parent_run_id": "scienceworld-v12-mechanism-pilot-6x1",
+  "suite": "scienceworld-v13-oracle-mechanism-pilot-6",
+  "reuse_disclosure": "This mechanism pilot reuses the six v12 cases and is not an independent performance confirmation.",
+  "cases": [
+    {"task_name": "boil", "variation": 27},
+    {"task_name": "melt", "variation": 27},
+    {"task_name": "freeze", "variation": 27},
+    {"task_name": "use-thermometer", "variation": 411},
+    {"task_name": "find-living-thing", "variation": 231},
+    {"task_name": "find-non-living-thing", "variation": 231}
+  ],
+  "conditions": [
+    "no_skill",
+    "oracle_v3_full",
+    "oracle_v3_metadata",
+    "oracle_v3_placebo"
+  ],
+  "condition_definitions": {
+    "no_skill": "load no Skill text",
+    "oracle_v3_full": "load the complete manually assigned gold v3 Skill",
+    "oracle_v3_metadata": "load only Name, Description, and Activation Condition from the same gold v3 Skill",
+    "oracle_v3_placebo": "keep the same gold Skill metadata and replace Procedure and Termination Condition with task-irrelevant generic words matched to the original whitespace word count"
+  },
+  "primary_comparison": "oracle_v3_full versus oracle_v3_metadata",
+  "secondary_comparisons": [
+    "oracle_v3_full versus oracle_v3_placebo",
+    "oracle_v3_full versus no_skill"
+  ],
+  "model": "deepseek-v4-flash",
+  "temperature": 0,
+  "agent_protocol_version": "scienceworld-v2",
+  "skill_library_version": "v3",
+  "skills_per_skill_condition": 1,
+  "max_steps": 400,
+  "repeats": 1,
+  "planned_episodes": 24,
+  "success_rule": "ScienceWorld score >= 100",
+  "metrics": [
+    "task_success_rate",
+    "input_tokens",
+    "output_tokens",
+    "total_tokens",
+    "end_to_end_latency_ms",
+    "cost_per_successful_task_usd",
+    "tool_calls",
+    "environment_moves",
+    "environment_score"
+  ],
+  "decision_rule": "Use this run only to validate the controlled prompts and directional signal. Freeze a larger targeted experiment only after the pilot passes.",
+  "frozen_before_api_evaluation": true
+}

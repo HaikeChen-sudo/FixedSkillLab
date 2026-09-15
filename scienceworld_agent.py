@@ -39,6 +39,7 @@ Do not invent observations or claim success. Only the environment score decides 
 CONDITIONS = (
     "no_skill", "all_skills", "flat_retrieval", "body_aware_retrieval",
     "body_metadata_only", "body_placebo", "oracle_skill", "oracle_v2", "oracle_v3",
+    "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo",
 )
 DEFAULT_CONDITIONS = ("no_skill", "oracle_v2")
 AGENT_PROTOCOL_VERSION = "scienceworld-v2"
@@ -73,8 +74,18 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
         return SkillSelection([], [], [], None, gold, None)
     if condition == "all_skills":
         return SkillSelection([item.name for item in versioned_skills("v3")], [], [], None, gold, "v3")
-    if condition in {"oracle_skill", "oracle_v2", "oracle_v3"}:
-        version = {"oracle_skill": "v1", "oracle_v2": "v2", "oracle_v3": "v3"}[condition]
+    if condition in {
+        "oracle_skill", "oracle_v2", "oracle_v3",
+        "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo",
+    }:
+        version = {
+            "oracle_skill": "v1",
+            "oracle_v2": "v2",
+            "oracle_v3": "v3",
+            "oracle_v3_full": "v3",
+            "oracle_v3_metadata": "v3",
+            "oracle_v3_placebo": "v3",
+        }[condition]
         return SkillSelection(gold, [], [], None, gold, version)
     body_aware = condition in {"body_aware_retrieval", "body_metadata_only", "body_placebo"}
     hits = retrieve(task_text, body_aware=body_aware)
@@ -164,6 +175,8 @@ def run_episode(
         skill_render_mode = {
             "body_metadata_only": "metadata_only",
             "body_placebo": "placebo",
+            "oracle_v3_metadata": "metadata_only",
+            "oracle_v3_placebo": "placebo",
         }.get(condition, "full")
         skill_prompt = loaded_skill_text(selected, skill_version, skill_render_mode) if selected else ""
         messages: List[Dict[str, Any]] = [{"role": "system", "content": SYSTEM_PROMPT}]

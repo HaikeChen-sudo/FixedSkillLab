@@ -91,6 +91,10 @@ SCIENCEWORLD_V12_MECHANISM_PILOT_6 = (
     ("find-non-living-thing", 231),
 )
 
+# v13 keeps the same six cases so only the Skill selection/rendering protocol
+# changes relative to the v12 mechanism pilot.
+SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6 = SCIENCEWORLD_V12_MECHANISM_PILOT_6
+
 SUITES = {
     "scienceworld-pilot-6": SCIENCEWORLD_PILOT_6,
     "scienceworld-v3-heldout-6": SCIENCEWORLD_V3_HELDOUT_6,
@@ -99,6 +103,7 @@ SUITES = {
     "scienceworld-v10-confirm-12": SCIENCEWORLD_V10_CONFIRM_12,
     "scienceworld-v11b-confirm-18": SCIENCEWORLD_V11B_CONFIRM_18,
     "scienceworld-v12-mechanism-pilot-6": SCIENCEWORLD_V12_MECHANISM_PILOT_6,
+    "scienceworld-v13-oracle-mechanism-pilot-6": SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6,
 }
 
 SUITE_VARIATION_SPLITS = {
@@ -109,9 +114,13 @@ SUITE_VARIATION_SPLITS = {
     "scienceworld-v10-confirm-12": "test",
     "scienceworld-v11b-confirm-18": "test",
     "scienceworld-v12-mechanism-pilot-6": "test",
+    "scienceworld-v13-oracle-mechanism-pilot-6": "test",
 }
 
-REUSED_MECHANISM_SUITES = {"scienceworld-v12-mechanism-pilot-6"}
+REUSED_MECHANISM_SUITES = {
+    "scienceworld-v12-mechanism-pilot-6",
+    "scienceworld-v13-oracle-mechanism-pilot-6",
+}
 
 SCIENCEWORLD_TEST_VARIATIONS = {
     **{task: range(21, 30) for task in ("boil", "melt", "freeze")},
