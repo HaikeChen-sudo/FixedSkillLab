@@ -1,0 +1,410 @@
+{
+  "condition_medians": {
+    "oracle_v3_full": {
+      "episodes": 18,
+      "successes": 15,
+      "task_success_rate": 0.8333333333333334,
+      "median_total_tokens": 328516.0,
+      "median_latency_ms": 60970.5,
+      "median_tool_calls": 68.0,
+      "median_environment_moves": 81.5
+    },
+    "oracle_v3_metadata": {
+      "episodes": 18,
+      "successes": 7,
+      "task_success_rate": 0.3888888888888889,
+      "median_total_tokens": 2285741.5,
+      "median_latency_ms": 173105.0,
+      "median_tool_calls": 210.0,
+      "median_environment_moves": 401.0
+    },
+    "oracle_v3_placebo": {
+      "episodes": 18,
+      "successes": 9,
+      "task_success_rate": 0.5,
+      "median_total_tokens": 1731359.5,
+      "median_latency_ms": 164697.0,
+      "median_tool_calls": 159.0,
+      "median_environment_moves": 364.0
+    }
+  },
+  "family_summary": [
+    {
+      "task_name": "boil",
+      "condition": "oracle_v3_full",
+      "episodes": 9,
+      "successes": 9,
+      "task_success_rate": 1,
+      "average_score": 100,
+      "average_total_tokens": 212346.11111111112,
+      "average_latency_ms": 44620.666666666664,
+      "average_tool_calls": 49.888888888888886,
+      "average_environment_moves": 56
+    },
+    {
+      "task_name": "boil",
+      "condition": "oracle_v3_metadata",
+      "episodes": 9,
+      "successes": 6,
+      "task_success_rate": 0.6666666666666666,
+      "average_score": 92.44444444444444,
+      "average_total_tokens": 1438687.2222222222,
+      "average_latency_ms": 110381.33333333333,
+      "average_tool_calls": 107.77777777777777,
+      "average_environment_moves": 148.11111111111111
+    },
+    {
+      "task_name": "boil",
+      "condition": "oracle_v3_placebo",
+      "episodes": 9,
+      "successes": 4,
+      "task_success_rate": 0.4444444444444444,
+      "average_score": 86.44444444444444,
+      "average_total_tokens": 2832652.6666666665,
+      "average_latency_ms": 176991.22222222222,
+      "average_tool_calls": 183.55555555555554,
+      "average_environment_moves": 250.77777777777777
+    },
+    {
+      "task_name": "freeze",
+      "condition": "oracle_v3_full",
+      "episodes": 9,
+      "successes": 6,
+      "task_success_rate": 0.6666666666666666,
+      "average_score": 82.66666666666667,
+      "average_total_tokens": 889103.4444444445,
+      "average_latency_ms": 93939.33333333333,
+      "average_tool_calls": 107.33333333333333,
+      "average_environment_moves": 206.44444444444446
+    },
+    {
+      "task_name": "freeze",
+      "condition": "oracle_v3_metadata",
+      "episodes": 9,
+      "successes": 1,
+      "task_success_rate": 0.1111111111111111,
+      "average_score": 54.333333333333336,
+      "average_total_tokens": 2096536.5555555555,
+      "average_latency_ms": 165104.55555555556,
+      "average_tool_calls": 192.55555555555554,
+      "average_environment_moves": 376.8888888888889
+    },
+    {
+      "task_name": "freeze",
+      "condition": "oracle_v3_placebo",
+      "episodes": 9,
+      "successes": 5,
+      "task_success_rate": 0.5555555555555556,
+      "average_score": 60.44444444444444,
+      "average_total_tokens": 1346020,
+      "average_latency_ms": 128753,
+      "average_tool_calls": 134,
+      "average_environment_moves": 250.55555555555554
+    }
+  ],
+  "task_summary": [
+    {
+      "task_id": "boil:v027",
+      "condition": "oracle_v3_full",
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1,
+      "average_score": 100,
+      "average_total_tokens": 286491,
+      "average_latency_ms": 59234.666666666664,
+      "average_tool_calls": 60.333333333333336,
+      "average_environment_moves": 76
+    },
+    {
+      "task_id": "boil:v027",
+      "condition": "oracle_v3_metadata",
+      "episodes": 3,
+      "successes": 0,
+      "task_success_rate": 0,
+      "average_score": 77.33333333333333,
+      "average_total_tokens": 4168416.6666666665,
+      "average_latency_ms": 284148.3333333333,
+      "average_tool_calls": 266.6666666666667,
+      "average_environment_moves": 401
+    },
+    {
+      "task_id": "boil:v027",
+      "condition": "oracle_v3_placebo",
+      "episodes": 3,
+      "successes": 1,
+      "task_success_rate": 0.3333333333333333,
+      "average_score": 84.33333333333333,
+      "average_total_tokens": 5804959,
+      "average_latency_ms": 319229.6666666667,
+      "average_tool_calls": 301,
+      "average_environment_moves": 323
+    },
+    {
+      "task_id": "boil:v028",
+      "condition": "oracle_v3_full",
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1,
+      "average_score": 100,
+      "average_total_tokens": 233933.33333333334,
+      "average_latency_ms": 46201.333333333336,
+      "average_tool_calls": 53.333333333333336,
+      "average_environment_moves": 62.333333333333336
+    },
+    {
+      "task_id": "boil:v028",
+      "condition": "oracle_v3_metadata",
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1,
+      "average_score": 100,
+      "average_total_tokens": 63429,
+      "average_latency_ms": 22454,
+      "average_tool_calls": 26,
+      "average_environment_moves": 18
+    },
+    {
+      "task_id": "boil:v028",
+      "condition": "oracle_v3_placebo",
+      "episodes": 3,
+      "successes": 1,
+      "task_success_rate": 0.3333333333333333,
+      "average_score": 83.33333333333333,
+      "average_total_tokens": 1785388.6666666667,
+      "average_latency_ms": 135656.66666666666,
+      "average_tool_calls": 154.33333333333334,
+      "average_environment_moves": 273.3333333333333
+    },
+    {
+      "task_id": "boil:v029",
+      "condition": "oracle_v3_full",
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1,
+      "average_score": 100,
+      "average_total_tokens": 116614,
+      "average_latency_ms": 28426,
+      "average_tool_calls": 36,
+      "average_environment_moves": 29.666666666666668
+    },
+    {
+      "task_id": "boil:v029",
+      "condition": "oracle_v3_metadata",
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1,
+      "average_score": 100,
+      "average_total_tokens": 84216,
+      "average_latency_ms": 24541.666666666668,
+      "average_tool_calls": 30.666666666666668,
+      "average_environment_moves": 25.333333333333332
+    },
+    {
+      "task_id": "boil:v029",
+      "condition": "oracle_v3_placebo",
+      "episodes": 3,
+      "successes": 2,
+      "task_success_rate": 0.6666666666666666,
+      "average_score": 91.66666666666667,
+      "average_total_tokens": 907610.3333333334,
+      "average_latency_ms": 76087.33333333333,
+      "average_tool_calls": 95.33333333333333,
+      "average_environment_moves": 156
+    },
+    {
+      "task_id": "freeze:v027",
+      "condition": "oracle_v3_full",
+      "episodes": 3,
+      "successes": 2,
+      "task_success_rate": 0.6666666666666666,
+      "average_score": 82.66666666666667,
+      "average_total_tokens": 416628.3333333333,
+      "average_latency_ms": 72605.66666666667,
+      "average_tool_calls": 77.33333333333333,
+      "average_environment_moves": 229.66666666666666
+    },
+    {
+      "task_id": "freeze:v027",
+      "condition": "oracle_v3_metadata",
+      "episodes": 3,
+      "successes": 0,
+      "task_success_rate": 0,
+      "average_score": 49.666666666666664,
+      "average_total_tokens": 1884728.3333333333,
+      "average_latency_ms": 161069,
+      "average_tool_calls": 182,
+      "average_environment_moves": 401
+    },
+    {
+      "task_id": "freeze:v027",
+      "condition": "oracle_v3_placebo",
+      "episodes": 3,
+      "successes": 2,
+      "task_success_rate": 0.6666666666666666,
+      "average_score": 82.66666666666667,
+      "average_total_tokens": 1920498.6666666667,
+      "average_latency_ms": 174491.33333333334,
+      "average_tool_calls": 176,
+      "average_environment_moves": 377
+    },
+    {
+      "task_id": "freeze:v028",
+      "condition": "oracle_v3_full",
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1,
+      "average_score": 100,
+      "average_total_tokens": 402552,
+      "average_latency_ms": 62300.333333333336,
+      "average_tool_calls": 73.66666666666667,
+      "average_environment_moves": 91
+    },
+    {
+      "task_id": "freeze:v028",
+      "condition": "oracle_v3_metadata",
+      "episodes": 3,
+      "successes": 1,
+      "task_success_rate": 0.3333333333333333,
+      "average_score": 65.33333333333333,
+      "average_total_tokens": 1949233.6666666667,
+      "average_latency_ms": 153588.33333333334,
+      "average_tool_calls": 180,
+      "average_environment_moves": 328.3333333333333
+    },
+    {
+      "task_id": "freeze:v028",
+      "condition": "oracle_v3_placebo",
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1,
+      "average_score": 100,
+      "average_total_tokens": 454311.6666666667,
+      "average_latency_ms": 68772.33333333333,
+      "average_tool_calls": 76.66666666666667,
+      "average_environment_moves": 104.33333333333333
+    },
+    {
+      "task_id": "freeze:v029",
+      "condition": "oracle_v3_full",
+      "episodes": 3,
+      "successes": 1,
+      "task_success_rate": 0.3333333333333333,
+      "average_score": 65.33333333333333,
+      "average_total_tokens": 1848130,
+      "average_latency_ms": 146912,
+      "average_tool_calls": 171,
+      "average_environment_moves": 298.6666666666667
+    },
+    {
+      "task_id": "freeze:v029",
+      "condition": "oracle_v3_metadata",
+      "episodes": 3,
+      "successes": 0,
+      "task_success_rate": 0,
+      "average_score": 48,
+      "average_total_tokens": 2455647.6666666665,
+      "average_latency_ms": 180656.33333333334,
+      "average_tool_calls": 215.66666666666666,
+      "average_environment_moves": 401.3333333333333
+    },
+    {
+      "task_id": "freeze:v029",
+      "condition": "oracle_v3_placebo",
+      "episodes": 3,
+      "successes": 0,
+      "task_success_rate": 0,
+      "average_score": -1.3333333333333333,
+      "average_total_tokens": 1663249.6666666667,
+      "average_latency_ms": 142995.33333333334,
+      "average_tool_calls": 149.33333333333334,
+      "average_environment_moves": 270.3333333333333
+    }
+  ],
+  "relative_reductions_full_vs_metadata_pct": {
+    "input_tokens": 68.93335521518682,
+    "output_tokens": 43.746859102651136,
+    "total_tokens": 68.84356904139402,
+    "latency_ms": 49.70341291931468,
+    "tool_calls": 47.65075841657417,
+    "environment_moves": 50.01058201058201,
+    "median_total_tokens": 85.62759612143368,
+    "cost_per_successful_task_usd": 79.79797037428744
+  },
+  "relative_reductions_full_vs_placebo_pct": {
+    "input_tokens": 73.72134849579695,
+    "output_tokens": 50.16908646449184,
+    "total_tokens": 73.64116207661263,
+    "latency_ms": 54.68107328638536,
+    "tool_calls": 50.48985304408677,
+    "environment_moves": 47.65070921985816,
+    "median_total_tokens": 81.02554668744418,
+    "cost_per_successful_task_usd": 76.87603519870586
+  },
+  "failures_by_condition_and_category": [
+    {
+      "condition": "oracle_v3_full",
+      "category": "budget_exhausted",
+      "failures": 3
+    },
+    {
+      "condition": "oracle_v3_metadata",
+      "category": "budget_exhausted",
+      "failures": 11
+    },
+    {
+      "condition": "oracle_v3_placebo",
+      "category": "budget_exhausted",
+      "failures": 7
+    },
+    {
+      "condition": "oracle_v3_placebo",
+      "category": "other",
+      "failures": 2
+    }
+  ],
+  "protocol_checks": {
+    "same_gold_skill_for_every_paired_episode": true,
+    "models": [
+      "deepseek-v4-flash"
+    ],
+    "temperatures": [
+      0.0
+    ],
+    "protocol_versions": [
+      "scienceworld-v2"
+    ],
+    "skill_library_versions": [
+      "v3"
+    ],
+    "max_steps": [
+      400
+    ],
+    "render_modes": [
+      [
+        "oracle_v3_full",
+        "full"
+      ],
+      [
+        "oracle_v3_metadata",
+        "metadata_only"
+      ],
+      [
+        "oracle_v3_placebo",
+        "placebo"
+      ]
+    ],
+    "skill_prompt_word_counts": {
+      "boil-substance": {
+        "full": 156,
+        "metadata_only": 26,
+        "placebo": 156
+      },
+      "freeze-substance": {
+        "full": 151,
+        "metadata_only": 26,
+        "placebo": 151
+      }
+    },
+    "full_placebo_word_counts_match": true
+  }
+}

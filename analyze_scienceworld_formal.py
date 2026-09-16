@@ -24,6 +24,9 @@ LABELS = {
     "oracle_skill": "Oracle v1",
     "oracle_v2": "Oracle v2",
     "oracle_v3": "Oracle v3",
+    "oracle_v3_full": "Oracle v3 Full",
+    "oracle_v3_metadata": "Oracle v3 Metadata",
+    "oracle_v3_placebo": "Oracle v3 Placebo",
 }
 METRICS = (
     "average_input_tokens",

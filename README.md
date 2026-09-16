@@ -663,6 +663,22 @@ python3 summarize_results.py results/scienceworld_results.jsonl \
 
 主比较是 Full 对 Metadata；Full 对等词数 Placebo 是更严格的 Procedure 语义比较。No Skill 不属于该机制问题，因此不重复运行。
 
+正式结果为 54/54 条唯一 episode。Full、Metadata、Placebo 的成功率分别为 83.33%、38.89% 和 50.00%。Full 相对 Metadata 的任务簇配对差为 +44.44 个百分点，Bootstrap 95% CI 为 [16.67, 72.22]；相对等词数 Placebo 为 +33.33 个百分点，95% CI 为 [11.11, 55.56]。完整报告见 [`ScienceWorld_固定Skill_Procedure定向确认报告_v13b.md`](reports/scienceworld_v13b/ScienceWorld_固定Skill_Procedure定向确认报告_v13b.md)。
+
+冻结正式结果并重建图表：
+
+```bash
+python3 analyze_scienceworld_formal.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-v13b-oracle-mechanism-6x3 \
+  --suite scienceworld-v13b-oracle-mechanism-6 \
+  --conditions oracle_v3_full,oracle_v3_metadata,oracle_v3_placebo \
+  --repeats 3 \
+  --output-dir results/formal_scienceworld_v13b \
+  --purpose "targeted confirmation of fixed Skill Procedure content on state-change tasks"
+python3 analyze_scienceworld_v13b.py
+MPLCONFIGDIR=/tmp/fixedskilllab-matplotlib python3 plot_scienceworld_v13b.py
+```
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`

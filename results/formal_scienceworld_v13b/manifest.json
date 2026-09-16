@@ -1,0 +1,29 @@
+{
+  "run_id": "scienceworld-v13b-oracle-mechanism-6x3",
+  "purpose": "targeted confirmation of fixed Skill Procedure content on state-change tasks",
+  "records": 54,
+  "tasks": 6,
+  "conditions": [
+    "oracle_v3_full",
+    "oracle_v3_metadata",
+    "oracle_v3_placebo"
+  ],
+  "repeats": 3,
+  "suite": "scienceworld-v13b-oracle-mechanism-6",
+  "frozen_file": "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl",
+  "sha256": "5e671e5c04d2e92a0041f8e5b74b0a0e89bfbaefd66c13a79314e904798a6692",
+  "source_file": "results/scienceworld_results.jsonl",
+  "models": [
+    "deepseek-v4-flash"
+  ],
+  "temperatures": [
+    0.0
+  ],
+  "agent_protocol_versions": [
+    "scienceworld-v2"
+  ],
+  "skill_library_versions": [
+    "v3"
+  ],
+  "success_rule": "environment score >= 100"
+}

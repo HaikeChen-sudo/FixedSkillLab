@@ -1,0 +1,315 @@
+{
+  "manifest": {
+    "run_id": "scienceworld-v13b-oracle-mechanism-6x3",
+    "purpose": "targeted confirmation of fixed Skill Procedure content on state-change tasks",
+    "records": 54,
+    "tasks": 6,
+    "conditions": [
+      "oracle_v3_full",
+      "oracle_v3_metadata",
+      "oracle_v3_placebo"
+    ],
+    "repeats": 3,
+    "suite": "scienceworld-v13b-oracle-mechanism-6",
+    "frozen_file": "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl",
+    "sha256": "5e671e5c04d2e92a0041f8e5b74b0a0e89bfbaefd66c13a79314e904798a6692",
+    "source_file": "results/scienceworld_results.jsonl",
+    "models": [
+      "deepseek-v4-flash"
+    ],
+    "temperatures": [
+      0.0
+    ],
+    "agent_protocol_versions": [
+      "scienceworld-v2"
+    ],
+    "skill_library_versions": [
+      "v3"
+    ],
+    "success_rule": "environment score >= 100"
+  },
+  "condition_summary": [
+    {
+      "condition": "oracle_v3_full",
+      "label": "Oracle v3 Full",
+      "episodes": 18,
+      "successes": 15,
+      "task_success_rate": 0.8333333333333334,
+      "task_success_rate_repeat_std": 0.0,
+      "average_input_tokens": 547180.1111111111,
+      "average_output_tokens": 3544.6666666666665,
+      "average_total_tokens": 550724.7777777778,
+      "average_latency_ms": 69280.0,
+      "cost_per_successful_task_usd": 0.005626582826666666,
+      "average_tool_calls": 78.61111111111111,
+      "efficiency_per_1k_tokens": 0.001513157509810809,
+      "average_score": 91.33333333333333,
+      "average_environment_moves": 131.22222222222223
+    },
+    {
+      "condition": "oracle_v3_metadata",
+      "label": "Oracle v3 Metadata",
+      "episodes": 18,
+      "successes": 7,
+      "task_success_rate": 0.3888888888888889,
+      "task_success_rate_repeat_std": 0.09622504486493764,
+      "average_input_tokens": 1761310.611111111,
+      "average_output_tokens": 6301.277777777777,
+      "average_total_tokens": 1767611.888888889,
+      "average_latency_ms": 137742.94444444444,
+      "cost_per_successful_task_usd": 0.02785157200000001,
+      "average_tool_calls": 150.16666666666666,
+      "efficiency_per_1k_tokens": 0.00022000807492494426,
+      "average_score": 73.38888888888889,
+      "average_environment_moves": 262.5
+    },
+    {
+      "condition": "oracle_v3_placebo",
+      "label": "Oracle v3 Placebo",
+      "episodes": 18,
+      "successes": 9,
+      "task_success_rate": 0.5,
+      "task_success_rate_repeat_std": 0.16666666666666666,
+      "average_input_tokens": 2082222.9444444445,
+      "average_output_tokens": 7113.388888888889,
+      "average_total_tokens": 2089336.3333333333,
+      "average_latency_ms": 152872.11111111112,
+      "cost_per_successful_task_usd": 0.024332258222222226,
+      "average_tool_calls": 158.77777777777777,
+      "efficiency_per_1k_tokens": 0.00023931044132195726,
+      "average_score": 73.44444444444444,
+      "average_environment_moves": 250.66666666666666
+    }
+  ],
+  "repeat_statistics": [
+    {
+      "condition": "oracle_v3_full",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        6,
+        6,
+        6
+      ],
+      "task_success_rate": {
+        "mean": 0.8333333333333334,
+        "std": 0.0
+      },
+      "average_input_tokens": {
+        "mean": 547180.1111111111,
+        "std": 198709.6316615398
+      },
+      "average_output_tokens": {
+        "mean": 3544.6666666666665,
+        "std": 559.5006702408856
+      },
+      "average_total_tokens": {
+        "mean": 550724.7777777778,
+        "std": 199236.96822686167
+      },
+      "average_latency_ms": {
+        "mean": 69280.0,
+        "std": 11415.134385007377
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.005626582826666667,
+        "std": 0.001243489918601925
+      },
+      "average_tool_calls": {
+        "mean": 78.61111111111111,
+        "std": 13.306570362599633
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.0016952848959772078,
+        "std": 0.000758434375485938
+      },
+      "average_score": {
+        "mean": 91.33333333333333,
+        "std": 0.0
+      },
+      "average_environment_moves": {
+        "mean": 131.22222222222223,
+        "std": 11.578636137940205
+      }
+    },
+    {
+      "condition": "oracle_v3_metadata",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        6,
+        6,
+        6
+      ],
+      "task_success_rate": {
+        "mean": 0.3888888888888889,
+        "std": 0.09622504486493764
+      },
+      "average_input_tokens": {
+        "mean": 1761310.6111111112,
+        "std": 643473.6270440117
+      },
+      "average_output_tokens": {
+        "mean": 6301.277777777777,
+        "std": 955.9558528470822
+      },
+      "average_total_tokens": {
+        "mean": 1767611.888888889,
+        "std": 644420.6358061811
+      },
+      "average_latency_ms": {
+        "mean": 137742.94444444444,
+        "std": 23538.48961708682
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.029486177622222224,
+        "std": 0.012009702388960266
+      },
+      "average_tool_calls": {
+        "mean": 150.16666666666666,
+        "std": 24.03007375029142
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.0002444619046807786,
+        "std": 0.00011821890141967722
+      },
+      "average_score": {
+        "mean": 73.38888888888889,
+        "std": 4.726795171423507
+      },
+      "average_environment_moves": {
+        "mean": 262.5,
+        "std": 20.076935357104
+      }
+    },
+    {
+      "condition": "oracle_v3_placebo",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        6,
+        6,
+        6
+      ],
+      "task_success_rate": {
+        "mean": 0.5,
+        "std": 0.16666666666666666
+      },
+      "average_input_tokens": {
+        "mean": 2082222.9444444443,
+        "std": 1045876.6967113753
+      },
+      "average_output_tokens": {
+        "mean": 7113.388888888889,
+        "std": 1880.4551926279657
+      },
+      "average_total_tokens": {
+        "mean": 2089336.3333333335,
+        "std": 1047618.7170469963
+      },
+      "average_latency_ms": {
+        "mean": 152872.11111111112,
+        "std": 56085.79817202027
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.028761148266666668,
+        "std": 0.020195081061279013
+      },
+      "average_tool_calls": {
+        "mean": 158.77777777777777,
+        "std": 56.762745346391235
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.00033971506447450845,
+        "std": 0.0003066624901526043
+      },
+      "average_score": {
+        "mean": 73.44444444444444,
+        "std": 9.478533251120268
+      },
+      "average_environment_moves": {
+        "mean": 250.66666666666666,
+        "std": 88.5025109499411
+      }
+    }
+  ],
+  "paired_outcomes": {
+    "baseline_only": 18,
+    "both_fail": 11,
+    "both_success": 19,
+    "condition_only": 6
+  },
+  "paired_statistics": [
+    {
+      "condition": "oracle_v3_metadata",
+      "baseline": "oracle_v3_full",
+      "success_rate_difference": -0.4444444444444444,
+      "task_cluster_bootstrap_ci_low": -0.7222222222222222,
+      "task_cluster_bootstrap_ci_high": -0.16666666666666666,
+      "condition_only_successes": 0,
+      "baseline_only_successes": 8,
+      "exact_mcnemar_p_value": 0.0078125,
+      "tasks_positive": 0,
+      "tasks_negative": 4,
+      "tasks_tied": 2,
+      "exact_task_sign_p_value": 0.125,
+      "average_total_tokens_difference": 1216887.111111111,
+      "total_tokens_cluster_bootstrap_ci_low": 264542.11111111107,
+      "total_tokens_cluster_bootstrap_ci_high": 2415009.0555555555,
+      "tasks_with_lower_total_tokens": 2,
+      "tasks_with_higher_total_tokens": 4,
+      "tasks_with_tied_total_tokens": 0,
+      "exact_total_tokens_task_sign_p_value": 0.6875
+    },
+    {
+      "condition": "oracle_v3_placebo",
+      "baseline": "oracle_v3_full",
+      "success_rate_difference": -0.3333333333333333,
+      "task_cluster_bootstrap_ci_low": -0.5555555555555556,
+      "task_cluster_bootstrap_ci_high": -0.1111111111111111,
+      "condition_only_successes": 1,
+      "baseline_only_successes": 7,
+      "exact_mcnemar_p_value": 0.0703125,
+      "tasks_positive": 0,
+      "tasks_negative": 4,
+      "tasks_tied": 2,
+      "exact_task_sign_p_value": 0.125,
+      "average_total_tokens_difference": 1538611.5555555555,
+      "total_tokens_cluster_bootstrap_ci_low": 306595.05555555556,
+      "total_tokens_cluster_bootstrap_ci_high": 3269150.722222222,
+      "tasks_with_lower_total_tokens": 1,
+      "tasks_with_higher_total_tokens": 5,
+      "tasks_with_tied_total_tokens": 0,
+      "exact_total_tokens_task_sign_p_value": 0.21875
+    },
+    {
+      "condition": "oracle_v3_placebo",
+      "baseline": "oracle_v3_metadata",
+      "success_rate_difference": 0.1111111111111111,
+      "task_cluster_bootstrap_ci_low": -0.2777777777777778,
+      "task_cluster_bootstrap_ci_high": 0.5,
+      "condition_only_successes": 5,
+      "baseline_only_successes": 3,
+      "exact_mcnemar_p_value": 0.7265625,
+      "tasks_positive": 3,
+      "tasks_negative": 2,
+      "tasks_tied": 1,
+      "exact_task_sign_p_value": 1.0,
+      "average_total_tokens_difference": 321724.44444444444,
+      "total_tokens_cluster_bootstrap_ci_low": -619245.8888888889,
+      "total_tokens_cluster_bootstrap_ci_high": 1258440.7777777778,
+      "tasks_with_lower_total_tokens": 2,
+      "tasks_with_higher_total_tokens": 4,
+      "tasks_with_tied_total_tokens": 0,
+      "exact_total_tokens_task_sign_p_value": 0.6875
+    }
+  ],
+  "retrieval_summary": [],
+  "failure_taxonomy": {
+    "environment_move_budget_exhausted": 21,
+    "execution_error_other": 2
+  },
+  "validation": {
+    "records_loaded": 54,
+    "records_kept": 54,
+    "duplicates_removed": 0,
+    "unique_episode_keys": 54
+  }
+}

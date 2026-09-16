@@ -277,6 +277,18 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertEqual(manifest["repeats"], 3)
         self.assertEqual(manifest["planned_episodes"], 54)
 
+    def test_formal_v13b_data_is_complete_immutable_and_paired(self):
+        path = Path("results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl")
+        records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+        conditions = ("oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo")
+        self.assertEqual(validation_errors(records, "scienceworld-v13b-oracle-mechanism-6", conditions, 3), [])
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), "5e671e5c04d2e92a0041f8e5b74b0a0e89bfbaefd66c13a79314e904798a6692")
+        paired = {}
+        for row in records:
+            paired.setdefault((row["task_name"], row["variation"], row["repeat"]), []).append(row)
+        self.assertTrue(all(len(rows) == 3 for rows in paired.values()))
+        self.assertTrue(all(len({tuple(row["skills_loaded"]) for row in rows}) == 1 for rows in paired.values()))
+
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])
         self.assertEqual(skill_names("oracle_skill", "boil"), ["boil-substance"])
