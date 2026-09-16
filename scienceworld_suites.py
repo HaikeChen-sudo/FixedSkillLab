@@ -95,6 +95,17 @@ SCIENCEWORLD_V12_MECHANISM_PILOT_6 = (
 # changes relative to the v12 mechanism pilot.
 SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6 = SCIENCEWORLD_V12_MECHANISM_PILOT_6
 
+# Post-pilot targeted confirmation. These cases were selected because the v13
+# pilot localized the Procedure signal to state-change tasks.
+SCIENCEWORLD_V13B_ORACLE_MECHANISM_6 = (
+    ("boil", 27),
+    ("boil", 28),
+    ("boil", 29),
+    ("freeze", 27),
+    ("freeze", 28),
+    ("freeze", 29),
+)
+
 SUITES = {
     "scienceworld-pilot-6": SCIENCEWORLD_PILOT_6,
     "scienceworld-v3-heldout-6": SCIENCEWORLD_V3_HELDOUT_6,
@@ -104,6 +115,7 @@ SUITES = {
     "scienceworld-v11b-confirm-18": SCIENCEWORLD_V11B_CONFIRM_18,
     "scienceworld-v12-mechanism-pilot-6": SCIENCEWORLD_V12_MECHANISM_PILOT_6,
     "scienceworld-v13-oracle-mechanism-pilot-6": SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6,
+    "scienceworld-v13b-oracle-mechanism-6": SCIENCEWORLD_V13B_ORACLE_MECHANISM_6,
 }
 
 SUITE_VARIATION_SPLITS = {
@@ -115,11 +127,17 @@ SUITE_VARIATION_SPLITS = {
     "scienceworld-v11b-confirm-18": "test",
     "scienceworld-v12-mechanism-pilot-6": "test",
     "scienceworld-v13-oracle-mechanism-pilot-6": "test",
+    "scienceworld-v13b-oracle-mechanism-6": "test",
 }
 
 REUSED_MECHANISM_SUITES = {
     "scienceworld-v12-mechanism-pilot-6",
     "scienceworld-v13-oracle-mechanism-pilot-6",
+    "scienceworld-v13b-oracle-mechanism-6",
+}
+
+TARGETED_SUITE_FAMILIES = {
+    "scienceworld-v13b-oracle-mechanism-6": {"boil", "freeze"},
 }
 
 SCIENCEWORLD_TEST_VARIATIONS = {
@@ -135,9 +153,10 @@ def validate_suites() -> list:
     for name, cases in SUITES.items():
         if len(cases) != len(set(cases)):
             errors.append(f"{name}: task/variation pairs must be unique")
-        if {task for task, _ in cases} != set(GOLD_SKILLS):
+        expected_families = TARGETED_SUITE_FAMILIES.get(name, set(GOLD_SKILLS))
+        if {task for task, _ in cases} != expected_families:
             errors.append(f"{name}: task families do not match the frozen Skill labels")
-        counts = [sum(task == expected for task, _ in cases) for expected in GOLD_SKILLS]
+        counts = [sum(task == expected for task, _ in cases) for expected in expected_families]
         if len(set(counts)) != 1:
             errors.append(f"{name}: every task family must have the same number of cases")
         if SUITE_VARIATION_SPLITS[name] == "test":

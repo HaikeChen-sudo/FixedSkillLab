@@ -1,0 +1,57 @@
+{
+  "protocol_id": "scienceworld-v13b-oracle-mechanism-6x3",
+  "status": "preregistered_before_api_evaluation",
+  "created_date": "2026-09-16",
+  "purpose": "targeted confirmation of the incremental effect of fixed Procedure content on state-change tasks",
+  "parent_run_id": "scienceworld-v13-oracle-mechanism-pilot-6x1",
+  "suite": "scienceworld-v13b-oracle-mechanism-6",
+  "selection_disclosure": "The boil and freeze families were selected after the v13 pilot localized its directional signal. This experiment tests a targeted mechanism and does not estimate overall ScienceWorld performance.",
+  "reuse_disclosure": "All six cases reuse official test variations previously evaluated in v11b and are not an independent held-out benchmark confirmation.",
+  "cases": [
+    {"task_name": "boil", "variation": 27},
+    {"task_name": "boil", "variation": 28},
+    {"task_name": "boil", "variation": 29},
+    {"task_name": "freeze", "variation": 27},
+    {"task_name": "freeze", "variation": 28},
+    {"task_name": "freeze", "variation": 29}
+  ],
+  "conditions": [
+    "oracle_v3_full",
+    "oracle_v3_metadata",
+    "oracle_v3_placebo"
+  ],
+  "condition_definitions": {
+    "oracle_v3_full": "load the complete manually assigned gold v3 Skill",
+    "oracle_v3_metadata": "load only Name, Description, and Activation Condition from the same gold v3 Skill",
+    "oracle_v3_placebo": "keep the same gold Skill metadata and replace Procedure and Termination Condition with task-irrelevant generic words matched to the original whitespace word count"
+  },
+  "primary_comparison": "oracle_v3_full versus oracle_v3_metadata",
+  "secondary_comparison": "oracle_v3_full versus oracle_v3_placebo",
+  "model": "deepseek-v4-flash",
+  "temperature": 0,
+  "agent_protocol_version": "scienceworld-v2",
+  "skill_library_version": "v3",
+  "skills_per_condition": 1,
+  "max_steps": 400,
+  "repeats": 3,
+  "planned_episodes": 54,
+  "success_rule": "ScienceWorld score >= 100",
+  "metrics": [
+    "task_success_rate",
+    "environment_score",
+    "input_tokens",
+    "output_tokens",
+    "total_tokens",
+    "end_to_end_latency_ms",
+    "cost_per_successful_task_usd",
+    "tool_calls",
+    "environment_moves"
+  ],
+  "analysis_plan": {
+    "reporting": "pooled episode results and mean plus standard deviation across the three repeats",
+    "pairing_key": "task_name, variation, repeat",
+    "uncertainty": "task-variation-clustered bootstrap confidence intervals where supported; exact paired tests reported as descriptive evidence because only six task clusters are present",
+    "interpretation": "claim only a state-change-task mechanism; do not generalize to the full benchmark"
+  },
+  "frozen_before_api_evaluation": true
+}

@@ -10,7 +10,7 @@ from scienceworld_retrieval import EMBEDDER_NAME, retrieve
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
 from analyze_scienceworld_formal import exact_sign_p_value, paired_statistics, validation_errors
-from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6, SUITE_VARIATION_SPLITS, validate_suites
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6, SCIENCEWORLD_V13B_ORACLE_MECHANISM_6, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -261,6 +261,21 @@ class ScienceWorldTests(unittest.TestCase):
                 self.assertEqual(records[condition]["skill_render_mode"], mode)
                 self.assertEqual(records[condition]["skills_loaded"], ["boil-substance"])
         self.assertEqual(len({row["skill_prompt_sha256"] for row in records.values()}), 3)
+
+    def test_v13b_targets_state_change_cases_and_is_preregistered(self):
+        self.assertEqual(SCIENCEWORLD_V13B_ORACLE_MECHANISM_6, (
+            ("boil", 27), ("boil", 28), ("boil", 29),
+            ("freeze", 27), ("freeze", 28), ("freeze", 29),
+        ))
+        self.assertTrue(set(SCIENCEWORLD_V13B_ORACLE_MECHANISM_6) <= set(SCIENCEWORLD_V11B_CONFIRM_18))
+        self.assertEqual(SUITE_VARIATION_SPLITS["scienceworld-v13b-oracle-mechanism-6"], "test")
+        manifest = json.loads(Path("results/scienceworld_v13b_oracle_mechanism_manifest.json").read_text(encoding="utf-8"))
+        self.assertTrue(manifest["frozen_before_api_evaluation"])
+        self.assertEqual(manifest["conditions"], [
+            "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo",
+        ])
+        self.assertEqual(manifest["repeats"], 3)
+        self.assertEqual(manifest["planned_episodes"], 54)
 
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])

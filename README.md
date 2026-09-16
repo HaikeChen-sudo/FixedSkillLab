@@ -634,6 +634,35 @@ python3 summarize_results.py results/scienceworld_results.jsonl \
 
 主比较是 `oracle_v3_full` 对 `oracle_v3_metadata`；`oracle_v3_placebo` 用于检查无关正文是否造成干扰。Pilot 通过后才冻结扩大实验。
 
+### ScienceWorld v13b Oracle 内容消融定向确认
+
+v13 Pilot 的差异集中在 `boil` 与 `freeze`。v13b 因此只检验状态转换机制，不用于估计整个 ScienceWorld 的总体性能。六道题复用 v11b 的官方 test variations；这是 Pilot 后定向选择，预注册文件为 [`scienceworld_v13b_oracle_mechanism_manifest.json`](results/scienceworld_v13b_oracle_mechanism_manifest.json)。
+
+运行 `6 tasks × 3 conditions × 3 repeats = 54 episodes`：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --suite scienceworld-v13b-oracle-mechanism-6 \
+  --conditions oracle_v3_full,oracle_v3_metadata,oracle_v3_placebo \
+  --max-steps 400 \
+  --repeats 3 \
+  --run-id scienceworld-v13b-oracle-mechanism-6x3 \
+  --resume
+```
+
+汇总：
+
+```bash
+python3 summarize_results.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-v13b-oracle-mechanism-6x3 \
+  --deduplicate \
+  --repeat-stats
+```
+
+主比较是 Full 对 Metadata；Full 对等词数 Placebo 是更严格的 Procedure 语义比较。No Skill 不属于该机制问题，因此不重复运行。
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`
