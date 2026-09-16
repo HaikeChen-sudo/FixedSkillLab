@@ -679,6 +679,58 @@ python3 analyze_scienceworld_v13b.py
 MPLCONFIGDIR=/tmp/fixedskilllab-matplotlib python3 plot_scienceworld_v13b.py
 ```
 
+### ScienceWorld T1：Oracle T 型 Skill 2×2 Pilot
+
+T1 检查“跨任务执行规则”和“任务专用 Procedure”能否形成互补。它不改模型、不用 Router，也不学习 Skill。定义、边界和后续确认路线见 [`t_shaped_skill_research.md`](docs/research/t_shaped_skill_research.md)，冻结协议见 [`scienceworld_t1_t_shaped_pilot_manifest.json`](results/scienceworld_t1_t_shaped_pilot_manifest.json)。
+
+- `no_skill`：横向层 0，纵向层 0。
+- `t_horizontal`：只加载 `scienceworld-execution-control`。
+- `t_vertical`：只加载人工标注的 v3 任务 Skill。
+- `t_full`：先加载横向 Skill，再加载同一条纵向路径。
+
+十二道题直接复用已通过 Gold Check 的 v10 suite。这个设计适合做机制 Pilot，不属于新的 held-out 证据。主交互量为：
+
+`(SR_t_full - SR_t_vertical) - (SR_t_horizontal - SR_no_skill)`
+
+代码和清单已冻结，但还没有调用 API。运行 `12 tasks × 4 conditions × 1 repeat = 48 episodes`：
+
+先重建离线 Prompt 审计（只写本地 JSONL，不调用 API）：
+
+```bash
+python3 scienceworld_t1_audit.py
+```
+
+再运行实验：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --suite scienceworld-t1-t-shaped-pilot-12 \
+  --conditions no_skill,t_horizontal,t_vertical,t_full \
+  --max-steps 400 \
+  --repeats 1 \
+  --run-id scienceworld-t1-t-shaped-pilot-12x1 \
+  --resume
+```
+
+查看四组基础指标：
+
+```bash
+python3 summarize_results.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-t1-t-shaped-pilot-12x1 \
+  --deduplicate
+```
+
+确认 48 条齐全并计算整体及两类任务的 2×2 交互量：
+
+```bash
+python3 analyze_scienceworld_t1.py results/scienceworld_results.jsonl \
+  --run-id scienceworld-t1-t-shaped-pilot-12x1
+```
+
+Pilot 只判断字段是否正确、四种 Prompt 是否确实不同、交互方向是否值得继续。不能用这 48 个 episode 宣称 T 型结构已经成立。
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`

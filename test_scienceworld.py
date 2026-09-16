@@ -8,9 +8,10 @@ from unittest.mock import patch
 from scienceworld_agent import CONDITIONS, DEFAULT_CONDITIONS, objective_success, run_episode, skill_names, skill_selection
 from scienceworld_retrieval import EMBEDDER_NAME, retrieve
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
-from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
+from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, T_HORIZONTAL_SKILL_NAME, T_STRUCTURE_VERSION, T_VERTICAL_PATHS, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
 from analyze_scienceworld_formal import exact_sign_p_value, paired_statistics, validation_errors
-from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6, SCIENCEWORLD_V13B_ORACLE_MECHANISM_6, SUITE_VARIATION_SPLITS, validate_suites
+from analyze_scienceworld_t1 import success_interaction
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_T1_T_SHAPED_PILOT_12, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6, SCIENCEWORLD_V13B_ORACLE_MECHANISM_6, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -288,6 +289,90 @@ class ScienceWorldTests(unittest.TestCase):
             paired.setdefault((row["task_name"], row["variation"], row["repeat"]), []).append(row)
         self.assertTrue(all(len(rows) == 3 for rows in paired.values()))
         self.assertTrue(all(len({tuple(row["skills_loaded"]) for row in rows}) == 1 for rows in paired.values()))
+
+    def test_t1_pilot_is_a_frozen_reuse_mechanism_suite(self):
+        self.assertEqual(SCIENCEWORLD_T1_T_SHAPED_PILOT_12, SCIENCEWORLD_V10_CONFIRM_12)
+        self.assertEqual(SUITE_VARIATION_SPLITS["scienceworld-t1-t-shaped-pilot-12"], "test")
+        manifest = json.loads(Path("results/scienceworld_t1_t_shaped_pilot_manifest.json").read_text(encoding="utf-8"))
+        cases = [(row["task_name"], row["variation"]) for row in manifest["cases"]]
+        self.assertEqual(cases, list(SCIENCEWORLD_T1_T_SHAPED_PILOT_12))
+        self.assertEqual(manifest["source_suite"], "scienceworld-v10-confirm-12")
+        self.assertEqual(manifest["conditions"], ["no_skill", "t_horizontal", "t_vertical", "t_full"])
+        self.assertTrue(manifest["frozen_before_api_evaluation"])
+        self.assertEqual(manifest["api_episodes_collected"], 0)
+        self.assertEqual(manifest["planned_episodes"], 48)
+        audit = [
+            json.loads(line)
+            for line in Path(manifest["offline_prompt_audit"]).read_text(encoding="utf-8").splitlines()
+        ]
+        self.assertEqual(len(audit), 48)
+        self.assertEqual({row["condition"] for row in audit}, set(manifest["conditions"]))
+        self.assertEqual({(row["task_name"], row["variation"]) for row in audit}, set(SCIENCEWORLD_T1_T_SHAPED_PILOT_12))
+
+    def test_t1_conditions_form_the_declared_two_by_two(self):
+        self.assertEqual(T_STRUCTURE_VERSION, "t1")
+        self.assertEqual(set(T_VERTICAL_PATHS), set(GOLD_SKILLS))
+        horizontal = skill_selection("t_horizontal", "boil")
+        vertical = skill_selection("t_vertical", "boil")
+        full = skill_selection("t_full", "boil")
+        self.assertEqual(horizontal.names, [T_HORIZONTAL_SKILL_NAME])
+        self.assertEqual(vertical.names, ["boil-substance"])
+        self.assertEqual(full.names, [T_HORIZONTAL_SKILL_NAME, "boil-substance"])
+        self.assertTrue(all(item.library_version == "t1" for item in (horizontal, vertical, full)))
+        self.assertTrue(all(item.retrieved == [] and item.retriever is None for item in (horizontal, vertical, full)))
+        self.assertEqual(T_VERTICAL_PATHS["boil"], ("state-change", "heating", "boil"))
+        rendered = loaded_skill_text(full.names, "t1")
+        self.assertLess(rendered.index(T_HORIZONTAL_SKILL_NAME), rendered.index("boil-substance"))
+        self.assertNotEqual(library_hash("t1"), library_hash("v3"))
+        self.assertEqual(library_hash("t1"), "250ff29c27e3f00bbea88e891a7b6fa5ca4b3fabc2865c8e4911a22d3602aba3")
+
+    def test_t1_episode_records_loaded_layers_and_prompt_size(self):
+        class FakeEnv:
+            def load(self, *_args, **_kwargs):
+                pass
+
+            def reset(self):
+                return "room", {"taskDesc": "Your task is to boil gallium.", "score": 0, "moves": 0}
+
+            def close(self):
+                pass
+
+        class StopClient:
+            def __init__(self, *_args, **_kwargs):
+                pass
+
+            def respond(self, _messages):
+                return {"role": "assistant", "content": "stop"}
+
+            def metrics(self):
+                return {"input_tokens": 0, "output_tokens": 0, "prompt_cache_hit_tokens": 0, "prompt_cache_miss_tokens": 0}
+
+        records = {}
+        with patch("scienceworld_agent.make_env", return_value=FakeEnv()), patch("scienceworld_agent.DeepSeekChatClient", StopClient):
+            for condition in ("no_skill", "t_horizontal", "t_vertical", "t_full"):
+                records[condition] = run_episode("test", 0, "boil", 25, "easy", 1, condition)
+        self.assertFalse(records["no_skill"]["horizontal_layer_loaded"])
+        self.assertFalse(records["no_skill"]["vertical_layer_loaded"])
+        self.assertTrue(records["t_horizontal"]["horizontal_layer_loaded"])
+        self.assertFalse(records["t_horizontal"]["vertical_layer_loaded"])
+        self.assertFalse(records["t_vertical"]["horizontal_layer_loaded"])
+        self.assertTrue(records["t_vertical"]["vertical_layer_loaded"])
+        self.assertEqual(records["t_vertical"]["vertical_path"], ["state-change", "heating", "boil"])
+        self.assertEqual(records["t_full"]["skills_loaded"], [T_HORIZONTAL_SKILL_NAME, "boil-substance"])
+        self.assertEqual(records["t_full"]["structure_version"], "t1")
+        self.assertGreater(records["t_full"]["skill_prompt_words"], records["t_vertical"]["skill_prompt_words"])
+        self.assertEqual(len({records[name]["skill_prompt_sha256"] for name in ("t_horizontal", "t_vertical", "t_full")}), 3)
+
+    def test_t1_success_interaction_uses_the_preregistered_formula(self):
+        rows = [
+            {"condition": "no_skill", "success": False},
+            {"condition": "t_horizontal", "success": False},
+            {"condition": "t_vertical", "success": False},
+            {"condition": "t_full", "success": True},
+        ]
+        result = success_interaction(rows)
+        self.assertEqual(result["interaction"], 1.0)
+        self.assertEqual(result["interaction_percentage_points"], 100.0)
 
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])

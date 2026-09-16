@@ -152,6 +152,42 @@ GOLD_SKILLS = {
     "find-non-living-thing": "find-nonliving-object",
 }
 
+T_STRUCTURE_VERSION = "t1"
+T_HORIZONTAL_SKILL_NAME = "scienceworld-execution-control"
+T_HORIZONTAL_SKILL = skill(
+    T_HORIZONTAL_SKILL_NAME,
+    "Apply one stable execution discipline across ScienceWorld task families.",
+    "Use for any interactive ScienceWorld task, independent of the task domain.",
+    "Preserve the full object referent and the identity of the selected target across actions.",
+    "Before an irreversible focus action, confirm that the target itself, not its container or a similar object, matches the task.",
+    "After every action, read the new observation, score, done flag, and environment state before choosing the next action.",
+    "If two actions make no progress, inspect inventory, location, container state, and unmet preconditions before retrying.",
+    termination="Stop only when the environment score reaches 100 or done is true; otherwise diagnose the blocked precondition.",
+)
+
+# These paths are fixed experimental labels, not a learned graph. The final
+# leaf reuses the v3 task-specific Procedure already tested in earlier runs.
+T_VERTICAL_PATHS = {
+    "boil": ("state-change", "heating", "boil"),
+    "melt": ("state-change", "heating", "melt"),
+    "freeze": ("state-change", "cooling", "freeze"),
+    "use-thermometer": ("measurement", "temperature-classification"),
+    "find-living-thing": ("object-classification", "living-object"),
+    "find-non-living-thing": ("object-classification", "nonliving-object"),
+}
+
+
+def t_skill_names(condition: str, task_name: str) -> Tuple[str, ...]:
+    if task_name not in GOLD_SKILLS:
+        raise ValueError(f"no frozen Oracle label for task: {task_name}")
+    if condition == "t_horizontal":
+        return (T_HORIZONTAL_SKILL_NAME,)
+    if condition == "t_vertical":
+        return (GOLD_SKILLS[task_name],)
+    if condition == "t_full":
+        return (T_HORIZONTAL_SKILL_NAME, GOLD_SKILLS[task_name])
+    raise ValueError(f"not a T-shaped condition: {condition}")
+
 
 def versioned_skills(version: str = "v1") -> Tuple[ScienceWorldSkill, ...]:
     if version == "v1":
@@ -160,6 +196,8 @@ def versioned_skills(version: str = "v1") -> Tuple[ScienceWorldSkill, ...]:
         return tuple(V2_SKILL_OVERRIDES.get(item.name, item) for item in SKILL_LIST)
     if version == "v3":
         return tuple(V3_SKILL_OVERRIDES.get(item.name, item) for item in versioned_skills("v2"))
+    if version == T_STRUCTURE_VERSION:
+        return (T_HORIZONTAL_SKILL,) + versioned_skills("v3")
     raise ValueError(f"unknown skill library version: {version}")
 
 
@@ -207,6 +245,12 @@ def validate_library() -> list:
         errors.append("v2 overrides must replace existing Skills without renaming them")
     if any(name not in SKILLS or item.name != name for name, item in V3_SKILL_OVERRIDES.items()):
         errors.append("v3 overrides must replace existing Skills without renaming them")
+    if T_HORIZONTAL_SKILL_NAME in SKILLS:
+        errors.append("the horizontal Skill must not replace a task-specific Skill")
+    if set(T_VERTICAL_PATHS) != set(GOLD_SKILLS):
+        errors.append("every task family must have one frozen vertical path")
+    if any(len(path) < 2 for path in T_VERTICAL_PATHS.values()):
+        errors.append("every vertical path must include a domain and a task leaf")
     for item in SKILL_LIST:
         if not all((item.name, item.description, item.activation_condition, item.procedure, item.termination_condition)):
             errors.append(f"{item.name}: all five fields are required")

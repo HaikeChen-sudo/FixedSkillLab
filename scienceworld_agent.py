@@ -11,7 +11,16 @@ from typing import Any, Dict, List, Optional
 
 from agent import DeepSeekChatClient
 from scienceworld_retrieval import EMBEDDER_NAME, retrieve
-from scienceworld_skills import GOLD_SKILLS, library_hash, loaded_skill_text, versioned_skills
+from scienceworld_skills import (
+    GOLD_SKILLS,
+    T_HORIZONTAL_SKILL_NAME,
+    T_STRUCTURE_VERSION,
+    T_VERTICAL_PATHS,
+    library_hash,
+    loaded_skill_text,
+    t_skill_names,
+    versioned_skills,
+)
 
 
 ACT_TOOL = {
@@ -40,6 +49,7 @@ CONDITIONS = (
     "no_skill", "all_skills", "flat_retrieval", "body_aware_retrieval",
     "body_metadata_only", "body_placebo", "oracle_skill", "oracle_v2", "oracle_v3",
     "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo",
+    "t_horizontal", "t_vertical", "t_full",
 )
 DEFAULT_CONDITIONS = ("no_skill", "oracle_v2")
 AGENT_PROTOCOL_VERSION = "scienceworld-v2"
@@ -74,6 +84,8 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
         return SkillSelection([], [], [], None, gold, None)
     if condition == "all_skills":
         return SkillSelection([item.name for item in versioned_skills("v3")], [], [], None, gold, "v3")
+    if condition in {"t_horizontal", "t_vertical", "t_full"}:
+        return SkillSelection(list(t_skill_names(condition, task_name)), [], [], None, gold, T_STRUCTURE_VERSION)
     if condition in {
         "oracle_skill", "oracle_v2", "oracle_v3",
         "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo",
@@ -179,6 +191,10 @@ def run_episode(
             "oracle_v3_placebo": "placebo",
         }.get(condition, "full")
         skill_prompt = loaded_skill_text(selected, skill_version, skill_render_mode) if selected else ""
+        is_t_condition = condition in {"t_horizontal", "t_vertical", "t_full"}
+        horizontal_loaded = is_t_condition and condition in {"t_horizontal", "t_full"}
+        vertical_loaded = is_t_condition and condition in {"t_vertical", "t_full"}
+        vertical_path = T_VERTICAL_PATHS[task_name] if vertical_loaded else ()
         messages: List[Dict[str, Any]] = [{"role": "system", "content": SYSTEM_PROMPT}]
         if selected:
             messages.append({"role": "system", "content": "Fixed Skill guidance:\n" + skill_prompt})
@@ -276,6 +292,16 @@ def run_episode(
             "skill_library_sha256": library_hash(skill_version) if skill_version else None,
             "skill_render_mode": skill_render_mode if selected else None,
             "skill_prompt_sha256": hashlib.sha256(skill_prompt.encode("utf-8")).hexdigest() if selected else None,
+            "skill_architecture": "t_shaped" if is_t_condition else ("none" if condition == "no_skill" else "flat"),
+            "structure_version": T_STRUCTURE_VERSION if is_t_condition else None,
+            "horizontal_layer_loaded": horizontal_loaded,
+            "horizontal_skills_loaded": [T_HORIZONTAL_SKILL_NAME] if horizontal_loaded else [],
+            "vertical_layer_loaded": vertical_loaded,
+            "vertical_domain": vertical_path[0] if vertical_path else None,
+            "vertical_path": list(vertical_path),
+            "vertical_depth": len(vertical_path),
+            "skill_prompt_words": len(skill_prompt.split()),
+            "skill_prompt_characters": len(skill_prompt),
             "final_text": final_text,
             "trace": trace,
         }

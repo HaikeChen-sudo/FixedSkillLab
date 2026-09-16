@@ -1,0 +1,58 @@
+{
+  "protocol_id": "scienceworld-t1-t-shaped-pilot-12x1",
+  "status": "preregistered_not_run",
+  "created_date": "2026-09-16",
+  "purpose": "oracle 2x2 pilot of horizontal and vertical fixed-Skill layers",
+  "suite": "scienceworld-t1-t-shaped-pilot-12",
+  "source_suite": "scienceworld-v10-confirm-12",
+  "reuse_disclosure": "All twelve official test cases are reused from v10. This is a mechanism pilot, not an independent held-out confirmation.",
+  "model": "deepseek-v4-flash",
+  "temperature": 0,
+  "max_steps": 400,
+  "repeats": 1,
+  "conditions": [
+    "no_skill",
+    "t_horizontal",
+    "t_vertical",
+    "t_full"
+  ],
+  "factor_encoding": {
+    "no_skill": {"horizontal": 0, "vertical": 0},
+    "t_horizontal": {"horizontal": 1, "vertical": 0},
+    "t_vertical": {"horizontal": 0, "vertical": 1},
+    "t_full": {"horizontal": 1, "vertical": 1}
+  },
+  "planned_episodes": 48,
+  "primary_metric": "task_success_rate",
+  "secondary_metrics": [
+    "average_score",
+    "input_tokens",
+    "output_tokens",
+    "total_tokens",
+    "latency_ms",
+    "cost_per_successful_task_usd",
+    "tool_calls",
+    "environment_moves"
+  ],
+  "primary_estimand": "(SR_t_full - SR_t_vertical) - (SR_t_horizontal - SR_no_skill)",
+  "analysis_scope": "Implementation check and effect direction only; no confirmatory significance claim.",
+  "frozen_before_api_evaluation": true,
+  "api_episodes_collected": 0,
+  "offline_prompt_audit": "results/scienceworld_t1_prompt_audit.jsonl",
+  "skill_library_sha256": "250ff29c27e3f00bbea88e891a7b6fa5ca4b3fabc2865c8e4911a22d3602aba3",
+  "local_gold_validation_source": "results/scienceworld_v10_gold_validation.jsonl",
+  "cases": [
+    {"task_name": "boil", "variation": 25, "stratum": "state_change_depth"},
+    {"task_name": "boil", "variation": 26, "stratum": "state_change_depth"},
+    {"task_name": "melt", "variation": 25, "stratum": "state_change_depth"},
+    {"task_name": "melt", "variation": 26, "stratum": "state_change_depth"},
+    {"task_name": "freeze", "variation": 25, "stratum": "state_change_depth"},
+    {"task_name": "freeze", "variation": 26, "stratum": "state_change_depth"},
+    {"task_name": "use-thermometer", "variation": 409, "stratum": "cross_domain_breadth"},
+    {"task_name": "use-thermometer", "variation": 410, "stratum": "cross_domain_breadth"},
+    {"task_name": "find-living-thing", "variation": 229, "stratum": "cross_domain_breadth"},
+    {"task_name": "find-living-thing", "variation": 230, "stratum": "cross_domain_breadth"},
+    {"task_name": "find-non-living-thing", "variation": 229, "stratum": "cross_domain_breadth"},
+    {"task_name": "find-non-living-thing", "variation": 230, "stratum": "cross_domain_breadth"}
+  ]
+}

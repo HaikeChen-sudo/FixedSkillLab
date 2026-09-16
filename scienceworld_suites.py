@@ -106,6 +106,10 @@ SCIENCEWORLD_V13B_ORACLE_MECHANISM_6 = (
     ("freeze", 29),
 )
 
+# T1 is a mechanism pilot, not an independent held-out confirmation. It reuses
+# the twelve v10 cases whose local Gold paths were already validated.
+SCIENCEWORLD_T1_T_SHAPED_PILOT_12 = SCIENCEWORLD_V10_CONFIRM_12
+
 SUITES = {
     "scienceworld-pilot-6": SCIENCEWORLD_PILOT_6,
     "scienceworld-v3-heldout-6": SCIENCEWORLD_V3_HELDOUT_6,
@@ -116,6 +120,7 @@ SUITES = {
     "scienceworld-v12-mechanism-pilot-6": SCIENCEWORLD_V12_MECHANISM_PILOT_6,
     "scienceworld-v13-oracle-mechanism-pilot-6": SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6,
     "scienceworld-v13b-oracle-mechanism-6": SCIENCEWORLD_V13B_ORACLE_MECHANISM_6,
+    "scienceworld-t1-t-shaped-pilot-12": SCIENCEWORLD_T1_T_SHAPED_PILOT_12,
 }
 
 SUITE_VARIATION_SPLITS = {
@@ -128,12 +133,14 @@ SUITE_VARIATION_SPLITS = {
     "scienceworld-v12-mechanism-pilot-6": "test",
     "scienceworld-v13-oracle-mechanism-pilot-6": "test",
     "scienceworld-v13b-oracle-mechanism-6": "test",
+    "scienceworld-t1-t-shaped-pilot-12": "test",
 }
 
 REUSED_MECHANISM_SUITES = {
     "scienceworld-v12-mechanism-pilot-6",
     "scienceworld-v13-oracle-mechanism-pilot-6",
     "scienceworld-v13b-oracle-mechanism-6",
+    "scienceworld-t1-t-shaped-pilot-12",
 }
 
 TARGETED_SUITE_FAMILIES = {
