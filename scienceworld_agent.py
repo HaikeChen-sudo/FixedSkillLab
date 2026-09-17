@@ -50,9 +50,11 @@ CONDITIONS = (
     "body_metadata_only", "body_placebo", "oracle_skill", "oracle_v2", "oracle_v3",
     "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo",
     "t_horizontal", "t_vertical", "t_full",
+    "t2_horizontal", "t2_vertical", "t2_full",
 )
 DEFAULT_CONDITIONS = ("no_skill", "oracle_v2")
 AGENT_PROTOCOL_VERSION = "scienceworld-v2"
+PROGRESS_CONTROLLER_VERSION = "repeated-action-guard-v1"
 PRICING_PER_MILLION = {
     "deepseek-v4-flash": {"cache_hit": 0.0028, "cache_miss": 0.14, "output": 0.28},
     "deepseek-v4-pro": {"cache_hit": 0.003625, "cache_miss": 0.435, "output": 0.87},
@@ -74,6 +76,11 @@ def objective_success(score: int) -> bool:
     return score >= 100
 
 
+def repeated_action_limit(command: str) -> int:
+    normalized = " ".join(command.lower().split())
+    return 8 if normalized == "wait1" else 2 if normalized == "wait" else 3
+
+
 def skill_selection(condition: str, task_name: str, task_text: str = "") -> SkillSelection:
     if condition not in CONDITIONS:
         raise ValueError(f"unknown condition: {condition}")
@@ -84,7 +91,10 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
         return SkillSelection([], [], [], None, gold, None)
     if condition == "all_skills":
         return SkillSelection([item.name for item in versioned_skills("v3")], [], [], None, gold, "v3")
-    if condition in {"t_horizontal", "t_vertical", "t_full"}:
+    if condition in {
+        "t_horizontal", "t_vertical", "t_full",
+        "t2_horizontal", "t2_vertical", "t2_full",
+    }:
         return SkillSelection(list(t_skill_names(condition, task_name)), [], [], None, gold, T_STRUCTURE_VERSION)
     if condition in {
         "oracle_skill", "oracle_v2", "oracle_v3",
@@ -191,9 +201,13 @@ def run_episode(
             "oracle_v3_placebo": "placebo",
         }.get(condition, "full")
         skill_prompt = loaded_skill_text(selected, skill_version, skill_render_mode) if selected else ""
-        is_t_condition = condition in {"t_horizontal", "t_vertical", "t_full"}
-        horizontal_loaded = is_t_condition and condition in {"t_horizontal", "t_full"}
-        vertical_loaded = is_t_condition and condition in {"t_vertical", "t_full"}
+        is_t_condition = condition in {
+            "t_horizontal", "t_vertical", "t_full",
+            "t2_horizontal", "t2_vertical", "t2_full",
+        }
+        horizontal_loaded = condition in {"t_horizontal", "t_full", "t2_horizontal", "t2_full"}
+        vertical_loaded = condition in {"t_vertical", "t_full", "t2_vertical", "t2_full"}
+        controller_active = condition in {"t2_horizontal", "t2_full"}
         vertical_path = T_VERTICAL_PATHS[task_name] if vertical_loaded else ()
         messages: List[Dict[str, Any]] = [{"role": "system", "content": SYSTEM_PROMPT}]
         if selected:
@@ -208,6 +222,10 @@ def run_episode(
         environment_moves = info["moves"]
         final_text = ""
         llm_calls = 0
+        controller_interventions = 0
+        environment_actions = 0
+        last_command = ""
+        repeated_without_progress = 0
 
         while len(trace) < max_steps and not done:
             reply = client.respond(messages)
@@ -226,17 +244,42 @@ def run_episode(
                 command = arguments["command"]
                 if not isinstance(command, str) or not command.strip():
                     raise ValueError("command must be a non-empty string")
-                observation, reward, done, info = env.step(command)
-                score = info["score"]
-                environment_moves = info["moves"]
-                result = {
-                    "ok": True,
-                    "observation": observation,
-                    "reward": reward,
-                    "score": score,
-                    "done": done,
-                    "environment_moves": environment_moves,
-                }
+                normalized_command = " ".join(command.lower().split())
+                if (
+                    controller_active
+                    and normalized_command == last_command
+                    and repeated_without_progress >= repeated_action_limit(normalized_command)
+                ):
+                    controller_interventions += 1
+                    result = {
+                        "ok": False,
+                        "error": "Horizontal progress controller blocked a repeated no-progress command. Do not repeat it. Inspect the target, container, inventory, current state, and unmet prerequisite before choosing a different action.",
+                        "controller": PROGRESS_CONTROLLER_VERSION,
+                        "score": score,
+                        "done": done,
+                        "environment_moves": environment_moves,
+                    }
+                else:
+                    previous_score = score
+                    observation, reward, done, info = env.step(command)
+                    environment_actions += 1
+                    score = info["score"]
+                    environment_moves = info["moves"]
+                    if normalized_command == last_command and score == previous_score:
+                        repeated_without_progress += 1
+                    elif score == previous_score:
+                        repeated_without_progress = 1
+                    else:
+                        repeated_without_progress = 0
+                    last_command = normalized_command
+                    result = {
+                        "ok": True,
+                        "observation": observation,
+                        "reward": reward,
+                        "score": score,
+                        "done": done,
+                        "environment_moves": environment_moves,
+                    }
             except (KeyError, TypeError, ValueError, json.JSONDecodeError) as error:
                 result = {"ok": False, "error": str(error), "score": score, "done": done, "environment_moves": environment_moves}
             trace.append({"tool": "act", "command": command, "result": result})
@@ -274,6 +317,7 @@ def run_episode(
             "environment_moves": environment_moves,
             "llm_calls": llm_calls,
             "tool_calls": len(trace),
+            "environment_actions": environment_actions,
             "input_tokens": metrics["input_tokens"],
             "output_tokens": metrics["output_tokens"],
             "total_tokens": metrics["input_tokens"] + metrics["output_tokens"],
@@ -293,7 +337,7 @@ def run_episode(
             "skill_render_mode": skill_render_mode if selected else None,
             "skill_prompt_sha256": hashlib.sha256(skill_prompt.encode("utf-8")).hexdigest() if selected else None,
             "skill_architecture": "t_shaped" if is_t_condition else ("none" if condition == "no_skill" else "flat"),
-            "structure_version": T_STRUCTURE_VERSION if is_t_condition else None,
+            "structure_version": "t2" if condition.startswith("t2_") else T_STRUCTURE_VERSION if is_t_condition else None,
             "horizontal_layer_loaded": horizontal_loaded,
             "horizontal_skills_loaded": [T_HORIZONTAL_SKILL_NAME] if horizontal_loaded else [],
             "vertical_layer_loaded": vertical_loaded,
@@ -302,6 +346,8 @@ def run_episode(
             "vertical_depth": len(vertical_path),
             "skill_prompt_words": len(skill_prompt.split()),
             "skill_prompt_characters": len(skill_prompt),
+            "horizontal_controller_version": PROGRESS_CONTROLLER_VERSION if controller_active else None,
+            "controller_interventions": controller_interventions,
             "final_text": final_text,
             "trace": trace,
         }

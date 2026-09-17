@@ -110,6 +110,13 @@ SCIENCEWORLD_V13B_ORACLE_MECHANISM_6 = (
 # the twelve v10 cases whose local Gold paths were already validated.
 SCIENCEWORLD_T1_T_SHAPED_PILOT_12 = SCIENCEWORLD_V10_CONFIRM_12
 
+# T2 deliberately reuses the two T1 cases that separated the horizontal and
+# vertical layers. It is a development diagnostic, not held-out evidence.
+SCIENCEWORLD_T2_CONTROLLER_DEV_2 = (
+    ("melt", 25),
+    ("freeze", 26),
+)
+
 SUITES = {
     "scienceworld-pilot-6": SCIENCEWORLD_PILOT_6,
     "scienceworld-v3-heldout-6": SCIENCEWORLD_V3_HELDOUT_6,
@@ -121,6 +128,7 @@ SUITES = {
     "scienceworld-v13-oracle-mechanism-pilot-6": SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6,
     "scienceworld-v13b-oracle-mechanism-6": SCIENCEWORLD_V13B_ORACLE_MECHANISM_6,
     "scienceworld-t1-t-shaped-pilot-12": SCIENCEWORLD_T1_T_SHAPED_PILOT_12,
+    "scienceworld-t2-controller-dev-2": SCIENCEWORLD_T2_CONTROLLER_DEV_2,
 }
 
 SUITE_VARIATION_SPLITS = {
@@ -134,6 +142,7 @@ SUITE_VARIATION_SPLITS = {
     "scienceworld-v13-oracle-mechanism-pilot-6": "test",
     "scienceworld-v13b-oracle-mechanism-6": "test",
     "scienceworld-t1-t-shaped-pilot-12": "test",
+    "scienceworld-t2-controller-dev-2": "test",
 }
 
 REUSED_MECHANISM_SUITES = {
@@ -141,10 +150,12 @@ REUSED_MECHANISM_SUITES = {
     "scienceworld-v13-oracle-mechanism-pilot-6",
     "scienceworld-v13b-oracle-mechanism-6",
     "scienceworld-t1-t-shaped-pilot-12",
+    "scienceworld-t2-controller-dev-2",
 }
 
 TARGETED_SUITE_FAMILIES = {
     "scienceworld-v13b-oracle-mechanism-6": {"boil", "freeze"},
+    "scienceworld-t2-controller-dev-2": {"melt", "freeze"},
 }
 
 SCIENCEWORLD_TEST_VARIATIONS = {

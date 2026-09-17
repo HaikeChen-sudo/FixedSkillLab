@@ -5,13 +5,13 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
-from scienceworld_agent import CONDITIONS, DEFAULT_CONDITIONS, objective_success, run_episode, skill_names, skill_selection
+from scienceworld_agent import CONDITIONS, DEFAULT_CONDITIONS, objective_success, repeated_action_limit, run_episode, skill_names, skill_selection
 from scienceworld_retrieval import EMBEDDER_NAME, retrieve
 from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, T_HORIZONTAL_SKILL_NAME, T_STRUCTURE_VERSION, T_VERTICAL_PATHS, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
 from analyze_scienceworld_formal import exact_sign_p_value, paired_statistics, validation_errors
 from analyze_scienceworld_t1 import success_interaction
-from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_T1_T_SHAPED_PILOT_12, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6, SCIENCEWORLD_V13B_ORACLE_MECHANISM_6, SUITE_VARIATION_SPLITS, validate_suites
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_T1_T_SHAPED_PILOT_12, SCIENCEWORLD_T2_CONTROLLER_DEV_2, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6, SCIENCEWORLD_V13B_ORACLE_MECHANISM_6, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -380,6 +380,63 @@ class ScienceWorldTests(unittest.TestCase):
         conditions = ("no_skill", "t_horizontal", "t_vertical", "t_full")
         self.assertEqual(validation_errors(records, "scienceworld-t1-t-shaped-pilot-12", conditions, 1), [])
         self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), "4a288383750d1625bf538629c498af9fd0c07e34c4bd8b95d212dc935f2fa7ee")
+
+    def test_t2_controller_development_protocol_is_explicitly_post_t1(self):
+        self.assertEqual(SCIENCEWORLD_T2_CONTROLLER_DEV_2, (("melt", 25), ("freeze", 26)))
+        self.assertTrue(set(SCIENCEWORLD_T2_CONTROLLER_DEV_2) <= set(SCIENCEWORLD_T1_T_SHAPED_PILOT_12))
+        manifest = json.loads(Path("results/scienceworld_t2_controller_dev_manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["analysis_scope"].split(".")[0], "Development only")
+        self.assertTrue(manifest["frozen_before_api_evaluation"])
+        self.assertEqual(manifest["planned_episodes"], 24)
+        self.assertEqual(manifest["conditions"], ["no_skill", "t2_horizontal", "t2_vertical", "t2_full"])
+        self.assertEqual(skill_selection("t2_horizontal", "melt").names, [T_HORIZONTAL_SKILL_NAME])
+        self.assertEqual(skill_selection("t2_vertical", "melt").names, ["melt-substance"])
+        self.assertEqual(skill_selection("t2_full", "melt").names, [T_HORIZONTAL_SKILL_NAME, "melt-substance"])
+
+    def test_t2_progress_controller_blocks_only_repeated_no_progress_actions(self):
+        self.assertEqual(repeated_action_limit("wait1"), 8)
+        self.assertEqual(repeated_action_limit(" WAIT "), 2)
+        self.assertEqual(repeated_action_limit("examine cup"), 3)
+
+        class FakeEnv:
+            def __init__(self):
+                self.commands = []
+
+            def load(self, *_args, **_kwargs):
+                pass
+
+            def reset(self):
+                return "room", {"taskDesc": "Your task is to melt mercury.", "score": 0, "moves": 0}
+
+            def step(self, command):
+                self.commands.append(command)
+                return "no progress", 0, False, {"score": 0, "moves": len(self.commands)}
+
+            def close(self):
+                pass
+
+        class RepeatingClient:
+            def __init__(self, *_args, **_kwargs):
+                self.turn = 0
+
+            def respond(self, _messages):
+                self.turn += 1
+                return {"role": "assistant", "content": None, "tool_calls": [
+                    {"id": f"call-{self.turn}", "type": "function", "function": {"name": "act", "arguments": '{"command":"wait1"}'}},
+                ]}
+
+            def metrics(self):
+                return {"input_tokens": 0, "output_tokens": 0, "prompt_cache_hit_tokens": 0, "prompt_cache_miss_tokens": 0}
+
+        env = FakeEnv()
+        with patch("scienceworld_agent.make_env", return_value=env), patch("scienceworld_agent.DeepSeekChatClient", RepeatingClient):
+            record = run_episode("test", 0, "melt", 25, "easy", 10, "t2_horizontal")
+        self.assertEqual(env.commands, ["wait1"] * 8)
+        self.assertEqual(record["environment_actions"], 8)
+        self.assertEqual(record["controller_interventions"], 2)
+        self.assertEqual(record["horizontal_controller_version"], "repeated-action-guard-v1")
+        self.assertEqual(record["structure_version"], "t2")
+        self.assertTrue(all(not row["result"]["ok"] for row in record["trace"][-2:]))
 
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])

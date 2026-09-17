@@ -180,11 +180,11 @@ T_VERTICAL_PATHS = {
 def t_skill_names(condition: str, task_name: str) -> Tuple[str, ...]:
     if task_name not in GOLD_SKILLS:
         raise ValueError(f"no frozen Oracle label for task: {task_name}")
-    if condition == "t_horizontal":
+    if condition in {"t_horizontal", "t2_horizontal"}:
         return (T_HORIZONTAL_SKILL_NAME,)
-    if condition == "t_vertical":
+    if condition in {"t_vertical", "t2_vertical"}:
         return (GOLD_SKILLS[task_name],)
-    if condition == "t_full":
+    if condition in {"t_full", "t2_full"}:
         return (T_HORIZONTAL_SKILL_NAME, GOLD_SKILLS[task_name])
     raise ValueError(f"not a T-shaped condition: {condition}")
 

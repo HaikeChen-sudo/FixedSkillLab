@@ -1,0 +1,43 @@
+{
+  "protocol_id": "scienceworld-t2-controller-dev-2x3",
+  "status": "preregistered_not_run",
+  "created_date": "2026-09-17",
+  "purpose": "development diagnostic for a cross-task progress controller combined with vertical task knowledge",
+  "analysis_scope": "Development only. Cases were selected after inspecting T1 and cannot support a held-out claim.",
+  "source_run": "scienceworld-t1-t-shaped-pilot-12x1",
+  "suite": "scienceworld-t2-controller-dev-2",
+  "task_selection_reason": "melt:v025 and freeze:v026 produced different Horizontal-only and Vertical-only outcomes in T1",
+  "model": "deepseek-v4-flash",
+  "temperature": 0,
+  "max_steps": 400,
+  "repeats": 3,
+  "conditions": [
+    "no_skill",
+    "t2_horizontal",
+    "t2_vertical",
+    "t2_full"
+  ],
+  "factor_encoding": {
+    "no_skill": {"horizontal_controller": 0, "vertical_skill": 0},
+    "t2_horizontal": {"horizontal_controller": 1, "vertical_skill": 0},
+    "t2_vertical": {"horizontal_controller": 0, "vertical_skill": 1},
+    "t2_full": {"horizontal_controller": 1, "vertical_skill": 1}
+  },
+  "horizontal_controller_version": "repeated-action-guard-v1",
+  "planned_episodes": 24,
+  "primary_metric": "task_success_rate",
+  "mechanism_metrics": [
+    "controller_interventions",
+    "environment_actions",
+    "environment_moves",
+    "total_tokens"
+  ],
+  "development_gate": "Proceed to a new held-out task family only if t2_full is more successful than both single-layer conditions and the controller prevents repeated-action budget exhaustion.",
+  "failure_rule": "If t2_full does not beat both single-layer conditions on these development cases, this controller version does not establish the T-shaped combination hypothesis.",
+  "frozen_before_api_evaluation": true,
+  "api_episodes_collected": 0,
+  "cases": [
+    {"task_name": "melt", "variation": 25, "known_from_t1": true},
+    {"task_name": "freeze", "variation": 26, "known_from_t1": true}
+  ]
+}

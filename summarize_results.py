@@ -28,6 +28,10 @@ def episode_metrics(rows):
         metrics["average_score"] = sum(row["score"] for row in rows) / len(rows)
     if all("environment_moves" in row for row in rows):
         metrics["average_environment_moves"] = sum(row["environment_moves"] for row in rows) / len(rows)
+    if all("environment_actions" in row for row in rows):
+        metrics["average_environment_actions"] = sum(row["environment_actions"] for row in rows) / len(rows)
+    if all("controller_interventions" in row for row in rows):
+        metrics["average_controller_interventions"] = sum(row["controller_interventions"] for row in rows) / len(rows)
     return metrics
 
 

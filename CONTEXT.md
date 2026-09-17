@@ -8,9 +8,13 @@
 实验前由人工写定、运行期间不学习也不修改的行为指导单元。
 _Avoid_: 自动经验、在线策略
 
+**Horizontal Layer（横向层）**:
+跨任务族复用的优化层，可以是固定 Skill 文本或确定性执行控制，但不能编码某个任务族的专用解法。
+_Avoid_: 横向 Prompt、浅层 Skill
+
 **Horizontal Skill（横向 Skill）**:
-跨任务族复用的通用执行规则，不包含某一类任务的专用解法。
-_Avoid_: 通用 Prompt、浅层 Skill
+横向层中的文本指导单元，不等同于整个横向层。
+_Avoid_: 横向控制器、完整横向层
 
 **Vertical Skill（纵向 Skill）**:
 针对一个任务领域或任务叶子的专用 Procedure。
@@ -21,7 +25,7 @@ _Avoid_: 专家 Prompt、深层 Prompt
 _Avoid_: 动态图、检索链
 
 **T-shaped Skill Portfolio（T 型 Skill 组合）**:
-一个横向 Skill 与一条匹配纵向路径组成的受控 Skill 组合。
+一个横向层与一条匹配纵向路径组成的受控组合。
 _Avoid_: T 型单条 Skill、完整 Skill graph
 
 **Oracle Loading（Oracle 加载）**:

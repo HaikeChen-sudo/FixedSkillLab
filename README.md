@@ -731,6 +731,28 @@ python3 analyze_scienceworld_t1.py results/scienceworld_results.jsonl \
 
 Pilot 只判断字段是否正确、四种 Prompt 是否确实不同、交互方向是否值得继续。不能用这 48 个 episode 宣称 T 型结构已经成立。
 
+### ScienceWorld T2：横向进展控制器开发诊断
+
+T1 的五次失败全部在分数长期不变后耗尽环境步数。T2 保留 T1 的横向 Skill 文本，并增加一个只作用于 `t2_horizontal` 和 `t2_full` 的确定性控制器：连续无进展的 `wait1` 最多执行 8 次，`wait` 最多 2 次，其他相同命令最多 3 次；超限动作不发送给环境，而是要求 Agent 检查状态和前置条件。
+
+T2 有意复用 T1 中产生分歧的 `melt:v025` 和 `freeze:v026`，因此只是开发诊断，不是新证据。冻结设置见 [`scienceworld_t2_controller_dev_manifest.json`](results/scienceworld_t2_controller_dev_manifest.json)。
+
+运行 `2 tasks × 4 conditions × 3 repeats = 24 episodes`：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --suite scienceworld-t2-controller-dev-2 \
+  --conditions no_skill,t2_horizontal,t2_vertical,t2_full \
+  --max-steps 400 \
+  --repeats 3 \
+  --run-id scienceworld-t2-controller-dev-2x3 \
+  --resume
+```
+
+只有当 `t2_full` 的成功率同时高于两个单层条件，并且控制器消除了重复动作导致的预算耗尽，才进入未见任务上的确认实验。否则，这版横向控制器不支持 T 型组合假设。
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`
