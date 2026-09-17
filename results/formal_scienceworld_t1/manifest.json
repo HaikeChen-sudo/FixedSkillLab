@@ -1,0 +1,31 @@
+{
+  "run_id": "scienceworld-t1-t-shaped-pilot-12x1",
+  "purpose": "oracle two-by-two mechanism pilot of horizontal and vertical fixed-Skill layers",
+  "records": 48,
+  "tasks": 12,
+  "conditions": [
+    "no_skill",
+    "t_horizontal",
+    "t_vertical",
+    "t_full"
+  ],
+  "repeats": 1,
+  "suite": "scienceworld-t1-t-shaped-pilot-12",
+  "frozen_file": "results/formal_scienceworld_t1/scienceworld-t1-t-shaped-pilot-12x1.jsonl",
+  "sha256": "4a288383750d1625bf538629c498af9fd0c07e34c4bd8b95d212dc935f2fa7ee",
+  "source_file": "results/scienceworld_results.jsonl",
+  "models": [
+    "deepseek-v4-flash"
+  ],
+  "temperatures": [
+    0.0
+  ],
+  "agent_protocol_versions": [
+    "scienceworld-v2"
+  ],
+  "skill_library_versions": [
+    "None",
+    "t1"
+  ],
+  "success_rule": "environment score >= 100"
+}

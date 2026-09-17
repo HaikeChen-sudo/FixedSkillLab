@@ -1,0 +1,88 @@
+{
+  "run_id": "scienceworld-t1-t-shaped-pilot-12x1",
+  "episodes": 48,
+  "duplicates_removed": 0,
+  "condition_metrics": {
+    "no_skill": {
+      "task_success_rate": 0.8333333333333334,
+      "average_input_tokens": 481234.5833333333,
+      "average_output_tokens": 2217.8333333333335,
+      "average_total_tokens": 483452.4166666667,
+      "average_latency_ms": 54914.5,
+      "cost_per_successful_task_usd": 0.00413203392,
+      "average_tool_calls": 53.166666666666664,
+      "efficiency_per_1k_tokens": 0.0017237132437542544,
+      "average_score": 90.91666666666667,
+      "average_environment_moves": 80.33333333333333
+    },
+    "t_horizontal": {
+      "task_success_rate": 0.9166666666666666,
+      "average_input_tokens": 330325.0833333333,
+      "average_output_tokens": 2447.0833333333335,
+      "average_total_tokens": 332772.1666666667,
+      "average_latency_ms": 49426.333333333336,
+      "cost_per_successful_task_usd": 0.0032092515636363635,
+      "average_tool_calls": 46.0,
+      "efficiency_per_1k_tokens": 0.002754637432116969,
+      "average_score": 95.66666666666667,
+      "average_environment_moves": 63.083333333333336
+    },
+    "t_vertical": {
+      "task_success_rate": 0.9166666666666666,
+      "average_input_tokens": 367241.6666666667,
+      "average_output_tokens": 2074.5833333333335,
+      "average_total_tokens": 369316.25,
+      "average_latency_ms": 52113.333333333336,
+      "cost_per_successful_task_usd": 0.003275174254545454,
+      "average_tool_calls": 47.916666666666664,
+      "efficiency_per_1k_tokens": 0.0024820642651566687,
+      "average_score": 95.25,
+      "average_environment_moves": 67.75
+    },
+    "t_full": {
+      "task_success_rate": 0.9166666666666666,
+      "average_input_tokens": 363756.0833333333,
+      "average_output_tokens": 2036.1666666666667,
+      "average_total_tokens": 365792.25,
+      "average_latency_ms": 45277.333333333336,
+      "cost_per_successful_task_usd": 0.0031733290909090914,
+      "average_tool_calls": 45.916666666666664,
+      "efficiency_per_1k_tokens": 0.0025059761836579825,
+      "average_score": 95.25,
+      "average_environment_moves": 65.91666666666667
+    }
+  },
+  "overall_success_interaction": {
+    "success_rates": {
+      "no_skill": 0.8333333333333334,
+      "t_horizontal": 0.9166666666666666,
+      "t_vertical": 0.9166666666666666,
+      "t_full": 0.9166666666666666
+    },
+    "interaction": -0.08333333333333326,
+    "interaction_percentage_points": -8.333333333333325
+  },
+  "stratum_success_interactions": {
+    "state_change_depth": {
+      "success_rates": {
+        "no_skill": 0.6666666666666666,
+        "t_horizontal": 0.8333333333333334,
+        "t_vertical": 0.8333333333333334,
+        "t_full": 0.8333333333333334
+      },
+      "interaction": -0.16666666666666674,
+      "interaction_percentage_points": -16.666666666666675
+    },
+    "cross_domain_breadth": {
+      "success_rates": {
+        "no_skill": 1,
+        "t_horizontal": 1,
+        "t_vertical": 1,
+        "t_full": 1
+      },
+      "interaction": 0,
+      "interaction_percentage_points": 0
+    }
+  },
+  "interpretation_limit": "Mechanism pilot on reused cases; effect direction only."
+}

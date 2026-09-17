@@ -374,6 +374,13 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertEqual(result["interaction"], 1.0)
         self.assertEqual(result["interaction_percentage_points"], 100.0)
 
+    def test_formal_t1_data_is_complete_and_immutable(self):
+        path = Path("results/formal_scienceworld_t1/scienceworld-t1-t-shaped-pilot-12x1.jsonl")
+        records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+        conditions = ("no_skill", "t_horizontal", "t_vertical", "t_full")
+        self.assertEqual(validation_errors(records, "scienceworld-t1-t-shaped-pilot-12", conditions, 1), [])
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), "4a288383750d1625bf538629c498af9fd0c07e34c4bd8b95d212dc935f2fa7ee")
+
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])
         self.assertEqual(skill_names("oracle_skill", "boil"), ["boil-substance"])

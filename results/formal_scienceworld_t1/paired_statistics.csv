@@ -1,0 +1,7 @@
+condition,baseline,success_rate_difference,task_cluster_bootstrap_ci_low,task_cluster_bootstrap_ci_high,condition_only_successes,baseline_only_successes,exact_mcnemar_p_value,tasks_positive,tasks_negative,tasks_tied,exact_task_sign_p_value,average_total_tokens_difference,total_tokens_cluster_bootstrap_ci_low,total_tokens_cluster_bootstrap_ci_high,tasks_with_lower_total_tokens,tasks_with_higher_total_tokens,tasks_with_tied_total_tokens,exact_total_tokens_task_sign_p_value
+t_horizontal,no_skill,0.08333333333333333,0.0,0.25,1,0,1.0,1,0,11,1.0,-150680.25,-477066.50208333327,28522.90833333331,4,8,0,0.3876953125
+t_vertical,no_skill,0.08333333333333333,0.0,0.25,1,0,1.0,1,0,11,1.0,-114136.16666666667,-410069.87916666665,51182.181249999994,6,6,0,1.0
+t_full,no_skill,0.08333333333333333,0.0,0.25,1,0,1.0,1,0,11,1.0,-117660.16666666667,-366238.37083333335,22041.643749999937,5,7,0,0.7744140625
+t_vertical,t_horizontal,0,-0.25,0.25,1,1,1.0,1,1,10,1.0,36544.083333333336,-374696.41250000003,478098.33749999997,7,5,0,0.7744140625
+t_full,t_horizontal,0,-0.25,0.25,1,1,1.0,1,1,10,1.0,33020.083333333336,-318444.97500000003,426083.8999999998,6,6,0,1.0
+t_full,t_vertical,0,0.0,0.0,0,0,1.0,0,0,12,1.0,-3524,-54409.316666666666,57603.63749999994,5,7,0,0.7744140625
