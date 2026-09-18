@@ -182,10 +182,14 @@ def t_skill_names(condition: str, task_name: str) -> Tuple[str, ...]:
         raise ValueError(f"no frozen Oracle label for task: {task_name}")
     if condition in {"t_horizontal", "t2_horizontal"}:
         return (T_HORIZONTAL_SKILL_NAME,)
-    if condition in {"t_vertical", "t2_vertical"}:
+    if condition == "t3_horizontal":
+        return ()
+    if condition in {"t_vertical", "t2_vertical", "t3_vertical"}:
         return (GOLD_SKILLS[task_name],)
     if condition in {"t_full", "t2_full"}:
         return (T_HORIZONTAL_SKILL_NAME, GOLD_SKILLS[task_name])
+    if condition == "t3_full":
+        return (GOLD_SKILLS[task_name],)
     raise ValueError(f"not a T-shaped condition: {condition}")
 
 

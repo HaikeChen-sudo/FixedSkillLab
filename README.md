@@ -753,6 +753,28 @@ T2 有意复用 T1 中产生分歧的 `melt:v025` 和 `freeze:v026`，因此只�
 
 只有当 `t2_full` 的成功率同时高于两个单层条件，并且控制器消除了重复动作导致的预算耗尽，才进入未见任务上的确认实验。否则，这版横向控制器不支持 T 型组合假设。
 
+T2 实际开发结果没有通过这个门槛：`t2_vertical` 成功 5/6，`t2_full` 成功 4/6，成功率交互效应为 -16.7 个百分点。控制器有触发，但它只根据分数不变判断停滞，会把必要的等待也当成无进展。
+
+### ScienceWorld T3：状态感知检查点
+
+T3 是同一开发集上最后一次横向层调整。它移除 T1/T2 的横向 Skill 文本，使 `t3_full` 与 `t3_vertical` 加载完全相同的纵向 Procedure，两组只相差一个确定性控制器。控制器在三次连续等待后要求先 `examine`；对其他命令，只在命令、分数和 observation 都不变时拦截。它不读取任务族标签。
+
+冻结协议见 [`scienceworld_t3_state_aware_dev_manifest.json`](results/scienceworld_t3_state_aware_dev_manifest.json)。运行 `2 tasks × 4 conditions × 3 repeats = 24 episodes`：
+
+```bash
+.venv/scienceworld/bin/python scienceworld_experiment.py \
+  --model deepseek-v4-flash \
+  --temperature 0 \
+  --suite scienceworld-t3-state-aware-dev-2 \
+  --conditions no_skill,t3_horizontal,t3_vertical,t3_full \
+  --max-steps 400 \
+  --repeats 3 \
+  --run-id scienceworld-t3-state-aware-dev-2x3 \
+  --resume
+```
+
+T3 必须同时满足：`t3_full` 成功数高于 `t3_vertical`、交互效应大于 0、`t3_full` 平均 Total Tokens 不超过 `t3_vertical` 的 1.25 倍。任一条失败就停止在这两个 case 上调横向层。
+
 ## 工具
 
 - 文件：`read_file`、`write_file`、`list_files`、`copy_file`、`move_file`

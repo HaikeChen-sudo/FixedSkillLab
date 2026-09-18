@@ -11,7 +11,7 @@ from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_
 from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, T_HORIZONTAL_SKILL_NAME, T_STRUCTURE_VERSION, T_VERTICAL_PATHS, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
 from analyze_scienceworld_formal import exact_sign_p_value, paired_statistics, validation_errors
 from analyze_scienceworld_t1 import success_interaction
-from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_T1_T_SHAPED_PILOT_12, SCIENCEWORLD_T2_CONTROLLER_DEV_2, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6, SCIENCEWORLD_V13B_ORACLE_MECHANISM_6, SUITE_VARIATION_SPLITS, validate_suites
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_T1_T_SHAPED_PILOT_12, SCIENCEWORLD_T2_CONTROLLER_DEV_2, SCIENCEWORLD_T3_STATE_AWARE_DEV_2, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6, SCIENCEWORLD_V13B_ORACLE_MECHANISM_6, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -437,6 +437,100 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertEqual(record["horizontal_controller_version"], "repeated-action-guard-v1")
         self.assertEqual(record["structure_version"], "t2")
         self.assertTrue(all(not row["result"]["ok"] for row in record["trace"][-2:]))
+
+    def test_t3_protocol_is_the_final_state_aware_development_iteration(self):
+        self.assertEqual(SCIENCEWORLD_T3_STATE_AWARE_DEV_2, SCIENCEWORLD_T2_CONTROLLER_DEV_2)
+        manifest = json.loads(Path("results/scienceworld_t3_state_aware_dev_manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["analysis_scope"].split(".")[0], "Development only")
+        self.assertTrue(manifest["frozen_before_api_evaluation"])
+        self.assertEqual(manifest["planned_episodes"], 24)
+        self.assertEqual(manifest["conditions"], ["no_skill", "t3_horizontal", "t3_vertical", "t3_full"])
+        self.assertEqual(skill_selection("t3_horizontal", "melt").names, [])
+        self.assertEqual(skill_selection("t3_vertical", "melt").names, ["melt-substance"])
+        self.assertEqual(skill_selection("t3_full", "melt").names, ["melt-substance"])
+
+    def test_t3_controller_requires_observation_between_wait_batches(self):
+        class FakeEnv:
+            def __init__(self):
+                self.commands = []
+
+            def load(self, *_args, **_kwargs):
+                pass
+
+            def reset(self):
+                return "room", {"taskDesc": "Your task is to melt mercury.", "score": 0, "moves": 0}
+
+            def step(self, command):
+                self.commands.append(command)
+                observation = "sample inspected" if command.startswith("examine ") else "time passed"
+                return observation, 0, False, {"score": 0, "moves": len(self.commands)}
+
+            def close(self):
+                pass
+
+        class ScriptedClient:
+            commands = ["wait1", "wait1", "wait1", "wait1", "examine sample", "wait1"]
+
+            def __init__(self, *_args, **_kwargs):
+                self.turn = 0
+
+            def respond(self, _messages):
+                command = self.commands[self.turn]
+                self.turn += 1
+                return {"role": "assistant", "content": None, "tool_calls": [
+                    {"id": f"call-{self.turn}", "type": "function", "function": {"name": "act", "arguments": json.dumps({"command": command})}},
+                ]}
+
+            def metrics(self):
+                return {"input_tokens": 0, "output_tokens": 0, "prompt_cache_hit_tokens": 0, "prompt_cache_miss_tokens": 0}
+
+        env = FakeEnv()
+        with patch("scienceworld_agent.make_env", return_value=env), patch("scienceworld_agent.DeepSeekChatClient", ScriptedClient):
+            record = run_episode("test", 0, "melt", 25, "easy", 6, "t3_full")
+        self.assertEqual(env.commands, ["wait1", "wait1", "wait1", "examine sample", "wait1"])
+        self.assertEqual(record["controller_interventions"], 1)
+        self.assertEqual(record["trace"][3]["result"]["reason"], "wait_checkpoint")
+        self.assertEqual(record["horizontal_controller_version"], "state-aware-checkpoint-v1")
+        self.assertEqual(record["structure_version"], "t3")
+        self.assertEqual(record["skills_loaded"], ["melt-substance"])
+        self.assertEqual(record["horizontal_skills_loaded"], [])
+
+    def test_t3_controller_allows_repeated_actions_when_observation_changes(self):
+        class ChangingEnv:
+            def __init__(self):
+                self.commands = []
+
+            def load(self, *_args, **_kwargs):
+                pass
+
+            def reset(self):
+                return "state 0", {"taskDesc": "Your task is to melt mercury.", "score": 0, "moves": 0}
+
+            def step(self, command):
+                self.commands.append(command)
+                return f"state {len(self.commands)}", 0, False, {"score": 0, "moves": len(self.commands)}
+
+            def close(self):
+                pass
+
+        class RepeatingClient:
+            def __init__(self, *_args, **_kwargs):
+                self.turn = 0
+
+            def respond(self, _messages):
+                self.turn += 1
+                return {"role": "assistant", "content": None, "tool_calls": [
+                    {"id": f"call-{self.turn}", "type": "function", "function": {"name": "act", "arguments": '{"command":"activate stove"}'}},
+                ]}
+
+            def metrics(self):
+                return {"input_tokens": 0, "output_tokens": 0, "prompt_cache_hit_tokens": 0, "prompt_cache_miss_tokens": 0}
+
+        env = ChangingEnv()
+        with patch("scienceworld_agent.make_env", return_value=env), patch("scienceworld_agent.DeepSeekChatClient", RepeatingClient):
+            record = run_episode("test", 0, "melt", 25, "easy", 5, "t3_horizontal")
+        self.assertEqual(env.commands, ["activate stove"] * 5)
+        self.assertEqual(record["controller_interventions"], 0)
 
     def test_conditions_change_only_loaded_skill(self):
         self.assertEqual(skill_names("no_skill", "boil"), [])

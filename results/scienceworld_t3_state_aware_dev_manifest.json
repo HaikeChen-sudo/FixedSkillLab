@@ -1,0 +1,56 @@
+{
+  "protocol_id": "scienceworld-t3-state-aware-dev-2x3",
+  "protocol_version": "1.0",
+  "frozen_before_api_evaluation": true,
+  "purpose": "final development test of a task-agnostic state-aware horizontal controller combined with fixed vertical skills",
+  "analysis_scope": "Development only. The two cases were selected after T1 and reused in T2; this run cannot support a held-out claim.",
+  "suite": "scienceworld-t3-state-aware-dev-2",
+  "tasks": ["melt:v025", "freeze:v026"],
+  "model": "deepseek-v4-flash",
+  "temperature": 0,
+  "max_steps": 400,
+  "repeats": 3,
+  "planned_episodes": 24,
+  "order_seed": 0,
+  "conditions": [
+    "no_skill",
+    "t3_horizontal",
+    "t3_vertical",
+    "t3_full"
+  ],
+  "factor_design": {
+    "no_skill": {"horizontal_controller": 0, "vertical_skill": 0},
+    "t3_horizontal": {"horizontal_controller": 1, "vertical_skill": 0},
+    "t3_vertical": {"horizontal_controller": 0, "vertical_skill": 1},
+    "t3_full": {"horizontal_controller": 1, "vertical_skill": 1}
+  },
+  "horizontal_controller_version": "state-aware-checkpoint-v1",
+  "horizontal_skill_text_loaded": false,
+  "controller_rules": [
+    "After three consecutive wait or wait1 actions, require an examine command before allowing another wait action.",
+    "For non-wait commands, intervene only when the same command repeats and neither score nor observation changes.",
+    "The controller cannot read task-family labels or inject a task-specific solution."
+  ],
+  "primary_metric": "task_success_rate",
+  "secondary_metrics": [
+    "average_score",
+    "average_input_tokens",
+    "average_output_tokens",
+    "average_total_tokens",
+    "average_latency_ms",
+    "cost_per_successful_task_usd",
+    "average_tool_calls",
+    "average_environment_moves",
+    "average_environment_actions",
+    "average_controller_interventions"
+  ],
+  "interaction_formula": "(SR_t3_full - SR_t3_vertical) - (SR_t3_horizontal - SR_no_skill)",
+  "development_gate": {
+    "success": "successful episodes for t3_full must be greater than successful episodes for t3_vertical",
+    "interaction": "the preregistered success interaction must be greater than zero",
+    "cost": "average total tokens for t3_full must not exceed 1.25 times t3_vertical"
+  },
+  "failure_rule": "If any development-gate condition fails, stop horizontal tuning on these cases and report that the tested T-shaped combination is not established.",
+  "next_step_if_passed": "Freeze a new task suite before evaluating the unchanged T3 controller.",
+  "next_step_if_failed": "Retain the vertical-Skill result and report the T-shaped combination as unsupported in the tested setting."
+}

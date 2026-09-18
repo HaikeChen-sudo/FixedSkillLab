@@ -35,3 +35,7 @@ _Avoid_: 检索、预测
 **Mechanism Pilot（机制 Pilot）**:
 复用已见测试 case、只检查实现和效应方向的小规模实验，不提供独立 held-out 结论。
 _Avoid_: 正式确认、独立复现
+
+**State-aware Checkpoint（状态感知检查点）**:
+跨任务的确定性横向控制：对时间推进操作定期要求显式观测，对其他命令只在命令、分数和 observation 都未变化时判定停滞。
+_Avoid_: 按任务名分支的专用解法

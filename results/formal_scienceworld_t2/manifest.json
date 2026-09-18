@@ -1,0 +1,31 @@
+{
+  "run_id": "scienceworld-t2-controller-dev-2x3",
+  "purpose": "Development-only test of a deterministic horizontal repeated-action controller combined with fixed vertical skills; not a held-out confirmation.",
+  "records": 24,
+  "tasks": 2,
+  "conditions": [
+    "no_skill",
+    "t2_horizontal",
+    "t2_vertical",
+    "t2_full"
+  ],
+  "repeats": 3,
+  "suite": "scienceworld-t2-controller-dev-2",
+  "frozen_file": "results/formal_scienceworld_t2/scienceworld-t2-controller-dev-2x3.jsonl",
+  "sha256": "edbf3298943e618b7c88fb0340657d4bfd6f71789ac41c9e06994d10cfe23005",
+  "source_file": "results/scienceworld_results.jsonl",
+  "models": [
+    "deepseek-v4-flash"
+  ],
+  "temperatures": [
+    0.0
+  ],
+  "agent_protocol_versions": [
+    "scienceworld-v2"
+  ],
+  "skill_library_versions": [
+    "None",
+    "t1"
+  ],
+  "success_rule": "environment score >= 100"
+}

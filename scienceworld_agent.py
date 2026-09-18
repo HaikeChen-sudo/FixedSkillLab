@@ -51,10 +51,14 @@ CONDITIONS = (
     "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo",
     "t_horizontal", "t_vertical", "t_full",
     "t2_horizontal", "t2_vertical", "t2_full",
+    "t3_horizontal", "t3_vertical", "t3_full",
 )
 DEFAULT_CONDITIONS = ("no_skill", "oracle_v2")
 AGENT_PROTOCOL_VERSION = "scienceworld-v2"
-PROGRESS_CONTROLLER_VERSION = "repeated-action-guard-v1"
+T2_CONTROLLER_VERSION = "repeated-action-guard-v1"
+T3_CONTROLLER_VERSION = "state-aware-checkpoint-v1"
+WAIT_COMMANDS = {"wait", "wait1"}
+T3_WAIT_CHECKPOINT = 3
 PRICING_PER_MILLION = {
     "deepseek-v4-flash": {"cache_hit": 0.0028, "cache_miss": 0.14, "output": 0.28},
     "deepseek-v4-pro": {"cache_hit": 0.003625, "cache_miss": 0.435, "output": 0.87},
@@ -94,8 +98,10 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
     if condition in {
         "t_horizontal", "t_vertical", "t_full",
         "t2_horizontal", "t2_vertical", "t2_full",
+        "t3_horizontal", "t3_vertical", "t3_full",
     }:
-        return SkillSelection(list(t_skill_names(condition, task_name)), [], [], None, gold, T_STRUCTURE_VERSION)
+        names = list(t_skill_names(condition, task_name))
+        return SkillSelection(names, [], [], None, gold, T_STRUCTURE_VERSION if names else None)
     if condition in {
         "oracle_skill", "oracle_v2", "oracle_v3",
         "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo",
@@ -204,10 +210,19 @@ def run_episode(
         is_t_condition = condition in {
             "t_horizontal", "t_vertical", "t_full",
             "t2_horizontal", "t2_vertical", "t2_full",
+            "t3_horizontal", "t3_vertical", "t3_full",
         }
-        horizontal_loaded = condition in {"t_horizontal", "t_full", "t2_horizontal", "t2_full"}
-        vertical_loaded = condition in {"t_vertical", "t_full", "t2_vertical", "t2_full"}
-        controller_active = condition in {"t2_horizontal", "t2_full"}
+        horizontal_loaded = condition in {
+            "t_horizontal", "t_full", "t2_horizontal", "t2_full", "t3_horizontal", "t3_full",
+        }
+        vertical_loaded = condition in {
+            "t_vertical", "t_full", "t2_vertical", "t2_full", "t3_vertical", "t3_full",
+        }
+        controller_version = (
+            T2_CONTROLLER_VERSION if condition in {"t2_horizontal", "t2_full"}
+            else T3_CONTROLLER_VERSION if condition in {"t3_horizontal", "t3_full"}
+            else None
+        )
         vertical_path = T_VERTICAL_PATHS[task_name] if vertical_loaded else ()
         messages: List[Dict[str, Any]] = [{"role": "system", "content": SYSTEM_PROMPT}]
         if selected:
@@ -226,6 +241,7 @@ def run_episode(
         environment_actions = 0
         last_command = ""
         repeated_without_progress = 0
+        consecutive_waits = 0
 
         while len(trace) < max_steps and not done:
             reply = client.respond(messages)
@@ -245,32 +261,66 @@ def run_episode(
                 if not isinstance(command, str) or not command.strip():
                     raise ValueError("command must be a non-empty string")
                 normalized_command = " ".join(command.lower().split())
-                if (
-                    controller_active
+                wait_checkpoint = (
+                    controller_version == T3_CONTROLLER_VERSION
+                    and normalized_command in WAIT_COMMANDS
+                    and consecutive_waits >= T3_WAIT_CHECKPOINT
+                )
+                repeated_stagnation = (
+                    controller_version is not None
+                    and normalized_command not in WAIT_COMMANDS
                     and normalized_command == last_command
                     and repeated_without_progress >= repeated_action_limit(normalized_command)
-                ):
+                )
+                t2_repeated_wait = (
+                    controller_version == T2_CONTROLLER_VERSION
+                    and normalized_command in WAIT_COMMANDS
+                    and normalized_command == last_command
+                    and repeated_without_progress >= repeated_action_limit(normalized_command)
+                )
+                if wait_checkpoint or repeated_stagnation or t2_repeated_wait:
                     controller_interventions += 1
+                    reason = "wait_checkpoint" if wait_checkpoint else "repeated_unchanged_action"
+                    error = (
+                        "Three consecutive wait actions were completed. Before waiting again, inspect the task-relevant sample or device with examine <object> so hidden state changes are observable."
+                        if wait_checkpoint else
+                        "Horizontal progress controller blocked a repeated no-progress command. Do not repeat it. Inspect the target, container, inventory, current state, and unmet prerequisite before choosing a different action."
+                    )
                     result = {
                         "ok": False,
-                        "error": "Horizontal progress controller blocked a repeated no-progress command. Do not repeat it. Inspect the target, container, inventory, current state, and unmet prerequisite before choosing a different action.",
-                        "controller": PROGRESS_CONTROLLER_VERSION,
+                        "error": error,
+                        "controller": controller_version,
+                        "reason": reason,
+                        "state_summary": {
+                            "score": score,
+                            "environment_moves": environment_moves,
+                            "last_observation": observation[:240],
+                        },
                         "score": score,
                         "done": done,
                         "environment_moves": environment_moves,
                     }
                 else:
                     previous_score = score
+                    previous_observation = observation
                     observation, reward, done, info = env.step(command)
                     environment_actions += 1
                     score = info["score"]
                     environment_moves = info["moves"]
-                    if normalized_command == last_command and score == previous_score:
+                    unchanged = score == previous_score and (
+                        controller_version != T3_CONTROLLER_VERSION or observation == previous_observation
+                    )
+                    if normalized_command == last_command and unchanged:
                         repeated_without_progress += 1
-                    elif score == previous_score:
+                    elif unchanged:
                         repeated_without_progress = 1
                     else:
                         repeated_without_progress = 0
+                    if controller_version == T3_CONTROLLER_VERSION:
+                        if normalized_command in WAIT_COMMANDS:
+                            consecutive_waits += 1
+                        elif normalized_command.startswith("examine ") or normalized_command in {"look around", "inventory"}:
+                            consecutive_waits = 0
                     last_command = normalized_command
                     result = {
                         "ok": True,
@@ -337,16 +387,20 @@ def run_episode(
             "skill_render_mode": skill_render_mode if selected else None,
             "skill_prompt_sha256": hashlib.sha256(skill_prompt.encode("utf-8")).hexdigest() if selected else None,
             "skill_architecture": "t_shaped" if is_t_condition else ("none" if condition == "no_skill" else "flat"),
-            "structure_version": "t2" if condition.startswith("t2_") else T_STRUCTURE_VERSION if is_t_condition else None,
+            "structure_version": (
+                "t3" if condition.startswith("t3_") else
+                "t2" if condition.startswith("t2_") else
+                T_STRUCTURE_VERSION if is_t_condition else None
+            ),
             "horizontal_layer_loaded": horizontal_loaded,
-            "horizontal_skills_loaded": [T_HORIZONTAL_SKILL_NAME] if horizontal_loaded else [],
+            "horizontal_skills_loaded": [T_HORIZONTAL_SKILL_NAME] if T_HORIZONTAL_SKILL_NAME in selected else [],
             "vertical_layer_loaded": vertical_loaded,
             "vertical_domain": vertical_path[0] if vertical_path else None,
             "vertical_path": list(vertical_path),
             "vertical_depth": len(vertical_path),
             "skill_prompt_words": len(skill_prompt.split()),
             "skill_prompt_characters": len(skill_prompt),
-            "horizontal_controller_version": PROGRESS_CONTROLLER_VERSION if controller_active else None,
+            "horizontal_controller_version": controller_version,
             "controller_interventions": controller_interventions,
             "final_text": final_text,
             "trace": trace,

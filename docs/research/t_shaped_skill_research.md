@@ -33,7 +33,7 @@ T 型人才的稳定含义是“广度与深度并存”。Hansen 与 von Oeting
 
 ### 2.1 数据结构
 
-T1 把横向层限制为 Skill 文本。T2 放宽为跨任务优化层：横向部分可以包含固定 Skill 文本和确定性执行控制器，但不得读取任务族标签后注入专用解法。纵向部分仍是任务领域 Procedure。这个放宽不改变 2×2 因子，只把横向变量从“通用提示”改成“通用控制面”。
+T1 把横向层限制为 Skill 文本。T2 放宽为跨任务优化层：横向部分可以包含固定 Skill 文本和确定性执行控制器，但不得读取任务族标签后注入专用解法。T2 的分数型重复动作拦截器产生了负交互，没有通过预注册门槛。T3 移除横向 Skill 文本，只保留一个不使用任务族标签的状态感知控制器，使 Full 和 Vertical 的 Procedure 文本完全相同。纵向部分仍是任务领域 Procedure。
 
 令任务族集合为 \(\mathcal D=\{d_1,\ldots,d_m\}\)。每条 Skill 记为：
 
@@ -252,10 +252,10 @@ DeepSeek API 不返回 Skill 子串的独立 token 数，不能伪造精确值�
 ## 6. 建议的研究顺序
 
 1. **T1：Oracle 2×2 Pilot。** 48 episodes，确认横向和纵向内容确实按预期加载。
-2. **T2：Oracle 2×2 Confirmation。** 18 至 24 个冻结 case，每条件 3 次；核心是交互效应和跨任务族迁移。
-3. **T3：Flat-matched Control。** 固定 Skill body 与 Token 预算，只移除 `role/level/parent` 和路径加载规则。
-4. **T4：Router。** 在 T 结构已有信号后，再比较 flat retrieval、body-aware retrieval 和 T-aware routing。
-5. **T5：跨模型复现。** 至少增加一个不同系列模型，防止结论只对 DeepSeek 的提示偏好成立。
+2. **T2：分数型重复动作控制。** 开发诊断已完成，Full 4/6，Vertical 5/6，未通过门槛。
+3. **T3：状态感知检查点。** 在相同两个开发 case 上进行最后一次横向层调整；如果 Full 仍不优于 Vertical，停止在该任务集上继续调参。
+4. **Flat-matched Control。** 只在 T3 通过后才做，固定 Skill body 与 Token 预算，移除 `role/level/parent` 和路径加载规则。
+5. **Router 与跨模型复现。** 只在 T 结构已有 held-out 信号后展开。
 
 不建议现在加入自动生成 Skill、PPO 或完整 Skill graph。它们会同时改变 Skill 内容、结构和选择机制，T 型假设反而无法检验。
 

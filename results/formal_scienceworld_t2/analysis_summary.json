@@ -1,0 +1,473 @@
+{
+  "manifest": {
+    "run_id": "scienceworld-t2-controller-dev-2x3",
+    "purpose": "Development-only test of a deterministic horizontal repeated-action controller combined with fixed vertical skills; not a held-out confirmation.",
+    "records": 24,
+    "tasks": 2,
+    "conditions": [
+      "no_skill",
+      "t2_horizontal",
+      "t2_vertical",
+      "t2_full"
+    ],
+    "repeats": 3,
+    "suite": "scienceworld-t2-controller-dev-2",
+    "frozen_file": "results/formal_scienceworld_t2/scienceworld-t2-controller-dev-2x3.jsonl",
+    "sha256": "edbf3298943e618b7c88fb0340657d4bfd6f71789ac41c9e06994d10cfe23005",
+    "source_file": "results/scienceworld_results.jsonl",
+    "models": [
+      "deepseek-v4-flash"
+    ],
+    "temperatures": [
+      0.0
+    ],
+    "agent_protocol_versions": [
+      "scienceworld-v2"
+    ],
+    "skill_library_versions": [
+      "None",
+      "t1"
+    ],
+    "success_rule": "environment score >= 100"
+  },
+  "condition_summary": [
+    {
+      "condition": "no_skill",
+      "label": "No Skill",
+      "episodes": 6,
+      "successes": 1,
+      "task_success_rate": 0.16666666666666666,
+      "task_success_rate_repeat_std": 0.2886751345948129,
+      "average_input_tokens": 2078157.5,
+      "average_output_tokens": 9527.0,
+      "average_total_tokens": 2087684.5,
+      "average_latency_ms": 247412.83333333334,
+      "cost_per_successful_task_usd": 0.08004665200000001,
+      "average_tool_calls": 177.83333333333334,
+      "efficiency_per_1k_tokens": 7.983326343931118e-05,
+      "average_score": 60.666666666666664,
+      "average_environment_moves": 337.3333333333333
+    },
+    {
+      "condition": "t2_horizontal",
+      "label": "t2_horizontal",
+      "episodes": 6,
+      "successes": 1,
+      "task_success_rate": 0.16666666666666666,
+      "task_success_rate_repeat_std": 0.2886751345948129,
+      "average_input_tokens": 6369459.333333333,
+      "average_output_tokens": 34980.0,
+      "average_total_tokens": 6404439.333333333,
+      "average_latency_ms": 364614.6666666667,
+      "cost_per_successful_task_usd": 0.204644272,
+      "average_tool_calls": 234.33333333333334,
+      "efficiency_per_1k_tokens": 2.602361549421084e-05,
+      "average_score": 58.166666666666664,
+      "average_environment_moves": 324.1666666666667
+    },
+    {
+      "condition": "t2_vertical",
+      "label": "t2_vertical",
+      "episodes": 6,
+      "successes": 5,
+      "task_success_rate": 0.8333333333333334,
+      "task_success_rate_repeat_std": 0.28867513459481287,
+      "average_input_tokens": 695966.6666666666,
+      "average_output_tokens": 4059.6666666666665,
+      "average_total_tokens": 700026.3333333334,
+      "average_latency_ms": 91292.0,
+      "cost_per_successful_task_usd": 0.0066368198400000005,
+      "average_tool_calls": 89.33333333333333,
+      "efficiency_per_1k_tokens": 0.0011904314075803816,
+      "average_score": 91.33333333333333,
+      "average_environment_moves": 130.5
+    },
+    {
+      "condition": "t2_full",
+      "label": "t2_full",
+      "episodes": 6,
+      "successes": 4,
+      "task_success_rate": 0.6666666666666666,
+      "task_success_rate_repeat_std": 0.28867513459481287,
+      "average_input_tokens": 1501869.6666666667,
+      "average_output_tokens": 10568.5,
+      "average_total_tokens": 1512438.1666666667,
+      "average_latency_ms": 180950.83333333334,
+      "cost_per_successful_task_usd": 0.0164811024,
+      "average_tool_calls": 137.66666666666666,
+      "efficiency_per_1k_tokens": 0.00044078937001171064,
+      "average_score": 82.33333333333333,
+      "average_environment_moves": 173.16666666666666
+    }
+  ],
+  "repeat_statistics": [
+    {
+      "condition": "no_skill",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        2,
+        2,
+        2
+      ],
+      "task_success_rate": {
+        "mean": 0.16666666666666666,
+        "std": 0.2886751345948129
+      },
+      "average_input_tokens": {
+        "mean": 2078157.5,
+        "std": 724733.7591446944
+      },
+      "average_output_tokens": {
+        "mean": 9527.0,
+        "std": 5317.349739296824
+      },
+      "average_total_tokens": {
+        "mean": 2087684.5,
+        "std": 728448.8336906375
+      },
+      "average_latency_ms": {
+        "mean": 247412.83333333334,
+        "std": 121017.1583003143
+      },
+      "cost_per_successful_task_usd": null,
+      "average_tool_calls": {
+        "mean": 177.83333333333334,
+        "std": 52.288462717250866
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.0001331126857454417,
+        "std": 0.00023055793484305444
+      },
+      "average_score": {
+        "mean": 60.666666666666664,
+        "std": 14.338177476002079
+      },
+      "average_environment_moves": {
+        "mean": 337.3333333333333,
+        "std": 110.275034950497
+      },
+      "average_environment_actions": {
+        "mean": 177.83333333333334,
+        "std": 52.288462717250866
+      },
+      "average_controller_interventions": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "condition": "t2_horizontal",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        2,
+        2,
+        2
+      ],
+      "task_success_rate": {
+        "mean": 0.16666666666666666,
+        "std": 0.2886751345948129
+      },
+      "average_input_tokens": {
+        "mean": 6369459.333333333,
+        "std": 4207685.818835644
+      },
+      "average_output_tokens": {
+        "mean": 34980.0,
+        "std": 15875.188313843713
+      },
+      "average_total_tokens": {
+        "mean": 6404439.333333333,
+        "std": 4222364.0531778615
+      },
+      "average_latency_ms": {
+        "mean": 364614.6666666667,
+        "std": 140699.21864240515
+      },
+      "cost_per_successful_task_usd": null,
+      "average_tool_calls": {
+        "mean": 234.33333333333334,
+        "std": 71.81457605064124
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 8.887876855977554e-05,
+        "std": 0.00015394254285968658
+      },
+      "average_score": {
+        "mean": 58.166666666666664,
+        "std": 12.573119475028198
+      },
+      "average_environment_moves": {
+        "mean": 324.1666666666667,
+        "std": 90.39404478909732
+      },
+      "average_environment_actions": {
+        "mean": 232.16666666666666,
+        "std": 70.96888989785126
+      },
+      "average_controller_interventions": {
+        "mean": 2.1666666666666665,
+        "std": 1.6072751268321592
+      }
+    },
+    {
+      "condition": "t2_vertical",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        2,
+        2,
+        2
+      ],
+      "task_success_rate": {
+        "mean": 0.8333333333333334,
+        "std": 0.28867513459481287
+      },
+      "average_input_tokens": {
+        "mean": 695966.6666666666,
+        "std": 467606.364130754
+      },
+      "average_output_tokens": {
+        "mean": 4059.6666666666665,
+        "std": 551.2722406700099
+      },
+      "average_total_tokens": {
+        "mean": 700026.3333333334,
+        "std": 468145.0642616916
+      },
+      "average_latency_ms": {
+        "mean": 91292.0,
+        "std": 20357.619580884206
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.008210833866666668,
+        "std": 0.006816669131715196
+      },
+      "average_tool_calls": {
+        "mean": 89.33333333333333,
+        "std": 27.02468007827906
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.0016869093573575692,
+        "std": 0.0011144107790517488
+      },
+      "average_score": {
+        "mean": 91.33333333333333,
+        "std": 15.01110699893027
+      },
+      "average_environment_moves": {
+        "mean": 130.5,
+        "std": 75.5198649363199
+      },
+      "average_environment_actions": {
+        "mean": 89.33333333333333,
+        "std": 27.02468007827906
+      },
+      "average_controller_interventions": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "condition": "t2_full",
+      "repeats": 3,
+      "episodes_per_repeat": [
+        2,
+        2,
+        2
+      ],
+      "task_success_rate": {
+        "mean": 0.6666666666666666,
+        "std": 0.28867513459481287
+      },
+      "average_input_tokens": {
+        "mean": 1501869.6666666667,
+        "std": 544601.2680430366
+      },
+      "average_output_tokens": {
+        "mean": 10568.5,
+        "std": 1764.6912619492396
+      },
+      "average_total_tokens": {
+        "mean": 1512438.1666666667,
+        "std": 546356.885097171
+      },
+      "average_latency_ms": {
+        "mean": 180950.83333333334,
+        "std": 58187.39620470513
+      },
+      "cost_per_successful_task_usd": {
+        "mean": 0.0173278364,
+        "std": 0.003467545986928945
+      },
+      "average_tool_calls": {
+        "mean": 137.66666666666666,
+        "std": 24.51700090413453
+      },
+      "efficiency_per_1k_tokens": {
+        "mean": 0.00043980246259457965,
+        "std": 7.603710334546328e-05
+      },
+      "average_score": {
+        "mean": 82.33333333333333,
+        "std": 15.299782133525083
+      },
+      "average_environment_moves": {
+        "mean": 173.16666666666666,
+        "std": 40.43616368219583
+      },
+      "average_environment_actions": {
+        "mean": 135.33333333333334,
+        "std": 24.291630931934836
+      },
+      "average_controller_interventions": {
+        "mean": 2.3333333333333335,
+        "std": 0.28867513459481287
+      }
+    }
+  ],
+  "paired_outcomes": {
+    "baseline_only": 3,
+    "both_fail": 10,
+    "both_success": 7,
+    "condition_only": 16
+  },
+  "paired_statistics": [
+    {
+      "condition": "t2_horizontal",
+      "baseline": "no_skill",
+      "success_rate_difference": 0.0,
+      "task_cluster_bootstrap_ci_low": -0.3333333333333333,
+      "task_cluster_bootstrap_ci_high": 0.3333333333333333,
+      "condition_only_successes": 1,
+      "baseline_only_successes": 1,
+      "exact_mcnemar_p_value": 1.0,
+      "tasks_positive": 1,
+      "tasks_negative": 1,
+      "tasks_tied": 0,
+      "exact_task_sign_p_value": 1.0,
+      "average_total_tokens_difference": 4316754.833333333,
+      "total_tokens_cluster_bootstrap_ci_low": 343432.6666666667,
+      "total_tokens_cluster_bootstrap_ci_high": 8290077.0,
+      "tasks_with_lower_total_tokens": 0,
+      "tasks_with_higher_total_tokens": 2,
+      "tasks_with_tied_total_tokens": 0,
+      "exact_total_tokens_task_sign_p_value": 0.5
+    },
+    {
+      "condition": "t2_vertical",
+      "baseline": "no_skill",
+      "success_rate_difference": 0.6666666666666666,
+      "task_cluster_bootstrap_ci_low": 0.6666666666666666,
+      "task_cluster_bootstrap_ci_high": 0.6666666666666666,
+      "condition_only_successes": 4,
+      "baseline_only_successes": 0,
+      "exact_mcnemar_p_value": 0.125,
+      "tasks_positive": 2,
+      "tasks_negative": 0,
+      "tasks_tied": 0,
+      "exact_task_sign_p_value": 0.5,
+      "average_total_tokens_difference": -1387658.1666666665,
+      "total_tokens_cluster_bootstrap_ci_low": -1611682.0,
+      "total_tokens_cluster_bootstrap_ci_high": -1163634.3333333333,
+      "tasks_with_lower_total_tokens": 2,
+      "tasks_with_higher_total_tokens": 0,
+      "tasks_with_tied_total_tokens": 0,
+      "exact_total_tokens_task_sign_p_value": 0.5
+    },
+    {
+      "condition": "t2_full",
+      "baseline": "no_skill",
+      "success_rate_difference": 0.5,
+      "task_cluster_bootstrap_ci_low": 0.0,
+      "task_cluster_bootstrap_ci_high": 1.0,
+      "condition_only_successes": 3,
+      "baseline_only_successes": 0,
+      "exact_mcnemar_p_value": 0.25,
+      "tasks_positive": 1,
+      "tasks_negative": 0,
+      "tasks_tied": 1,
+      "exact_task_sign_p_value": 1.0,
+      "average_total_tokens_difference": -575246.3333333333,
+      "total_tokens_cluster_bootstrap_ci_low": -981430.6666666666,
+      "total_tokens_cluster_bootstrap_ci_high": -169062.0,
+      "tasks_with_lower_total_tokens": 2,
+      "tasks_with_higher_total_tokens": 0,
+      "tasks_with_tied_total_tokens": 0,
+      "exact_total_tokens_task_sign_p_value": 0.5
+    },
+    {
+      "condition": "t2_vertical",
+      "baseline": "t2_horizontal",
+      "success_rate_difference": 0.6666666666666666,
+      "task_cluster_bootstrap_ci_low": 0.3333333333333333,
+      "task_cluster_bootstrap_ci_high": 1.0,
+      "condition_only_successes": 4,
+      "baseline_only_successes": 0,
+      "exact_mcnemar_p_value": 0.125,
+      "tasks_positive": 2,
+      "tasks_negative": 0,
+      "tasks_tied": 0,
+      "exact_task_sign_p_value": 0.5,
+      "average_total_tokens_difference": -5704413,
+      "total_tokens_cluster_bootstrap_ci_low": -9901759.0,
+      "total_tokens_cluster_bootstrap_ci_high": -1507067.0,
+      "tasks_with_lower_total_tokens": 2,
+      "tasks_with_higher_total_tokens": 0,
+      "tasks_with_tied_total_tokens": 0,
+      "exact_total_tokens_task_sign_p_value": 0.5
+    },
+    {
+      "condition": "t2_full",
+      "baseline": "t2_horizontal",
+      "success_rate_difference": 0.5,
+      "task_cluster_bootstrap_ci_low": 0.3333333333333333,
+      "task_cluster_bootstrap_ci_high": 0.6666666666666666,
+      "condition_only_successes": 3,
+      "baseline_only_successes": 0,
+      "exact_mcnemar_p_value": 0.25,
+      "tasks_positive": 2,
+      "tasks_negative": 0,
+      "tasks_tied": 0,
+      "exact_task_sign_p_value": 0.5,
+      "average_total_tokens_difference": -4892001.166666667,
+      "total_tokens_cluster_bootstrap_ci_low": -8459139.0,
+      "total_tokens_cluster_bootstrap_ci_high": -1324863.3333333333,
+      "tasks_with_lower_total_tokens": 2,
+      "tasks_with_higher_total_tokens": 0,
+      "tasks_with_tied_total_tokens": 0,
+      "exact_total_tokens_task_sign_p_value": 0.5
+    },
+    {
+      "condition": "t2_full",
+      "baseline": "t2_vertical",
+      "success_rate_difference": -0.16666666666666666,
+      "task_cluster_bootstrap_ci_low": -0.6666666666666666,
+      "task_cluster_bootstrap_ci_high": 0.3333333333333333,
+      "condition_only_successes": 1,
+      "baseline_only_successes": 2,
+      "exact_mcnemar_p_value": 1.0,
+      "tasks_positive": 1,
+      "tasks_negative": 1,
+      "tasks_tied": 0,
+      "exact_task_sign_p_value": 1.0,
+      "average_total_tokens_difference": 812411.8333333334,
+      "total_tokens_cluster_bootstrap_ci_low": 182203.66666666666,
+      "total_tokens_cluster_bootstrap_ci_high": 1442620.0,
+      "tasks_with_lower_total_tokens": 0,
+      "tasks_with_higher_total_tokens": 2,
+      "tasks_with_tied_total_tokens": 0,
+      "exact_total_tokens_task_sign_p_value": 0.5
+    }
+  ],
+  "retrieval_summary": [],
+  "failure_taxonomy": {
+    "environment_move_budget_exhausted": 6,
+    "execution_error_other": 1,
+    "premature_model_stop": 6
+  },
+  "validation": {
+    "records_loaded": 24,
+    "records_kept": 24,
+    "duplicates_removed": 0,
+    "unique_episode_keys": 24
+  }
+}

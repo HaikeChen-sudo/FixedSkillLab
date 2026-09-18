@@ -1,0 +1,31 @@
+{
+  "run_id": "scienceworld-t3-state-aware-dev-2x3",
+  "purpose": "Final development-only test of the frozen state-aware horizontal controller; not a held-out confirmation.",
+  "records": 24,
+  "tasks": 2,
+  "conditions": [
+    "no_skill",
+    "t3_horizontal",
+    "t3_vertical",
+    "t3_full"
+  ],
+  "repeats": 3,
+  "suite": "scienceworld-t3-state-aware-dev-2",
+  "frozen_file": "results/formal_scienceworld_t3/scienceworld-t3-state-aware-dev-2x3.jsonl",
+  "sha256": "04e4e6beeddc747568f5177502b01de3565e8f7d4349609a1ac017172eb1b35c",
+  "source_file": "results/scienceworld_results.jsonl",
+  "models": [
+    "deepseek-v4-flash"
+  ],
+  "temperatures": [
+    0.0
+  ],
+  "agent_protocol_versions": [
+    "scienceworld-v2"
+  ],
+  "skill_library_versions": [
+    "None",
+    "t1"
+  ],
+  "success_rule": "environment score >= 100"
+}

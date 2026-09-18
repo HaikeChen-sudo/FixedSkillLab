@@ -117,6 +117,10 @@ SCIENCEWORLD_T2_CONTROLLER_DEV_2 = (
     ("freeze", 26),
 )
 
+# T3 is the final development iteration on the same diagnosed cases. Reusing
+# them keeps controller tuning separate from any later held-out confirmation.
+SCIENCEWORLD_T3_STATE_AWARE_DEV_2 = SCIENCEWORLD_T2_CONTROLLER_DEV_2
+
 SUITES = {
     "scienceworld-pilot-6": SCIENCEWORLD_PILOT_6,
     "scienceworld-v3-heldout-6": SCIENCEWORLD_V3_HELDOUT_6,
@@ -129,6 +133,7 @@ SUITES = {
     "scienceworld-v13b-oracle-mechanism-6": SCIENCEWORLD_V13B_ORACLE_MECHANISM_6,
     "scienceworld-t1-t-shaped-pilot-12": SCIENCEWORLD_T1_T_SHAPED_PILOT_12,
     "scienceworld-t2-controller-dev-2": SCIENCEWORLD_T2_CONTROLLER_DEV_2,
+    "scienceworld-t3-state-aware-dev-2": SCIENCEWORLD_T3_STATE_AWARE_DEV_2,
 }
 
 SUITE_VARIATION_SPLITS = {
@@ -143,6 +148,7 @@ SUITE_VARIATION_SPLITS = {
     "scienceworld-v13b-oracle-mechanism-6": "test",
     "scienceworld-t1-t-shaped-pilot-12": "test",
     "scienceworld-t2-controller-dev-2": "test",
+    "scienceworld-t3-state-aware-dev-2": "test",
 }
 
 REUSED_MECHANISM_SUITES = {
@@ -151,11 +157,13 @@ REUSED_MECHANISM_SUITES = {
     "scienceworld-v13b-oracle-mechanism-6",
     "scienceworld-t1-t-shaped-pilot-12",
     "scienceworld-t2-controller-dev-2",
+    "scienceworld-t3-state-aware-dev-2",
 }
 
 TARGETED_SUITE_FAMILIES = {
     "scienceworld-v13b-oracle-mechanism-6": {"boil", "freeze"},
     "scienceworld-t2-controller-dev-2": {"melt", "freeze"},
+    "scienceworld-t3-state-aware-dev-2": {"melt", "freeze"},
 }
 
 SCIENCEWORLD_TEST_VARIATIONS = {
