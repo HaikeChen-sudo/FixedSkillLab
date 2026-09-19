@@ -1,0 +1,40 @@
+{
+  "design_id": "scienceworld-v14-new-family-12",
+  "status": "design_draft_not_final_preregistration",
+  "created_date": "2026-09-19",
+  "environment": "ScienceWorld",
+  "installed_package_version": "1.2.3",
+  "suite": "scienceworld-v14-new-family-12",
+  "variation_split": "test",
+  "selection_rule": "Four unused task families from four ScienceWorld topics; first three official test variations per family, chosen before any test API episode",
+  "cases": [
+    {"task_name": "power-component", "variation": 15},
+    {"task_name": "power-component", "variation": 16},
+    {"task_name": "power-component", "variation": 17},
+    {"task_name": "grow-plant", "variation": 93},
+    {"task_name": "grow-plant", "variation": 94},
+    {"task_name": "grow-plant", "variation": 95},
+    {"task_name": "chemistry-mix", "variation": 24},
+    {"task_name": "chemistry-mix", "variation": 25},
+    {"task_name": "chemistry-mix", "variation": 26},
+    {"task_name": "inclined-plane-determine-angle", "variation": 126},
+    {"task_name": "inclined-plane-determine-angle", "variation": 127},
+    {"task_name": "inclined-plane-determine-angle", "variation": 128}
+  ],
+  "train_dev_gold_check": [
+    {"task_name": "power-component", "train_variation": 0, "train_steps": 8, "dev_variation": 10, "dev_steps": 10},
+    {"task_name": "grow-plant", "train_variation": 0, "train_steps": 29, "dev_variation": 62, "dev_steps": 41},
+    {"task_name": "chemistry-mix", "train_variation": 0, "train_steps": 20, "dev_variation": 16, "dev_steps": 15},
+    {"task_name": "inclined-plane-determine-angle", "train_variation": 0, "train_steps": 54, "dev_variation": 84, "dev_steps": 55}
+  ],
+  "dev_pilot": {"variations_per_family": 1, "planned_conditions": ["no_skill", "flat_retrieval", "body_aware_retrieval", "oracle_v4"], "planned_repeats": 1, "planned_episodes": 16},
+  "formal_test": {"planned_conditions": ["no_skill", "flat_retrieval", "body_aware_retrieval", "oracle_v4"], "planned_repeats": 3, "planned_episodes": 144, "model_request_name": "deepseek-v4-flash", "temperature": 0, "simplification": "easy", "max_environment_steps": 400, "condition_order_seed": 0},
+  "primary_comparison": "body_aware_retrieval versus no_skill",
+  "primary_endpoints": ["task_success_rate", "average_total_tokens"],
+  "success_rule": "ScienceWorld environment score >= 100",
+  "bootstrap": {"unit": "task-variation, stratified by task family", "draws": 10000, "seed": 20260919, "interval": "two-sided 95%"},
+  "joint_benefit_rule": "The success-rate difference CI is entirely above zero and the average-total-token difference CI is entirely below zero",
+  "skill_library_status": "four new skills and final hash pending; old v3 skills must remain unchanged",
+  "test_gold_check_status": "pending until Skill and code freeze",
+  "api_evaluation_status": "not_started"
+}
