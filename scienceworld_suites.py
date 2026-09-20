@@ -1,6 +1,6 @@
 """Frozen ScienceWorld task/variation pairs."""
 
-from scienceworld_skills import GOLD_SKILLS
+from scienceworld_skills import GOLD_SKILLS, V4_GOLD_SKILLS
 
 
 SCIENCEWORLD_PILOT_6 = tuple((task_name, 0) for task_name in GOLD_SKILLS)
@@ -121,6 +121,14 @@ SCIENCEWORLD_T2_CONTROLLER_DEV_2 = (
 # them keeps controller tuning separate from any later held-out confirmation.
 SCIENCEWORLD_T3_STATE_AWARE_DEV_2 = SCIENCEWORLD_T2_CONTROLLER_DEV_2
 
+# Development cases only. The v14 test suite stays outside the runner until final freeze.
+SCIENCEWORLD_V14_DEV_4 = (
+    ("power-component", 10),
+    ("grow-plant", 62),
+    ("chemistry-mix", 16),
+    ("inclined-plane-determine-angle", 84),
+)
+
 SUITES = {
     "scienceworld-pilot-6": SCIENCEWORLD_PILOT_6,
     "scienceworld-v3-heldout-6": SCIENCEWORLD_V3_HELDOUT_6,
@@ -134,6 +142,7 @@ SUITES = {
     "scienceworld-t1-t-shaped-pilot-12": SCIENCEWORLD_T1_T_SHAPED_PILOT_12,
     "scienceworld-t2-controller-dev-2": SCIENCEWORLD_T2_CONTROLLER_DEV_2,
     "scienceworld-t3-state-aware-dev-2": SCIENCEWORLD_T3_STATE_AWARE_DEV_2,
+    "scienceworld-v14-dev-4": SCIENCEWORLD_V14_DEV_4,
 }
 
 SUITE_VARIATION_SPLITS = {
@@ -149,6 +158,7 @@ SUITE_VARIATION_SPLITS = {
     "scienceworld-t1-t-shaped-pilot-12": "test",
     "scienceworld-t2-controller-dev-2": "test",
     "scienceworld-t3-state-aware-dev-2": "test",
+    "scienceworld-v14-dev-4": "dev",
 }
 
 REUSED_MECHANISM_SUITES = {
@@ -164,6 +174,7 @@ TARGETED_SUITE_FAMILIES = {
     "scienceworld-v13b-oracle-mechanism-6": {"boil", "freeze"},
     "scienceworld-t2-controller-dev-2": {"melt", "freeze"},
     "scienceworld-t3-state-aware-dev-2": {"melt", "freeze"},
+    "scienceworld-v14-dev-4": set(V4_GOLD_SKILLS),
 }
 
 SCIENCEWORLD_TEST_VARIATIONS = {

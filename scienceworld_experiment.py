@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import List
 
 from scienceworld_agent import CONDITIONS, DEFAULT_CONDITIONS, append_jsonl, run_episode, run_gold_check
-from scienceworld_skills import GOLD_SKILLS
+from scienceworld_skills import ALL_GOLD_SKILLS
 from scienceworld_suites import SCIENCEWORLD_PILOT_6, SUITES, SUITE_VARIATION_SPLITS
 
 
@@ -18,7 +18,7 @@ PILOT_TASKS = tuple(task for task, _ in SCIENCEWORLD_PILOT_6)
 
 def task_list(value: str) -> List[str]:
     tasks = value.split(",")
-    unknown = sorted(set(tasks) - set(GOLD_SKILLS))
+    unknown = sorted(set(tasks) - set(ALL_GOLD_SKILLS))
     if unknown:
         raise argparse.ArgumentTypeError(f"tasks without frozen Oracle labels: {', '.join(unknown)}")
     return tasks

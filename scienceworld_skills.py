@@ -1,4 +1,4 @@
-"""Small hand-authored Skill library for the first ScienceWorld pilot."""
+"""Small hand-authored Skill library for ScienceWorld experiments."""
 
 import hashlib
 from dataclasses import dataclass
@@ -152,6 +152,56 @@ GOLD_SKILLS = {
     "find-non-living-thing": "find-nonliving-object",
 }
 
+V4_SKILLS = (
+    skill(
+        "power-component-circuit",
+        "Power the named electrical component by closing a circuit with a battery and wires.",
+        "Use when the task asks to turn on a named light bulb or other powered component.",
+        "Find the exact named component, battery, and two wires in the workshop; focus on the component before wiring it.",
+        "Connect the battery anode through one wire to the component cathode, and the battery cathode through the other wire to the component anode. Use the terminal names shown in the room.",
+        "Inspect the component after closing both sides of the circuit; use wait1 once if the score has not yet reached 100.",
+        termination="The environment score reaches 100 or done is true; one connected side is not a complete circuit.",
+    ),
+    skill(
+        "grow-plant-from-seed",
+        "Grow the requested plant from its seed to the reproduction life stage.",
+        "Use when the task asks to grow a named plant from seed.",
+        "Find the seed jar in the room named by the task, then go to the greenhouse with the exact named seed.",
+        "Choose one flower pot. Add soil if it is empty, move the named seed into that pot, and focus on the seed itself rather than the pot.",
+        "Fill a jug at the sink and pour water into the same pot. Use short waits while checking the plant's growth stage.",
+        "If growth stalls before reproduction, refill the jug and water that same pot again; keep the focused plant identity.",
+        termination="The environment score reaches 100 or done is true after the focused plant reaches reproduction.",
+    ),
+    skill(
+        "chemistry-recipe-mix",
+        "Create the named substance by following the local recipe and mixing its ingredients.",
+        "Use when the task asks to create a substance by chemistry mixing.",
+        "Find and read the recipe before selecting ingredients; the required ingredients vary with the target substance.",
+        "Put every listed ingredient into one suitable container, obtaining water from a sink if the recipe requires it.",
+        "Mix the contents, inspect the resulting substance, and focus on that product rather than an ingredient or container.",
+        termination="The environment score reaches 100 or done is true after focusing on the requested product.",
+    ),
+    skill(
+        "measure-inclined-plane-angle",
+        "Identify the shallower of two named inclined planes by timing the same sliding block.",
+        "Use when the task asks which of two inclined planes has the shallowest angle.",
+        "Find the two named planes, a block, and a stopwatch in the workshop; do not focus on either plane before measuring.",
+        "Put the same block on the first plane, activate the stopwatch, observe the block until it reaches the bottom, then stop and examine the stopwatch. Record the tick count.",
+        "Repeat the same experiment on the second plane. With the same block, the longer travel time indicates the shallower angle.",
+        "Focus on the full referent of the plane with the longer recorded time; compare measurements rather than plane letters.",
+        termination="The environment score reaches 100 or done is true after the measured shallower plane is focused.",
+    ),
+)
+
+V4_GOLD_SKILLS = {
+    "power-component": "power-component-circuit",
+    "grow-plant": "grow-plant-from-seed",
+    "chemistry-mix": "chemistry-recipe-mix",
+    "inclined-plane-determine-angle": "measure-inclined-plane-angle",
+}
+
+ALL_GOLD_SKILLS = {**GOLD_SKILLS, **V4_GOLD_SKILLS}
+
 T_STRUCTURE_VERSION = "t1"
 T_HORIZONTAL_SKILL_NAME = "scienceworld-execution-control"
 T_HORIZONTAL_SKILL = skill(
@@ -200,6 +250,8 @@ def versioned_skills(version: str = "v1") -> Tuple[ScienceWorldSkill, ...]:
         return tuple(V2_SKILL_OVERRIDES.get(item.name, item) for item in SKILL_LIST)
     if version == "v3":
         return tuple(V3_SKILL_OVERRIDES.get(item.name, item) for item in versioned_skills("v2"))
+    if version == "v4":
+        return versioned_skills("v3") + V4_SKILLS
     if version == T_STRUCTURE_VERSION:
         return (T_HORIZONTAL_SKILL,) + versioned_skills("v3")
     raise ValueError(f"unknown skill library version: {version}")
@@ -249,13 +301,17 @@ def validate_library() -> list:
         errors.append("v2 overrides must replace existing Skills without renaming them")
     if any(name not in SKILLS or item.name != name for name, item in V3_SKILL_OVERRIDES.items()):
         errors.append("v3 overrides must replace existing Skills without renaming them")
+    if len(V4_SKILLS) != len(V4_GOLD_SKILLS) or set(V4_GOLD_SKILLS.values()) != {item.name for item in V4_SKILLS}:
+        errors.append("v4 task families must map to four distinct new Skills")
+    if set(V4_GOLD_SKILLS) & set(GOLD_SKILLS) or {item.name for item in V4_SKILLS} & set(SKILLS):
+        errors.append("v4 must not replace any v3 task family or Skill")
     if T_HORIZONTAL_SKILL_NAME in SKILLS:
         errors.append("the horizontal Skill must not replace a task-specific Skill")
     if set(T_VERTICAL_PATHS) != set(GOLD_SKILLS):
         errors.append("every task family must have one frozen vertical path")
     if any(len(path) < 2 for path in T_VERTICAL_PATHS.values()):
         errors.append("every vertical path must include a domain and a task leaf")
-    for item in SKILL_LIST:
+    for item in SKILL_LIST + V4_SKILLS:
         if not all((item.name, item.description, item.activation_condition, item.procedure, item.termination_condition)):
             errors.append(f"{item.name}: all five fields are required")
     return errors

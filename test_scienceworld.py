@@ -7,11 +7,11 @@ from unittest.mock import patch
 
 from scienceworld_agent import CONDITIONS, DEFAULT_CONDITIONS, objective_success, repeated_action_limit, run_episode, skill_names, skill_selection
 from scienceworld_retrieval import EMBEDDER_NAME, retrieve
-from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases
-from scienceworld_skills import GOLD_SKILLS, SKILL_LIST, T_HORIZONTAL_SKILL_NAME, T_STRUCTURE_VERSION, T_VERTICAL_PATHS, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, library_hash, loaded_skill_text, validate_library
+from scienceworld_experiment import PILOT_TASKS, completed_episodes, experiment_cases, task_list
+from scienceworld_skills import ALL_GOLD_SKILLS, GOLD_SKILLS, SKILL_LIST, T_HORIZONTAL_SKILL_NAME, T_STRUCTURE_VERSION, T_VERTICAL_PATHS, V2_SKILL_OVERRIDES, V3_SKILL_OVERRIDES, V4_GOLD_SKILLS, V4_SKILLS, library_hash, loaded_skill_text, validate_library, versioned_skills
 from analyze_scienceworld_formal import exact_sign_p_value, paired_statistics, validation_errors
 from analyze_scienceworld_t1 import success_interaction
-from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_T1_T_SHAPED_PILOT_12, SCIENCEWORLD_T2_CONTROLLER_DEV_2, SCIENCEWORLD_T3_STATE_AWARE_DEV_2, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6, SCIENCEWORLD_V13B_ORACLE_MECHANISM_6, SUITE_VARIATION_SPLITS, validate_suites
+from scienceworld_suites import SCIENCEWORLD_PILOT_6, SCIENCEWORLD_TEST_VARIATIONS, SCIENCEWORLD_T1_T_SHAPED_PILOT_12, SCIENCEWORLD_T2_CONTROLLER_DEV_2, SCIENCEWORLD_T3_STATE_AWARE_DEV_2, SCIENCEWORLD_V3_HELDOUT_6, SCIENCEWORLD_V4_HELDOUT_6, SCIENCEWORLD_V6_ROUTER_FORMAL_12, SCIENCEWORLD_V10_CONFIRM_12, SCIENCEWORLD_V11B_CONFIRM_18, SCIENCEWORLD_V12_MECHANISM_PILOT_6, SCIENCEWORLD_V13_ORACLE_MECHANISM_PILOT_6, SCIENCEWORLD_V13B_ORACLE_MECHANISM_6, SCIENCEWORLD_V14_DEV_4, SUITES, SUITE_VARIATION_SPLITS, validate_suites
 
 
 class ScienceWorldTests(unittest.TestCase):
@@ -565,6 +565,71 @@ class ScienceWorldTests(unittest.TestCase):
             self.assertEqual(selection.library_version, "v3")
             self.assertEqual(selection.retriever, EMBEDDER_NAME)
             self.assertEqual(selection.gold_skill_ranks[0], next(item.rank for item in retrieve("Your task is to boil tin.", condition == "body_aware_retrieval") if item.name == "boil-substance"))
+
+    def test_v14_dev_uses_four_new_skills_without_changing_v3(self):
+        design = json.loads(Path("docs/research/scienceworld_v14_new_family_design.json").read_text(encoding="utf-8"))
+        self.assertEqual(design["status"], "design_draft_not_final_preregistration")
+        self.assertNotIn(design["suite"], SUITES)
+        self.assertEqual(SUITE_VARIATION_SPLITS["scienceworld-v14-dev-4"], "dev")
+        self.assertEqual(
+            list(SCIENCEWORLD_V14_DEV_4),
+            [(row["task_name"], row["dev_variation"]) for row in design["train_dev_gold_check"]],
+        )
+        self.assertEqual(set(V4_GOLD_SKILLS), {task for task, _ in SCIENCEWORLD_V14_DEV_4})
+        self.assertEqual(set(ALL_GOLD_SKILLS), set(GOLD_SKILLS) | set(V4_GOLD_SKILLS))
+        self.assertEqual(len(V4_SKILLS), 4)
+        self.assertEqual(len(versioned_skills("v4")), 10)
+        self.assertEqual(library_hash("v3"), "fdd9d917af6528933d71f744e57b88aae6e7e52113354e20bec3ffbf8cd0f322")
+        self.assertEqual(validate_library(), [])
+        self.assertEqual(validate_suites(), [])
+        self.assertEqual(task_list("power-component,grow-plant"), ["power-component", "grow-plant"])
+        for task_name in V4_GOLD_SKILLS:
+            gold = V4_GOLD_SKILLS[task_name]
+            self.assertEqual(skill_selection("no_skill", task_name).names, [])
+            oracle = skill_selection("oracle_v4", task_name)
+            self.assertEqual(oracle.names, [gold])
+            self.assertEqual(oracle.library_version, "v4")
+            query = f"Your task is to {task_name.replace('-', ' ')}."
+            for condition in ("flat_retrieval", "body_aware_retrieval"):
+                selected = skill_selection(condition, task_name, query)
+                self.assertEqual(selected.library_version, "v4")
+                self.assertEqual(len(selected.names), 3)
+                self.assertTrue(set(selected.names) <= {item.name for item in versioned_skills("v4")})
+            self.assertIn(gold, loaded_skill_text([gold], "v4"))
+        with self.assertRaises(ValueError):
+            skill_selection("oracle_v3", "power-component")
+        with self.assertRaises(ValueError):
+            skill_selection("oracle_v4", "boil")
+
+    def test_v14_oracle_episode_uses_new_skill_without_api(self):
+        class FakeEnv:
+            def load(self, *_args, **_kwargs):
+                pass
+
+            def reset(self):
+                return "workshop", {"taskDesc": "Turn on the blue light bulb.", "score": 0, "moves": 0}
+
+            def close(self):
+                pass
+
+        class StopClient:
+            def __init__(self, *_args, **_kwargs):
+                pass
+
+            def respond(self, _messages):
+                return {"role": "assistant", "content": "stop"}
+
+            def metrics(self):
+                return {"input_tokens": 0, "output_tokens": 0, "prompt_cache_hit_tokens": 0, "prompt_cache_miss_tokens": 0}
+
+        with patch("scienceworld_agent.make_env", return_value=FakeEnv()), patch("scienceworld_agent.DeepSeekChatClient", StopClient):
+            baseline = run_episode("test", 0, "power-component", 10, "easy", 1, "no_skill")
+            oracle = run_episode("test", 0, "power-component", 10, "easy", 1, "oracle_v4")
+        self.assertEqual(baseline["skills_loaded"], [])
+        self.assertIsNone(baseline["skill_library_sha256"])
+        self.assertEqual(oracle["skills_loaded"], ["power-component-circuit"])
+        self.assertEqual(oracle["skill_library_sha256"], library_hash("v4"))
+        self.assertGreater(oracle["skill_prompt_characters"], 0)
 
     def test_environment_score_is_the_only_success_rule(self):
         self.assertFalse(objective_success(-1))

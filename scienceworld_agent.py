@@ -12,7 +12,8 @@ from typing import Any, Dict, List, Optional
 from agent import DeepSeekChatClient
 from scienceworld_retrieval import EMBEDDER_NAME, retrieve
 from scienceworld_skills import (
-    GOLD_SKILLS,
+    ALL_GOLD_SKILLS,
+    V4_GOLD_SKILLS,
     T_HORIZONTAL_SKILL_NAME,
     T_STRUCTURE_VERSION,
     T_VERTICAL_PATHS,
@@ -48,7 +49,7 @@ Do not invent observations or claim success. Only the environment score decides 
 CONDITIONS = (
     "no_skill", "all_skills", "flat_retrieval", "body_aware_retrieval",
     "body_metadata_only", "body_placebo", "oracle_skill", "oracle_v2", "oracle_v3",
-    "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo",
+    "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo", "oracle_v4",
     "t_horizontal", "t_vertical", "t_full",
     "t2_horizontal", "t2_vertical", "t2_full",
     "t3_horizontal", "t3_vertical", "t3_full",
@@ -88,24 +89,34 @@ def repeated_action_limit(command: str) -> int:
 def skill_selection(condition: str, task_name: str, task_text: str = "") -> SkillSelection:
     if condition not in CONDITIONS:
         raise ValueError(f"unknown condition: {condition}")
-    if task_name not in GOLD_SKILLS:
+    if task_name not in ALL_GOLD_SKILLS:
         raise ValueError(f"no frozen Oracle label for task: {task_name}")
-    gold = [GOLD_SKILLS[task_name]]
+    is_new = task_name in V4_GOLD_SKILLS
+    library_version = "v4" if is_new else "v3"
+    gold = [ALL_GOLD_SKILLS[task_name]]
     if condition == "no_skill":
         return SkillSelection([], [], [], None, gold, None)
     if condition == "all_skills":
-        return SkillSelection([item.name for item in versioned_skills("v3")], [], [], None, gold, "v3")
+        return SkillSelection([item.name for item in versioned_skills(library_version)], [], [], None, gold, library_version)
     if condition in {
         "t_horizontal", "t_vertical", "t_full",
         "t2_horizontal", "t2_vertical", "t2_full",
         "t3_horizontal", "t3_vertical", "t3_full",
     }:
+        if is_new:
+            raise ValueError("T-shaped conditions are defined only for the original six task families")
         names = list(t_skill_names(condition, task_name))
         return SkillSelection(names, [], [], None, gold, T_STRUCTURE_VERSION if names else None)
+    if condition == "oracle_v4":
+        if not is_new:
+            raise ValueError("oracle_v4 is defined only for the four v14 task families")
+        return SkillSelection(gold, [], [], None, gold, "v4")
     if condition in {
         "oracle_skill", "oracle_v2", "oracle_v3",
         "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo",
     }:
+        if is_new:
+            raise ValueError("older Oracle conditions have no Skill for this v14 task family")
         version = {
             "oracle_skill": "v1",
             "oracle_v2": "v2",
@@ -116,7 +127,7 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
         }[condition]
         return SkillSelection(gold, [], [], None, gold, version)
     body_aware = condition in {"body_aware_retrieval", "body_metadata_only", "body_placebo"}
-    hits = retrieve(task_text, body_aware=body_aware)
+    hits = retrieve(task_text, body_aware=body_aware, version=library_version)
     ranks = {item.name: item.rank for item in hits}
     return SkillSelection(
         [item.name for item in hits],
@@ -124,7 +135,7 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
         [ranks.get(name) for name in gold],
         EMBEDDER_NAME,
         gold,
-        "v3",
+        library_version,
     )
 
 
@@ -419,7 +430,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Run one objectively scored ScienceWorld episode")
     parser.add_argument("--model", help="DeepSeek model ID; required for an API episode")
     parser.add_argument("--temperature", type=float, default=0.0)
-    parser.add_argument("--task", choices=tuple(GOLD_SKILLS), default="boil")
+    parser.add_argument("--task", choices=tuple(ALL_GOLD_SKILLS), default="boil")
     parser.add_argument("--variation", type=int, default=0)
     parser.add_argument("--simplification", default="easy")
     parser.add_argument("--condition", choices=CONDITIONS, default="no_skill")
