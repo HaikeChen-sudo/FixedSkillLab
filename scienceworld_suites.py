@@ -129,6 +129,14 @@ SCIENCEWORLD_V14_DEV_4 = (
     ("inclined-plane-determine-angle", 84),
 )
 
+# New dev variations, selected by the next official index before seeing their task text.
+SCIENCEWORLD_V14C_DEV_CHECK_4 = (
+    ("power-component", 11),
+    ("grow-plant", 63),
+    ("chemistry-mix", 17),
+    ("inclined-plane-determine-angle", 85),
+)
+
 SUITES = {
     "scienceworld-pilot-6": SCIENCEWORLD_PILOT_6,
     "scienceworld-v3-heldout-6": SCIENCEWORLD_V3_HELDOUT_6,
@@ -143,6 +151,7 @@ SUITES = {
     "scienceworld-t2-controller-dev-2": SCIENCEWORLD_T2_CONTROLLER_DEV_2,
     "scienceworld-t3-state-aware-dev-2": SCIENCEWORLD_T3_STATE_AWARE_DEV_2,
     "scienceworld-v14-dev-4": SCIENCEWORLD_V14_DEV_4,
+    "scienceworld-v14c-dev-check-4": SCIENCEWORLD_V14C_DEV_CHECK_4,
 }
 
 SUITE_VARIATION_SPLITS = {
@@ -159,6 +168,7 @@ SUITE_VARIATION_SPLITS = {
     "scienceworld-t2-controller-dev-2": "test",
     "scienceworld-t3-state-aware-dev-2": "test",
     "scienceworld-v14-dev-4": "dev",
+    "scienceworld-v14c-dev-check-4": "dev",
 }
 
 REUSED_MECHANISM_SUITES = {
@@ -175,6 +185,7 @@ TARGETED_SUITE_FAMILIES = {
     "scienceworld-t2-controller-dev-2": {"melt", "freeze"},
     "scienceworld-t3-state-aware-dev-2": {"melt", "freeze"},
     "scienceworld-v14-dev-4": set(V4_GOLD_SKILLS),
+    "scienceworld-v14c-dev-check-4": set(V4_GOLD_SKILLS),
 }
 
 SCIENCEWORLD_TEST_VARIATIONS = {

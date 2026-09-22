@@ -205,6 +205,28 @@ V4B_SKILL_OVERRIDES = {
     ),
 }
 
+V4C_SKILL_OVERRIDES = {
+    "power-component-circuit": skill(
+        "power-component-circuit",
+        "Turn on a named light bulb or electrical component by building an electrical circuit that powers it on.",
+        "Use when the task asks to turn on a named light bulb or other powered component.",
+        "Find the exact named component, battery, and two wires in the workshop; focus on the component before wiring it.",
+        "Connect the battery anode through one wire to the component cathode, and the battery cathode through the other wire to the component anode. Use the terminal names shown in the room.",
+        "Inspect the component after closing both sides of the circuit; use wait1 once if the score has not yet reached 100.",
+        termination="The environment score reaches 100 or done is true; one connected side is not a complete circuit.",
+    ),
+    "measure-inclined-plane-angle": skill(
+        "measure-inclined-plane-angle",
+        "Identify the shallower of two named inclined planes by timing the same sliding block.",
+        "Use when the task asks which of two inclined planes has the shallowest angle.",
+        "Find the two named planes, a block, and a stopwatch in the workshop; do not focus on either plane before measuring.",
+        "Put the block on the first plane and activate the stopwatch. After short waits, examine the plane until the observation explicitly says the block is at the bottom. Intermediate tick readings are not a completed measurement. Only then stop and examine the stopwatch; record that time.",
+        "Repeat with the same block on the second plane. Compare only two times measured after the block reached the bottom; the longer time indicates the shallower angle.",
+        "If either reading was taken before the block reached the bottom, redo that measurement. Otherwise focus on the full referent of the plane with the longer time.",
+        termination="The environment score reaches 100 or done is true after the measured shallower plane is focused.",
+    ),
+}
+
 V4_GOLD_SKILLS = {
     "power-component": "power-component-circuit",
     "grow-plant": "grow-plant-from-seed",
@@ -266,6 +288,8 @@ def versioned_skills(version: str = "v1") -> Tuple[ScienceWorldSkill, ...]:
         return versioned_skills("v3") + V4_SKILLS
     if version == "v4b":
         return tuple(V4B_SKILL_OVERRIDES.get(item.name, item) for item in versioned_skills("v4"))
+    if version == "v4c":
+        return tuple(V4C_SKILL_OVERRIDES.get(item.name, item) for item in versioned_skills("v4b"))
     if version == T_STRUCTURE_VERSION:
         return (T_HORIZONTAL_SKILL,) + versioned_skills("v3")
     raise ValueError(f"unknown skill library version: {version}")
@@ -321,13 +345,15 @@ def validate_library() -> list:
         errors.append("v4 must not replace any v3 task family or Skill")
     if any(name not in {item.name for item in V4_SKILLS} or item.name != name for name, item in V4B_SKILL_OVERRIDES.items()):
         errors.append("v4b overrides must replace existing v4 Skills without renaming them")
+    if any(name not in {item.name for item in V4_SKILLS} or item.name != name for name, item in V4C_SKILL_OVERRIDES.items()):
+        errors.append("v4c overrides must replace existing v4 Skills without renaming them")
     if T_HORIZONTAL_SKILL_NAME in SKILLS:
         errors.append("the horizontal Skill must not replace a task-specific Skill")
     if set(T_VERTICAL_PATHS) != set(GOLD_SKILLS):
         errors.append("every task family must have one frozen vertical path")
     if any(len(path) < 2 for path in T_VERTICAL_PATHS.values()):
         errors.append("every vertical path must include a domain and a task leaf")
-    for item in SKILL_LIST + V4_SKILLS + tuple(V4B_SKILL_OVERRIDES.values()):
+    for item in SKILL_LIST + V4_SKILLS + tuple(V4B_SKILL_OVERRIDES.values()) + tuple(V4C_SKILL_OVERRIDES.values()):
         if not all((item.name, item.description, item.activation_condition, item.procedure, item.termination_condition)):
             errors.append(f"{item.name}: all five fields are required")
     return errors
