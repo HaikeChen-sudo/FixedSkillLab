@@ -16,19 +16,20 @@ def main() -> int:
     args = parser.parse_args()
 
     rows = []
+    split = SUITE_VARIATION_SPLITS[args.suite]
     env = make_env(1)
     try:
         for task_name, variation in SUITES[args.suite]:
             env.load(task_name, variationIdx=variation, simplificationStr=args.simplification)
-            if variation not in env.get_variations_test():
-                raise ValueError(f"{task_name}:v{variation:03d} is not in the official test split")
+            if variation not in getattr(env, f"get_variations_{split}")():
+                raise ValueError(f"{task_name}:v{variation:03d} is not in the official {split} split")
             _, info = env.reset()
             task_text = info["taskDesc"]
             flat = skill_selection("flat_retrieval", task_name, task_text)
             body = skill_selection("body_aware_retrieval", task_name, task_text)
             rows.append({
                 "suite": args.suite,
-                "variation_split": SUITE_VARIATION_SPLITS[args.suite],
+                "variation_split": split,
                 "task_id": f"{task_name}:v{variation:03d}",
                 "task_name": task_name,
                 "variation": variation,
