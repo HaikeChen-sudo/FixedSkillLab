@@ -193,6 +193,18 @@ V4_SKILLS = (
     ),
 )
 
+V4B_SKILL_OVERRIDES = {
+    "chemistry-recipe-mix": skill(
+        "chemistry-recipe-mix",
+        "Create the named substance by following the local recipe and mixing its ingredients.",
+        "Use when the task asks to create a substance by chemistry mixing.",
+        "Find the recipe, pick it up, then use read recipe in inventory; examine recipe only shows its title, not the ingredients.",
+        "Put every listed ingredient into one suitable container, obtaining water from a sink if the recipe requires it.",
+        "Use mix <container>, inspect the result, then focus on the product, never the recipe, an ingredient, or its container.",
+        termination="The environment score reaches 100 or done is true after focusing on the requested product.",
+    ),
+}
+
 V4_GOLD_SKILLS = {
     "power-component": "power-component-circuit",
     "grow-plant": "grow-plant-from-seed",
@@ -252,6 +264,8 @@ def versioned_skills(version: str = "v1") -> Tuple[ScienceWorldSkill, ...]:
         return tuple(V3_SKILL_OVERRIDES.get(item.name, item) for item in versioned_skills("v2"))
     if version == "v4":
         return versioned_skills("v3") + V4_SKILLS
+    if version == "v4b":
+        return tuple(V4B_SKILL_OVERRIDES.get(item.name, item) for item in versioned_skills("v4"))
     if version == T_STRUCTURE_VERSION:
         return (T_HORIZONTAL_SKILL,) + versioned_skills("v3")
     raise ValueError(f"unknown skill library version: {version}")
@@ -305,13 +319,15 @@ def validate_library() -> list:
         errors.append("v4 task families must map to four distinct new Skills")
     if set(V4_GOLD_SKILLS) & set(GOLD_SKILLS) or {item.name for item in V4_SKILLS} & set(SKILLS):
         errors.append("v4 must not replace any v3 task family or Skill")
+    if any(name not in {item.name for item in V4_SKILLS} or item.name != name for name, item in V4B_SKILL_OVERRIDES.items()):
+        errors.append("v4b overrides must replace existing v4 Skills without renaming them")
     if T_HORIZONTAL_SKILL_NAME in SKILLS:
         errors.append("the horizontal Skill must not replace a task-specific Skill")
     if set(T_VERTICAL_PATHS) != set(GOLD_SKILLS):
         errors.append("every task family must have one frozen vertical path")
     if any(len(path) < 2 for path in T_VERTICAL_PATHS.values()):
         errors.append("every vertical path must include a domain and a task leaf")
-    for item in SKILL_LIST + V4_SKILLS:
+    for item in SKILL_LIST + V4_SKILLS + tuple(V4B_SKILL_OVERRIDES.values()):
         if not all((item.name, item.description, item.activation_condition, item.procedure, item.termination_condition)):
             errors.append(f"{item.name}: all five fields are required")
     return errors

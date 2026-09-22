@@ -46,6 +46,10 @@ Focus is a scored commitment: focusing on the wrong object can immediately end t
 
 Do not invent observations or claim success. Only the environment score decides success. Stop issuing actions when done is true. The only available tool is act."""
 
+V14B_PROTOCOL_VERSION = "scienceworld-v14b"
+V14B_SYSTEM_PROMPT = SYSTEM_PROMPT + "\nOther available command forms: read <document>, mix <container>."
+V14B_SHARED_CONTROLLER_VERSION = "shared-state-checkpoint-v1"
+
 CONDITIONS = (
     "no_skill", "all_skills", "flat_retrieval", "body_aware_retrieval",
     "body_metadata_only", "body_placebo", "oracle_skill", "oracle_v2", "oracle_v3",
@@ -92,7 +96,7 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
     if task_name not in ALL_GOLD_SKILLS:
         raise ValueError(f"no frozen Oracle label for task: {task_name}")
     is_new = task_name in V4_GOLD_SKILLS
-    library_version = "v4" if is_new else "v3"
+    library_version = "v4b" if is_new else "v3"
     gold = [ALL_GOLD_SKILLS[task_name]]
     if condition == "no_skill":
         return SkillSelection([], [], [], None, gold, None)
@@ -110,7 +114,7 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
     if condition == "oracle_v4":
         if not is_new:
             raise ValueError("oracle_v4 is defined only for the four v14 task families")
-        return SkillSelection(gold, [], [], None, gold, "v4")
+        return SkillSelection(gold, [], [], None, gold, library_version)
     if condition in {
         "oracle_skill", "oracle_v2", "oracle_v3",
         "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo",
@@ -230,12 +234,14 @@ def run_episode(
             "t_vertical", "t_full", "t2_vertical", "t2_full", "t3_vertical", "t3_full",
         }
         controller_version = (
-            T2_CONTROLLER_VERSION if condition in {"t2_horizontal", "t2_full"}
+            V14B_SHARED_CONTROLLER_VERSION if task_name in V4_GOLD_SKILLS
+            else T2_CONTROLLER_VERSION if condition in {"t2_horizontal", "t2_full"}
             else T3_CONTROLLER_VERSION if condition in {"t3_horizontal", "t3_full"}
             else None
         )
+        state_aware_controller = controller_version in {T3_CONTROLLER_VERSION, V14B_SHARED_CONTROLLER_VERSION}
         vertical_path = T_VERTICAL_PATHS[task_name] if vertical_loaded else ()
-        messages: List[Dict[str, Any]] = [{"role": "system", "content": SYSTEM_PROMPT}]
+        messages: List[Dict[str, Any]] = [{"role": "system", "content": V14B_SYSTEM_PROMPT if task_name in V4_GOLD_SKILLS else SYSTEM_PROMPT}]
         if selected:
             messages.append({"role": "system", "content": "Fixed Skill guidance:\n" + skill_prompt})
         messages.append({
@@ -253,6 +259,8 @@ def run_episode(
         last_command = ""
         repeated_without_progress = 0
         consecutive_waits = 0
+        consecutive_rejections = 0
+        stalled = False
 
         while len(trace) < max_steps and not done:
             reply = client.respond(messages)
@@ -273,7 +281,7 @@ def run_episode(
                     raise ValueError("command must be a non-empty string")
                 normalized_command = " ".join(command.lower().split())
                 wait_checkpoint = (
-                    controller_version == T3_CONTROLLER_VERSION
+                    state_aware_controller
                     and normalized_command in WAIT_COMMANDS
                     and consecutive_waits >= T3_WAIT_CHECKPOINT
                 )
@@ -291,6 +299,8 @@ def run_episode(
                 )
                 if wait_checkpoint or repeated_stagnation or t2_repeated_wait:
                     controller_interventions += 1
+                    consecutive_rejections += 1
+                    stalled = controller_version == V14B_SHARED_CONTROLLER_VERSION and consecutive_rejections >= 3
                     reason = "wait_checkpoint" if wait_checkpoint else "repeated_unchanged_action"
                     error = (
                         "Three consecutive wait actions were completed. Before waiting again, inspect the task-relevant sample or device with examine <object> so hidden state changes are observable."
@@ -312,6 +322,7 @@ def run_episode(
                         "environment_moves": environment_moves,
                     }
                 else:
+                    consecutive_rejections = 0
                     previous_score = score
                     previous_observation = observation
                     observation, reward, done, info = env.step(command)
@@ -319,7 +330,7 @@ def run_episode(
                     score = info["score"]
                     environment_moves = info["moves"]
                     unchanged = score == previous_score and (
-                        controller_version != T3_CONTROLLER_VERSION or observation == previous_observation
+                        not state_aware_controller or observation == previous_observation
                     )
                     if normalized_command == last_command and unchanged:
                         repeated_without_progress += 1
@@ -327,7 +338,7 @@ def run_episode(
                         repeated_without_progress = 1
                     else:
                         repeated_without_progress = 0
-                    if controller_version == T3_CONTROLLER_VERSION:
+                    if state_aware_controller:
                         if normalized_command in WAIT_COMMANDS:
                             consecutive_waits += 1
                         elif normalized_command.startswith("examine ") or normalized_command in {"look around", "inventory"}:
@@ -358,6 +369,8 @@ def run_episode(
                         "error": "not executed: call act once per turn and read its observation before the next action",
                     }),
                 })
+            if stalled:
+                break
 
         metrics = client.metrics()
         return {
@@ -368,7 +381,7 @@ def run_episode(
             "simplification": simplification,
             "max_steps": max_steps,
             "condition": condition,
-            "agent_protocol_version": AGENT_PROTOCOL_VERSION,
+            "agent_protocol_version": V14B_PROTOCOL_VERSION if task_name in V4_GOLD_SKILLS else AGENT_PROTOCOL_VERSION,
             "model": model,
             "temperature": temperature,
             "success": objective_success(score),
@@ -411,8 +424,10 @@ def run_episode(
             "vertical_depth": len(vertical_path),
             "skill_prompt_words": len(skill_prompt.split()),
             "skill_prompt_characters": len(skill_prompt),
-            "horizontal_controller_version": controller_version,
+            "horizontal_controller_version": controller_version if is_t_condition else None,
+            "shared_controller_version": controller_version if task_name in V4_GOLD_SKILLS else None,
             "controller_interventions": controller_interventions,
+            "termination_reason": "controller_stall" if stalled else "environment_done" if done else "max_steps" if len(trace) >= max_steps else "model_stopped",
             "final_text": final_text,
             "trace": trace,
         }

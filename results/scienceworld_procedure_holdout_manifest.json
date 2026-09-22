@@ -1,0 +1,33 @@
+{
+  "protocol_version": "scienceworld-procedure-holdout-v1",
+  "created_date": "2026-09-22",
+  "status": "candidate_frozen_before_test_split_check_or_model_run",
+  "selection_rule": "For each family, take the next three official-test variation IDs after the three reserved in the separate v14 design; do not replace based on outcomes.",
+  "settings": {
+    "suite": "scienceworld-procedure-holdout-6",
+    "cases": [
+      {"task_name": "chemistry-mix", "variation": 27},
+      {"task_name": "chemistry-mix", "variation": 28},
+      {"task_name": "chemistry-mix", "variation": 29},
+      {"task_name": "inclined-plane-determine-angle", "variation": 129},
+      {"task_name": "inclined-plane-determine-angle", "variation": 130},
+      {"task_name": "inclined-plane-determine-angle", "variation": 131}
+    ],
+    "conditions": ["procedure_p0", "procedure_p1"],
+    "model": "deepseek-v4-flash",
+    "temperature": 0.0,
+    "simplification": "easy",
+    "max_steps": 100,
+    "repeats": 3,
+    "order_seed": 20260922,
+    "max_recorded_cost_usd": 0.1
+  },
+  "sha256": {
+    "scienceworld_agent.py": "bf42aab3f5196c505ab42be573f02da3dffda84651cc6a423224ee75ff2096ad",
+    "scienceworld_skills.py": "28a4a7a0c585583f1bd17f8f57b4e410bafdf3f4f756a8e1acaf8f356bf198d8",
+    "scienceworld_procedure_audit.py": "70448ce8bbf74f85febe08d3dc5f56be3f0ae916a5c35e6477d081993586c783",
+    "scienceworld_procedure_pilot.py": "7d4ba2734c792257ae2fa12f919be8c906ddb27ba328f2c2f04c545f00051e2a",
+    "scienceworld_incline_process_audit.py": "f5410b985732790f64705b3a16f5f4c38f0d621185d953f12103e892ad6ead59",
+    "scienceworld_procedure_holdout.py": "4e8e5bfb4ab1641c46bc05a6664d99f2de75df94c112764666cf7eebfb447a8c"
+  }
+}

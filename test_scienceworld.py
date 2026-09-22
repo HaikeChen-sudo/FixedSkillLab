@@ -579,6 +579,8 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertEqual(set(ALL_GOLD_SKILLS), set(GOLD_SKILLS) | set(V4_GOLD_SKILLS))
         self.assertEqual(len(V4_SKILLS), 4)
         self.assertEqual(len(versioned_skills("v4")), 10)
+        self.assertEqual(library_hash("v4"), "fdedc07d1c0b350d86259a2ac470bc48bbefd8ecfdb6beb0aece7d219603e774")
+        self.assertEqual(len(versioned_skills("v4b")), 10)
         self.assertEqual(library_hash("v3"), "fdd9d917af6528933d71f744e57b88aae6e7e52113354e20bec3ffbf8cd0f322")
         self.assertEqual(validate_library(), [])
         self.assertEqual(validate_suites(), [])
@@ -588,14 +590,14 @@ class ScienceWorldTests(unittest.TestCase):
             self.assertEqual(skill_selection("no_skill", task_name).names, [])
             oracle = skill_selection("oracle_v4", task_name)
             self.assertEqual(oracle.names, [gold])
-            self.assertEqual(oracle.library_version, "v4")
+            self.assertEqual(oracle.library_version, "v4b")
             query = f"Your task is to {task_name.replace('-', ' ')}."
             for condition in ("flat_retrieval", "body_aware_retrieval"):
                 selected = skill_selection(condition, task_name, query)
-                self.assertEqual(selected.library_version, "v4")
+                self.assertEqual(selected.library_version, "v4b")
                 self.assertEqual(len(selected.names), 3)
-                self.assertTrue(set(selected.names) <= {item.name for item in versioned_skills("v4")})
-            self.assertIn(gold, loaded_skill_text([gold], "v4"))
+                self.assertTrue(set(selected.names) <= {item.name for item in versioned_skills("v4b")})
+            self.assertIn(gold, loaded_skill_text([gold], "v4b"))
         with self.assertRaises(ValueError):
             skill_selection("oracle_v3", "power-component")
         with self.assertRaises(ValueError):
@@ -628,8 +630,102 @@ class ScienceWorldTests(unittest.TestCase):
         self.assertEqual(baseline["skills_loaded"], [])
         self.assertIsNone(baseline["skill_library_sha256"])
         self.assertEqual(oracle["skills_loaded"], ["power-component-circuit"])
-        self.assertEqual(oracle["skill_library_sha256"], library_hash("v4"))
+        self.assertEqual(oracle["skill_library_sha256"], library_hash("v4b"))
         self.assertGreater(oracle["skill_prompt_characters"], 0)
+
+    def test_v14b_recipe_instruction_uses_the_verified_read_action(self):
+        class FakeEnv:
+            def load(self, *_args, **_kwargs):
+                pass
+
+            def reset(self):
+                return "kitchen with a recipe", {"taskDesc": "Create smores and focus on the smores.", "score": 0, "moves": 0}
+
+            def close(self):
+                pass
+
+        class StopClient:
+            prompts = []
+
+            def __init__(self, *_args, **_kwargs):
+                pass
+
+            def respond(self, messages):
+                StopClient.prompts.append([message["content"] for message in messages if message["role"] == "system"])
+                return {"role": "assistant", "content": "stop"}
+
+            def metrics(self):
+                return {"input_tokens": 0, "output_tokens": 0, "prompt_cache_hit_tokens": 0, "prompt_cache_miss_tokens": 0}
+
+        with patch("scienceworld_agent.make_env", return_value=FakeEnv()), patch("scienceworld_agent.DeepSeekChatClient", StopClient):
+            baseline = run_episode("test", 0, "chemistry-mix", 16, "easy", 1, "no_skill")
+            oracle = run_episode("test", 0, "chemistry-mix", 16, "easy", 1, "oracle_v4")
+        self.assertEqual(baseline["skills_loaded"], [])
+        self.assertIn("read <document>", StopClient.prompts[0][0])
+        self.assertIn("mix <container>", StopClient.prompts[0][0])
+        self.assertIn("read recipe in inventory", StopClient.prompts[1][1])
+        self.assertIn("focus on the product, never the recipe", StopClient.prompts[1][1])
+        self.assertEqual(oracle["agent_protocol_version"], "scienceworld-v14b")
+
+    def test_v14b_shared_wait_checkpoint_blocks_the_inclined_plane_loop(self):
+        class FakeEnv:
+            def __init__(self):
+                self.commands = []
+
+            def load(self, *_args, **_kwargs):
+                pass
+
+            def reset(self):
+                return "two inclined planes and a stopwatch", {"taskDesc": "Find the shallower inclined plane.", "score": 20, "moves": 0}
+
+            def step(self, command):
+                self.commands.append(command)
+                return "You decide to wait for 1 iterations.", 0, False, {"score": 20, "moves": len(self.commands)}
+
+            def close(self):
+                pass
+
+        class RepeatingClient:
+            def __init__(self, *_args, **_kwargs):
+                self.turn = 0
+
+            def respond(self, _messages):
+                self.turn += 1
+                return {"role": "assistant", "content": None, "tool_calls": [
+                    {"id": f"call-{self.turn}", "type": "function", "function": {"name": "act", "arguments": '{"command":"wait1"}'}},
+                ]}
+
+            def metrics(self):
+                return {"input_tokens": 0, "output_tokens": 0, "prompt_cache_hit_tokens": 0, "prompt_cache_miss_tokens": 0}
+
+        for condition in ("no_skill", "flat_retrieval", "body_aware_retrieval", "oracle_v4"):
+            with self.subTest(condition=condition):
+                env = FakeEnv()
+                with patch("scienceworld_agent.make_env", return_value=env), patch("scienceworld_agent.DeepSeekChatClient", RepeatingClient):
+                    record = run_episode("test", 0, "inclined-plane-determine-angle", 84, "easy", 12, condition)
+                self.assertEqual(env.commands, ["wait1"] * 3)
+                self.assertEqual(record["controller_interventions"], 3)
+                self.assertEqual(record["steps"], 6)
+                self.assertEqual(record["termination_reason"], "controller_stall")
+                self.assertEqual(record["shared_controller_version"], "shared-state-checkpoint-v1")
+                self.assertTrue(all(row["result"]["reason"] == "wait_checkpoint" for row in record["trace"][-3:]))
+
+        class ResumingClient(RepeatingClient):
+            commands = ["wait1", "wait1", "wait1", "wait1", "examine inclined plane F", "wait1"]
+
+            def respond(self, _messages):
+                command = self.commands[self.turn]
+                self.turn += 1
+                return {"role": "assistant", "content": None, "tool_calls": [
+                    {"id": f"call-{self.turn}", "type": "function", "function": {"name": "act", "arguments": json.dumps({"command": command})}},
+                ]}
+
+        env = FakeEnv()
+        with patch("scienceworld_agent.make_env", return_value=env), patch("scienceworld_agent.DeepSeekChatClient", ResumingClient):
+            record = run_episode("test", 0, "inclined-plane-determine-angle", 84, "easy", 6, "body_aware_retrieval")
+        self.assertEqual(env.commands, ["wait1"] * 3 + ["examine inclined plane F", "wait1"])
+        self.assertEqual(record["controller_interventions"], 1)
+        self.assertEqual(record["termination_reason"], "max_steps")
 
     def test_environment_score_is_the_only_success_rule(self):
         self.assertFalse(objective_success(-1))
