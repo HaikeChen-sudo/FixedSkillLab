@@ -55,6 +55,7 @@ CONDITIONS = (
     "body_metadata_only", "body_placebo", "oracle_skill", "oracle_v2", "oracle_v3",
     "oracle_v3_full", "oracle_v3_metadata", "oracle_v3_placebo", "oracle_v4",
     "flat_retrieval_v4c", "body_aware_retrieval_v4c", "oracle_v4c",
+    "flat_retrieval_v4d", "body_aware_retrieval_v4d", "oracle_v4d",
     "t_horizontal", "t_vertical", "t_full",
     "t2_horizontal", "t2_vertical", "t2_full",
     "t3_horizontal", "t3_vertical", "t3_full",
@@ -97,9 +98,11 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
     if task_name not in ALL_GOLD_SKILLS:
         raise ValueError(f"no frozen Oracle label for task: {task_name}")
     is_new = task_name in V4_GOLD_SKILLS
-    if condition.endswith("_v4c") and not is_new:
-        raise ValueError("v4c conditions require a v14 task family")
-    library_version = ("v4c" if condition.endswith("_v4c") else "v4b") if is_new else "v3"
+    if condition.endswith(("_v4c", "_v4d")) and not is_new:
+        raise ValueError("v4c and v4d conditions require a v14 task family")
+    library_version = (
+        "v4d" if condition.endswith("_v4d") else "v4c" if condition.endswith("_v4c") else "v4b"
+    ) if is_new else "v3"
     gold = [ALL_GOLD_SKILLS[task_name]]
     if condition == "no_skill":
         return SkillSelection([], [], [], None, gold, None)
@@ -114,7 +117,7 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
             raise ValueError("T-shaped conditions are defined only for the original six task families")
         names = list(t_skill_names(condition, task_name))
         return SkillSelection(names, [], [], None, gold, T_STRUCTURE_VERSION if names else None)
-    if condition in {"oracle_v4", "oracle_v4c"}:
+    if condition in {"oracle_v4", "oracle_v4c", "oracle_v4d"}:
         if not is_new:
             raise ValueError("v4 Oracle conditions are defined only for the four v14 task families")
         return SkillSelection(gold, [], [], None, gold, library_version)
@@ -133,7 +136,7 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
             "oracle_v3_placebo": "v3",
         }[condition]
         return SkillSelection(gold, [], [], None, gold, version)
-    body_aware = condition in {"body_aware_retrieval", "body_aware_retrieval_v4c", "body_metadata_only", "body_placebo"}
+    body_aware = condition in {"body_aware_retrieval", "body_aware_retrieval_v4c", "body_aware_retrieval_v4d", "body_metadata_only", "body_placebo"}
     hits = retrieve(task_text, body_aware=body_aware, version=library_version)
     ranks = {item.name: item.rank for item in hits}
     return SkillSelection(

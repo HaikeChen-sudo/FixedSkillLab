@@ -14,10 +14,12 @@ def main() -> int:
     parser.add_argument("--suite", choices=sorted(SUITES), required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--simplification", default="easy")
-    parser.add_argument("--v14c", action="store_true", help="audit the v4c Skill library on v14 task families")
+    version = parser.add_mutually_exclusive_group()
+    version.add_argument("--v14c", action="store_true", help="audit the v4c Skill library on v14 task families")
+    version.add_argument("--v14d", action="store_true", help="audit the v4d Skill library on v14 task families")
     args = parser.parse_args()
-    if args.v14c and any(task_name not in V4_GOLD_SKILLS for task_name, _ in SUITES[args.suite]):
-        parser.error("--v14c requires a suite of v14 task families")
+    if (args.v14c or args.v14d) and any(task_name not in V4_GOLD_SKILLS for task_name, _ in SUITES[args.suite]):
+        parser.error("--v14c and --v14d require a suite of v14 task families")
 
     rows = []
     split = SUITE_VARIATION_SPLITS[args.suite]
@@ -29,8 +31,9 @@ def main() -> int:
                 raise ValueError(f"{task_name}:v{variation:03d} is not in the official {split} split")
             _, info = env.reset()
             task_text = info["taskDesc"]
-            flat = skill_selection("flat_retrieval_v4c" if args.v14c else "flat_retrieval", task_name, task_text)
-            body = skill_selection("body_aware_retrieval_v4c" if args.v14c else "body_aware_retrieval", task_name, task_text)
+            suffix = "_v4d" if args.v14d else "_v4c" if args.v14c else ""
+            flat = skill_selection("flat_retrieval" + suffix, task_name, task_text)
+            body = skill_selection("body_aware_retrieval" + suffix, task_name, task_text)
             rows.append({
                 "suite": args.suite,
                 "variation_split": split,
