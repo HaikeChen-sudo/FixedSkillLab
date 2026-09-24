@@ -1,0 +1,1697 @@
+{
+  "bm25": {
+    "b": 0.75,
+    "idf": "log(1 + (N-df+0.5)/(df+0.5))",
+    "k1": 1.5,
+    "tokens": "lowercase regex words; repeated query terms counted; no stemming"
+  },
+  "by_library": [
+    {
+      "cases": 48,
+      "hit_at_1_count": 16,
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_3_count": 32,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.5243055555555558
+    },
+    {
+      "cases": 48,
+      "hit_at_1_count": 16,
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_3_count": 32,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.5666666666666665
+    },
+    {
+      "cases": 48,
+      "hit_at_1_count": 26,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 48,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.7152777777777776
+    },
+    {
+      "cases": 48,
+      "hit_at_1_count": 40,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 48,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 0.9166666666666666
+    },
+    {
+      "cases": 48,
+      "hit_at_1_count": 22,
+      "hit_at_3": 0.8125,
+      "hit_at_3_count": 39,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.6295138888888888
+    },
+    {
+      "cases": 48,
+      "hit_at_1_count": 10,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 48,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.5833333333333334
+    },
+    {
+      "cases": 48,
+      "hit_at_1_count": 40,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 48,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 0.8888888888888893
+    },
+    {
+      "cases": 48,
+      "hit_at_1_count": 47,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 48,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 0.9895833333333334
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 2,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.7083333333333334
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 0.75,
+      "hit_at_3_count": 3,
+      "library_version": "v4",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.8125
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.875
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.8333333333333334
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.875
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 2,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.7083333333333334
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 0.75,
+      "hit_at_3_count": 3,
+      "library_version": "v4b",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.8125
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.875
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 0.75,
+      "hit_at_3_count": 3,
+      "library_version": "v4b",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.8125
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.875
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 0,
+      "hit_at_3": 0.0,
+      "hit_at_3_count": 0,
+      "library_version": "v4d",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.2
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0
+    }
+  ],
+  "by_library_unique_query_gold": [
+    {
+      "cases": 36,
+      "hit_at_1_count": 16,
+      "hit_at_3": 0.7777777777777778,
+      "hit_at_3_count": 28,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.6157407407407409
+    },
+    {
+      "cases": 36,
+      "hit_at_1_count": 16,
+      "hit_at_3": 0.7777777777777778,
+      "hit_at_3_count": 28,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.6555555555555554
+    },
+    {
+      "cases": 36,
+      "hit_at_1_count": 22,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 36,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.7685185185185184
+    },
+    {
+      "cases": 36,
+      "hit_at_1_count": 28,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 36,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 0.8888888888888888
+    },
+    {
+      "cases": 36,
+      "hit_at_1_count": 19,
+      "hit_at_3": 0.8611111111111112,
+      "hit_at_3_count": 31,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.6777777777777778
+    },
+    {
+      "cases": 36,
+      "hit_at_1_count": 10,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 36,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.6111111111111112
+    },
+    {
+      "cases": 36,
+      "hit_at_1_count": 32,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 36,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 0.9259259259259258
+    },
+    {
+      "cases": 36,
+      "hit_at_1_count": 35,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 36,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 0.9861111111111112
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 2,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.7083333333333334
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 0.75,
+      "hit_at_3_count": 3,
+      "library_version": "v4",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.8125
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.875
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.8333333333333334
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.875
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 2,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.7083333333333334
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 0.75,
+      "hit_at_3_count": 3,
+      "library_version": "v4b",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.8125
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.875
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 0.75,
+      "hit_at_3_count": 3,
+      "library_version": "v4b",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.8125
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.875
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 0,
+      "hit_at_3": 0.0,
+      "hit_at_3_count": 0,
+      "library_version": "v4d",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.2
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 1.0
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0
+    }
+  ],
+  "by_run": [
+    {
+      "cases": 12,
+      "hit_at_1_count": 4,
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_3_count": 8,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.5333333333333333,
+      "run_id": "scienceworld-v10-confirm-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 4,
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_3_count": 8,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.5666666666666668,
+      "run_id": "scienceworld-v10-confirm-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 6,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 12,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.6944444444444443,
+      "run_id": "scienceworld-v10-confirm-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 10,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 12,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 0.9166666666666666,
+      "run_id": "scienceworld-v10-confirm-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 6,
+      "hit_at_3": 0.75,
+      "hit_at_3_count": 9,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.6555555555555556,
+      "run_id": "scienceworld-v10-confirm-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 2,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 12,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.5555555555555556,
+      "run_id": "scienceworld-v10-confirm-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 10,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 12,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 0.888888888888889,
+      "run_id": "scienceworld-v10-confirm-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 11,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 12,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 0.9583333333333334,
+      "run_id": "scienceworld-v10-confirm-12x3"
+    },
+    {
+      "cases": 18,
+      "hit_at_1_count": 6,
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_3_count": 12,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.5055555555555555,
+      "run_id": "scienceworld-v11b-confirm-18x3"
+    },
+    {
+      "cases": 18,
+      "hit_at_1_count": 6,
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_3_count": 12,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.5666666666666667,
+      "run_id": "scienceworld-v11b-confirm-18x3"
+    },
+    {
+      "cases": 18,
+      "hit_at_1_count": 9,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 18,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.6944444444444445,
+      "run_id": "scienceworld-v11b-confirm-18x3"
+    },
+    {
+      "cases": 18,
+      "hit_at_1_count": 15,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 18,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 0.9166666666666666,
+      "run_id": "scienceworld-v11b-confirm-18x3"
+    },
+    {
+      "cases": 18,
+      "hit_at_1_count": 6,
+      "hit_at_3": 0.8333333333333334,
+      "hit_at_3_count": 15,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.5574074074074074,
+      "run_id": "scienceworld-v11b-confirm-18x3"
+    },
+    {
+      "cases": 18,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 18,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.5555555555555556,
+      "run_id": "scienceworld-v11b-confirm-18x3"
+    },
+    {
+      "cases": 18,
+      "hit_at_1_count": 15,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 18,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 0.8888888888888888,
+      "run_id": "scienceworld-v11b-confirm-18x3"
+    },
+    {
+      "cases": 18,
+      "hit_at_1_count": 18,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 18,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v11b-confirm-18x3"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 2,
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_3_count": 4,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.5055555555555555,
+      "run_id": "scienceworld-v12-mechanism-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 2,
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_3_count": 4,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.5666666666666668,
+      "run_id": "scienceworld-v12-mechanism-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 6,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.6944444444444443,
+      "run_id": "scienceworld-v12-mechanism-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 5,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 6,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 0.9166666666666666,
+      "run_id": "scienceworld-v12-mechanism-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 2,
+      "hit_at_3": 0.8333333333333334,
+      "hit_at_3_count": 5,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.5611111111111111,
+      "run_id": "scienceworld-v12-mechanism-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 6,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.5555555555555555,
+      "run_id": "scienceworld-v12-mechanism-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 5,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 6,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 0.8888888888888888,
+      "run_id": "scienceworld-v12-mechanism-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 6,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 6,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v12-mechanism-pilot-6x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 2,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.7083333333333334,
+      "run_id": "scienceworld-v14-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 0.75,
+      "hit_at_3_count": 3,
+      "library_version": "v4",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.8125,
+      "run_id": "scienceworld-v14-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.875,
+      "run_id": "scienceworld-v14-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.8333333333333334,
+      "run_id": "scienceworld-v14-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.875,
+      "run_id": "scienceworld-v14-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 2,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.7083333333333334,
+      "run_id": "scienceworld-v14b-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 0.75,
+      "hit_at_3_count": 3,
+      "library_version": "v4b",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.8125,
+      "run_id": "scienceworld-v14b-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.875,
+      "run_id": "scienceworld-v14b-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14b-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 0.75,
+      "hit_at_3_count": 3,
+      "library_version": "v4b",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.8125,
+      "run_id": "scienceworld-v14b-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.875,
+      "run_id": "scienceworld-v14b-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14b-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4b",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14b-dev-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14c-dev-check-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14c-dev-check-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14c-dev-check-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14c-dev-check-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14c-dev-check-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14c-dev-check-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14c-dev-check-4x1"
+    },
+    {
+      "cases": 4,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 4,
+      "library_version": "v4c",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14c-dev-check-4x1"
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 0,
+      "hit_at_3": 0.0,
+      "hit_at_3_count": 0,
+      "library_version": "v4d",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.2,
+      "run_id": "scienceworld-v14d-incline-dev-1x1"
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14d-incline-dev-1x1"
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14d-incline-dev-1x1"
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14d-incline-dev-1x1"
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14d-incline-dev-1x1"
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14d-incline-dev-1x1"
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14d-incline-dev-1x1"
+    },
+    {
+      "cases": 1,
+      "hit_at_1_count": 1,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 1,
+      "library_version": "v4d",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v14d-incline-dev-1x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 2,
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_3_count": 4,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.5111111111111111,
+      "run_id": "scienceworld-v5-router-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 2,
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_3_count": 4,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.5666666666666668,
+      "run_id": "scienceworld-v5-router-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 4,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 6,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.7777777777777777,
+      "run_id": "scienceworld-v5-router-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 5,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 6,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 0.9166666666666666,
+      "run_id": "scienceworld-v5-router-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 3,
+      "hit_at_3": 0.8333333333333334,
+      "hit_at_3_count": 5,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.6444444444444445,
+      "run_id": "scienceworld-v5-router-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 2,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 6,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.6666666666666666,
+      "run_id": "scienceworld-v5-router-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 5,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 6,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 0.8888888888888888,
+      "run_id": "scienceworld-v5-router-pilot-6x1"
+    },
+    {
+      "cases": 6,
+      "hit_at_1_count": 6,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 6,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v5-router-pilot-6x1"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 4,
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_3_count": 8,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "flat",
+      "mrr": 0.55,
+      "run_id": "scienceworld-v6-router-formal-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 4,
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_3_count": 8,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "flat",
+      "mrr": 0.5666666666666668,
+      "run_id": "scienceworld-v6-router-formal-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 7,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 12,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "flat",
+      "mrr": 0.736111111111111,
+      "run_id": "scienceworld-v6-router-formal-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 10,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 12,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "flat",
+      "mrr": 0.9166666666666666,
+      "run_id": "scienceworld-v6-router-formal-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 7,
+      "hit_at_3": 0.8333333333333334,
+      "hit_at_3_count": 10,
+      "library_version": "v3",
+      "method": "hash_256",
+      "mode": "body",
+      "mrr": 0.7041666666666666,
+      "run_id": "scienceworld-v6-router-formal-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 3,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 12,
+      "library_version": "v3",
+      "method": "exact_counts",
+      "mode": "body",
+      "mrr": 0.6111111111111112,
+      "run_id": "scienceworld-v6-router-formal-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 10,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 12,
+      "library_version": "v3",
+      "method": "bm25",
+      "mode": "body",
+      "mrr": 0.888888888888889,
+      "run_id": "scienceworld-v6-router-formal-12x3"
+    },
+    {
+      "cases": 12,
+      "hit_at_1_count": 12,
+      "hit_at_3": 1.0,
+      "hit_at_3_count": 12,
+      "library_version": "v3",
+      "method": "minilm",
+      "mode": "body",
+      "mrr": 1.0,
+      "run_id": "scienceworld-v6-router-formal-12x3"
+    }
+  ],
+  "code_sha256": {
+    "scienceworld_hash_audit.py": "d893309b0fa75538c424904213cf072a0b1f5f302e69b7186ee57cdb0783b96a",
+    "scienceworld_retrieval.py": "32a1043c422a33516cad720477052a72097019293f39b3596f30f2a581606a6f",
+    "scienceworld_retrieval_baselines.py": "4c3247496dbea78c0ff8cd6fd1ae2523b12dd9d2549c94dcfdfb22d0ace96686",
+    "scienceworld_skills.py": "16566dd84020257ce055d7095689b2aa02dc6f7d541ba401bfb66212445f36b5"
+  },
+  "index_fields": {
+    "body": "complete rendered Skill",
+    "flat": "Name and Description"
+  },
+  "library_hashes": {
+    "v3": "fdd9d917af6528933d71f744e57b88aae6e7e52113354e20bec3ffbf8cd0f322",
+    "v4": "fdedc07d1c0b350d86259a2ac470bc48bbefd8ecfdb6beb0aece7d219603e774",
+    "v4b": "37faee802461ff8d76d7284dc832e4f71f41503fb1b044b9aa64c9ba23b4ffd4",
+    "v4c": "822b7d3937611463a1fb93c11c3be37723cd7b5123e096c448e27608bcf6cbe7",
+    "v4d": "5d16691dd48632b07fc2e176ec3daed70b7e089c59c28e7c434e4e06b3e04d0b"
+  },
+  "methods": [
+    "hash_256",
+    "exact_counts",
+    "bm25",
+    "minilm"
+  ],
+  "minilm": {
+    "batch_size": 16,
+    "device": "cpu",
+    "dimension": 384,
+    "file_sha256": {
+      "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+      "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+      "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+      "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+      "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+      "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+      "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+      "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+      "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+      "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+    },
+    "local_directory_name": "all-MiniLM-L6-v2",
+    "max_seq_length": 256,
+    "normalize_embeddings": true,
+    "packages": {
+      "numpy": "2.0.2",
+      "safetensors": "0.7.0",
+      "sentence-transformers": "3.4.1",
+      "tokenizers": "0.22.2",
+      "torch": "2.8.0",
+      "transformers": "4.57.6"
+    },
+    "python": "3.9.6",
+    "seed": 0,
+    "torch_threads": 2,
+    "use_safetensors": true
+  },
+  "output_sha256": {
+    "embedding_inputs.jsonl": "80054267137edfd0d3ed1dfe45c0936332fd79a043366973a8dd62c7e7736d6d",
+    "rankings.jsonl": "8746e43b4f853c8bca29e8f880503ef8ad105dd109133b2a52b155fb796621f6"
+  },
+  "schema_version": 1,
+  "scope": "retrospective offline retrieval controls; not Agent evaluation",
+  "source": {
+    "duplicate_measurements_collapsed": 243,
+    "excluded_records": {},
+    "input_file": "source_records.jsonl",
+    "input_sha256": "9fa352ecb67aae89de4a0e979ffe639d4349187983c3cdb2d53e3cd89098635d",
+    "records_read": 304,
+    "replayed_matching_records": 304,
+    "selected_records": 304,
+    "unique_task_library_queries": 61
+  },
+  "tie_break": "unrounded score descending, Skill name ascending",
+  "top_k": 3,
+  "truncation": {
+    "body": {
+      "inputs": 46,
+      "max_tokens": 239,
+      "truncated": 0
+    },
+    "flat": {
+      "inputs": 46,
+      "max_tokens": 30,
+      "truncated": 0
+    },
+    "query": {
+      "inputs": 43,
+      "max_tokens": 99,
+      "truncated": 0
+    }
+  },
+  "unit": "task ID, library version/hash and exact query; repeats and conditions collapsed"
+}
