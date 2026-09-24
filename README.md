@@ -101,6 +101,8 @@ ScienceWorld 的 [哈希碰撞审计](docs/research/scienceworld_hash_collision_
 
 ScienceWorld 的 [BM25 与预训练语义检索对照](docs/research/scienceworld_retrieval_baselines_2026-09-24.md) 继续使用同一份已见查询。BM25、MiniLM 下，五个历史库的 Flat/Body 均为 Gold Top-3 全命中；v3 的 MiniLM Top-1 为 Flat 40/48、Body 47/48。旧 Top-3 差距在强基线下消失，排序差异仍在，但不能替代新的 Agent 成功率或成本实验。脚本 `scienceworld_retrieval_baselines.py` 复用本地模型、禁止自动下载，并保留完整排名与模型文件哈希；不改变在线路由。
 
+ScienceWorld 的 [强基线路由接口检查](docs/research/scienceworld_strong_router_interface_2026-09-24.md) 已加入 BM25/语义 Flat、Body 四个独立条件。原六个任务族固定用 v3，新任务族固定用 v4d；两种索引方式都按 Top-3 加载完整 Skill。语义模型通过已有独立环境本地调用，记录冷启动路由时间和模型指纹；本轮只完成本地测试，未新增付费 episode。
+
 ## ALFWorld：固定 Skill 的 A–E 实验
 
 `alfworld_agent.py` 运行文字版 `AlfredTWEnv`。DeepSeek 只有一个 `act(command)` 动作工具，成功只由 ALFWorld 返回的 `won` 决定。`alfworld_skills.py` 有 30 个手工固定 Skill；没有自动学习、PPO 或 Skill graph。每次正式 API 运行会追加写入 `results/alfworld_results.jsonl`。

@@ -11,6 +11,7 @@ from typing import Any, Dict, List, Optional
 
 from agent import DeepSeekChatClient
 from scienceworld_retrieval import EMBEDDER_NAME, retrieve
+from scienceworld_strong_retrieval import STRONG_CONDITIONS, strong_retrieve
 from scienceworld_skills import (
     ALL_GOLD_SKILLS,
     V4_GOLD_SKILLS,
@@ -59,7 +60,7 @@ CONDITIONS = (
     "t_horizontal", "t_vertical", "t_full",
     "t2_horizontal", "t2_vertical", "t2_full",
     "t3_horizontal", "t3_vertical", "t3_full",
-)
+) + tuple(STRONG_CONDITIONS)
 DEFAULT_CONDITIONS = ("no_skill", "oracle_v2")
 AGENT_PROTOCOL_VERSION = "scienceworld-v2"
 T2_CONTROLLER_VERSION = "repeated-action-guard-v1"
@@ -80,6 +81,7 @@ class SkillSelection:
     retriever: Optional[str]
     gold_skills: List[str]
     library_version: Optional[str]
+    retrieval_metadata: Optional[Dict[str, Any]] = None
 
 
 def objective_success(score: int) -> bool:
@@ -104,6 +106,16 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
         "v4d" if condition.endswith("_v4d") else "v4c" if condition.endswith("_v4c") else "v4b"
     ) if is_new else "v3"
     gold = [ALL_GOLD_SKILLS[task_name]]
+    if condition in STRONG_CONDITIONS:
+        method, body_aware = STRONG_CONDITIONS[condition]
+        library_version = "v4d" if is_new else "v3"
+        result = strong_retrieve(task_text, body_aware, library_version, method)
+        ranks = {hit["name"]: hit["rank"] for hit in result["hits"]}
+        return SkillSelection(
+            [hit["name"] for hit in result["hits"]], result["hits"],
+            [ranks.get(name) for name in gold], result["metadata"]["retriever"],
+            gold, library_version, result["metadata"],
+        )
     if condition == "no_skill":
         return SkillSelection([], [], [], None, gold, None)
     if condition == "all_skills":
@@ -218,7 +230,9 @@ def run_episode(
         env.load(task_name, variationIdx=variation, simplificationStr=simplification)
         observation, info = env.reset()
         task_description = info["taskDesc"]
+        routing_started = time.perf_counter()
         selection = skill_selection(condition, task_name, task_description)
+        routing_ms = round((time.perf_counter() - routing_started) * 1000)
         selected = selection.names
         skill_version = selection.library_version
         skill_render_mode = {
@@ -409,6 +423,8 @@ def run_episode(
             "gold_skills": selection.gold_skills,
             "gold_skill_ranks": selection.gold_skill_ranks,
             "retriever": selection.retriever,
+            "retrieval_metadata": selection.retrieval_metadata,
+            "routing_ms": routing_ms,
             "retrieval_query": task_description,
             "retrieval": selection.retrieved,
             "retrieval_rank": min((rank for rank in selection.gold_skill_ranks if rank is not None), default=None),
