@@ -97,6 +97,8 @@ python3 summarize_results.py results/results.jsonl --run-id baseline-v1
 
 Flat 和 Body-aware 默认使用 `hash-embedding-v1`：一个无依赖、确定性的本地向量检索基线。它不是预训练语义 embedding；接入外部 embedding 模型时，应换一个 retriever 版本并单独比较。
 
+ScienceWorld 的 [哈希碰撞审计](docs/research/scienceworld_hash_collision_audit_2026-09-24.md) 已重放 304 条历史检索记录，并对 61 个去重后的题目与 Skill 版本组合比较四种哈希维度及完整词频表示。碰撞会造成漏检，也会偶然帮助命中；不能把单题路由差异直接当成正文索引的优势。脚本 `scienceworld_hash_audit.py` 可用 [导出的源记录](results/scienceworld_hash_audit_2026-09-24/source_records.jsonl) 独立复现，不需要 API Key 或 ScienceWorld 环境；旧在线检索器与实验结果保持原版本。
+
 ## ALFWorld：固定 Skill 的 A–E 实验
 
 `alfworld_agent.py` 运行文字版 `AlfredTWEnv`。DeepSeek 只有一个 `act(command)` 动作工具，成功只由 ALFWorld 返回的 `won` 决定。`alfworld_skills.py` 有 30 个手工固定 Skill；没有自动学习、PPO 或 Skill graph。每次正式 API 运行会追加写入 `results/alfworld_results.jsonl`。
