@@ -1,0 +1,136 @@
+{
+  "episode_plan": [
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 84,
+      "condition": "no_skill",
+      "repeat": 0,
+      "environment_max_steps": 100,
+      "plan_index": 0,
+      "run_id": "scienceworld-budget-dev-env100-3x1"
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 84,
+      "condition": "no_skill",
+      "repeat": 0,
+      "environment_max_steps": 200,
+      "plan_index": 1,
+      "run_id": "scienceworld-budget-dev-env200-3x1"
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 84,
+      "condition": "semantic_body_retrieval",
+      "repeat": 0,
+      "environment_max_steps": 200,
+      "plan_index": 2,
+      "run_id": "scienceworld-budget-dev-env200-3x1"
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 84,
+      "condition": "semantic_body_retrieval",
+      "repeat": 0,
+      "environment_max_steps": 100,
+      "plan_index": 3,
+      "run_id": "scienceworld-budget-dev-env100-3x1"
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 85,
+      "condition": "semantic_body_retrieval",
+      "repeat": 0,
+      "environment_max_steps": 100,
+      "plan_index": 4,
+      "run_id": "scienceworld-budget-dev-env100-3x1"
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 85,
+      "condition": "semantic_body_retrieval",
+      "repeat": 0,
+      "environment_max_steps": 200,
+      "plan_index": 5,
+      "run_id": "scienceworld-budget-dev-env200-3x1"
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 85,
+      "condition": "no_skill",
+      "repeat": 0,
+      "environment_max_steps": 200,
+      "plan_index": 6,
+      "run_id": "scienceworld-budget-dev-env200-3x1"
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 85,
+      "condition": "no_skill",
+      "repeat": 0,
+      "environment_max_steps": 100,
+      "plan_index": 7,
+      "run_id": "scienceworld-budget-dev-env100-3x1"
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 86,
+      "condition": "no_skill",
+      "repeat": 0,
+      "environment_max_steps": 100,
+      "plan_index": 8,
+      "run_id": "scienceworld-budget-dev-env100-3x1"
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 86,
+      "condition": "no_skill",
+      "repeat": 0,
+      "environment_max_steps": 200,
+      "plan_index": 9,
+      "run_id": "scienceworld-budget-dev-env200-3x1"
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 86,
+      "condition": "semantic_body_retrieval",
+      "repeat": 0,
+      "environment_max_steps": 200,
+      "plan_index": 10,
+      "run_id": "scienceworld-budget-dev-env200-3x1"
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 86,
+      "condition": "semantic_body_retrieval",
+      "repeat": 0,
+      "environment_max_steps": 100,
+      "plan_index": 11,
+      "run_id": "scienceworld-budget-dev-env100-3x1"
+    }
+  ],
+  "model": "deepseek-v4-flash",
+  "temperature": 0.0,
+  "simplification": "easy",
+  "thinking": "disabled",
+  "agent_max_steps": 100,
+  "cost_stop_usd": 0.25,
+  "variation_split": "dev",
+  "library_sha256": "5d16691dd48632b07fc2e176ec3daed70b7e089c59c28e7c434e4e06b3e04d0b",
+  "file_sha256": {
+    "agent.py": "5240b3cc1ed4e78eac98a61d02163821f98bf69189c6a18e612cda26c4234a55",
+    "scienceworld_agent.py": "4db5463dba30a69d1d6b993d6474ef36b147a1a6b8a73709812919c5008e7f7f",
+    "scienceworld_skills.py": "16566dd84020257ce055d7095689b2aa02dc6f7d541ba401bfb66212445f36b5",
+    "scienceworld_retrieval.py": "32a1043c422a33516cad720477052a72097019293f39b3596f30f2a581606a6f",
+    "scienceworld_strong_retrieval.py": "04e3793525ae9cd5b53fec9bfd74f5754bf3fa9d30e8aaf72aa62b8765fc29cb",
+    "scienceworld_retrieval_baselines.py": "4c3247496dbea78c0ff8cd6fd1ae2523b12dd9d2549c94dcfdfb22d0ace96686",
+    "scienceworld_hash_audit.py": "d893309b0fa75538c424904213cf072a0b1f5f302e69b7186ee57cdb0783b96a",
+    "scienceworld_budget_pilot.py": "28c6e4b4131665dc6a388db6a277672b6f71a7e48e68eddabbe5bac539c949c1",
+    "results/scienceworld_retrieval_baselines_2026-09-24/summary.json": "e13119ed889289ba8e6ceb26d523c0f4856562993683502d91925f95a8e9cad2"
+  },
+  "scienceworld_runtime": {
+    "package_version": "1.2.3",
+    "jar_sha256": "f4e1fdce0cdabe1bab7128a7e78ea820210d9db3c28d7272bcbbc3f3a1c5f0d7",
+    "wrapper_sha256": "23a37a2e9ed8e43d8c5e27d8660ea344d38a544abcd8c7e6af40071c7832ce68"
+  }
+}

@@ -182,8 +182,18 @@ def make_env(max_steps: int):
     return ScienceWorldEnv("", envStepLimit=max_steps)
 
 
-def run_gold_check(task_name: str, variation: int, simplification: str, max_steps: int) -> Dict[str, Any]:
-    env = make_env(max_steps)
+def environment_limit(max_steps: int, environment_max_steps: Optional[int] = None) -> int:
+    limit = max_steps if environment_max_steps is None else environment_max_steps
+    for value in (max_steps, limit):
+        if isinstance(value, bool) or not isinstance(value, int) or value < 1:
+            raise ValueError("Agent and environment step limits must be positive integers")
+    return limit
+
+
+def run_gold_check(task_name: str, variation: int, simplification: str, max_steps: int,
+                   *, environment_max_steps: Optional[int] = None) -> Dict[str, Any]:
+    limit = environment_limit(max_steps, environment_max_steps)
+    env = make_env(limit)
     trace = []
     try:
         env.load(task_name, variationIdx=variation, simplificationStr=simplification, generateGoldPath=True)
@@ -199,6 +209,8 @@ def run_gold_check(task_name: str, variation: int, simplification: str, max_step
         return {
             "environment": "scienceworld",
             "condition": "gold_control",
+            "agent_max_steps": max_steps,
+            "environment_max_steps": limit,
             "task_id": f"{task_name}:v{variation:03d}",
             "task_name": task_name,
             "variation": variation,
@@ -222,14 +234,18 @@ def run_episode(
     simplification: str,
     max_steps: int,
     condition: str,
+    *,
+    environment_max_steps: Optional[int] = None,
 ) -> Dict[str, Any]:
-    env = make_env(max_steps)
+    limit = environment_limit(max_steps, environment_max_steps)
+    env = make_env(limit)
     started = time.perf_counter()
     trace: List[Dict[str, Any]] = []
     try:
         env.load(task_name, variationIdx=variation, simplificationStr=simplification)
         observation, info = env.reset()
         task_description = info["taskDesc"]
+        initial_observation_sha256 = hashlib.sha256(observation.encode("utf-8")).hexdigest()
         routing_started = time.perf_counter()
         selection = skill_selection(condition, task_name, task_description)
         routing_ms = round((time.perf_counter() - routing_started) * 1000)
@@ -400,6 +416,12 @@ def run_episode(
             "variation": variation,
             "simplification": simplification,
             "max_steps": max_steps,
+            "agent_max_steps": max_steps,
+            "environment_max_steps": limit,
+            "budget_protocol_version": "split-budgets-v1",
+            "agent_budget_exhausted": len(trace) >= max_steps,
+            "environment_budget_exhausted": environment_moves > limit,
+            "initial_observation_sha256": initial_observation_sha256,
             "condition": condition,
             "agent_protocol_version": V14B_PROTOCOL_VERSION if task_name in V4_GOLD_SKILLS else AGENT_PROTOCOL_VERSION,
             "model": model,
@@ -471,7 +493,8 @@ def main() -> int:
     parser.add_argument("--variation", type=int, default=0)
     parser.add_argument("--simplification", default="easy")
     parser.add_argument("--condition", choices=CONDITIONS, default="no_skill")
-    parser.add_argument("--max-steps", type=int, default=50)
+    parser.add_argument("--max-steps", type=int, default=50, help="Agent trace/action limit; also default environment limit")
+    parser.add_argument("--environment-max-steps", type=int, help="independent environment move limit; defaults to --max-steps")
     parser.add_argument("--results", type=Path, default=Path("results/scienceworld_results.jsonl"))
     parser.add_argument("--run-id", default=datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"))
     parser.add_argument("--smoke", action="store_true", help="load and reset one local task; no API call")
@@ -479,11 +502,15 @@ def main() -> int:
     args = parser.parse_args()
     if args.variation < 0 or args.max_steps < 1:
         parser.error("--variation must be non-negative and --max-steps must be positive")
+    try:
+        limit = environment_limit(args.max_steps, args.environment_max_steps)
+    except ValueError as error:
+        parser.error(str(error))
     if args.gold_check:
-        print(json.dumps(run_gold_check(args.task, args.variation, args.simplification, args.max_steps), ensure_ascii=False, indent=2))
+        print(json.dumps(run_gold_check(args.task, args.variation, args.simplification, args.max_steps, environment_max_steps=limit), ensure_ascii=False, indent=2))
         return 0
     if args.smoke:
-        env = make_env(args.max_steps)
+        env = make_env(limit)
         try:
             env.load(args.task, variationIdx=args.variation, simplificationStr=args.simplification)
             observation, info = env.reset()
@@ -503,7 +530,7 @@ def main() -> int:
         parser.error("--model is required unless --smoke or --gold-check is used")
     record = run_episode(
         args.model, args.temperature, args.task, args.variation,
-        args.simplification, args.max_steps, args.condition,
+        args.simplification, args.max_steps, args.condition, environment_max_steps=limit,
     )
     record.update({
         "schema_version": 1,

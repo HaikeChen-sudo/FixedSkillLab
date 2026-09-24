@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import List
 
-from scienceworld_agent import CONDITIONS, DEFAULT_CONDITIONS, append_jsonl, run_episode, run_gold_check
+from scienceworld_agent import CONDITIONS, DEFAULT_CONDITIONS, append_jsonl, environment_limit, run_episode, run_gold_check
 from scienceworld_skills import ALL_GOLD_SKILLS
 from scienceworld_suites import SCIENCEWORLD_PILOT_6, SUITES, SUITE_VARIATION_SPLITS
 
@@ -32,16 +32,23 @@ def condition_list(value: str) -> List[str]:
     return conditions
 
 
-def completed_episodes(path: Path, run_id: str) -> set:
+def completed_episodes(path: Path, run_id: str, expected=None) -> set:
     if not path.exists():
         return set()
+    completed = set()
     with path.open(encoding="utf-8") as handle:
-        return {
-            (row["task_name"], row["variation"], row["condition"], row.get("repeat", 0))
-            for line in handle if line.strip()
-            for row in [json.loads(line)]
-            if row.get("run_id") == run_id
-        }
+        for line in handle:
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            if row.get("run_id") != run_id:
+                continue
+            for name, value in (expected or {}).items():
+                actual = row.get(name, row.get("max_steps") if name == "environment_max_steps" else None)
+                if actual != value:
+                    raise ValueError(f"run ID {run_id} has different {name}; use a new run ID")
+            completed.add((row["task_name"], row["variation"], row["condition"], row.get("repeat", 0)))
+    return completed
 
 
 def experiment_cases(suite, tasks, variation):
@@ -63,7 +70,8 @@ def main() -> int:
     parser.add_argument("--conditions", type=condition_list, default=list(DEFAULT_CONDITIONS))
     parser.add_argument("--variation", type=int, help="one variation for custom --tasks; default: 0")
     parser.add_argument("--simplification", default="easy")
-    parser.add_argument("--max-steps", type=int, default=50)
+    parser.add_argument("--max-steps", type=int, default=50, help="Agent trace/action limit; also default environment limit")
+    parser.add_argument("--environment-max-steps", type=int, help="independent environment move limit; defaults to --max-steps")
     parser.add_argument("--repeats", type=int, default=1)
     parser.add_argument("--results", type=Path, default=Path("results/scienceworld_results.jsonl"))
     parser.add_argument("--run-id", default=datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"))
@@ -76,6 +84,7 @@ def main() -> int:
         parser.error("--variation must be non-negative; --max-steps and --repeats must be positive")
     try:
         cases = experiment_cases(args.suite, args.tasks, args.variation)
+        limit = environment_limit(args.max_steps, args.environment_max_steps)
     except ValueError as error:
         parser.error(str(error))
     if args.check_results and not args.gold_check:
@@ -84,7 +93,7 @@ def main() -> int:
         success = True
         records = []
         for task_name, variation in cases:
-            record = run_gold_check(task_name, variation, args.simplification, args.max_steps)
+            record = run_gold_check(task_name, variation, args.simplification, args.max_steps, environment_max_steps=limit)
             records.append(record)
             success = success and record["success"]
             print(json.dumps({key: record[key] for key in (
@@ -100,7 +109,16 @@ def main() -> int:
     if not args.model:
         parser.error("--model is required unless --gold-check is used")
 
-    completed = completed_episodes(args.results, args.run_id) if args.resume else set()
+    try:
+        completed = completed_episodes(args.results, args.run_id, {
+            "model": args.model, "temperature": args.temperature,
+            "simplification": args.simplification, "max_steps": args.max_steps,
+            "environment_max_steps": limit,
+        })
+    except ValueError as error:
+        parser.error(str(error))
+    if completed and not args.resume:
+        parser.error("run ID already has results; use --resume or a new run ID")
     for task_name, variation in cases:
         for repeat in range(args.repeats):
             conditions = list(args.conditions)
@@ -118,7 +136,7 @@ def main() -> int:
                 started = time.perf_counter()
                 record = run_episode(
                     args.model, args.temperature, task_name, variation,
-                    args.simplification, args.max_steps, condition,
+                    args.simplification, args.max_steps, condition, environment_max_steps=limit,
                 )
                 record.update({
                     "schema_version": 1,
