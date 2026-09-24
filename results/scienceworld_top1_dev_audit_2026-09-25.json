@@ -1,0 +1,504 @@
+{
+  "agent_performance_measured": false,
+  "baseline_manifest_sha256": "e13119ed889289ba8e6ceb26d523c0f4856562993683502d91925f95a8e9cad2",
+  "by_library": [
+    {
+      "library_version": "v4",
+      "task_query_units": {
+        "body_hit": 4,
+        "body_only": 0,
+        "both_hit": 4,
+        "both_miss": 0,
+        "cases": 4,
+        "different_top1": 0,
+        "flat_hit": 4,
+        "flat_only": 0
+      },
+      "unique_query_gold": {
+        "body_hit": 4,
+        "body_only": 0,
+        "both_hit": 4,
+        "both_miss": 0,
+        "cases": 4,
+        "different_top1": 0,
+        "flat_hit": 4,
+        "flat_only": 0
+      }
+    },
+    {
+      "library_version": "v4b",
+      "task_query_units": {
+        "body_hit": 4,
+        "body_only": 0,
+        "both_hit": 4,
+        "both_miss": 0,
+        "cases": 4,
+        "different_top1": 0,
+        "flat_hit": 4,
+        "flat_only": 0
+      },
+      "unique_query_gold": {
+        "body_hit": 4,
+        "body_only": 0,
+        "both_hit": 4,
+        "both_miss": 0,
+        "cases": 4,
+        "different_top1": 0,
+        "flat_hit": 4,
+        "flat_only": 0
+      }
+    },
+    {
+      "library_version": "v4c",
+      "task_query_units": {
+        "body_hit": 4,
+        "body_only": 0,
+        "both_hit": 4,
+        "both_miss": 0,
+        "cases": 4,
+        "different_top1": 0,
+        "flat_hit": 4,
+        "flat_only": 0
+      },
+      "unique_query_gold": {
+        "body_hit": 4,
+        "body_only": 0,
+        "both_hit": 4,
+        "both_miss": 0,
+        "cases": 4,
+        "different_top1": 0,
+        "flat_hit": 4,
+        "flat_only": 0
+      }
+    },
+    {
+      "library_version": "v4d",
+      "task_query_units": {
+        "body_hit": 1,
+        "body_only": 0,
+        "both_hit": 1,
+        "both_miss": 0,
+        "cases": 1,
+        "different_top1": 0,
+        "flat_hit": 1,
+        "flat_only": 0
+      },
+      "unique_query_gold": {
+        "body_hit": 1,
+        "body_only": 0,
+        "both_hit": 1,
+        "both_miss": 0,
+        "cases": 1,
+        "different_top1": 0,
+        "flat_hit": 1,
+        "flat_only": 0
+      }
+    }
+  ],
+  "cached_cases": 61,
+  "cases": [
+    {
+      "gold_skill": "chemistry-recipe-mix",
+      "library_sha256": "fdedc07d1c0b350d86259a2ac470bc48bbefd8ecfdb6beb0aece7d219603e774",
+      "library_version": "v4",
+      "query": "Task Description:\nYour task is to use chemistry to create the substance 'smores'. A recipe and some of the ingredients might be found near the kitchen. When you are done, focus on the smores.",
+      "query_sha256": "da80570124900084e5249961bb47cf778e17922212544c1bdcf5c18843845c0b",
+      "source_records": [
+        {
+          "condition": "flat_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 802,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        },
+        {
+          "condition": "body_aware_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 804,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "chemistry-mix:v016",
+      "top1": {
+        "body": "chemistry-recipe-mix",
+        "flat": "chemistry-recipe-mix"
+      }
+    },
+    {
+      "gold_skill": "chemistry-recipe-mix",
+      "library_sha256": "37faee802461ff8d76d7284dc832e4f71f41503fb1b044b9aa64c9ba23b4ffd4",
+      "library_version": "v4b",
+      "query": "Task Description:\nYour task is to use chemistry to create the substance 'smores'. A recipe and some of the ingredients might be found near the kitchen. When you are done, focus on the smores.",
+      "query_sha256": "da80570124900084e5249961bb47cf778e17922212544c1bdcf5c18843845c0b",
+      "source_records": [
+        {
+          "condition": "flat_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14b-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 818,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        },
+        {
+          "condition": "body_aware_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14b-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 820,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "chemistry-mix:v016",
+      "top1": {
+        "body": "chemistry-recipe-mix",
+        "flat": "chemistry-recipe-mix"
+      }
+    },
+    {
+      "gold_skill": "chemistry-recipe-mix",
+      "library_sha256": "822b7d3937611463a1fb93c11c3be37723cd7b5123e096c448e27608bcf6cbe7",
+      "library_version": "v4c",
+      "query": "Task Description:\nYour task is to use chemistry to create the substance 'dough'. A recipe and some of the ingredients might be found near the kitchen. When you are done, focus on the dough.",
+      "query_sha256": "57c4f5da6df6824151c7d9651022526fb06e530554e6192cb26fbda66a3b2682",
+      "source_records": [
+        {
+          "condition": "body_aware_retrieval_v4c",
+          "repeat": 0,
+          "run_id": "scienceworld-v14c-dev-check-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 869,
+          "suite": "scienceworld-v14c-dev-check-4",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "chemistry-mix:v017",
+      "top1": {
+        "body": "chemistry-recipe-mix",
+        "flat": "chemistry-recipe-mix"
+      }
+    },
+    {
+      "gold_skill": "grow-plant-from-seed",
+      "library_sha256": "fdedc07d1c0b350d86259a2ac470bc48bbefd8ecfdb6beb0aece7d219603e774",
+      "library_version": "v4",
+      "query": "Task Description:\nYour task is to grow a cherry plant from seed. Seeds can be found in the living room. First, focus on a seed. Then, make changes to the environment that grow the plant until it reaches the reproduction life stage.",
+      "query_sha256": "3dc750489250a94ca5a4b9f6a2be64ed127980acaa191eee8b2c8d7108cfbc97",
+      "source_records": [
+        {
+          "condition": "body_aware_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 797,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        },
+        {
+          "condition": "flat_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 799,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "grow-plant:v062",
+      "top1": {
+        "body": "grow-plant-from-seed",
+        "flat": "grow-plant-from-seed"
+      }
+    },
+    {
+      "gold_skill": "grow-plant-from-seed",
+      "library_sha256": "37faee802461ff8d76d7284dc832e4f71f41503fb1b044b9aa64c9ba23b4ffd4",
+      "library_version": "v4b",
+      "query": "Task Description:\nYour task is to grow a cherry plant from seed. Seeds can be found in the living room. First, focus on a seed. Then, make changes to the environment that grow the plant until it reaches the reproduction life stage.",
+      "query_sha256": "3dc750489250a94ca5a4b9f6a2be64ed127980acaa191eee8b2c8d7108cfbc97",
+      "source_records": [
+        {
+          "condition": "body_aware_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14b-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 813,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        },
+        {
+          "condition": "flat_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14b-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 815,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "grow-plant:v062",
+      "top1": {
+        "body": "grow-plant-from-seed",
+        "flat": "grow-plant-from-seed"
+      }
+    },
+    {
+      "gold_skill": "grow-plant-from-seed",
+      "library_sha256": "822b7d3937611463a1fb93c11c3be37723cd7b5123e096c448e27608bcf6cbe7",
+      "library_version": "v4c",
+      "query": "Task Description:\nYour task is to grow a cherry plant from seed. Seeds can be found in the bedroom. First, focus on a seed. Then, make changes to the environment that grow the plant until it reaches the reproduction life stage.",
+      "query_sha256": "c18768f7c6c85bd02b0f68df658be6fc53b7f67c2085eaa5a69e4a73a18119e6",
+      "source_records": [
+        {
+          "condition": "body_aware_retrieval_v4c",
+          "repeat": 0,
+          "run_id": "scienceworld-v14c-dev-check-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 868,
+          "suite": "scienceworld-v14c-dev-check-4",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "grow-plant:v063",
+      "top1": {
+        "body": "grow-plant-from-seed",
+        "flat": "grow-plant-from-seed"
+      }
+    },
+    {
+      "gold_skill": "measure-inclined-plane-angle",
+      "library_sha256": "fdedc07d1c0b350d86259a2ac470bc48bbefd8ecfdb6beb0aece7d219603e774",
+      "library_version": "v4",
+      "query": "Task Description:\nYour task is to determine which of the two inclined planes (B, F) has the shallowest angle. After completing your experiment, focus on the inclined plane with the shallowest angle.",
+      "query_sha256": "912754cac3eb97f22700aa861fe0a9d0c4925a3131ef296c3f943f97ab4d338d",
+      "source_records": [
+        {
+          "condition": "flat_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 806,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        },
+        {
+          "condition": "body_aware_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 807,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "inclined-plane-determine-angle:v084",
+      "top1": {
+        "body": "measure-inclined-plane-angle",
+        "flat": "measure-inclined-plane-angle"
+      }
+    },
+    {
+      "gold_skill": "measure-inclined-plane-angle",
+      "library_sha256": "37faee802461ff8d76d7284dc832e4f71f41503fb1b044b9aa64c9ba23b4ffd4",
+      "library_version": "v4b",
+      "query": "Task Description:\nYour task is to determine which of the two inclined planes (B, F) has the shallowest angle. After completing your experiment, focus on the inclined plane with the shallowest angle.",
+      "query_sha256": "912754cac3eb97f22700aa861fe0a9d0c4925a3131ef296c3f943f97ab4d338d",
+      "source_records": [
+        {
+          "condition": "flat_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14b-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 822,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        },
+        {
+          "condition": "body_aware_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14b-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 823,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "inclined-plane-determine-angle:v084",
+      "top1": {
+        "body": "measure-inclined-plane-angle",
+        "flat": "measure-inclined-plane-angle"
+      }
+    },
+    {
+      "gold_skill": "measure-inclined-plane-angle",
+      "library_sha256": "822b7d3937611463a1fb93c11c3be37723cd7b5123e096c448e27608bcf6cbe7",
+      "library_version": "v4c",
+      "query": "Task Description:\nYour task is to determine which of the two inclined planes (B, F) has the steepest angle. After completing your experiment, focus on the inclined plane with the steepest angle.",
+      "query_sha256": "47cb58adf2c853c0d1200a6eb386aeffeb2936b394350acf211d3ef30a396184",
+      "source_records": [
+        {
+          "condition": "body_aware_retrieval_v4c",
+          "repeat": 0,
+          "run_id": "scienceworld-v14c-dev-check-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 872,
+          "suite": "scienceworld-v14c-dev-check-4",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "inclined-plane-determine-angle:v085",
+      "top1": {
+        "body": "measure-inclined-plane-angle",
+        "flat": "measure-inclined-plane-angle"
+      }
+    },
+    {
+      "gold_skill": "measure-inclined-plane-angle",
+      "library_sha256": "5d16691dd48632b07fc2e176ec3daed70b7e089c59c28e7c434e4e06b3e04d0b",
+      "library_version": "v4d",
+      "query": "Task Description:\nYour task is to determine which of the two inclined planes (B, F) has the shallowest angle. After completing your experiment, focus on the inclined plane with the shallowest angle.",
+      "query_sha256": "912754cac3eb97f22700aa861fe0a9d0c4925a3131ef296c3f943f97ab4d338d",
+      "source_records": [
+        {
+          "condition": "body_aware_retrieval_v4d",
+          "repeat": 0,
+          "run_id": "scienceworld-v14d-incline-dev-1x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 874,
+          "suite": "scienceworld-v14d-incline-dev-1",
+          "variation_split": "dev"
+        },
+        {
+          "condition": "flat_retrieval_v4d",
+          "repeat": 0,
+          "run_id": "scienceworld-v14d-incline-dev-1x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 875,
+          "suite": "scienceworld-v14d-incline-dev-1",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "inclined-plane-determine-angle:v086",
+      "top1": {
+        "body": "measure-inclined-plane-angle",
+        "flat": "measure-inclined-plane-angle"
+      }
+    },
+    {
+      "gold_skill": "power-component-circuit",
+      "library_sha256": "fdedc07d1c0b350d86259a2ac470bc48bbefd8ecfdb6beb0aece7d219603e774",
+      "library_version": "v4",
+      "query": "Task Description:\nYour task is to turn on the blue light bulb. First, focus on the blue light bulb. Then, create an electrical circuit that powers it on.",
+      "query_sha256": "713e637761297a6b080a8e0ca96b78da3699e61b376ff7974ae3c6556ea38221",
+      "source_records": [
+        {
+          "condition": "flat_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 794,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        },
+        {
+          "condition": "body_aware_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 796,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "power-component:v010",
+      "top1": {
+        "body": "power-component-circuit",
+        "flat": "power-component-circuit"
+      }
+    },
+    {
+      "gold_skill": "power-component-circuit",
+      "library_sha256": "37faee802461ff8d76d7284dc832e4f71f41503fb1b044b9aa64c9ba23b4ffd4",
+      "library_version": "v4b",
+      "query": "Task Description:\nYour task is to turn on the blue light bulb. First, focus on the blue light bulb. Then, create an electrical circuit that powers it on.",
+      "query_sha256": "713e637761297a6b080a8e0ca96b78da3699e61b376ff7974ae3c6556ea38221",
+      "source_records": [
+        {
+          "condition": "flat_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14b-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 810,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        },
+        {
+          "condition": "body_aware_retrieval",
+          "repeat": 0,
+          "run_id": "scienceworld-v14b-dev-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 812,
+          "suite": "scienceworld-v14-dev-4",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "power-component:v010",
+      "top1": {
+        "body": "power-component-circuit",
+        "flat": "power-component-circuit"
+      }
+    },
+    {
+      "gold_skill": "power-component-circuit",
+      "library_sha256": "822b7d3937611463a1fb93c11c3be37723cd7b5123e096c448e27608bcf6cbe7",
+      "library_version": "v4c",
+      "query": "Task Description:\nYour task is to turn on the blue light bulb. First, focus on the blue light bulb. Then, create an electrical circuit that powers it on.",
+      "query_sha256": "713e637761297a6b080a8e0ca96b78da3699e61b376ff7974ae3c6556ea38221",
+      "source_records": [
+        {
+          "condition": "body_aware_retrieval_v4c",
+          "repeat": 0,
+          "run_id": "scienceworld-v14c-dev-check-4x1",
+          "source_file": "scienceworld_results.jsonl",
+          "source_line": 865,
+          "suite": "scienceworld-v14c-dev-check-4",
+          "variation_split": "dev"
+        }
+      ],
+      "split": "dev",
+      "task_id": "power-component:v011",
+      "top1": {
+        "body": "power-component-circuit",
+        "flat": "power-component-circuit"
+      }
+    }
+  ],
+  "code_sha256": "232fea0318f310e501b5e40e39425aba9ce2215d3aa649c802e7846e077f206d",
+  "excluded": {
+    "test": 48
+  },
+  "schema_version": 1,
+  "scope": "cached MiniLM train/dev Top-1 feasibility only",
+  "selected_cases": 13,
+  "source_sha256": "8746e43b4f853c8bca29e8f880503ef8ad105dd109133b2a52b155fb796621f6",
+  "split_snapshot_sha256": "baea59389bcb13db8b77a3230f0646165aa5dd1a3e05608caad27caf2e7bef27",
+  "unique_task_ids": 9
+}
