@@ -1,0 +1,1494 @@
+{
+  "created_utc": "2026-09-24T02:47:17.013285+00:00",
+  "scope": "Structured JSON/JSONL under results and docs/research plus literal cases in pre-existing root Python files. Includes unused plans and reserved v14 cases; excludes private notes and external conversation attachments. No outcomes used for selection.",
+  "selection_rule": "Sort eligible task-family names lexicographically; take first six families and smallest unexcluded official-test variation for each. No query, ranking, Gold path or outcome filtering.",
+  "sources": [
+    {
+      "path": "agent.py",
+      "sha256": "5240b3cc1ed4e78eac98a61d02163821f98bf69189c6a18e612cda26c4234a55",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "alfworld_agent.py",
+      "sha256": "0c0edf78d60b1b045372c85a478bee396471f298b224213962e1bdbcf32c1169",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "alfworld_experiment.py",
+      "sha256": "8f738e350171681e29ae211080ae97ff3dcb5a11dd0d0e2ee7b5836099a42eeb",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "alfworld_gold_skills.py",
+      "sha256": "269c54f8d15f89aa1a4f8dd81ffb444b912a8557c0ba235962cdfd987335e4e2",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "alfworld_retrieval.py",
+      "sha256": "bc885e2ee0fe8dea6606e2d221cf78f4ace326b7de8d1edbc99fe4e1131e9186",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "alfworld_skills.py",
+      "sha256": "b9fe2b31f2548ed015af954e67c0591930f142a4e35a8c83957fe5c96f0a1f50",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "alfworld_suites.py",
+      "sha256": "45d92b2d1c280d02d4cea332805aac4cbd70fea34e95580adfbb721b440dd158",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "analyze_alfworld_formal.py",
+      "sha256": "d13f46c7a2b8b3bbc4f6c3dda268cd10fbeee13150547528b908de9abb5b9715",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "analyze_alfworld_v7.py",
+      "sha256": "f7b9b6410b14d087fcb91ef673240e310c6c73402767f409fc363b79dd03bb0d",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "analyze_alfworld_v8.py",
+      "sha256": "8519a864058627995979a7994ef2de3a648485d26a8bbd08d3d4ec5225342660",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "analyze_scienceworld_formal.py",
+      "sha256": "03713136dfef7f5e9ab67b065abcea3ecc4944c9a5bbaa775092f8fabf6f5f94",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "analyze_scienceworld_t1.py",
+      "sha256": "9977a7e2b98549e427ab331e6fc90b3b4fce9ecce835c9a5d4e3fca0386b8cc9",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "analyze_scienceworld_v11.py",
+      "sha256": "97f6bcf83bcab74f2bd72e8b9ee27ba42e67de64e9061a220a2145eaac1e42e1",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "analyze_scienceworld_v13b.py",
+      "sha256": "431c3679c7c2fd6d5adb8130de69d966d41c891977a2d795ad9e3640d8ef2b8c",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "build_alfworld_report.py",
+      "sha256": "de0780972ddbe136dccd50f79659d8a66465c0935605ef0865b48f78d716d2b3",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "build_alfworld_v4_report.py",
+      "sha256": "fd6520165fd55609e5e2dca8de03ead0782f051cef3badf8ff45c7f985136c11",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "build_alfworld_v7_report.py",
+      "sha256": "113d0a9a24134d31fa7bfabf6c2b6714fc8eebeedad92266d6a78860461439c6",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "build_alfworld_v8_report.py",
+      "sha256": "a413b9907339de590519bcdc187ebbc04604e41f77f39e7bda5d7d8f40fa528c",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "build_phase1_report_docx.py",
+      "sha256": "958cdf23e254f71826e1572eb434e42eb7da438fe715357e53436c72caee97c0",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "build_scienceworld_v10_report.py",
+      "sha256": "164eb592aeb97bcf09d745a3133a9204e298a9a70894d41ffbbf7e1462517139",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "build_scienceworld_v6_report.py",
+      "sha256": "e067d296cfc5f41eacabe2385bf469ae154b3e4df9679fd7b4382ffb6048ea74",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "docs/research/scienceworld_v14_new_family_design.json",
+      "sha256": "ff51b1cb3b29408a245c0c3c0f5eae6f995e0996eaa08ab31ef2e881e127f00b",
+      "explicit_case_count": 20
+    },
+    {
+      "path": "experiment.py",
+      "sha256": "20c7765d23b9bf40c4c9040f5870df5102e80bfd5323d5c1dfcfe1fb1023afb3",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "failure_matrix.py",
+      "sha256": "006b3d6b0f876b9b20cc2ee641a338c0165a87890c23d8d67ac66356c9755c72",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "failure_summary.py",
+      "sha256": "1f7eeb95be97bdf10e3c27559bef822c6190447303bb7cc15dcef8112c17f3b3",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "freeze_heldout_suite.py",
+      "sha256": "c35726f4f860ae296039b86f9383d5c680b8db539f25748320bfa124892d190f",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "gold_skills.py",
+      "sha256": "f632b2733fa90ff32fe67879fd2c2b74410251574a2745c9d25dac34ed6ba3d2",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "minilab.py",
+      "sha256": "1c441c9e1a8072dd68d57f69fef62225041680a0ca9682535ecd06774a1505a9",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "plot_alfworld_results.py",
+      "sha256": "8fa014ffa1db302b40c2803edfb3ceb463f1623c298bb8c905a303ea12e16191",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "plot_alfworld_v7.py",
+      "sha256": "5c8cf091e260c41892d4fa591d4a5a3b07d8fe8db8a61706175d8b16c631df26",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "plot_alfworld_v8.py",
+      "sha256": "5c69eca14c185ec687c112482f7f116379f90954aa0e4b859ab30947314cb8de",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "plot_scienceworld_v11.py",
+      "sha256": "08112948086de6a93ae160570d8a72b4da5a22c42308d7eb31407390a9b6cc29",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "plot_scienceworld_v13b.py",
+      "sha256": "f6539d031d5b6f826b9524083d6087f5d4349dbb8b15b28a4fc6758a29caa591",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "plot_scienceworld_v6.py",
+      "sha256": "43a15b4d8156673ad00e8c3e9ce0ffc01409820c75bf412e5107c8e21308c0e2",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "result_utils.py",
+      "sha256": "d852cf0375a95174d0d77d6babb43ac67547b99a40f7695096df10498d95aadb",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/.mplconfig/fontlist-v390.json",
+      "sha256": "61cd1ad15229f2357f5870453b1603ecb054af722e46af31532b066b757c2fc2",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/alfworld-v3-30x3-failures.jsonl",
+      "sha256": "84f0d68636f3dc4c22782eea43684930f410a78aafeb0a061b78b79ed1733f70",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/alfworld_results.jsonl",
+      "sha256": "e7b2dcef2f054663271f8026b18ee369a237e9a7a0b855551710721f0c2e0b06",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/alfworld_v3_heldout_manifest.jsonl",
+      "sha256": "a77351eaece4251c00ac9d6672ba9f989b10340917e76003c29ceec50333d539",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/alfworld_v5_retrieval_summary.json",
+      "sha256": "730005105bcb166fd3517d437cd583e66f008191e8feb45a8addd0dfe8db80e2",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/alfworld_v5_test_manifest.jsonl",
+      "sha256": "edb8d12aae2299202ebb3a3ee2837196d73644c2c2af5019787e7a8b98cd5d25",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_t1/analysis_summary.json",
+      "sha256": "57e85e98516b69976ac249b99ce575c652a764bb9f54309999a0b185b312b1d4",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_t1/failures.jsonl",
+      "sha256": "5004ac61bd3db0044235c9e329067bdfc32675923598c4bf939d7a141c387631",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "results/formal_scienceworld_t1/manifest.json",
+      "sha256": "c1cdd671c252c35416e4cde1d240c38e3e58b6ca341ef116de5dde2abb831060",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_t1/scienceworld-t1-t-shaped-pilot-12x1.jsonl",
+      "sha256": "4a288383750d1625bf538629c498af9fd0c07e34c4bd8b95d212dc935f2fa7ee",
+      "explicit_case_count": 12
+    },
+    {
+      "path": "results/formal_scienceworld_t1/t1_interaction_analysis.json",
+      "sha256": "6aa706f6e15edf5b4769447f9809f7873dd5cc74fdf789193c56b12ae22bdb70",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_t2/analysis_summary.json",
+      "sha256": "4061c61bc975af6d9af2be9e101cd051af3a220d4435c77aa517f3e1b228ec2e",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_t2/failures.jsonl",
+      "sha256": "77a092d391d7d1c67cbf17a713a93fcf1adb1dbc29803de65bda50734191ecf2",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "results/formal_scienceworld_t2/manifest.json",
+      "sha256": "aefa7885b1d0a1c55dfecaa4e9b90ef560db4dd09efd278d945c9fafb3333818",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_t2/scienceworld-t2-controller-dev-2x3.jsonl",
+      "sha256": "edbf3298943e618b7c88fb0340657d4bfd6f71789ac41c9e06994d10cfe23005",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "results/formal_scienceworld_t3/analysis_summary.json",
+      "sha256": "f2f8d64413e78b9e1b6db4a255d3242eae6eee93d763ab7e46ac7164523cf5cd",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_t3/failures.jsonl",
+      "sha256": "4e3f153936fa7422b42306218ea9732e69db4b84a4cd293a3f6099369c86fd27",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "results/formal_scienceworld_t3/manifest.json",
+      "sha256": "8fcc4dee3ae631fcba1c8a4dc14f620c4ed7c01445794909abe55fc8711a8e08",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_t3/scienceworld-t3-state-aware-dev-2x3.jsonl",
+      "sha256": "04e4e6beeddc747568f5177502b01de3565e8f7d4349609a1ac017172eb1b35c",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "results/formal_scienceworld_v1/manifest.json",
+      "sha256": "a0da252e2cf6cb06513913e9c42b3999f2f87a76b71f395dfbb55cb63184295f",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_v1/scienceworld-pilot-6x1.jsonl",
+      "sha256": "f39101f99875163a80c4856d5c61880d0f247d2f0c29e60edcee09db5459f56d",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/formal_scienceworld_v10/analysis_summary.json",
+      "sha256": "186be652af7a4d5c4a253fca9c6085972680d0687abe445ca6f5b51c3e4aa15c",
+      "explicit_case_count": 5
+    },
+    {
+      "path": "results/formal_scienceworld_v10/failures.jsonl",
+      "sha256": "dc6b466575bf3eb3f078bfabeb918bc46ce2ebd79d930e02d3fdfe888330df85",
+      "explicit_case_count": 3
+    },
+    {
+      "path": "results/formal_scienceworld_v10/manifest.json",
+      "sha256": "0c26abf17550351435fc37c3cbc7e0a5f5b66aec029fcacb9010406218b5ca6a",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_v10/scienceworld-v10-confirm-12x3.jsonl",
+      "sha256": "d6614857fe39458c0e8f23e04c96d75d15d6b7f9cb90c131f0a391b6cfd9a4e2",
+      "explicit_case_count": 12
+    },
+    {
+      "path": "results/formal_scienceworld_v11/analysis_summary.json",
+      "sha256": "56a56703a5ee6faf6c0c7d4e1de057e499f991d5bd00f5c4a4ab0bf9f3f31c43",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/formal_scienceworld_v11/derived_analysis.json",
+      "sha256": "af07bc4d3a2000388ec93e8629964781ca5f52fd9020c330c9b7be5a13dde63d",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/formal_scienceworld_v11/failures.jsonl",
+      "sha256": "2e3623bd4aee168556bd85f618439418db46bb9bcf1588eacade7b1af9512fa3",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/formal_scienceworld_v11/manifest.json",
+      "sha256": "4266d064dcb529866102d94777188aa1cc7948111ffd28a43466aee9d0760723",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl",
+      "sha256": "fb46b8f603d68f9e4baea76de912d68d1edac54299018b3b3bd51b7923177956",
+      "explicit_case_count": 18
+    },
+    {
+      "path": "results/formal_scienceworld_v13b/analysis_summary.json",
+      "sha256": "94e9a9e7268ec0be25b33ad7d2c816af7b8196004902f60c90235771201c86ca",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_v13b/derived_analysis.json",
+      "sha256": "e70b49cdbb64d2adaf3dae753db3d5dafdbdcbbc93023400afa7f5512ab4d87d",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/formal_scienceworld_v13b/failures.jsonl",
+      "sha256": "ae972e9bd8a98c696c9d4c8788784e46d9353622a93d33cd8ae5d8ba95317eb8",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/formal_scienceworld_v13b/manifest.json",
+      "sha256": "746a896c90fa312d7acbbe88ad6bc4859a1823e1da5b0f1cd5f6a8c3585eadf1",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl",
+      "sha256": "5e671e5c04d2e92a0041f8e5b74b0a0e89bfbaefd66c13a79314e904798a6692",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/formal_scienceworld_v2/manifest.json",
+      "sha256": "0dcdca8d734be888dd4468240548a29d7313600524105e335042f341c651caff",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_v2/scienceworld-v2-pilot-6x1.jsonl",
+      "sha256": "5673977f423e773a86e89b8456f20beb6db10776c8373d42230f3666d0be4d3e",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/formal_scienceworld_v3/analysis_summary.json",
+      "sha256": "67c6e70d24480bfa0a2ae89bc8ba70ca5550265ba219d01a44e416bc1745b392",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_v3/failures.jsonl",
+      "sha256": "5254601ec026add5a25a2c5e1920c7a447fbf41adfb8a183a2e287a3376c15c1",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "results/formal_scienceworld_v3/manifest.json",
+      "sha256": "fe7da8288c8791bd3afc648ac30e374e10078d94d0b2e61754ad1832076acd1b",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl",
+      "sha256": "d9aa310b50395bce111e23e851a11f0ea6b372aad0f0a8561546a9bc76929f1e",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/formal_scienceworld_v4/analysis_summary.json",
+      "sha256": "e05b7275de937c229865e20728522d558851f87a32275944cd6ad81dc383f18b",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_v4/failures.jsonl",
+      "sha256": "8cb71cd09b3377188dc175b84ddd64cbcf5c183bc769372c1a433d9bfc774609",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "results/formal_scienceworld_v4/manifest.json",
+      "sha256": "d72038e9805594c1e067098afb68945de2149b14c9fb5522da2d79e727830e55",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_v4/scienceworld-v4-heldout-6x3.jsonl",
+      "sha256": "4357856023e93471020852dadf6184cba024506e7b283ad2417579a56469906e",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/formal_scienceworld_v6/analysis_summary.json",
+      "sha256": "a755bbf3d840dc866115f342c5bd5f7030b3c90478f43a79ccbcf9634b159b41",
+      "explicit_case_count": 4
+    },
+    {
+      "path": "results/formal_scienceworld_v6/failures.jsonl",
+      "sha256": "9b8d1e925c22177271a651cdf2297a8d5fd14964bba359da948d2220091aa04a",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/formal_scienceworld_v6/manifest.json",
+      "sha256": "5f46101eb58badd5105e670198d526cafdf04bc999fa636c808cd94b0e383431",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_scienceworld_v6/scienceworld-v6-router-formal-12x3.jsonl",
+      "sha256": "c978ce0568f89fecaff48848327817cdd3493a18162df1bc0b99bcdaf9b043fd",
+      "explicit_case_count": 12
+    },
+    {
+      "path": "results/formal_v4/alfworld-v4-heldout-30x3.jsonl",
+      "sha256": "6e20e518bc56960cc7f676c40cdb2892651f973ca57282bd2432ad732a0a1123",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v4/analysis_summary.json",
+      "sha256": "212fda48df425f533847a5913d081a2fb8ad941eb7e2a1f653e748615ca1f3fb",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v4/failures.jsonl",
+      "sha256": "8062cf9588d2c360161ac9c5230a87b5a841d289d5c1bfd45d315529b4e35a1a",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v4/manifest.json",
+      "sha256": "7850ebab47bde2558eb9883a2cfd2bee696efcf838c74fbe6f727f8e0a89cf30",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v5/alfworld-v5-test-30x3.jsonl",
+      "sha256": "5af35e91fb510bbef295f5ba7ef1eab780742b02a8398f53547320f5b79c8b71",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v5/analysis_summary.json",
+      "sha256": "95fbab33bd2cb81528dffac4ff1005deee319b2d89b6c1f6c1733ffa9eabb789",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v5/failures.jsonl",
+      "sha256": "4a613758b861099fe2fe0a3afb8e80b57749966185e9c8ee5a9f02340cc83e37",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v5/manifest.json",
+      "sha256": "bffb3f971789a4ed88617f99558a33dfdf34c57711bc06fde37d3a51525cbaa3",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v7/alfworld-v7-targeted-test-10x3.jsonl",
+      "sha256": "5fcac9e5b23ec3b70bbefcc94330b048a71a2855995b1888b6bc7aea8b6b5f2e",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v7/analysis_summary.json",
+      "sha256": "b7eaae805f470c5e80a2db1c8f3f450c15fe5517f6de1f52012736f5d501d191",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v7/failures.jsonl",
+      "sha256": "749d5a61acb954c2868b42e0955daf93e6c304e6058380d56c039babbeb2d750",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v7/manifest.json",
+      "sha256": "e0cfbeb97e7553a0f8b63b40ab08d4c5ff46e8f62ebbd1c5ed8ead6b2c95c6c2",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v8/alfworld-v8-confirm-20x3.jsonl",
+      "sha256": "210b2f05db7d85fa20210cda624677a37d2cb0059648aa4ae2079ebfb80cdecc",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v8/analysis_summary.json",
+      "sha256": "32c08f4685218b3787dd44932ee92751b2999bece4a7b4afa9a16d9fd544e77d",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v8/failures.jsonl",
+      "sha256": "bbac6a43fc240b82ee555fef18d3e9f573910c771807f92543fdad60feea8c6b",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/formal_v8/manifest.json",
+      "sha256": "5ca8b8afd872fec5d4ae0cdeb9b7929ba418b6fa1a2e9fb275314d6ce5a42a09",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/pilot_scienceworld_v5/analysis_summary.json",
+      "sha256": "7320f58022aedf67468732e734c08493aa5ae20142dd7212ab12819024e6ed5b",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "results/pilot_scienceworld_v5/failures.jsonl",
+      "sha256": "4ecdd4e1fcac986f1bfab7937397ce60ff89d476847e0981c3cee28b45e4ace5",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "results/pilot_scienceworld_v5/manifest.json",
+      "sha256": "dae34da1221c8f1335fe29dc7f41ac6f4f0ac415c70c1d0daa41e01e5a5ed54d",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/pilot_scienceworld_v5/scienceworld-v5-router-pilot-6x1.jsonl",
+      "sha256": "048ff35c2d2b7418b6376f850b463890f5b8423cad839cc5a48b99592dbcff24",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/results.jsonl",
+      "sha256": "45347b2f41e5a04fdfe62d5cc1a96d23794b1df071dda3dcdfad592ef10918dd",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/retrieval_benchmark_heldout_v2_summary.json",
+      "sha256": "199c2d44c7e964e6fe57ca8edb528987dd64d8a58eef6df28a23d07b3d9ee46f",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/retrieval_benchmark_summary.json",
+      "sha256": "07bfaed3550c521d8ad208c651b0544bdcc2724948b9c00cd506b1bc155b0638",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/retrieval_benchmark_v1_summary.json",
+      "sha256": "07bfaed3550c521d8ad208c651b0544bdcc2724948b9c00cd506b1bc155b0638",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/retrieval_benchmark_v2_summary.json",
+      "sha256": "fc3622b7e6f7801306879334822aa3e12c815508cab74ac2e6c5bbe6ce5fe54a",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/retrieval_error_heldout_v2_summary.json",
+      "sha256": "6083d5e67f9917358e1da2e61de0fadabd02c7240a1508a04f4faebef1e2fa3c",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/retrieval_error_summary.json",
+      "sha256": "4f99ebbe92c48975a6f45fb62ac9087e90c650016be0969bbf12f8805aed2e16",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/retrieval_error_v1_summary.json",
+      "sha256": "4f99ebbe92c48975a6f45fb62ac9087e90c650016be0969bbf12f8805aed2e16",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/retrieval_error_v2_summary.json",
+      "sha256": "8f217fe6e872ec8ccf17ed2917845289d98f44c31e004ca2b7583d7a619ea72b",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/scienceworld_hash_audit_2026-09-24/rankings.jsonl",
+      "sha256": "de48a38a09523e48549e2827b4f60bd0361832e51add104052bcd49695361d00",
+      "explicit_case_count": 57
+    },
+    {
+      "path": "results/scienceworld_hash_audit_2026-09-24/source_records.jsonl",
+      "sha256": "9fa352ecb67aae89de4a0e979ffe639d4349187983c3cdb2d53e3cd89098635d",
+      "explicit_case_count": 57
+    },
+    {
+      "path": "results/scienceworld_hash_audit_2026-09-24/summary.json",
+      "sha256": "d828b9b50472b2f85cf25bf9c30d36133bd7ef2a5a7879ac29218b6139328d29",
+      "explicit_case_count": 11
+    },
+    {
+      "path": "results/scienceworld_procedure_holdout_manifest.json",
+      "sha256": "c4f63be9d1e404caab7b43e8a6e224a0cefbc7cdbac68c7f641d62a7f8c821c5",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/scienceworld_results.jsonl",
+      "sha256": "c6590a3441532645afe4b3a61a38a6a38741d9cb2301456bb688a4b092184cb9",
+      "explicit_case_count": 75
+    },
+    {
+      "path": "results/scienceworld_retrieval_baselines_2026-09-24/embedding_inputs.jsonl",
+      "sha256": "80054267137edfd0d3ed1dfe45c0936332fd79a043366973a8dd62c7e7736d6d",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/scienceworld_retrieval_baselines_2026-09-24/rankings.jsonl",
+      "sha256": "8746e43b4f853c8bca29e8f880503ef8ad105dd109133b2a52b155fb796621f6",
+      "explicit_case_count": 57
+    },
+    {
+      "path": "results/scienceworld_retrieval_baselines_2026-09-24/summary.json",
+      "sha256": "e13119ed889289ba8e6ceb26d523c0f4856562993683502d91925f95a8e9cad2",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/scienceworld_strong_router_smoke.jsonl",
+      "sha256": "b9a9fa791b03fed948b62a1798584c2b4cc3dca376cbb5f2dde2f743b9a4eb5d",
+      "explicit_case_count": 1
+    },
+    {
+      "path": "results/scienceworld_t1_analysis.json",
+      "sha256": "6aa706f6e15edf5b4769447f9809f7873dd5cc74fdf789193c56b12ae22bdb70",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "results/scienceworld_t1_prompt_audit.jsonl",
+      "sha256": "344075f47235511869cec55d6d2c7c77cceb8efb4104d47ce0421aa1ff01142d",
+      "explicit_case_count": 12
+    },
+    {
+      "path": "results/scienceworld_t1_t_shaped_pilot_manifest.json",
+      "sha256": "ebf94ed91d95a4c2994f54b6556c0e8fbe2d1d878c13462d809265b3f63013a6",
+      "explicit_case_count": 12
+    },
+    {
+      "path": "results/scienceworld_t2_controller_dev_manifest.json",
+      "sha256": "9ccb66d99c0412d37ac56f5c6efad87e14666d86b83c872fbb42eb617e07bc64",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "results/scienceworld_t3_state_aware_dev_manifest.json",
+      "sha256": "fce77792b4e07e253a2ed2d1a91b5dbfef34003e44ec2052425387493a47fd78",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "results/scienceworld_v10_confirmation_manifest.json",
+      "sha256": "9640d71e6327eae85aa346e7942de61ff8397908c70fbc30dd8e7ecc6c7dec78",
+      "explicit_case_count": 12
+    },
+    {
+      "path": "results/scienceworld_v10_gold_validation.jsonl",
+      "sha256": "6b260a04afd41954a3277ae74ca8a4762635a816ca11a4c75af6d1566ef992ec",
+      "explicit_case_count": 12
+    },
+    {
+      "path": "results/scienceworld_v11_large_confirmation_manifest.json",
+      "sha256": "a9fdeae0f39e344241b5aad3c76f267f24cc56f9ea5ee6186fb1dd2d58322ddd",
+      "explicit_case_count": 30
+    },
+    {
+      "path": "results/scienceworld_v11b_confirmation_manifest.json",
+      "sha256": "1f71cfd66d1fb0c974de781e86fa7c8e9a659c64df87533be8475177b49da913",
+      "explicit_case_count": 18
+    },
+    {
+      "path": "results/scienceworld_v11b_gold_validation.jsonl",
+      "sha256": "e2250e5cd39522cfbc23fa597eb4d9b1638e03ea9d023118acddf05412bf01fb",
+      "explicit_case_count": 18
+    },
+    {
+      "path": "results/scienceworld_v11b_retrieval_audit.jsonl",
+      "sha256": "bcebbd82c85a079f429c64f00e0d517381eb64af5a20551b109df41e0b7f7795",
+      "explicit_case_count": 18
+    },
+    {
+      "path": "results/scienceworld_v12_mechanism_pilot_manifest.json",
+      "sha256": "c6f59625776c631df752b204a343c08266bc5af752e6f482cf1614d01109cbbd",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/scienceworld_v13_oracle_mechanism_pilot_manifest.json",
+      "sha256": "264e80fc56fff521335f16b612ba5df95b41aeb636dfa4934a0a56bf1480ae04",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/scienceworld_v13b_oracle_mechanism_manifest.json",
+      "sha256": "d9e6cfd5fed69275ae5c36c79441179d9d8f06398b840a1b723d8c4cf79fcb3d",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/scienceworld_v14c_dev_check_retrieval.jsonl",
+      "sha256": "8dc2d894ef7595fe6dd0270c6bc56adb607f01c096dbf086710a75f0681ba811",
+      "explicit_case_count": 4
+    },
+    {
+      "path": "results/scienceworld_v14d_incline_dev_retrieval.jsonl",
+      "sha256": "1ac41e9f8040f649478dff33b3f9a0f450aff20900857a1906d736818ec79d9b",
+      "explicit_case_count": 1
+    },
+    {
+      "path": "results/scienceworld_v3_heldout_manifest.jsonl",
+      "sha256": "8efa8c1ef6bdbd6b76dd21c6cec4304692e7f9316940b423027135d383e26c47",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/scienceworld_v4_heldout_manifest.jsonl",
+      "sha256": "685eec731498811e7f2c2158481d00fb5c9b3a36841a1d08ae9638ed425edcf1",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "results/scienceworld_v6_gold_validation.jsonl",
+      "sha256": "9692c66c22d00ea207fa6ad11ec7f035d8f3a3366215ab792889fdf2894bc91c",
+      "explicit_case_count": 12
+    },
+    {
+      "path": "results/scienceworld_v6_router_manifest.jsonl",
+      "sha256": "7fc0508d27456394e37563130b6715b31b7e047b71919558a0b33fde4b361c54",
+      "explicit_case_count": 12
+    },
+    {
+      "path": "results/scienceworld_v6_router_offline.jsonl",
+      "sha256": "0e08ad2c2e33dc9df600ae4cc356955f16c2efd10d2df4778f2b15b74787496c",
+      "explicit_case_count": 12
+    },
+    {
+      "path": "retrieval.py",
+      "sha256": "ecad8294ae9689f268d0782bfe2735458a7342ce4f14b77e1ebf82f176f86304",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "retrieval_benchmark.py",
+      "sha256": "c7cd2b8588bc1dd915d5ea974f2cf27dd3c34552264d2d9c819dee280762604e",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "retrieval_error_analysis.py",
+      "sha256": "7126cfb41b480dacd0345bcaf97c1fd296b049d3dd52ce89c7a6a8dbea7a749c",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "scienceworld_agent.py",
+      "sha256": "a39c9f839cbd003010cffff6c9aad21057a2b6a917b677ee689d779e2542d5ee",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "scienceworld_experiment.py",
+      "sha256": "754d7c2ca138320cf0ceb575b57c24b7569c16a30c8844a70ac27e0c8d0aa324",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "scienceworld_hash_audit.py",
+      "sha256": "d893309b0fa75538c424904213cf072a0b1f5f302e69b7186ee57cdb0783b96a",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "scienceworld_incline_process_audit.py",
+      "sha256": "f5410b985732790f64705b3a16f5f4c38f0d621185d953f12103e892ad6ead59",
+      "explicit_case_count": 1
+    },
+    {
+      "path": "scienceworld_procedure_audit.py",
+      "sha256": "70448ce8bbf74f85febe08d3dc5f56be3f0ae916a5c35e6477d081993586c783",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "scienceworld_procedure_audit_v2.py",
+      "sha256": "8497b9ebc464b8c2d88c039024987cd8789338ed7ae8007e1842f24054d66d55",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "scienceworld_procedure_holdout.py",
+      "sha256": "4e8e5bfb4ab1641c46bc05a6664d99f2de75df94c112764666cf7eebfb447a8c",
+      "explicit_case_count": 6
+    },
+    {
+      "path": "scienceworld_procedure_holdout_analysis.py",
+      "sha256": "01344faf5cd84156c0b0955b0b8628285017afd179f9e151d0fd01b08e93756a",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "scienceworld_procedure_pilot.py",
+      "sha256": "7d4ba2734c792257ae2fa12f919be8c906ddb27ba328f2c2f04c545f00051e2a",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "scienceworld_retrieval.py",
+      "sha256": "32a1043c422a33516cad720477052a72097019293f39b3596f30f2a581606a6f",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "scienceworld_retrieval_audit.py",
+      "sha256": "e4512cdfbeac4a6dac7d6858ae7cca8a7352c9fa7f1e44518b8b2f242c8bdba3",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "scienceworld_retrieval_baselines.py",
+      "sha256": "4c3247496dbea78c0ff8cd6fd1ae2523b12dd9d2549c94dcfdfb22d0ace96686",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "scienceworld_skills.py",
+      "sha256": "16566dd84020257ce055d7095689b2aa02dc6f7d541ba401bfb66212445f36b5",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "scienceworld_strong_retrieval.py",
+      "sha256": "04e3793525ae9cd5b53fec9bfd74f5754bf3fa9d30e8aaf72aa62b8765fc29cb",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "scienceworld_suites.py",
+      "sha256": "567d6eee1eb682611902b993e207b771893e5fbc4bd9904a1bee8f1329edfdcd",
+      "explicit_case_count": 63
+    },
+    {
+      "path": "scienceworld_t1_audit.py",
+      "sha256": "c9eb2acd53dcd8d4cc25268c9d81ef0f5408cea75d15198a7f6ff1a4d320813e",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "skills.py",
+      "sha256": "68fc985215524e15e20cd7bc53167a47de2c2de22f6378545b25bab8013b26f0",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "summarize_results.py",
+      "sha256": "3bebb462fb12b02a600c99af7126e14c6981a826c20221a1c586078ab44a6bbe",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "tasks.py",
+      "sha256": "f297efd5c0abe342845e42457966820e8c72e987336fafb88dc45714eec64b16",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "test_alfworld_skills.py",
+      "sha256": "8e8cd393f6100f1d56a1cb0fd2705bd600440a8ca8fef6ddfc9ce91dc6969fac",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "test_minilab.py",
+      "sha256": "b097d457602f03d5c6273de172d977106ffaa467e5283946e2b719f8e969e6b3",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "test_scienceworld.py",
+      "sha256": "9ccbb9108f37b851070369076e394b2d1e14196edd26ec377dd54ec11ff7a611",
+      "explicit_case_count": 46
+    },
+    {
+      "path": "test_scienceworld_hash_audit.py",
+      "sha256": "8d91259d22c9c6653ae33d99e71c31e056eae3e6fbe5974b7b1c7746f2be91b5",
+      "explicit_case_count": 1
+    },
+    {
+      "path": "test_scienceworld_incline_process_audit.py",
+      "sha256": "f0a23105b6f9abd9a0e2db98c18939fa5fd7d330334eeefaca914b6970a1b016",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "test_scienceworld_procedure_audit.py",
+      "sha256": "b268afe283f87d8ea4e97df798ed7e15edd7e3c6d3208aac0e0db0816d68c3ca",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "test_scienceworld_procedure_audit_v2.py",
+      "sha256": "b0357c922a09f69599f139c0cc269c9ad7ad167de7d8a8068332c7e9ac927207",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "test_scienceworld_procedure_holdout.py",
+      "sha256": "04829bd3a34a9f085d338edef26eea7518f20b70fe306d0e380945c203cd9a91",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "test_scienceworld_procedure_holdout_analysis.py",
+      "sha256": "671096125e7af1999f12f95a82406ac8071be6bcd02caf95ebecd903fa293617",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "test_scienceworld_procedure_pilot.py",
+      "sha256": "b05fc6d7bbfdfd91e80b8de2bd9469536a8bb2ed02b267c00509c2cd4dd5cb34",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "test_scienceworld_retrieval_audit.py",
+      "sha256": "ccb108ff857ee654def9e650f4e9d3cf07a1d1b91440a2e83e7b045558c24217",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "test_scienceworld_retrieval_baselines.py",
+      "sha256": "5bef9e834848ea5c59319cfe7421f2478f5cd130fa42ed46a8d5184b460c1f8b",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "test_scienceworld_strong_retrieval.py",
+      "sha256": "3129ee9cda959631de4e2be10b72c40b9749860225263406ca1a2c07a2ece366",
+      "explicit_case_count": 2
+    },
+    {
+      "path": "test_scienceworld_v14c.py",
+      "sha256": "831aa815689cbfb5f71443b06be98021a053d2d9729ec3335e38855bf780a77d",
+      "explicit_case_count": 0
+    },
+    {
+      "path": "test_scienceworld_v14d.py",
+      "sha256": "dc09e5fb317b4d31594611017da5d99d32575654173d11955c74fa1fdf8ce853",
+      "explicit_case_count": 1
+    }
+  ],
+  "excluded_variations": {
+    "boil": [
+      0,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "chemistry-mix": [
+      0,
+      16,
+      17,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "find-living-thing": [
+      0,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235
+    ],
+    "find-non-living-thing": [
+      0,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235
+    ],
+    "freeze": [
+      0,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "grow-plant": [
+      0,
+      62,
+      63,
+      93,
+      94,
+      95
+    ],
+    "inclined-plane-determine-angle": [
+      0,
+      84,
+      85,
+      86,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131
+    ],
+    "melt": [
+      0,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "power-component": [
+      0,
+      10,
+      11,
+      15,
+      16,
+      17
+    ],
+    "use-thermometer": [
+      0,
+      405,
+      406,
+      407,
+      408,
+      409,
+      410,
+      411,
+      412,
+      413,
+      414,
+      415
+    ]
+  },
+  "official_test_variations": {
+    "boil": [
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "melt": [
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "freeze": [
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "chemistry-mix": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "find-living-thing": [
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299
+    ],
+    "find-non-living-thing": [
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299
+    ],
+    "grow-plant": [
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125
+    ],
+    "inclined-plane-determine-angle": [
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167
+    ],
+    "power-component": [
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "use-thermometer": [
+      405,
+      406,
+      407,
+      408,
+      409,
+      410,
+      411,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427,
+      428,
+      429,
+      430,
+      431,
+      432,
+      433,
+      434,
+      435,
+      436,
+      437,
+      438,
+      439,
+      440,
+      441,
+      442,
+      443,
+      444,
+      445,
+      446,
+      447,
+      448,
+      449,
+      450,
+      451,
+      452,
+      453,
+      454,
+      455,
+      456,
+      457,
+      458,
+      459,
+      460,
+      461,
+      462,
+      463,
+      464,
+      465,
+      466,
+      467,
+      468,
+      469,
+      470,
+      471,
+      472,
+      473,
+      474,
+      475,
+      476,
+      477,
+      478,
+      479,
+      480,
+      481,
+      482,
+      483,
+      484,
+      485,
+      486,
+      487,
+      488,
+      489,
+      490,
+      491,
+      492,
+      493,
+      494,
+      495,
+      496,
+      497,
+      498,
+      499,
+      500,
+      501,
+      502,
+      503,
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      512,
+      513,
+      514,
+      515,
+      516,
+      517,
+      518,
+      519,
+      520,
+      521,
+      522,
+      523,
+      524,
+      525,
+      526,
+      527,
+      528,
+      529,
+      530,
+      531,
+      532,
+      533,
+      534,
+      535,
+      536,
+      537,
+      538,
+      539
+    ]
+  },
+  "eligible_families": [
+    "chemistry-mix",
+    "find-living-thing",
+    "find-non-living-thing",
+    "grow-plant",
+    "inclined-plane-determine-angle",
+    "power-component",
+    "use-thermometer"
+  ],
+  "exhausted_families": [
+    "boil",
+    "freeze",
+    "melt"
+  ],
+  "cases": [
+    [
+      "chemistry-mix",
+      30
+    ],
+    [
+      "find-living-thing",
+      236
+    ],
+    [
+      "find-non-living-thing",
+      236
+    ],
+    [
+      "grow-plant",
+      96
+    ],
+    [
+      "inclined-plane-determine-angle",
+      132
+    ],
+    [
+      "power-component",
+      18
+    ]
+  ]
+}

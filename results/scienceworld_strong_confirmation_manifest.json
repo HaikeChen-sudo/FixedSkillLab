@@ -1,0 +1,758 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-24T02:51:25.909300+00:00",
+  "status": "frozen_before_confirmation_api_calls",
+  "settings": {
+    "run_id": "scienceworld-strong-confirm-6x3",
+    "cases": [
+      [
+        "chemistry-mix",
+        30
+      ],
+      [
+        "find-living-thing",
+        236
+      ],
+      [
+        "find-non-living-thing",
+        236
+      ],
+      [
+        "grow-plant",
+        96
+      ],
+      [
+        "inclined-plane-determine-angle",
+        132
+      ],
+      [
+        "power-component",
+        18
+      ]
+    ],
+    "conditions": [
+      "no_skill",
+      "semantic_flat_retrieval",
+      "semantic_body_retrieval"
+    ],
+    "model": "deepseek-v4-flash",
+    "temperature": 0,
+    "thinking": "disabled",
+    "simplification": "easy",
+    "max_steps": 100,
+    "repeats": 3,
+    "order_seed": 20260924,
+    "cost_stop_usd": 0.5
+  },
+  "episode_plan": [
+    {
+      "task_name": "find-living-thing",
+      "variation": 236,
+      "repeat": 0,
+      "condition": "no_skill",
+      "order_position": 0,
+      "plan_index": 0
+    },
+    {
+      "task_name": "find-living-thing",
+      "variation": 236,
+      "repeat": 0,
+      "condition": "semantic_body_retrieval",
+      "order_position": 1,
+      "plan_index": 1
+    },
+    {
+      "task_name": "find-living-thing",
+      "variation": 236,
+      "repeat": 0,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 2,
+      "plan_index": 2
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 132,
+      "repeat": 0,
+      "condition": "semantic_body_retrieval",
+      "order_position": 0,
+      "plan_index": 3
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 132,
+      "repeat": 0,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 1,
+      "plan_index": 4
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 132,
+      "repeat": 0,
+      "condition": "no_skill",
+      "order_position": 2,
+      "plan_index": 5
+    },
+    {
+      "task_name": "grow-plant",
+      "variation": 96,
+      "repeat": 0,
+      "condition": "semantic_body_retrieval",
+      "order_position": 0,
+      "plan_index": 6
+    },
+    {
+      "task_name": "grow-plant",
+      "variation": 96,
+      "repeat": 0,
+      "condition": "no_skill",
+      "order_position": 1,
+      "plan_index": 7
+    },
+    {
+      "task_name": "grow-plant",
+      "variation": 96,
+      "repeat": 0,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 2,
+      "plan_index": 8
+    },
+    {
+      "task_name": "power-component",
+      "variation": 18,
+      "repeat": 0,
+      "condition": "no_skill",
+      "order_position": 0,
+      "plan_index": 9
+    },
+    {
+      "task_name": "power-component",
+      "variation": 18,
+      "repeat": 0,
+      "condition": "semantic_body_retrieval",
+      "order_position": 1,
+      "plan_index": 10
+    },
+    {
+      "task_name": "power-component",
+      "variation": 18,
+      "repeat": 0,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 2,
+      "plan_index": 11
+    },
+    {
+      "task_name": "chemistry-mix",
+      "variation": 30,
+      "repeat": 0,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 0,
+      "plan_index": 12
+    },
+    {
+      "task_name": "chemistry-mix",
+      "variation": 30,
+      "repeat": 0,
+      "condition": "no_skill",
+      "order_position": 1,
+      "plan_index": 13
+    },
+    {
+      "task_name": "chemistry-mix",
+      "variation": 30,
+      "repeat": 0,
+      "condition": "semantic_body_retrieval",
+      "order_position": 2,
+      "plan_index": 14
+    },
+    {
+      "task_name": "find-non-living-thing",
+      "variation": 236,
+      "repeat": 0,
+      "condition": "no_skill",
+      "order_position": 0,
+      "plan_index": 15
+    },
+    {
+      "task_name": "find-non-living-thing",
+      "variation": 236,
+      "repeat": 0,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 1,
+      "plan_index": 16
+    },
+    {
+      "task_name": "find-non-living-thing",
+      "variation": 236,
+      "repeat": 0,
+      "condition": "semantic_body_retrieval",
+      "order_position": 2,
+      "plan_index": 17
+    },
+    {
+      "task_name": "grow-plant",
+      "variation": 96,
+      "repeat": 1,
+      "condition": "no_skill",
+      "order_position": 0,
+      "plan_index": 18
+    },
+    {
+      "task_name": "grow-plant",
+      "variation": 96,
+      "repeat": 1,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 1,
+      "plan_index": 19
+    },
+    {
+      "task_name": "grow-plant",
+      "variation": 96,
+      "repeat": 1,
+      "condition": "semantic_body_retrieval",
+      "order_position": 2,
+      "plan_index": 20
+    },
+    {
+      "task_name": "find-living-thing",
+      "variation": 236,
+      "repeat": 1,
+      "condition": "semantic_body_retrieval",
+      "order_position": 0,
+      "plan_index": 21
+    },
+    {
+      "task_name": "find-living-thing",
+      "variation": 236,
+      "repeat": 1,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 1,
+      "plan_index": 22
+    },
+    {
+      "task_name": "find-living-thing",
+      "variation": 236,
+      "repeat": 1,
+      "condition": "no_skill",
+      "order_position": 2,
+      "plan_index": 23
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 132,
+      "repeat": 1,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 0,
+      "plan_index": 24
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 132,
+      "repeat": 1,
+      "condition": "no_skill",
+      "order_position": 1,
+      "plan_index": 25
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 132,
+      "repeat": 1,
+      "condition": "semantic_body_retrieval",
+      "order_position": 2,
+      "plan_index": 26
+    },
+    {
+      "task_name": "find-non-living-thing",
+      "variation": 236,
+      "repeat": 1,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 0,
+      "plan_index": 27
+    },
+    {
+      "task_name": "find-non-living-thing",
+      "variation": 236,
+      "repeat": 1,
+      "condition": "semantic_body_retrieval",
+      "order_position": 1,
+      "plan_index": 28
+    },
+    {
+      "task_name": "find-non-living-thing",
+      "variation": 236,
+      "repeat": 1,
+      "condition": "no_skill",
+      "order_position": 2,
+      "plan_index": 29
+    },
+    {
+      "task_name": "power-component",
+      "variation": 18,
+      "repeat": 1,
+      "condition": "semantic_body_retrieval",
+      "order_position": 0,
+      "plan_index": 30
+    },
+    {
+      "task_name": "power-component",
+      "variation": 18,
+      "repeat": 1,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 1,
+      "plan_index": 31
+    },
+    {
+      "task_name": "power-component",
+      "variation": 18,
+      "repeat": 1,
+      "condition": "no_skill",
+      "order_position": 2,
+      "plan_index": 32
+    },
+    {
+      "task_name": "chemistry-mix",
+      "variation": 30,
+      "repeat": 1,
+      "condition": "no_skill",
+      "order_position": 0,
+      "plan_index": 33
+    },
+    {
+      "task_name": "chemistry-mix",
+      "variation": 30,
+      "repeat": 1,
+      "condition": "semantic_body_retrieval",
+      "order_position": 1,
+      "plan_index": 34
+    },
+    {
+      "task_name": "chemistry-mix",
+      "variation": 30,
+      "repeat": 1,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 2,
+      "plan_index": 35
+    },
+    {
+      "task_name": "grow-plant",
+      "variation": 96,
+      "repeat": 2,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 0,
+      "plan_index": 36
+    },
+    {
+      "task_name": "grow-plant",
+      "variation": 96,
+      "repeat": 2,
+      "condition": "semantic_body_retrieval",
+      "order_position": 1,
+      "plan_index": 37
+    },
+    {
+      "task_name": "grow-plant",
+      "variation": 96,
+      "repeat": 2,
+      "condition": "no_skill",
+      "order_position": 2,
+      "plan_index": 38
+    },
+    {
+      "task_name": "find-living-thing",
+      "variation": 236,
+      "repeat": 2,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 0,
+      "plan_index": 39
+    },
+    {
+      "task_name": "find-living-thing",
+      "variation": 236,
+      "repeat": 2,
+      "condition": "no_skill",
+      "order_position": 1,
+      "plan_index": 40
+    },
+    {
+      "task_name": "find-living-thing",
+      "variation": 236,
+      "repeat": 2,
+      "condition": "semantic_body_retrieval",
+      "order_position": 2,
+      "plan_index": 41
+    },
+    {
+      "task_name": "chemistry-mix",
+      "variation": 30,
+      "repeat": 2,
+      "condition": "semantic_body_retrieval",
+      "order_position": 0,
+      "plan_index": 42
+    },
+    {
+      "task_name": "chemistry-mix",
+      "variation": 30,
+      "repeat": 2,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 1,
+      "plan_index": 43
+    },
+    {
+      "task_name": "chemistry-mix",
+      "variation": 30,
+      "repeat": 2,
+      "condition": "no_skill",
+      "order_position": 2,
+      "plan_index": 44
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 132,
+      "repeat": 2,
+      "condition": "no_skill",
+      "order_position": 0,
+      "plan_index": 45
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 132,
+      "repeat": 2,
+      "condition": "semantic_body_retrieval",
+      "order_position": 1,
+      "plan_index": 46
+    },
+    {
+      "task_name": "inclined-plane-determine-angle",
+      "variation": 132,
+      "repeat": 2,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 2,
+      "plan_index": 47
+    },
+    {
+      "task_name": "find-non-living-thing",
+      "variation": 236,
+      "repeat": 2,
+      "condition": "semantic_body_retrieval",
+      "order_position": 0,
+      "plan_index": 48
+    },
+    {
+      "task_name": "find-non-living-thing",
+      "variation": 236,
+      "repeat": 2,
+      "condition": "no_skill",
+      "order_position": 1,
+      "plan_index": 49
+    },
+    {
+      "task_name": "find-non-living-thing",
+      "variation": 236,
+      "repeat": 2,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 2,
+      "plan_index": 50
+    },
+    {
+      "task_name": "power-component",
+      "variation": 18,
+      "repeat": 2,
+      "condition": "semantic_flat_retrieval",
+      "order_position": 0,
+      "plan_index": 51
+    },
+    {
+      "task_name": "power-component",
+      "variation": 18,
+      "repeat": 2,
+      "condition": "no_skill",
+      "order_position": 1,
+      "plan_index": 52
+    },
+    {
+      "task_name": "power-component",
+      "variation": 18,
+      "repeat": 2,
+      "condition": "semantic_body_retrieval",
+      "order_position": 2,
+      "plan_index": 53
+    }
+  ],
+  "file_sha256": {
+    "agent.py": "5240b3cc1ed4e78eac98a61d02163821f98bf69189c6a18e612cda26c4234a55",
+    "scienceworld_agent.py": "a39c9f839cbd003010cffff6c9aad21057a2b6a917b677ee689d779e2542d5ee",
+    "scienceworld_skills.py": "16566dd84020257ce055d7095689b2aa02dc6f7d541ba401bfb66212445f36b5",
+    "scienceworld_retrieval.py": "32a1043c422a33516cad720477052a72097019293f39b3596f30f2a581606a6f",
+    "scienceworld_strong_retrieval.py": "04e3793525ae9cd5b53fec9bfd74f5754bf3fa9d30e8aaf72aa62b8765fc29cb",
+    "scienceworld_retrieval_baselines.py": "4c3247496dbea78c0ff8cd6fd1ae2523b12dd9d2549c94dcfdfb22d0ace96686",
+    "scienceworld_hash_audit.py": "d893309b0fa75538c424904213cf072a0b1f5f302e69b7186ee57cdb0783b96a",
+    "scienceworld_strong_confirmation.py": "a1687faf4913d3cae123acec1dac1486efdf7db8171b77262b1494402237d364",
+    "test_scienceworld_strong_confirmation.py": "dc13eae2814feb148c39eba36faedaa223afeee4b74dfdd3d36691521b3117c9",
+    "summarize_results.py": "3bebb462fb12b02a600c99af7126e14c6981a826c20221a1c586078ab44a6bbe",
+    "result_utils.py": "d852cf0375a95174d0d77d6babb43ac67547b99a40f7695096df10498d95aadb",
+    "docs/research/scienceworld_strong_confirmation_2026-09-24.md": "fa3d067ed04d8fad373e891f551259991318fc7479cbdc58775a37776d10cf79",
+    "results/scienceworld_strong_confirmation_selection.json": "953521776f7b27850fbef54fdc4f0b07f409c21663b79aad64416a34dda82e69",
+    "results/scienceworld_retrieval_baselines_2026-09-24/summary.json": "e13119ed889289ba8e6ceb26d523c0f4856562993683502d91925f95a8e9cad2"
+  },
+  "library_sha256": {
+    "v3": "fdd9d917af6528933d71f744e57b88aae6e7e52113354e20bec3ffbf8cd0f322",
+    "v4d": "5d16691dd48632b07fc2e176ec3daed70b7e089c59c28e7c434e4e06b3e04d0b"
+  },
+  "scienceworld_runtime": {
+    "package_version": "1.2.3",
+    "jar_sha256": "f4e1fdce0cdabe1bab7128a7e78ea820210d9db3c28d7272bcbbc3f3a1c5f0d7",
+    "wrapper_sha256": "23a37a2e9ed8e43d8c5e27d8660ea344d38a544abcd8c7e6af40071c7832ce68"
+  },
+  "official_test_variations": {
+    "chemistry-mix": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "find-living-thing": [
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299
+    ],
+    "find-non-living-thing": [
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299
+    ],
+    "grow-plant": [
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125
+    ],
+    "inclined-plane-determine-angle": [
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167
+    ],
+    "power-component": [
+      15,
+      16,
+      17,
+      18,
+      19
+    ]
+  }
+}

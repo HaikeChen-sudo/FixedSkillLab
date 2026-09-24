@@ -101,7 +101,9 @@ ScienceWorld 的 [哈希碰撞审计](docs/research/scienceworld_hash_collision_
 
 ScienceWorld 的 [BM25 与预训练语义检索对照](docs/research/scienceworld_retrieval_baselines_2026-09-24.md) 继续使用同一份已见查询。BM25、MiniLM 下，五个历史库的 Flat/Body 均为 Gold Top-3 全命中；v3 的 MiniLM Top-1 为 Flat 40/48、Body 47/48。旧 Top-3 差距在强基线下消失，排序差异仍在，但不能替代新的 Agent 成功率或成本实验。脚本 `scienceworld_retrieval_baselines.py` 复用本地模型、禁止自动下载，并保留完整排名与模型文件哈希；不改变在线路由。
 
-ScienceWorld 的 [强基线路由接口检查](docs/research/scienceworld_strong_router_interface_2026-09-24.md) 已加入 BM25/语义 Flat、Body 四个独立条件。原六个任务族固定用 v3，新任务族固定用 v4d；两种索引方式都按 Top-3 加载完整 Skill。语义模型通过已有独立环境本地调用，记录冷启动路由时间和模型指纹；本轮只完成本地测试，未新增付费 episode。
+ScienceWorld 的 [强基线路由接口检查](docs/research/scienceworld_strong_router_interface_2026-09-24.md) 已加入 BM25/语义 Flat、Body 四个独立条件。原六个任务族固定用 v3，新任务族固定用 v4d；两种索引方式都按 Top-3 加载完整 Skill。语义模型通过已有独立环境本地调用，记录冷启动路由时间和模型指纹。用户随后完成的斜面 dev 单题 smoke 中，两种语义检索均成功，但加载列表、顺序和 Skill 提示哈希相同，不能据此归因于正文索引。
+
+下一轮[强语义检索六题协议](docs/research/scienceworld_strong_confirmation_2026-09-24.md) 固定 6 个未使用的 test 变体 × No Skill / Semantic Flat / Semantic Body × 3 次重复，共 54 个 episode。`scienceworld_strong_confirmation.py` 默认只预览，`--check` 检查本地环境，`--execute --resume` 才会付费运行。已有题号、预留题与旧结果保留；本轮独立记录到 `results/scienceworld_strong_confirm_6x3.jsonl`，不改现有 Agent 或 Skill。
 
 ## ALFWorld：固定 Skill 的 A–E 实验
 
