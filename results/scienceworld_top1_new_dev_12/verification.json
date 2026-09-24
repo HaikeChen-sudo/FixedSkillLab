@@ -1,0 +1,151 @@
+{
+  "api_calls": 0,
+  "audit_sha256": "53aa24730130f7ff6f9e9183be01cd9557356074201abdb869fc19cc7428dabd",
+  "checks": [
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 51,
+      "mode": "flat",
+      "task_id": "boil:v014"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 188,
+      "mode": "body",
+      "task_id": "boil:v014"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 51,
+      "mode": "flat",
+      "task_id": "boil:v015"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 188,
+      "mode": "body",
+      "task_id": "boil:v015"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 36,
+      "mode": "flat",
+      "task_id": "find-living-thing:v150"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 188,
+      "mode": "body",
+      "task_id": "find-living-thing:v150"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 36,
+      "mode": "flat",
+      "task_id": "find-living-thing:v151"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 188,
+      "mode": "body",
+      "task_id": "find-living-thing:v151"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 38,
+      "mode": "flat",
+      "task_id": "find-non-living-thing:v150"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 188,
+      "mode": "body",
+      "task_id": "find-non-living-thing:v150"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 38,
+      "mode": "flat",
+      "task_id": "find-non-living-thing:v151"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 188,
+      "mode": "body",
+      "task_id": "find-non-living-thing:v151"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 35,
+      "mode": "flat",
+      "task_id": "freeze:v014"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 188,
+      "mode": "body",
+      "task_id": "freeze:v014"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 35,
+      "mode": "flat",
+      "task_id": "freeze:v015"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 188,
+      "mode": "body",
+      "task_id": "freeze:v015"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 35,
+      "mode": "flat",
+      "task_id": "melt:v014"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 188,
+      "mode": "body",
+      "task_id": "melt:v014"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 35,
+      "mode": "flat",
+      "task_id": "melt:v015"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 188,
+      "mode": "body",
+      "task_id": "melt:v015"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 96,
+      "mode": "flat",
+      "task_id": "use-thermometer:v270"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 188,
+      "mode": "body",
+      "task_id": "use-thermometer:v270"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 96,
+      "mode": "flat",
+      "task_id": "use-thermometer:v271"
+    },
+    {
+      "full_ranking_matches": true,
+      "max_tokens": 188,
+      "mode": "body",
+      "task_id": "use-thermometer:v271"
+    }
+  ],
+  "method": "independent per-query encoding through existing online minilm_scores helper"
+}

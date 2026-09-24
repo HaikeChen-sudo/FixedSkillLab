@@ -1,0 +1,818 @@
+{
+  "api_calls": 0,
+  "baseline_sha256": "e13119ed889289ba8e6ceb26d523c0f4856562993683502d91925f95a8e9cad2",
+  "cases": [
+    {
+      "gold_skill": "boil-substance",
+      "task_id": "boil:v014",
+      "task_name": "boil",
+      "variation": 14
+    },
+    {
+      "gold_skill": "boil-substance",
+      "task_id": "boil:v015",
+      "task_name": "boil",
+      "variation": 15
+    },
+    {
+      "gold_skill": "find-living-object",
+      "task_id": "find-living-thing:v150",
+      "task_name": "find-living-thing",
+      "variation": 150
+    },
+    {
+      "gold_skill": "find-living-object",
+      "task_id": "find-living-thing:v151",
+      "task_name": "find-living-thing",
+      "variation": 151
+    },
+    {
+      "gold_skill": "find-nonliving-object",
+      "task_id": "find-non-living-thing:v150",
+      "task_name": "find-non-living-thing",
+      "variation": 150
+    },
+    {
+      "gold_skill": "find-nonliving-object",
+      "task_id": "find-non-living-thing:v151",
+      "task_name": "find-non-living-thing",
+      "variation": 151
+    },
+    {
+      "gold_skill": "freeze-substance",
+      "task_id": "freeze:v014",
+      "task_name": "freeze",
+      "variation": 14
+    },
+    {
+      "gold_skill": "freeze-substance",
+      "task_id": "freeze:v015",
+      "task_name": "freeze",
+      "variation": 15
+    },
+    {
+      "gold_skill": "melt-substance",
+      "task_id": "melt:v014",
+      "task_name": "melt",
+      "variation": 14
+    },
+    {
+      "gold_skill": "melt-substance",
+      "task_id": "melt:v015",
+      "task_name": "melt",
+      "variation": 15
+    },
+    {
+      "gold_skill": "measure-and-classify-temperature",
+      "task_id": "use-thermometer:v270",
+      "task_name": "use-thermometer",
+      "variation": 270
+    },
+    {
+      "gold_skill": "measure-and-classify-temperature",
+      "task_id": "use-thermometer:v271",
+      "task_name": "use-thermometer",
+      "variation": 271
+    }
+  ],
+  "code_sha256": {
+    "scienceworld_hash_audit.py": "d893309b0fa75538c424904213cf072a0b1f5f302e69b7186ee57cdb0783b96a",
+    "scienceworld_retrieval.py": "32a1043c422a33516cad720477052a72097019293f39b3596f30f2a581606a6f",
+    "scienceworld_retrieval_baselines.py": "4c3247496dbea78c0ff8cd6fd1ae2523b12dd9d2549c94dcfdfb22d0ace96686",
+    "scienceworld_skills.py": "16566dd84020257ce055d7095689b2aa02dc6f7d541ba401bfb66212445f36b5",
+    "scienceworld_suites.py": "567d6eee1eb682611902b993e207b771893e5fbc4bd9904a1bee8f1329edfdcd",
+    "scienceworld_top1_audit.py": "232fea0318f310e501b5e40e39425aba9ce2215d3aa649c802e7846e077f206d",
+    "scienceworld_top1_dev_probe.py": "bd2ef696113c32af5f0c21c1a9c4247c1b576a14b62e2412b0b35dac6fc3192d"
+  },
+  "frozen_at_utc": "2026-09-24T19:31:24.656859+00:00",
+  "historical_query_sha256": [
+    "0161e2582c9ffe5876faf01a9fe50b641b741bbc8a4dad8f1ba0d3ee794d7a71",
+    "03142a3bd4edda614cae13cb6248bf6b1c7fc232f8b50340ce9c53de288c8322",
+    "0322ed2ee5f72e70a2c6e6869374c1de688349f658d07ec3f68a08d77919fa3e",
+    "0682ef0e41c6f241beb73db499f50a20340497120589df82e3d866304c610dcc",
+    "0728ec90ad144ca4cdd57508aba4ae70c626e53d0533957468b3ada3ac93339a",
+    "077fdba797abe62d6240e6bbe2fc1771723906ecee6115cca355beec6ac9db23",
+    "098e7226722b05203823e2094fe81a7a0f21f9ae11e84228adcb7d7100eb0ede",
+    "0a67b9d1197816063fd057e9e2b9d9c837e4301cac1aa9ea54f5911797af9b06",
+    "0b3bbccc84fd859b62b163ce9f119637b62bae7e861e25b112ce29c34f01ee54",
+    "0f2b4a4b6ae487c3277e047fbe00cedf80748414e45cbe292379dbbb3305333b",
+    "1036451b240f6bb18a6b264df716aa01fe938171155c2a512be0d9b9264b7ada",
+    "10a02b520ae0d0d63d0fdefab8854c004f910da6468811c163c21403edb84714",
+    "11fbcb777dd34ed251a3733518c92d8c219bce524cb873def26461ef4b8df11f",
+    "1350cd50bfc00706c34dc714781548f365c636746e633414c2a68d5251221de4",
+    "13de78e51aeaec154940c71a16740e0b12b7bf92436104de8e9d4d5494f45d71",
+    "144339dc2abbca1ff370ff3f843d5dae76e0b902523580f2d894dd4b496d3608",
+    "17fbba150cfbd1b114f458f8d0f44cb9a6ed8ccc8fab4c69daed786addaca5d4",
+    "182e320ff7a3958350d24451671d7d909fd626f3eb900effc906786836b7131f",
+    "1961cc31210abd53975452a2772ca4b247b7d3b2663420d343a6758fff2987cf",
+    "19ed35b69d1cecf7cbe9107c403d4618df8b1bbb41841c9ec9d44b2643f39518",
+    "1b3baf21475750c285bf82338de588f4c3a2d4f536addb7ad532244f74b0ace5",
+    "206b5d727db2d4a7d6ef8fe6a196e1d1ed79c1800fab7c974891e74c9de86348",
+    "252499df647e6681cb34c0c51d463280093ad315b7b59f101ea980bffa35ee90",
+    "25bb7fb9fb496cd7ec063540bd5203916bb2e4c5f8544df097ba5ac31bf977f2",
+    "2754a25e1bf77bfa60880ea13475e2e7bd7704f5b12295725bb2591a1063aa53",
+    "2a28879177e82dfdf6553ed55008d8366d0729e09ffd37a3480f096a097c4ec5",
+    "2e2435076418f117d7bff99c9363a2e7470f19b2b0d1419f91ad68d867bde609",
+    "2e94cbe60b0b8078c475d3c1c61a226aa072d6e7e3a813de95a9e95226146d26",
+    "30c0c4129dba3e78a3e5101ce10babf3c0162ac9ad608b79ff39204753536715",
+    "329b83004001e2215d4946c69407d00ff898649b42eba2a7062f08e2625fbb6a",
+    "34c3f8df3a38d734c1b2fe533942e34cacfab6e985285c8ccd1bf2c9e7267d02",
+    "3509f128d0124e7a4d0727780b01a36390f4dcab613739446108ccfb38c6506e",
+    "3bfac5113ac185b691a9e7653251ff60154b5c4a414c9379e4bed6875c6714b2",
+    "3cac6d874ad2482736cc387d84975971db4e0db1ba6aaaef606542731eb1f3f0",
+    "3dc750489250a94ca5a4b9f6a2be64ed127980acaa191eee8b2c8d7108cfbc97",
+    "3f8d5bb44ca0450ecbe6a2303786f27955b4df9a733ec9e2c5a9421f67680308",
+    "3f9316a9e90c7c2b069e7fef637dd63623f7fe8d9e56df0d144272945eff1e38",
+    "3fa287f2a8faa4a137ebb36268a8296183d9943b206a8b8f8c0ee2b91b14be4c",
+    "40e02cace5c766fe13de77eedf173fe51e6c6ab5c705cb872bae5032fe77616a",
+    "412c4a4225097455a04a14e3ee4eea7e108a9f6312bb6d3ddfeb845dd67cbf32",
+    "43da4114dd40aa3dee453401b50526413c0423f00b68950558ae824d0a9ff5bf",
+    "457323edc3672c1c2f8e3636958d0e3fa284e9a9a3b4fe195ca8472ee8ca5bb1",
+    "477a50b038fe902b3fc54ebf4f10f43647c80e589c1bbd01df6368c69dc0920f",
+    "47cb58adf2c853c0d1200a6eb386aeffeb2936b394350acf211d3ef30a396184",
+    "489c3cad0baf8b1e9ade1f91e058ed624eb387eef2617997a60b5b419149f06a",
+    "4969a7f87e1bc4c119d446c4fd04204dc0fc7df24680b82dd1fa02120a0f689e",
+    "497a0b5ab00f13763b617b227017001cc86e155fbe71f71c81199ebaa32e1877",
+    "49f704e709014517671bcbbd7565b62657ad5d521ddbd0310a75827de9044f3f",
+    "4b0f2a39cff62946410b2c19cb9eb0d0161c6e5216fbc15f4898c83749cd9e1a",
+    "4b1a049798c27b29a0533947d49455577327a560528d6637703a5e2900178aae",
+    "4b331f7187c6f22579e744677bc6478976f35b388a7d6b2d464eaa54766a1b37",
+    "4bbbfebeb0900dd1d8868177c01f986b24841b0f2807dfe77a3dc3c1d5733617",
+    "4d60fca597b7a23b9e4fef545a18ad24c72dc388cac24864b30a92fd2a2ba995",
+    "4dd8be7001129409931f617a3c0df71020c5b64da7f81fe4abde9795e539c131",
+    "4e05686d542ba58c624fe27c72719430b07cddcf5597c1e286908cfd4cb4c227",
+    "526ddf194d157e5b719be0e2c958db05eddd852dbd15911ab7f128008a885f67",
+    "5327b988a9714021258ccdd6649a5a116c7863b60dd7e3118ce031a0c2ccd829",
+    "5377943bcf451f50d4b782be819237111c9ee81fe75201f022acafd2d62237b1",
+    "57c4f5da6df6824151c7d9651022526fb06e530554e6192cb26fbda66a3b2682",
+    "588cc3b47440a278f910e9cafc2c129e4b1c45a0b13c34f9445938c50abe37a4",
+    "595a96926e3854dfd1a7cb1eb42936ddef3505610bc43f1ffe94ba0aba64bca9",
+    "59fa940b747790c53d1f6915d92c037c9eabd65c74be04a6a44361a70048853f",
+    "6301fb36b1fd0c3dd34872bd405b635d69e4c1795b54bfb96e4e257348e93db3",
+    "6341b610c06f2a84bfe047e8ab647928c3a992e744f852994fc4ec770a66e922",
+    "648b6b3701d6f05cfe4f1aaea5dd07576a33fe7df2acc86f9a17632e543c29c9",
+    "65f5de0713ab97e0b0f9d97d5c8c4c5092f755c7bdb5f98b8e6972c357d9f06c",
+    "660c358e2c49e9c1741f868c88c078d31a38881cc4cf4b9cb0233ca96bfd6142",
+    "66d5179ddfdf4711738bd432658178973b3be74d2278d003c9d2f7bf75858878",
+    "66e6a076df57b8e003b8aafdfa8ac7d7975f224ff41dc034b93053d619a7a4eb",
+    "67113734d143c92cf9a2f4fa1bf7be41a187758419e8315093f367b5c6064810",
+    "6781690a31a54ad555d44582020a8f89e5d128744250fea42607f86cb2b09ca0",
+    "6a3ef118c1cf9eb6f424427872430c28b13720f76be02cb8f896079b7ba0fe8e",
+    "6ad8bf954c2cd6c77f1f393addb702d3afbab67d38b944e0db45a947f4d0cadf",
+    "7119ccf7fee98e66436543e5e9e89cc437ee48c77cf826de03088bdd0c91510c",
+    "713e637761297a6b080a8e0ca96b78da3699e61b376ff7974ae3c6556ea38221",
+    "75cececc6a69eb32b07e87843bdd50b1bab6d2b1b87217b558bc3a1bcae4bbdf",
+    "79f5fe861a61407e74c8213a7b43c714db10fd90aa7e70af6fc9cf010c82237e",
+    "7b06bf43342690b2fcf6433ee36332a69f6db97bbeb6719abeae55113fe0ef12",
+    "7b3df7175b7b2726b08e784325db58e880554a6e057f99e94a28c32649289738",
+    "7dbe1ac7f2cfb954d85a4494859adc10dcb9f2fb7569316bf7864c3de9e3627d",
+    "85995d5016136c9901aaceebfaeadff7cc9bd17c3f59979a3d89edc512a0017a",
+    "87ae359b8badb09b5f51daae9570f7e3ccaa53389aaeea1a2d00de668b661f6a",
+    "88eef5f79dc067677576239b518be3d9b8447bea4f02f34b07fd2e836610dad4",
+    "8a7f89eafd8849532803e53f749ddb715e3dcf2ff12c333a3a849af53d2af872",
+    "8ae32c9a919f559d4b43e483f7fc3ed5b09c8109495e0f5b983cd834e64f26d5",
+    "8b0cdf2ec395bcdde7e0a9740351a4657c57c42978e4279ce6d47c9fae9d7166",
+    "8b9e84213940e96fd20cf260dde6e537d5740bd0e77005283d0040a5f9b19cac",
+    "8ce50513678da81be43c35f7e005bf47889c2faf0e6d6ebfcfd68788e008ec41",
+    "912754cac3eb97f22700aa861fe0a9d0c4925a3131ef296c3f943f97ab4d338d",
+    "95593f58c20deb4879309d8ae83d9a0e30843cf356b97a4eaf62509a86fbadd8",
+    "9888e5ab78e8bb2fd746d7ad800fc929f9f093d4aec3e317878309f86ecd7df2",
+    "99661d275d145aed47fa2bfa5bf26e5b5b9d472dccec6a9d737d87409d3c1b4a",
+    "9ad9ee735aae9126bdb371e919cdb80b96195ef5bf45addf23f21c0c1aace882",
+    "9b02751a11511fe41f439813971c531022348c51b25335b115826d89e368d372",
+    "9e9b60e66e5108f7363eb4889ced5d42a5812a99e18d3a2473095a9494d3eba1",
+    "a35843e70485e3f908fec198fc828a94d1e0487713f84b21798f1d78129f12b3",
+    "a74a70ac1e4854376aebaa0727a45f03a48d21405530530d455e4a6a28d88fdd",
+    "a93ed7f4c0dec56608fbd5d11c3e895818d31c8cb31a4f7e5e7302bf54c90334",
+    "accb3359d9b46fb4735ed5b556751ca0bc52c42b03bdd35da3322371b33e63ba",
+    "acce58dbf401c2839f3c8684c48c96401d1e7cf436e8f0fc62271ccbdf2b25e6",
+    "ad80e3c5694d0592c6b7546eec7dd0b888fdca2f757d74dad0601f13cdb17a78",
+    "b3d6d93d1310fa4ae434bc3bdc1a4202a4b96fd024cf58d847430ba57437e522",
+    "b4e06f268be74ec2fc645795873dff94066c2eb64aed5995578ca201222c1567",
+    "b653166377fe7a8930716943688154d03c282ac4524ebf53235fbd88141dfd1e",
+    "b69c79e6012d79514c1ee532b66d2622e01ef93eb47d2d4b0589e47f638029d7",
+    "b706930d7ae7e06b15e6865807172fa6b21f4af7f21bb6576a5689db0afd062f",
+    "b71490abc293ab762ce64b27f16a021058c5cfd156be9378239bc56e96540d4e",
+    "b76d6992115e71f44d52825dbc3e9fe603dbcd66c684d910c79e895ad977d95e",
+    "b99a89173c109ab6457bb0047808bcbc06121e228d5da5ae2973cd205666d038",
+    "ba131f6475b5a6b908e35d02b50289c7af0a7933ed3ea69d65732aaf123ea230",
+    "bb33fd267a117f08c2c57ae7fa886a8b55db01a2adee78149d17f320aa5e3d32",
+    "bba468da25d2340836a1e90b945edf2da5db3040ea890f865f5e2d465220ac31",
+    "bbf83346cd965ed449f8f7a62bdc22da71ff36ea037c8d7af195d95908d64c0d",
+    "bde03f95cbd720635e1b0f5abc21ae4fcb9d5e5acc6c2015d12cc0e7676abbd4",
+    "bfb78e5243bf4cb041f2f9650a5d75fa7e39bfc3dc8e050acf30ec47fb0d7aa6",
+    "c04dc0c5f07080b7fe1e76b308487b22cbc37facfce8bac817106d8bcafe04e7",
+    "c09371c2d6411ebfe6026ab27df5371ac98bb771421ee6b0e0bc5642fc6441f8",
+    "c0f7a0915f5deae21c4373604e62217cec7250da1af051d47d5b1e5c21984458",
+    "c18768f7c6c85bd02b0f68df658be6fc53b7f67c2085eaa5a69e4a73a18119e6",
+    "c241654bb7a7c9570d8ea7df0902a4870cc58ec9fb943daec5afd83053af5ec7",
+    "c27490f24f3e3783fda756555a757020bfb73c3c652913093202c4b6ccb568de",
+    "c3483cb148c0c33fddb3f63094917ea86665b3c9688f96975e46b6d4910d33d1",
+    "c47082254235b14cadf6b4818d4f702b793bee44144a14f9ea6b7e9e8fd74361",
+    "c8775a0772b226558d59c6daf36994ef01e79f05069f589acfa00d81137a4386",
+    "ca26204c7b5342188779277d92b6ddbe18287a2a987cde3aae67405f57479e32",
+    "cb2a02391c57ee892cfffb34ef054768c283148ff14cc3798982b53ae89ed8d9",
+    "cef8e63a431d5767c36c0eeef9981b6b2aa7dc71029f036d6e178cf05616942a",
+    "cf0f539da216cddd3c73eb07e0fb9763461a0485bbef12d665bbd46e6a43306f",
+    "d04053cdda49fd6a781690a800ef23ab37a9cd1adabef551f14e2656e0b20a1c",
+    "d07d8c93c1c7d4db462c744953ecedc6c2385cd39b7623c269d27b5319d68228",
+    "d376760418030c1afbd71e91ecabaad1275a2f180fee7efa5e2aa28cb4fb5d96",
+    "d780c08596c8bc2e6079c21e524d170439e4fff336e6268413e23254689d6809",
+    "d79605d8586c80d9ebc014554fa09771c7e733ddfbb420d367640028125e1ccf",
+    "d8b02f0a8e848d33aaf2cc1f37a5732e864dadce04a7b001ee45818832d28aee",
+    "da80570124900084e5249961bb47cf778e17922212544c1bdcf5c18843845c0b",
+    "dbe33360e79af446b0fabca39e3b980c0a143d4aa17a59f39b5ca11f9bcf01f9",
+    "dc4e55906fec4b74edce50c18ef376e5621d1055756613eacaaa26961be56a32",
+    "dccac745fba298abf78c81cdeefcd2fea2f2c45bdd048e3653b773bd955ed78f",
+    "dcee21cb5e4b3c591787977659f174b523e3b3970f0fe4f262a1e0eabae1a343",
+    "df00ccbc3066d7fe20f0dd6fbe07b349a6db6d69f5e0dfb61b714cf75cd23405",
+    "df8b9df4e0fcd8f5668359e8d9a4cab33ed47a8d62f100dea8ed85c2a9173141",
+    "e164209474032cb3e493e6fdcb19ead88002c87a8043869b4388c1b07a9a3306",
+    "e190123a57b1acbef9b0f99e598e32693dd090c28d374f8d03cd3802b2017f7f",
+    "e1f2c70bdcc09c63ff2f03800a13ec0dd94328c7dff5a8e8bfb854810de16413",
+    "e39dd8510e7003130dae3df56cc7ce13533cdf65feb6c2408d5a94ee78a696eb",
+    "e4c7b986903b99c5a0e0ea8c7afa17eabd26178b945b7ec4dabf6e761566cf0d",
+    "e658a0e25e4a013ac1a87db8be94719c5757f630da6715024180366fb0368cab",
+    "e67cf2b1b8e3d00f4bcae233b71c06a2d6f18f8ef6e8667f3d7e33f5c8e88db7",
+    "e8a6503dea4e4efffb4506116d35aacf7fc96c60f5abd34f4121c9e18bcee4f8",
+    "e8fc79aca3e4b23dc0a620241681338fd92b64e17aedab4148ef436127226be4",
+    "ea5b81b2b26fd8ddba757d768d22e87312dc54dbafb6b108ef06225b44c5a3ca",
+    "eb18c4f56965fd1205bb72feb1402d42d3a43b0666851a457ab53707ff407004",
+    "eb5d8356987222dbdd7380aa716b8d48ccc7907944617ac2f1a7bc09b7be77bb",
+    "ebd5ec1877d11dfe1866270b4bedf65a1399661543901aa9cf8ccdf134cfb37d",
+    "ebf3aa071b5f2e4bd5601460ba5b883be34585f99d371d3b3aa1c158108e5cd1",
+    "ec3f0d040f0c98960f5bf2076a2285868a183e926317ce6f4b7bc2c6bdbb06f3",
+    "ee70a0d7a8c330042626760707377de8b211378296ca607e307956dd3c25c02c",
+    "f1edf354318f225cd59008a5448fd508777017ca4c55981616c1487f9d8f8a9e",
+    "f3fde6d59e9558b6fbe529ab6407d5edb0c533a2131f4020cef8b0f6a69a6db4",
+    "f58ba17b312370527b6bd59677437070a181d1f94b970166ab03898554eb91e7",
+    "fb8f0f4c7db66523ed879d786b40cfb56d8fef7aeb1a730fc67504ec8cda0c31",
+    "fbbf88d58cb456690e1f88fa34abf9b90aac6771ac3ff3c61799b00a90deae48",
+    "fbed6cfc59d4cf3f5c9395a0c6507492d42fad83335f3ea62d03621f3ba84a0d",
+    "fc399cc7068f36b7d9f7110febea867861b0ebb996ca44abad12e7675fac61d4",
+    "fc44b82b69b5a84d994991498dd7cbdc19e04dd04cd8578c688dd636cbb26b92"
+  ],
+  "history_file_sha256": {
+    "agent.py": "5240b3cc1ed4e78eac98a61d02163821f98bf69189c6a18e612cda26c4234a55",
+    "alfworld_agent.py": "0c0edf78d60b1b045372c85a478bee396471f298b224213962e1bdbcf32c1169",
+    "alfworld_experiment.py": "8f738e350171681e29ae211080ae97ff3dcb5a11dd0d0e2ee7b5836099a42eeb",
+    "alfworld_gold_skills.py": "269c54f8d15f89aa1a4f8dd81ffb444b912a8557c0ba235962cdfd987335e4e2",
+    "alfworld_retrieval.py": "bc885e2ee0fe8dea6606e2d221cf78f4ace326b7de8d1edbc99fe4e1131e9186",
+    "alfworld_skills.py": "b9fe2b31f2548ed015af954e67c0591930f142a4e35a8c83957fe5c96f0a1f50",
+    "alfworld_suites.py": "45d92b2d1c280d02d4cea332805aac4cbd70fea34e95580adfbb721b440dd158",
+    "analyze_alfworld_formal.py": "d13f46c7a2b8b3bbc4f6c3dda268cd10fbeee13150547528b908de9abb5b9715",
+    "analyze_alfworld_v7.py": "f7b9b6410b14d087fcb91ef673240e310c6c73402767f409fc363b79dd03bb0d",
+    "analyze_alfworld_v8.py": "8519a864058627995979a7994ef2de3a648485d26a8bbd08d3d4ec5225342660",
+    "analyze_scienceworld_formal.py": "03713136dfef7f5e9ab67b065abcea3ecc4944c9a5bbaa775092f8fabf6f5f94",
+    "analyze_scienceworld_t1.py": "9977a7e2b98549e427ab331e6fc90b3b4fce9ecce835c9a5d4e3fca0386b8cc9",
+    "analyze_scienceworld_v11.py": "97f6bcf83bcab74f2bd72e8b9ee27ba42e67de64e9061a220a2145eaac1e42e1",
+    "analyze_scienceworld_v13b.py": "431c3679c7c2fd6d5adb8130de69d966d41c891977a2d795ad9e3640d8ef2b8c",
+    "build_alfworld_report.py": "de0780972ddbe136dccd50f79659d8a66465c0935605ef0865b48f78d716d2b3",
+    "build_alfworld_v4_report.py": "fd6520165fd55609e5e2dca8de03ead0782f051cef3badf8ff45c7f985136c11",
+    "build_alfworld_v7_report.py": "113d0a9a24134d31fa7bfabf6c2b6714fc8eebeedad92266d6a78860461439c6",
+    "build_alfworld_v8_report.py": "a413b9907339de590519bcdc187ebbc04604e41f77f39e7bda5d7d8f40fa528c",
+    "build_phase1_report_docx.py": "958cdf23e254f71826e1572eb434e42eb7da438fe715357e53436c72caee97c0",
+    "build_scienceworld_v10_report.py": "164eb592aeb97bcf09d745a3133a9204e298a9a70894d41ffbbf7e1462517139",
+    "build_scienceworld_v6_report.py": "e067d296cfc5f41eacabe2385bf469ae154b3e4df9679fd7b4382ffb6048ea74",
+    "docs/research/fixed_skill_edit_prior_art_2026-09-21.md": "0d0959d8a99e71cd356f72702e52ffe010662ce315e58c16c5e5a4820c9d950d",
+    "docs/research/fixed_skill_novelty_go_no_go_2026-09-22.md": "2fbee54260b2f92bb21ac5468ef9743759263df7af2a70bfbb3c736c24b08d4f",
+    "docs/research/fixedskilllab_cross_environment_synthesis.md": "eefac2c8dc46f8d0ff05a7941dba4686be03a36f3a4cf081bfc7c176e2f3bac3",
+    "docs/research/fixedskilllab_prior_art_scan_2026-09-21.md": "ba905268622f6e60bf3edde23a33d1d34f6ded046f89c0d07512f4511d43ac4c",
+    "docs/research/scienceworld_budget_dev_protocol_2026-09-25.md": "c37312cbc0d5ea84c6d8940a047a1c8aff245900c7898e34915813ed0aa2b23e",
+    "docs/research/scienceworld_hash_collision_audit_2026-09-24.md": "899eef8285c095a5c194e34edb06d3a9c039700c199367f2305799bef5adc3db",
+    "docs/research/scienceworld_incline_budget_diagnosis_2026-09-24.md": "f435cd4931e266ed0d411122aa040ad30141711750a9f73beff9275db46527e0",
+    "docs/research/scienceworld_mainline_evidence_audit.md": "c7a1d37ee9fb695bced15994c85f3af52dcff0303b9e11c7bfc085f649d3e5f6",
+    "docs/research/scienceworld_procedure_dev_gate_2026-09-22.md": "b2638ba76734e2d3b2e24f57baa44928c4e587e38eb3c640c2170764a95328f6",
+    "docs/research/scienceworld_procedure_holdout_closeout_2026-09-22.md": "bcdbadf9c79c563a0b15d46108304c8cf59b577ee044919eb22a7c498e37a809",
+    "docs/research/scienceworld_procedure_holdout_prereg_2026-09-22.md": "8b0f112b0a015560d66d8c77e467502737610bc6ead8778f85d100747cd0fe9e",
+    "docs/research/scienceworld_procedure_holdout_split_check_2026-09-22.md": "d8fd65dfdcba77b15b96ce793f6ba5ec7a83e71a26738f4a3608f26cc3496810",
+    "docs/research/scienceworld_procedure_pilot_prereg_2026-09-22.md": "c03adc4398bd410bd6a2729bbc8e7dd77d0c351a4e6f51ede76db4027c8a4e83",
+    "docs/research/scienceworld_retrieval_baselines_2026-09-24.md": "bf0c43cfa46384b4e79b4a780929e2d74d2938b0d958c0c9cb15331ddb57007e",
+    "docs/research/scienceworld_strong_confirmation_2026-09-24.md": "fa3d067ed04d8fad373e891f551259991318fc7479cbdc58775a37776d10cf79",
+    "docs/research/scienceworld_strong_router_interface_2026-09-24.md": "24578dc65e1fc1fa4edf539244899a928aa8866b074677b00f9dc8100cb0533c",
+    "docs/research/scienceworld_t_shaped_t1_t3_closeout.md": "e974ba2d1a8c0ac17e9043582ddf8c1fe0e8653098307f0f63387d057cdaec37",
+    "docs/research/scienceworld_top1_dev_audit_2026-09-25.md": "619ffa69dec115aecc9907e16e580080990f1bc72eca2dce0a7b2d08956a59b3",
+    "docs/research/scienceworld_v14_new_family_design.md": "467bf7634ec52ffbca2bb622d7619b0c59ab6bcb2fc1f532c9db24b41a0a236b",
+    "docs/research/scienceworld_v14b_dev_gate_2026-09-22.md": "70314c4e535dfc9539c5c32288533d89a2a228c812aea1dfdda41f05a8244c4c",
+    "docs/research/scienceworld_v14c_dev_protocol_2026-09-22.md": "881432732c25c96cce1e1af9f12b15efadc7f5dd472f59fd39a70e8b5d1696d5",
+    "docs/research/scienceworld_v14d_incline_scope_2026-09-23.md": "8d4e3aaac3febc26e9a1bc68a7dd24e3882297b28ce80aec7de21f2f5b27a32c",
+    "docs/research/t_shaped_skill_research.md": "186eb2611e20a7f35f449d28eb79909c35ba79c1b2d666e6f24175c6b167cddc",
+    "experiment.py": "20c7765d23b9bf40c4c9040f5870df5102e80bfd5323d5c1dfcfe1fb1023afb3",
+    "failure_matrix.py": "006b3d6b0f876b9b20cc2ee641a338c0165a87890c23d8d67ac66356c9755c72",
+    "failure_summary.py": "1f7eeb95be97bdf10e3c27559bef822c6190447303bb7cc15dcef8112c17f3b3",
+    "freeze_heldout_suite.py": "c35726f4f860ae296039b86f9383d5c680b8db539f25748320bfa124892d190f",
+    "gold_skills.py": "f632b2733fa90ff32fe67879fd2c2b74410251574a2745c9d25dac34ed6ba3d2",
+    "minilab.py": "1c441c9e1a8072dd68d57f69fef62225041680a0ca9682535ecd06774a1505a9",
+    "plot_alfworld_results.py": "8fa014ffa1db302b40c2803edfb3ceb463f1623c298bb8c905a303ea12e16191",
+    "plot_alfworld_v7.py": "5c8cf091e260c41892d4fa591d4a5a3b07d8fe8db8a61706175d8b16c631df26",
+    "plot_alfworld_v8.py": "5c69eca14c185ec687c112482f7f116379f90954aa0e4b859ab30947314cb8de",
+    "plot_scienceworld_v11.py": "08112948086de6a93ae160570d8a72b4da5a22c42308d7eb31407390a9b6cc29",
+    "plot_scienceworld_v13b.py": "f6539d031d5b6f826b9524083d6087f5d4349dbb8b15b28a4fc6758a29caa591",
+    "plot_scienceworld_v6.py": "43a15b4d8156673ad00e8c3e9ce0ffc01409820c75bf412e5107c8e21308c0e2",
+    "result_utils.py": "d852cf0375a95174d0d77d6babb43ac67547b99a40f7695096df10498d95aadb",
+    "results/.mplconfig/fontlist-v390.json": "61cd1ad15229f2357f5870453b1603ecb054af722e46af31532b066b757c2fc2",
+    "results/alfworld-v3-30x3-failures.jsonl": "84f0d68636f3dc4c22782eea43684930f410a78aafeb0a061b78b79ed1733f70",
+    "results/alfworld_results.jsonl": "e7b2dcef2f054663271f8026b18ee369a237e9a7a0b855551710721f0c2e0b06",
+    "results/alfworld_v3_heldout_manifest.jsonl": "a77351eaece4251c00ac9d6672ba9f989b10340917e76003c29ceec50333d539",
+    "results/alfworld_v5_retrieval_summary.json": "730005105bcb166fd3517d437cd583e66f008191e8feb45a8addd0dfe8db80e2",
+    "results/alfworld_v5_test_manifest.jsonl": "edb8d12aae2299202ebb3a3ee2837196d73644c2c2af5019787e7a8b98cd5d25",
+    "results/formal_scienceworld_t1/analysis_summary.json": "57e85e98516b69976ac249b99ce575c652a764bb9f54309999a0b185b312b1d4",
+    "results/formal_scienceworld_t1/failures.jsonl": "5004ac61bd3db0044235c9e329067bdfc32675923598c4bf939d7a141c387631",
+    "results/formal_scienceworld_t1/manifest.json": "c1cdd671c252c35416e4cde1d240c38e3e58b6ca341ef116de5dde2abb831060",
+    "results/formal_scienceworld_t1/scienceworld-t1-t-shaped-pilot-12x1.jsonl": "4a288383750d1625bf538629c498af9fd0c07e34c4bd8b95d212dc935f2fa7ee",
+    "results/formal_scienceworld_t1/t1_interaction_analysis.json": "6aa706f6e15edf5b4769447f9809f7873dd5cc74fdf789193c56b12ae22bdb70",
+    "results/formal_scienceworld_t2/analysis_summary.json": "4061c61bc975af6d9af2be9e101cd051af3a220d4435c77aa517f3e1b228ec2e",
+    "results/formal_scienceworld_t2/failures.jsonl": "77a092d391d7d1c67cbf17a713a93fcf1adb1dbc29803de65bda50734191ecf2",
+    "results/formal_scienceworld_t2/manifest.json": "aefa7885b1d0a1c55dfecaa4e9b90ef560db4dd09efd278d945c9fafb3333818",
+    "results/formal_scienceworld_t2/scienceworld-t2-controller-dev-2x3.jsonl": "edbf3298943e618b7c88fb0340657d4bfd6f71789ac41c9e06994d10cfe23005",
+    "results/formal_scienceworld_t3/analysis_summary.json": "f2f8d64413e78b9e1b6db4a255d3242eae6eee93d763ab7e46ac7164523cf5cd",
+    "results/formal_scienceworld_t3/failures.jsonl": "4e3f153936fa7422b42306218ea9732e69db4b84a4cd293a3f6099369c86fd27",
+    "results/formal_scienceworld_t3/manifest.json": "8fcc4dee3ae631fcba1c8a4dc14f620c4ed7c01445794909abe55fc8711a8e08",
+    "results/formal_scienceworld_t3/scienceworld-t3-state-aware-dev-2x3.jsonl": "04e4e6beeddc747568f5177502b01de3565e8f7d4349609a1ac017172eb1b35c",
+    "results/formal_scienceworld_v1/manifest.json": "a0da252e2cf6cb06513913e9c42b3999f2f87a76b71f395dfbb55cb63184295f",
+    "results/formal_scienceworld_v1/scienceworld-pilot-6x1.jsonl": "f39101f99875163a80c4856d5c61880d0f247d2f0c29e60edcee09db5459f56d",
+    "results/formal_scienceworld_v10/analysis_summary.json": "186be652af7a4d5c4a253fca9c6085972680d0687abe445ca6f5b51c3e4aa15c",
+    "results/formal_scienceworld_v10/failures.jsonl": "dc6b466575bf3eb3f078bfabeb918bc46ce2ebd79d930e02d3fdfe888330df85",
+    "results/formal_scienceworld_v10/manifest.json": "0c26abf17550351435fc37c3cbc7e0a5f5b66aec029fcacb9010406218b5ca6a",
+    "results/formal_scienceworld_v10/scienceworld-v10-confirm-12x3.jsonl": "d6614857fe39458c0e8f23e04c96d75d15d6b7f9cb90c131f0a391b6cfd9a4e2",
+    "results/formal_scienceworld_v11/analysis_summary.json": "56a56703a5ee6faf6c0c7d4e1de057e499f991d5bd00f5c4a4ab0bf9f3f31c43",
+    "results/formal_scienceworld_v11/derived_analysis.json": "af07bc4d3a2000388ec93e8629964781ca5f52fd9020c330c9b7be5a13dde63d",
+    "results/formal_scienceworld_v11/failures.jsonl": "2e3623bd4aee168556bd85f618439418db46bb9bcf1588eacade7b1af9512fa3",
+    "results/formal_scienceworld_v11/manifest.json": "4266d064dcb529866102d94777188aa1cc7948111ffd28a43466aee9d0760723",
+    "results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl": "fb46b8f603d68f9e4baea76de912d68d1edac54299018b3b3bd51b7923177956",
+    "results/formal_scienceworld_v13b/analysis_summary.json": "94e9a9e7268ec0be25b33ad7d2c816af7b8196004902f60c90235771201c86ca",
+    "results/formal_scienceworld_v13b/derived_analysis.json": "e70b49cdbb64d2adaf3dae753db3d5dafdbdcbbc93023400afa7f5512ab4d87d",
+    "results/formal_scienceworld_v13b/failures.jsonl": "ae972e9bd8a98c696c9d4c8788784e46d9353622a93d33cd8ae5d8ba95317eb8",
+    "results/formal_scienceworld_v13b/manifest.json": "746a896c90fa312d7acbbe88ad6bc4859a1823e1da5b0f1cd5f6a8c3585eadf1",
+    "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl": "5e671e5c04d2e92a0041f8e5b74b0a0e89bfbaefd66c13a79314e904798a6692",
+    "results/formal_scienceworld_v2/manifest.json": "0dcdca8d734be888dd4468240548a29d7313600524105e335042f341c651caff",
+    "results/formal_scienceworld_v2/scienceworld-v2-pilot-6x1.jsonl": "5673977f423e773a86e89b8456f20beb6db10776c8373d42230f3666d0be4d3e",
+    "results/formal_scienceworld_v3/analysis_summary.json": "67c6e70d24480bfa0a2ae89bc8ba70ca5550265ba219d01a44e416bc1745b392",
+    "results/formal_scienceworld_v3/failures.jsonl": "5254601ec026add5a25a2c5e1920c7a447fbf41adfb8a183a2e287a3376c15c1",
+    "results/formal_scienceworld_v3/manifest.json": "fe7da8288c8791bd3afc648ac30e374e10078d94d0b2e61754ad1832076acd1b",
+    "results/formal_scienceworld_v3/scienceworld-v3-heldout-6x3.jsonl": "d9aa310b50395bce111e23e851a11f0ea6b372aad0f0a8561546a9bc76929f1e",
+    "results/formal_scienceworld_v4/analysis_summary.json": "e05b7275de937c229865e20728522d558851f87a32275944cd6ad81dc383f18b",
+    "results/formal_scienceworld_v4/failures.jsonl": "8cb71cd09b3377188dc175b84ddd64cbcf5c183bc769372c1a433d9bfc774609",
+    "results/formal_scienceworld_v4/manifest.json": "d72038e9805594c1e067098afb68945de2149b14c9fb5522da2d79e727830e55",
+    "results/formal_scienceworld_v4/scienceworld-v4-heldout-6x3.jsonl": "4357856023e93471020852dadf6184cba024506e7b283ad2417579a56469906e",
+    "results/formal_scienceworld_v6/analysis_summary.json": "a755bbf3d840dc866115f342c5bd5f7030b3c90478f43a79ccbcf9634b159b41",
+    "results/formal_scienceworld_v6/failures.jsonl": "9b8d1e925c22177271a651cdf2297a8d5fd14964bba359da948d2220091aa04a",
+    "results/formal_scienceworld_v6/manifest.json": "5f46101eb58badd5105e670198d526cafdf04bc999fa636c808cd94b0e383431",
+    "results/formal_scienceworld_v6/scienceworld-v6-router-formal-12x3.jsonl": "c978ce0568f89fecaff48848327817cdd3493a18162df1bc0b99bcdaf9b043fd",
+    "results/formal_v4/alfworld-v4-heldout-30x3.jsonl": "6e20e518bc56960cc7f676c40cdb2892651f973ca57282bd2432ad732a0a1123",
+    "results/formal_v4/analysis_summary.json": "212fda48df425f533847a5913d081a2fb8ad941eb7e2a1f653e748615ca1f3fb",
+    "results/formal_v4/failures.jsonl": "8062cf9588d2c360161ac9c5230a87b5a841d289d5c1bfd45d315529b4e35a1a",
+    "results/formal_v4/manifest.json": "7850ebab47bde2558eb9883a2cfd2bee696efcf838c74fbe6f727f8e0a89cf30",
+    "results/formal_v5/alfworld-v5-test-30x3.jsonl": "5af35e91fb510bbef295f5ba7ef1eab780742b02a8398f53547320f5b79c8b71",
+    "results/formal_v5/analysis_summary.json": "95fbab33bd2cb81528dffac4ff1005deee319b2d89b6c1f6c1733ffa9eabb789",
+    "results/formal_v5/failures.jsonl": "4a613758b861099fe2fe0a3afb8e80b57749966185e9c8ee5a9f02340cc83e37",
+    "results/formal_v5/manifest.json": "bffb3f971789a4ed88617f99558a33dfdf34c57711bc06fde37d3a51525cbaa3",
+    "results/formal_v7/alfworld-v7-targeted-test-10x3.jsonl": "5fcac9e5b23ec3b70bbefcc94330b048a71a2855995b1888b6bc7aea8b6b5f2e",
+    "results/formal_v7/analysis_summary.json": "b7eaae805f470c5e80a2db1c8f3f450c15fe5517f6de1f52012736f5d501d191",
+    "results/formal_v7/failures.jsonl": "749d5a61acb954c2868b42e0955daf93e6c304e6058380d56c039babbeb2d750",
+    "results/formal_v7/manifest.json": "e0cfbeb97e7553a0f8b63b40ab08d4c5ff46e8f62ebbd1c5ed8ead6b2c95c6c2",
+    "results/formal_v8/alfworld-v8-confirm-20x3.jsonl": "210b2f05db7d85fa20210cda624677a37d2cb0059648aa4ae2079ebfb80cdecc",
+    "results/formal_v8/analysis_summary.json": "32c08f4685218b3787dd44932ee92751b2999bece4a7b4afa9a16d9fd544e77d",
+    "results/formal_v8/failures.jsonl": "bbac6a43fc240b82ee555fef18d3e9f573910c771807f92543fdad60feea8c6b",
+    "results/formal_v8/manifest.json": "5ca8b8afd872fec5d4ae0cdeb9b7929ba418b6fa1a2e9fb275314d6ce5a42a09",
+    "results/pilot_scienceworld_v5/analysis_summary.json": "7320f58022aedf67468732e734c08493aa5ae20142dd7212ab12819024e6ed5b",
+    "results/pilot_scienceworld_v5/failures.jsonl": "4ecdd4e1fcac986f1bfab7937397ce60ff89d476847e0981c3cee28b45e4ace5",
+    "results/pilot_scienceworld_v5/manifest.json": "dae34da1221c8f1335fe29dc7f41ac6f4f0ac415c70c1d0daa41e01e5a5ed54d",
+    "results/pilot_scienceworld_v5/scienceworld-v5-router-pilot-6x1.jsonl": "048ff35c2d2b7418b6376f850b463890f5b8423cad839cc5a48b99592dbcff24",
+    "results/results.jsonl": "45347b2f41e5a04fdfe62d5cc1a96d23794b1df071dda3dcdfad592ef10918dd",
+    "results/retrieval_benchmark_heldout_v2_summary.json": "199c2d44c7e964e6fe57ca8edb528987dd64d8a58eef6df28a23d07b3d9ee46f",
+    "results/retrieval_benchmark_summary.json": "07bfaed3550c521d8ad208c651b0544bdcc2724948b9c00cd506b1bc155b0638",
+    "results/retrieval_benchmark_v1_summary.json": "07bfaed3550c521d8ad208c651b0544bdcc2724948b9c00cd506b1bc155b0638",
+    "results/retrieval_benchmark_v2_summary.json": "fc3622b7e6f7801306879334822aa3e12c815508cab74ac2e6c5bbe6ce5fe54a",
+    "results/retrieval_error_heldout_v2_summary.json": "6083d5e67f9917358e1da2e61de0fadabd02c7240a1508a04f4faebef1e2fa3c",
+    "results/retrieval_error_summary.json": "4f99ebbe92c48975a6f45fb62ac9087e90c650016be0969bbf12f8805aed2e16",
+    "results/retrieval_error_v1_summary.json": "4f99ebbe92c48975a6f45fb62ac9087e90c650016be0969bbf12f8805aed2e16",
+    "results/retrieval_error_v2_summary.json": "8f217fe6e872ec8ccf17ed2917845289d98f44c31e004ca2b7583d7a619ea72b",
+    "results/scienceworld_budget_dev.jsonl": "79ce2d665cceaa1f5a0063fe23278f6f63d58800569c0d9ba1990099e769487e",
+    "results/scienceworld_budget_dev_manifest.json": "643b847cbfe288892991ec721643105c97554bcf34eda9d2c5b0065bc647c742",
+    "results/scienceworld_hash_audit_2026-09-24/rankings.jsonl": "de48a38a09523e48549e2827b4f60bd0361832e51add104052bcd49695361d00",
+    "results/scienceworld_hash_audit_2026-09-24/source_records.jsonl": "9fa352ecb67aae89de4a0e979ffe639d4349187983c3cdb2d53e3cd89098635d",
+    "results/scienceworld_hash_audit_2026-09-24/summary.json": "d828b9b50472b2f85cf25bf9c30d36133bd7ef2a5a7879ac29218b6139328d29",
+    "results/scienceworld_incline_budget_audit_2026-09-24.json": "e2e89f38f6717773a824a2f12f49663f0c30b375f6fd1c6cdf061189f577a2ec",
+    "results/scienceworld_incline_budget_audit_2026-09-24_verified.json": "65db1f4332b7a4d9274a634a2581e619481d8dc5d8c6b8592e21135d2b88c13c",
+    "results/scienceworld_procedure_holdout_manifest.json": "c4f63be9d1e404caab7b43e8a6e224a0cefbc7cdbac68c7f641d62a7f8c821c5",
+    "results/scienceworld_results.jsonl": "c6590a3441532645afe4b3a61a38a6a38741d9cb2301456bb688a4b092184cb9",
+    "results/scienceworld_retrieval_baselines_2026-09-24/embedding_inputs.jsonl": "80054267137edfd0d3ed1dfe45c0936332fd79a043366973a8dd62c7e7736d6d",
+    "results/scienceworld_retrieval_baselines_2026-09-24/rankings.jsonl": "8746e43b4f853c8bca29e8f880503ef8ad105dd109133b2a52b155fb796621f6",
+    "results/scienceworld_retrieval_baselines_2026-09-24/summary.json": "e13119ed889289ba8e6ceb26d523c0f4856562993683502d91925f95a8e9cad2",
+    "results/scienceworld_strong_confirm_6x3.jsonl": "71770d89acce4fbcc0e691f32f352966cd8f68ff728624bded432382d8ad3103",
+    "results/scienceworld_strong_confirmation_manifest.json": "7767f452fdfbe8268120d7bc2104a427d0fec5fc265fd0a832df45514616c793",
+    "results/scienceworld_strong_confirmation_selection.json": "953521776f7b27850fbef54fdc4f0b07f409c21663b79aad64416a34dda82e69",
+    "results/scienceworld_strong_router_smoke.jsonl": "b9a9fa791b03fed948b62a1798584c2b4cc3dca376cbb5f2dde2f743b9a4eb5d",
+    "results/scienceworld_t1_analysis.json": "6aa706f6e15edf5b4769447f9809f7873dd5cc74fdf789193c56b12ae22bdb70",
+    "results/scienceworld_t1_prompt_audit.jsonl": "344075f47235511869cec55d6d2c7c77cceb8efb4104d47ce0421aa1ff01142d",
+    "results/scienceworld_t1_t_shaped_pilot_manifest.json": "ebf94ed91d95a4c2994f54b6556c0e8fbe2d1d878c13462d809265b3f63013a6",
+    "results/scienceworld_t2_controller_dev_manifest.json": "9ccb66d99c0412d37ac56f5c6efad87e14666d86b83c872fbb42eb617e07bc64",
+    "results/scienceworld_t3_state_aware_dev_manifest.json": "fce77792b4e07e253a2ed2d1a91b5dbfef34003e44ec2052425387493a47fd78",
+    "results/scienceworld_top1_dev_audit_2026-09-25.json": "015498edf3ced3f5fabbaf1a11e15cce2ea341ab4be184c431d404139f630cf4",
+    "results/scienceworld_top1_splits_2026-09-25.json": "baea59389bcb13db8b77a3230f0646165aa5dd1a3e05608caad27caf2e7bef27",
+    "results/scienceworld_v10_confirmation_manifest.json": "9640d71e6327eae85aa346e7942de61ff8397908c70fbc30dd8e7ecc6c7dec78",
+    "results/scienceworld_v10_gold_validation.jsonl": "6b260a04afd41954a3277ae74ca8a4762635a816ca11a4c75af6d1566ef992ec",
+    "results/scienceworld_v11_large_confirmation_manifest.json": "a9fdeae0f39e344241b5aad3c76f267f24cc56f9ea5ee6186fb1dd2d58322ddd",
+    "results/scienceworld_v11b_confirmation_manifest.json": "1f71cfd66d1fb0c974de781e86fa7c8e9a659c64df87533be8475177b49da913",
+    "results/scienceworld_v11b_gold_validation.jsonl": "e2250e5cd39522cfbc23fa597eb4d9b1638e03ea9d023118acddf05412bf01fb",
+    "results/scienceworld_v11b_retrieval_audit.jsonl": "bcebbd82c85a079f429c64f00e0d517381eb64af5a20551b109df41e0b7f7795",
+    "results/scienceworld_v12_mechanism_pilot_manifest.json": "c6f59625776c631df752b204a343c08266bc5af752e6f482cf1614d01109cbbd",
+    "results/scienceworld_v13_oracle_mechanism_pilot_manifest.json": "264e80fc56fff521335f16b612ba5df95b41aeb636dfa4934a0a56bf1480ae04",
+    "results/scienceworld_v13b_oracle_mechanism_manifest.json": "d9e6cfd5fed69275ae5c36c79441179d9d8f06398b840a1b723d8c4cf79fcb3d",
+    "results/scienceworld_v14c_dev_check_retrieval.jsonl": "8dc2d894ef7595fe6dd0270c6bc56adb607f01c096dbf086710a75f0681ba811",
+    "results/scienceworld_v14d_incline_dev_retrieval.jsonl": "1ac41e9f8040f649478dff33b3f9a0f450aff20900857a1906d736818ec79d9b",
+    "results/scienceworld_v3_heldout_manifest.jsonl": "8efa8c1ef6bdbd6b76dd21c6cec4304692e7f9316940b423027135d383e26c47",
+    "results/scienceworld_v4_heldout_manifest.jsonl": "685eec731498811e7f2c2158481d00fb5c9b3a36841a1d08ae9638ed425edcf1",
+    "results/scienceworld_v6_gold_validation.jsonl": "9692c66c22d00ea207fa6ad11ec7f035d8f3a3366215ab792889fdf2894bc91c",
+    "results/scienceworld_v6_router_manifest.jsonl": "7fc0508d27456394e37563130b6715b31b7e047b71919558a0b33fde4b361c54",
+    "results/scienceworld_v6_router_offline.jsonl": "0e08ad2c2e33dc9df600ae4cc356955f16c2efd10d2df4778f2b15b74787496c",
+    "retrieval.py": "ecad8294ae9689f268d0782bfe2735458a7342ce4f14b77e1ebf82f176f86304",
+    "retrieval_benchmark.py": "c7cd2b8588bc1dd915d5ea974f2cf27dd3c34552264d2d9c819dee280762604e",
+    "retrieval_error_analysis.py": "7126cfb41b480dacd0345bcaf97c1fd296b049d3dd52ce89c7a6a8dbea7a749c",
+    "scienceworld_agent.py": "4db5463dba30a69d1d6b993d6474ef36b147a1a6b8a73709812919c5008e7f7f",
+    "scienceworld_budget_audit.py": "c5d0fd43d3cf39edca67698de309a903752f076de22a34e185f17cc5f254bf2e",
+    "scienceworld_budget_pilot.py": "28c6e4b4131665dc6a388db6a277672b6f71a7e48e68eddabbe5bac539c949c1",
+    "scienceworld_experiment.py": "328decd6160ead59835bcb68fbffb80cd854ad5cefe36d7a0682284d890be53d",
+    "scienceworld_hash_audit.py": "d893309b0fa75538c424904213cf072a0b1f5f302e69b7186ee57cdb0783b96a",
+    "scienceworld_incline_process_audit.py": "f5410b985732790f64705b3a16f5f4c38f0d621185d953f12103e892ad6ead59",
+    "scienceworld_procedure_audit.py": "70448ce8bbf74f85febe08d3dc5f56be3f0ae916a5c35e6477d081993586c783",
+    "scienceworld_procedure_audit_v2.py": "8497b9ebc464b8c2d88c039024987cd8789338ed7ae8007e1842f24054d66d55",
+    "scienceworld_procedure_holdout.py": "4e8e5bfb4ab1641c46bc05a6664d99f2de75df94c112764666cf7eebfb447a8c",
+    "scienceworld_procedure_holdout_analysis.py": "01344faf5cd84156c0b0955b0b8628285017afd179f9e151d0fd01b08e93756a",
+    "scienceworld_procedure_pilot.py": "7d4ba2734c792257ae2fa12f919be8c906ddb27ba328f2c2f04c545f00051e2a",
+    "scienceworld_retrieval.py": "32a1043c422a33516cad720477052a72097019293f39b3596f30f2a581606a6f",
+    "scienceworld_retrieval_audit.py": "e4512cdfbeac4a6dac7d6858ae7cca8a7352c9fa7f1e44518b8b2f242c8bdba3",
+    "scienceworld_retrieval_baselines.py": "4c3247496dbea78c0ff8cd6fd1ae2523b12dd9d2549c94dcfdfb22d0ace96686",
+    "scienceworld_skills.py": "16566dd84020257ce055d7095689b2aa02dc6f7d541ba401bfb66212445f36b5",
+    "scienceworld_strong_confirmation.py": "a1687faf4913d3cae123acec1dac1486efdf7db8171b77262b1494402237d364",
+    "scienceworld_strong_retrieval.py": "04e3793525ae9cd5b53fec9bfd74f5754bf3fa9d30e8aaf72aa62b8765fc29cb",
+    "scienceworld_suites.py": "567d6eee1eb682611902b993e207b771893e5fbc4bd9904a1bee8f1329edfdcd",
+    "scienceworld_t1_audit.py": "c9eb2acd53dcd8d4cc25268c9d81ef0f5408cea75d15198a7f6ff1a4d320813e",
+    "scienceworld_top1_audit.py": "232fea0318f310e501b5e40e39425aba9ce2215d3aa649c802e7846e077f206d",
+    "skills.py": "68fc985215524e15e20cd7bc53167a47de2c2de22f6378545b25bab8013b26f0",
+    "summarize_results.py": "3bebb462fb12b02a600c99af7126e14c6981a826c20221a1c586078ab44a6bbe",
+    "tasks.py": "f297efd5c0abe342845e42457966820e8c72e987336fafb88dc45714eec64b16",
+    "test_alfworld_skills.py": "8e8cd393f6100f1d56a1cb0fd2705bd600440a8ca8fef6ddfc9ce91dc6969fac",
+    "test_minilab.py": "b097d457602f03d5c6273de172d977106ffaa467e5283946e2b719f8e969e6b3",
+    "test_scienceworld.py": "9ccbb9108f37b851070369076e394b2d1e14196edd26ec377dd54ec11ff7a611",
+    "test_scienceworld_budget_audit.py": "43952638420ec907b45d68da82f7bedcd9a69554f36da45d78a8070798514097",
+    "test_scienceworld_budgets.py": "6dbd8ab52bc887814f59211ce17a582527bfef7c824450d9ad367f181a177f13",
+    "test_scienceworld_hash_audit.py": "8d91259d22c9c6653ae33d99e71c31e056eae3e6fbe5974b7b1c7746f2be91b5",
+    "test_scienceworld_incline_process_audit.py": "f0a23105b6f9abd9a0e2db98c18939fa5fd7d330334eeefaca914b6970a1b016",
+    "test_scienceworld_procedure_audit.py": "b268afe283f87d8ea4e97df798ed7e15edd7e3c6d3208aac0e0db0816d68c3ca",
+    "test_scienceworld_procedure_audit_v2.py": "b0357c922a09f69599f139c0cc269c9ad7ad167de7d8a8068332c7e9ac927207",
+    "test_scienceworld_procedure_holdout.py": "04829bd3a34a9f085d338edef26eea7518f20b70fe306d0e380945c203cd9a91",
+    "test_scienceworld_procedure_holdout_analysis.py": "671096125e7af1999f12f95a82406ac8071be6bcd02caf95ebecd903fa293617",
+    "test_scienceworld_procedure_pilot.py": "b05fc6d7bbfdfd91e80b8de2bd9469536a8bb2ed02b267c00509c2cd4dd5cb34",
+    "test_scienceworld_retrieval_audit.py": "ccb108ff857ee654def9e650f4e9d3cf07a1d1b91440a2e83e7b045558c24217",
+    "test_scienceworld_retrieval_baselines.py": "5bef9e834848ea5c59319cfe7421f2478f5cd130fa42ed46a8d5184b460c1f8b",
+    "test_scienceworld_strong_confirmation.py": "dc13eae2814feb148c39eba36faedaa223afeee4b74dfdd3d36691521b3117c9",
+    "test_scienceworld_strong_retrieval.py": "3129ee9cda959631de4e2be10b72c40b9749860225263406ca1a2c07a2ece366",
+    "test_scienceworld_top1_audit.py": "df47ea7b86141d3239c6b8bb0d208897ea384b12835b5c453c50e73527aa06ad",
+    "test_scienceworld_v14c.py": "831aa815689cbfb5f71443b06be98021a053d2d9729ec3335e38855bf780a77d",
+    "test_scienceworld_v14d.py": "dc09e5fb317b4d31594611017da5d99d32575654173d11955c74fa1fdf8ce853"
+  },
+  "history_scope": "root Python, docs Markdown, results JSON/JSONL and registered suites; excludes tmp, binary reports and files outside project",
+  "library_sha256": "fdd9d917af6528933d71f744e57b88aae6e7e52113354e20bec3ffbf8cd0f322",
+  "library_version": "v3",
+  "minilm": {
+    "batch_size": 16,
+    "device": "cpu",
+    "dimension": 384,
+    "file_sha256": {
+      "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+      "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+      "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+      "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+      "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+      "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+      "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+      "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+      "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+      "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+    },
+    "local_directory_name": "all-MiniLM-L6-v2",
+    "max_seq_length": 256,
+    "normalize_embeddings": true,
+    "packages": {
+      "numpy": "2.0.2",
+      "safetensors": "0.7.0",
+      "sentence-transformers": "3.4.1",
+      "tokenizers": "0.22.2",
+      "torch": "2.8.0",
+      "transformers": "4.57.6"
+    },
+    "python": "3.9.6",
+    "seed": 0,
+    "torch_threads": 2,
+    "use_safetensors": true
+  },
+  "online_agent_changed": false,
+  "runtime": {
+    "jar_sha256": "f4e1fdce0cdabe1bab7128a7e78ea820210d9db3c28d7272bcbbc3f3a1c5f0d7",
+    "package_version": "1.2.3"
+  },
+  "schema_version": 1,
+  "seen_cases": [
+    [
+      "boil",
+      0
+    ],
+    [
+      "boil",
+      21
+    ],
+    [
+      "boil",
+      22
+    ],
+    [
+      "boil",
+      23
+    ],
+    [
+      "boil",
+      24
+    ],
+    [
+      "boil",
+      25
+    ],
+    [
+      "boil",
+      26
+    ],
+    [
+      "boil",
+      27
+    ],
+    [
+      "boil",
+      28
+    ],
+    [
+      "boil",
+      29
+    ],
+    [
+      "boil",
+      30
+    ],
+    [
+      "boil",
+      31
+    ],
+    [
+      "find-living-thing",
+      0
+    ],
+    [
+      "find-living-thing",
+      225
+    ],
+    [
+      "find-living-thing",
+      226
+    ],
+    [
+      "find-living-thing",
+      227
+    ],
+    [
+      "find-living-thing",
+      228
+    ],
+    [
+      "find-living-thing",
+      229
+    ],
+    [
+      "find-living-thing",
+      230
+    ],
+    [
+      "find-living-thing",
+      231
+    ],
+    [
+      "find-living-thing",
+      232
+    ],
+    [
+      "find-living-thing",
+      233
+    ],
+    [
+      "find-living-thing",
+      234
+    ],
+    [
+      "find-living-thing",
+      235
+    ],
+    [
+      "find-living-thing",
+      236
+    ],
+    [
+      "find-non-living-thing",
+      0
+    ],
+    [
+      "find-non-living-thing",
+      225
+    ],
+    [
+      "find-non-living-thing",
+      226
+    ],
+    [
+      "find-non-living-thing",
+      227
+    ],
+    [
+      "find-non-living-thing",
+      228
+    ],
+    [
+      "find-non-living-thing",
+      229
+    ],
+    [
+      "find-non-living-thing",
+      230
+    ],
+    [
+      "find-non-living-thing",
+      231
+    ],
+    [
+      "find-non-living-thing",
+      232
+    ],
+    [
+      "find-non-living-thing",
+      233
+    ],
+    [
+      "find-non-living-thing",
+      234
+    ],
+    [
+      "find-non-living-thing",
+      235
+    ],
+    [
+      "find-non-living-thing",
+      236
+    ],
+    [
+      "freeze",
+      0
+    ],
+    [
+      "freeze",
+      21
+    ],
+    [
+      "freeze",
+      22
+    ],
+    [
+      "freeze",
+      23
+    ],
+    [
+      "freeze",
+      24
+    ],
+    [
+      "freeze",
+      25
+    ],
+    [
+      "freeze",
+      26
+    ],
+    [
+      "freeze",
+      27
+    ],
+    [
+      "freeze",
+      28
+    ],
+    [
+      "freeze",
+      29
+    ],
+    [
+      "freeze",
+      30
+    ],
+    [
+      "freeze",
+      31
+    ],
+    [
+      "melt",
+      0
+    ],
+    [
+      "melt",
+      21
+    ],
+    [
+      "melt",
+      22
+    ],
+    [
+      "melt",
+      23
+    ],
+    [
+      "melt",
+      24
+    ],
+    [
+      "melt",
+      25
+    ],
+    [
+      "melt",
+      26
+    ],
+    [
+      "melt",
+      27
+    ],
+    [
+      "melt",
+      28
+    ],
+    [
+      "melt",
+      29
+    ],
+    [
+      "melt",
+      30
+    ],
+    [
+      "melt",
+      31
+    ],
+    [
+      "use-thermometer",
+      0
+    ],
+    [
+      "use-thermometer",
+      405
+    ],
+    [
+      "use-thermometer",
+      406
+    ],
+    [
+      "use-thermometer",
+      407
+    ],
+    [
+      "use-thermometer",
+      408
+    ],
+    [
+      "use-thermometer",
+      409
+    ],
+    [
+      "use-thermometer",
+      410
+    ],
+    [
+      "use-thermometer",
+      411
+    ],
+    [
+      "use-thermometer",
+      412
+    ],
+    [
+      "use-thermometer",
+      413
+    ],
+    [
+      "use-thermometer",
+      414
+    ],
+    [
+      "use-thermometer",
+      415
+    ]
+  ],
+  "selection_rule": "all six original GOLD_SKILLS families; first two unseen official dev IDs per family",
+  "simplification": "easy",
+  "splits_sha256": "baea59389bcb13db8b77a3230f0646165aa5dd1a3e05608caad27caf2e7bef27"
+}

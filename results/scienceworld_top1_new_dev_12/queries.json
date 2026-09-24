@@ -1,0 +1,115 @@
+{
+  "cases": [
+    {
+      "gold_skill": "boil-substance",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to boil ice cream. For compounds without a boiling point, combusting the substance is also acceptable. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+      "query_sha256": "1fce07ad05fbbf84d919a359ddc19654c13f70b80655d52d4f9d6e83a4208dbf",
+      "task_id": "boil:v014",
+      "task_name": "boil",
+      "variation": 14
+    },
+    {
+      "gold_skill": "boil-substance",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to boil ice cream. For compounds without a boiling point, combusting the substance is also acceptable. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+      "query_sha256": "1fce07ad05fbbf84d919a359ddc19654c13f70b80655d52d4f9d6e83a4208dbf",
+      "task_id": "boil:v015",
+      "task_name": "boil",
+      "variation": 15
+    },
+    {
+      "gold_skill": "find-living-object",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to find a(n) living thing. First, focus on the thing. Then, move it to the red box in the kitchen.",
+      "query_sha256": "ab7a89e9d11287870f3f0df1822e7b4812a31fab9e29911e49644dc59617704d",
+      "task_id": "find-living-thing:v150",
+      "task_name": "find-living-thing",
+      "variation": 150
+    },
+    {
+      "gold_skill": "find-living-object",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to find a(n) living thing. First, focus on the thing. Then, move it to the green box in the kitchen.",
+      "query_sha256": "4f8e5c2d28de452669bb9930b2800f76a9c785c7ec784051c778d108737e29a4",
+      "task_id": "find-living-thing:v151",
+      "task_name": "find-living-thing",
+      "variation": 151
+    },
+    {
+      "gold_skill": "find-nonliving-object",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to find a(n) non-living thing. First, focus on the thing. Then, move it to the red box in the kitchen.",
+      "query_sha256": "7b4d2f774177ea225b7af693107500e9d6ac88c176bdafaffe845a6e21c988f4",
+      "task_id": "find-non-living-thing:v150",
+      "task_name": "find-non-living-thing",
+      "variation": 150
+    },
+    {
+      "gold_skill": "find-nonliving-object",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to find a(n) non-living thing. First, focus on the thing. Then, move it to the green box in the kitchen.",
+      "query_sha256": "8f0d79216bc49278617d057beceea4eaa2ee4659e4aa29d3d10328fc7d6b5db9",
+      "task_id": "find-non-living-thing:v151",
+      "task_name": "find-non-living-thing",
+      "variation": 151
+    },
+    {
+      "gold_skill": "freeze-substance",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to freeze ice cream. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+      "query_sha256": "c2fed390184da00b530c63cbd2e1d04c33e9c9e788dde3c40a0fae2d7da9c59f",
+      "task_id": "freeze:v014",
+      "task_name": "freeze",
+      "variation": 14
+    },
+    {
+      "gold_skill": "freeze-substance",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to freeze ice cream. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+      "query_sha256": "c2fed390184da00b530c63cbd2e1d04c33e9c9e788dde3c40a0fae2d7da9c59f",
+      "task_id": "freeze:v015",
+      "task_name": "freeze",
+      "variation": 15
+    },
+    {
+      "gold_skill": "melt-substance",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to melt ice cream. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+      "query_sha256": "7f4f4cf0ceee997db59ec53563ad74c6c99ca4171268de19327b2571d84a52a9",
+      "task_id": "melt:v014",
+      "task_name": "melt",
+      "variation": 14
+    },
+    {
+      "gold_skill": "melt-substance",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to melt ice cream. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+      "query_sha256": "7f4f4cf0ceee997db59ec53563ad74c6c99ca4171268de19327b2571d84a52a9",
+      "task_id": "melt:v015",
+      "task_name": "melt",
+      "variation": 15
+    },
+    {
+      "gold_skill": "measure-and-classify-temperature",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to measure the temperature of unknown substance B, which is located around the bathroom. First, focus on the thermometer. Next, focus on the unknown substance B. If the unknown substance B temperature is above 50.0 degrees celsius, place it in the green box. If the unknown substance B temperature is below 50.0 degrees celsius, place it in the blue box. The boxes are located around the bathroom.",
+      "query_sha256": "170f69ac990f28f032781d5fe36cda3309b17c6d3d3e43ab91ae749a914a5b5b",
+      "task_id": "use-thermometer:v270",
+      "task_name": "use-thermometer",
+      "variation": 270
+    },
+    {
+      "gold_skill": "measure-and-classify-temperature",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to measure the temperature of unknown substance B, which is located around the bathroom. First, focus on the thermometer. Next, focus on the unknown substance B. If the unknown substance B temperature is above 0.0 degrees celsius, place it in the red box. If the unknown substance B temperature is below 0.0 degrees celsius, place it in the green box. The boxes are located around the bedroom.",
+      "query_sha256": "24f511b626c7dde13cb8d9d2cb30682021687a6f2ed3ff7a1be29a7b70519940",
+      "task_id": "use-thermometer:v271",
+      "task_name": "use-thermometer",
+      "variation": 271
+    }
+  ],
+  "environment_actions": 0,
+  "gold_paths_generated": 0,
+  "manifest_sha256": "6614825ebd026be006e395393e6ff96ffdde83ee91ac03adc7ddcfd727039aaa"
+}

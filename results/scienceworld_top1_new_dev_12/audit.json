@@ -1,0 +1,1456 @@
+{
+  "agent_performance_measured": false,
+  "api_calls": 0,
+  "by_family": {
+    "boil": {
+      "body_hit": 2,
+      "body_hit_at_3": 2,
+      "body_only": 0,
+      "both_hit": 2,
+      "both_miss": 0,
+      "cases": 2,
+      "different_top1": 0,
+      "different_top3_ordered": 2,
+      "different_top3_set": 2,
+      "flat_hit": 2,
+      "flat_hit_at_3": 2,
+      "flat_only": 0,
+      "same_top1_prompt": 2,
+      "same_top3_prompt": 0
+    },
+    "find-living-thing": {
+      "body_hit": 2,
+      "body_hit_at_3": 2,
+      "body_only": 0,
+      "both_hit": 2,
+      "both_miss": 0,
+      "cases": 2,
+      "different_top1": 0,
+      "different_top3_ordered": 0,
+      "different_top3_set": 0,
+      "flat_hit": 2,
+      "flat_hit_at_3": 2,
+      "flat_only": 0,
+      "same_top1_prompt": 2,
+      "same_top3_prompt": 2
+    },
+    "find-non-living-thing": {
+      "body_hit": 2,
+      "body_hit_at_3": 2,
+      "body_only": 2,
+      "both_hit": 0,
+      "both_miss": 0,
+      "cases": 2,
+      "different_top1": 2,
+      "different_top3_ordered": 2,
+      "different_top3_set": 0,
+      "flat_hit": 0,
+      "flat_hit_at_3": 2,
+      "flat_only": 0,
+      "same_top1_prompt": 0,
+      "same_top3_prompt": 0
+    },
+    "freeze": {
+      "body_hit": 2,
+      "body_hit_at_3": 2,
+      "body_only": 0,
+      "both_hit": 2,
+      "both_miss": 0,
+      "cases": 2,
+      "different_top1": 0,
+      "different_top3_ordered": 2,
+      "different_top3_set": 0,
+      "flat_hit": 2,
+      "flat_hit_at_3": 2,
+      "flat_only": 0,
+      "same_top1_prompt": 2,
+      "same_top3_prompt": 0
+    },
+    "melt": {
+      "body_hit": 2,
+      "body_hit_at_3": 2,
+      "body_only": 0,
+      "both_hit": 2,
+      "both_miss": 0,
+      "cases": 2,
+      "different_top1": 0,
+      "different_top3_ordered": 2,
+      "different_top3_set": 2,
+      "flat_hit": 2,
+      "flat_hit_at_3": 2,
+      "flat_only": 0,
+      "same_top1_prompt": 2,
+      "same_top3_prompt": 0
+    },
+    "use-thermometer": {
+      "body_hit": 2,
+      "body_hit_at_3": 2,
+      "body_only": 0,
+      "both_hit": 2,
+      "both_miss": 0,
+      "cases": 2,
+      "different_top1": 0,
+      "different_top3_ordered": 0,
+      "different_top3_set": 0,
+      "flat_hit": 2,
+      "flat_hit_at_3": 2,
+      "flat_only": 0,
+      "same_top1_prompt": 2,
+      "same_top3_prompt": 2
+    }
+  },
+  "cases": [
+    {
+      "gold_rank": {
+        "body": 1,
+        "flat": 1
+      },
+      "gold_skill": "boil-substance",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "c638ca4e73248d245847137536f33eb34de001e8fea4f088aa955261f94eb9d2",
+          "3": "4182b0380c23d4d57fa80f22a60c58b5cca338b93f1c7da42193f79c130ac255"
+        },
+        "flat": {
+          "1": "c638ca4e73248d245847137536f33eb34de001e8fea4f088aa955261f94eb9d2",
+          "3": "a98125e4c3ef72ad68fb49ed63cf829915734d6fe0f43adda670684eb58a8e04"
+        }
+      },
+      "query": "Task Description:\nYour task is to boil ice cream. For compounds without a boiling point, combusting the substance is also acceptable. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+      "query_sha256": "1fce07ad05fbbf84d919a359ddc19654c13f70b80655d52d4f9d6e83a4208dbf",
+      "ranking": {
+        "body": [
+          {
+            "name": "boil-substance",
+            "rank": 1,
+            "score": 0.616312
+          },
+          {
+            "name": "melt-substance",
+            "rank": 2,
+            "score": 0.563647
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 3,
+            "score": 0.447969
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 4,
+            "score": 0.342045
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 5,
+            "score": 0.219076
+          },
+          {
+            "name": "find-living-object",
+            "rank": 6,
+            "score": 0.1771
+          }
+        ],
+        "flat": [
+          {
+            "name": "boil-substance",
+            "rank": 1,
+            "score": 0.647522
+          },
+          {
+            "name": "melt-substance",
+            "rank": 2,
+            "score": 0.506609
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.419079
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.403808
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 5,
+            "score": 0.198073
+          },
+          {
+            "name": "find-living-object",
+            "rank": 6,
+            "score": 0.182084
+          }
+        ]
+      },
+      "task_id": "boil:v014",
+      "task_name": "boil",
+      "top1": {
+        "body": "boil-substance",
+        "flat": "boil-substance"
+      },
+      "top3": {
+        "body": [
+          "boil-substance",
+          "melt-substance",
+          "freeze-substance"
+        ],
+        "flat": [
+          "boil-substance",
+          "melt-substance",
+          "measure-and-classify-temperature"
+        ]
+      },
+      "variation": 14
+    },
+    {
+      "gold_rank": {
+        "body": 1,
+        "flat": 1
+      },
+      "gold_skill": "boil-substance",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "c638ca4e73248d245847137536f33eb34de001e8fea4f088aa955261f94eb9d2",
+          "3": "4182b0380c23d4d57fa80f22a60c58b5cca338b93f1c7da42193f79c130ac255"
+        },
+        "flat": {
+          "1": "c638ca4e73248d245847137536f33eb34de001e8fea4f088aa955261f94eb9d2",
+          "3": "a98125e4c3ef72ad68fb49ed63cf829915734d6fe0f43adda670684eb58a8e04"
+        }
+      },
+      "query": "Task Description:\nYour task is to boil ice cream. For compounds without a boiling point, combusting the substance is also acceptable. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+      "query_sha256": "1fce07ad05fbbf84d919a359ddc19654c13f70b80655d52d4f9d6e83a4208dbf",
+      "ranking": {
+        "body": [
+          {
+            "name": "boil-substance",
+            "rank": 1,
+            "score": 0.616312
+          },
+          {
+            "name": "melt-substance",
+            "rank": 2,
+            "score": 0.563647
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 3,
+            "score": 0.447969
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 4,
+            "score": 0.342045
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 5,
+            "score": 0.219076
+          },
+          {
+            "name": "find-living-object",
+            "rank": 6,
+            "score": 0.1771
+          }
+        ],
+        "flat": [
+          {
+            "name": "boil-substance",
+            "rank": 1,
+            "score": 0.647522
+          },
+          {
+            "name": "melt-substance",
+            "rank": 2,
+            "score": 0.506609
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.419079
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.403808
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 5,
+            "score": 0.198073
+          },
+          {
+            "name": "find-living-object",
+            "rank": 6,
+            "score": 0.182084
+          }
+        ]
+      },
+      "task_id": "boil:v015",
+      "task_name": "boil",
+      "top1": {
+        "body": "boil-substance",
+        "flat": "boil-substance"
+      },
+      "top3": {
+        "body": [
+          "boil-substance",
+          "melt-substance",
+          "freeze-substance"
+        ],
+        "flat": [
+          "boil-substance",
+          "melt-substance",
+          "measure-and-classify-temperature"
+        ]
+      },
+      "variation": 15
+    },
+    {
+      "gold_rank": {
+        "body": 1,
+        "flat": 1
+      },
+      "gold_skill": "find-living-object",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+          "3": "244639d4ce0feab9147bef86c22717f512b43f8b420d081018a07e091b931e4d"
+        },
+        "flat": {
+          "1": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+          "3": "244639d4ce0feab9147bef86c22717f512b43f8b420d081018a07e091b931e4d"
+        }
+      },
+      "query": "Task Description:\nYour task is to find a(n) living thing. First, focus on the thing. Then, move it to the red box in the kitchen.",
+      "query_sha256": "ab7a89e9d11287870f3f0df1822e7b4812a31fab9e29911e49644dc59617704d",
+      "ranking": {
+        "body": [
+          {
+            "name": "find-living-object",
+            "rank": 1,
+            "score": 0.558277
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 2,
+            "score": 0.523467
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.293312
+          },
+          {
+            "name": "melt-substance",
+            "rank": 4,
+            "score": 0.266966
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 5,
+            "score": 0.252272
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.203098
+          }
+        ],
+        "flat": [
+          {
+            "name": "find-living-object",
+            "rank": 1,
+            "score": 0.603138
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 2,
+            "score": 0.51303
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.316882
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.205133
+          },
+          {
+            "name": "melt-substance",
+            "rank": 5,
+            "score": 0.161912
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.138479
+          }
+        ]
+      },
+      "task_id": "find-living-thing:v150",
+      "task_name": "find-living-thing",
+      "top1": {
+        "body": "find-living-object",
+        "flat": "find-living-object"
+      },
+      "top3": {
+        "body": [
+          "find-living-object",
+          "find-nonliving-object",
+          "measure-and-classify-temperature"
+        ],
+        "flat": [
+          "find-living-object",
+          "find-nonliving-object",
+          "measure-and-classify-temperature"
+        ]
+      },
+      "variation": 150
+    },
+    {
+      "gold_rank": {
+        "body": 1,
+        "flat": 1
+      },
+      "gold_skill": "find-living-object",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+          "3": "244639d4ce0feab9147bef86c22717f512b43f8b420d081018a07e091b931e4d"
+        },
+        "flat": {
+          "1": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+          "3": "244639d4ce0feab9147bef86c22717f512b43f8b420d081018a07e091b931e4d"
+        }
+      },
+      "query": "Task Description:\nYour task is to find a(n) living thing. First, focus on the thing. Then, move it to the green box in the kitchen.",
+      "query_sha256": "4f8e5c2d28de452669bb9930b2800f76a9c785c7ec784051c778d108737e29a4",
+      "ranking": {
+        "body": [
+          {
+            "name": "find-living-object",
+            "rank": 1,
+            "score": 0.588358
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 2,
+            "score": 0.527973
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.279419
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.245411
+          },
+          {
+            "name": "melt-substance",
+            "rank": 5,
+            "score": 0.242254
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.192428
+          }
+        ],
+        "flat": [
+          {
+            "name": "find-living-object",
+            "rank": 1,
+            "score": 0.61081
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 2,
+            "score": 0.509277
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.300334
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.198958
+          },
+          {
+            "name": "melt-substance",
+            "rank": 5,
+            "score": 0.139804
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.130345
+          }
+        ]
+      },
+      "task_id": "find-living-thing:v151",
+      "task_name": "find-living-thing",
+      "top1": {
+        "body": "find-living-object",
+        "flat": "find-living-object"
+      },
+      "top3": {
+        "body": [
+          "find-living-object",
+          "find-nonliving-object",
+          "measure-and-classify-temperature"
+        ],
+        "flat": [
+          "find-living-object",
+          "find-nonliving-object",
+          "measure-and-classify-temperature"
+        ]
+      },
+      "variation": 151
+    },
+    {
+      "gold_rank": {
+        "body": 1,
+        "flat": 2
+      },
+      "gold_skill": "find-nonliving-object",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "3d4c1f96f2cf5d0069f9be6242652f423f74fee35228223d888569fe845fe9b8",
+          "3": "d203ac244b46d4fe69b7736b22f1c29271d9100386879ddc6cfd4a9a11a6abc5"
+        },
+        "flat": {
+          "1": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+          "3": "244639d4ce0feab9147bef86c22717f512b43f8b420d081018a07e091b931e4d"
+        }
+      },
+      "query": "Task Description:\nYour task is to find a(n) non-living thing. First, focus on the thing. Then, move it to the red box in the kitchen.",
+      "query_sha256": "7b4d2f774177ea225b7af693107500e9d6ac88c176bdafaffe845a6e21c988f4",
+      "ranking": {
+        "body": [
+          {
+            "name": "find-nonliving-object",
+            "rank": 1,
+            "score": 0.586626
+          },
+          {
+            "name": "find-living-object",
+            "rank": 2,
+            "score": 0.557349
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.291176
+          },
+          {
+            "name": "melt-substance",
+            "rank": 4,
+            "score": 0.287207
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 5,
+            "score": 0.273455
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.223629
+          }
+        ],
+        "flat": [
+          {
+            "name": "find-living-object",
+            "rank": 1,
+            "score": 0.603825
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 2,
+            "score": 0.578561
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.328202
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.220203
+          },
+          {
+            "name": "melt-substance",
+            "rank": 5,
+            "score": 0.190316
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.162135
+          }
+        ]
+      },
+      "task_id": "find-non-living-thing:v150",
+      "task_name": "find-non-living-thing",
+      "top1": {
+        "body": "find-nonliving-object",
+        "flat": "find-living-object"
+      },
+      "top3": {
+        "body": [
+          "find-nonliving-object",
+          "find-living-object",
+          "measure-and-classify-temperature"
+        ],
+        "flat": [
+          "find-living-object",
+          "find-nonliving-object",
+          "measure-and-classify-temperature"
+        ]
+      },
+      "variation": 150
+    },
+    {
+      "gold_rank": {
+        "body": 1,
+        "flat": 2
+      },
+      "gold_skill": "find-nonliving-object",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "3d4c1f96f2cf5d0069f9be6242652f423f74fee35228223d888569fe845fe9b8",
+          "3": "d203ac244b46d4fe69b7736b22f1c29271d9100386879ddc6cfd4a9a11a6abc5"
+        },
+        "flat": {
+          "1": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+          "3": "244639d4ce0feab9147bef86c22717f512b43f8b420d081018a07e091b931e4d"
+        }
+      },
+      "query": "Task Description:\nYour task is to find a(n) non-living thing. First, focus on the thing. Then, move it to the green box in the kitchen.",
+      "query_sha256": "8f0d79216bc49278617d057beceea4eaa2ee4659e4aa29d3d10328fc7d6b5db9",
+      "ranking": {
+        "body": [
+          {
+            "name": "find-nonliving-object",
+            "rank": 1,
+            "score": 0.593547
+          },
+          {
+            "name": "find-living-object",
+            "rank": 2,
+            "score": 0.588802
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.276867
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.266886
+          },
+          {
+            "name": "melt-substance",
+            "rank": 5,
+            "score": 0.261236
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.212516
+          }
+        ],
+        "flat": [
+          {
+            "name": "find-living-object",
+            "rank": 1,
+            "score": 0.612911
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 2,
+            "score": 0.578236
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.311478
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.214013
+          },
+          {
+            "name": "melt-substance",
+            "rank": 5,
+            "score": 0.167361
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.153833
+          }
+        ]
+      },
+      "task_id": "find-non-living-thing:v151",
+      "task_name": "find-non-living-thing",
+      "top1": {
+        "body": "find-nonliving-object",
+        "flat": "find-living-object"
+      },
+      "top3": {
+        "body": [
+          "find-nonliving-object",
+          "find-living-object",
+          "measure-and-classify-temperature"
+        ],
+        "flat": [
+          "find-living-object",
+          "find-nonliving-object",
+          "measure-and-classify-temperature"
+        ]
+      },
+      "variation": 151
+    },
+    {
+      "gold_rank": {
+        "body": 1,
+        "flat": 1
+      },
+      "gold_skill": "freeze-substance",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "e3fc626bbaa1aa12fcc4361f11cc0cc8e3e45e3956065add82e0ceff026265fb",
+          "3": "0b675fbf345ef2bbbea6683cdcfaf2ea45baf230a66382e720a6e2c3a6297ab5"
+        },
+        "flat": {
+          "1": "e3fc626bbaa1aa12fcc4361f11cc0cc8e3e45e3956065add82e0ceff026265fb",
+          "3": "d015f857d338b45666118c6c4c72acba8e4badb34d2475a3e9250d895db03e8b"
+        }
+      },
+      "query": "Task Description:\nYour task is to freeze ice cream. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+      "query_sha256": "c2fed390184da00b530c63cbd2e1d04c33e9c9e788dde3c40a0fae2d7da9c59f",
+      "ranking": {
+        "body": [
+          {
+            "name": "freeze-substance",
+            "rank": 1,
+            "score": 0.606519
+          },
+          {
+            "name": "melt-substance",
+            "rank": 2,
+            "score": 0.468004
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.385332
+          },
+          {
+            "name": "boil-substance",
+            "rank": 4,
+            "score": 0.383172
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 5,
+            "score": 0.279504
+          },
+          {
+            "name": "find-living-object",
+            "rank": 6,
+            "score": 0.242932
+          }
+        ],
+        "flat": [
+          {
+            "name": "freeze-substance",
+            "rank": 1,
+            "score": 0.630223
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 2,
+            "score": 0.457649
+          },
+          {
+            "name": "melt-substance",
+            "rank": 3,
+            "score": 0.435992
+          },
+          {
+            "name": "boil-substance",
+            "rank": 4,
+            "score": 0.351912
+          },
+          {
+            "name": "find-living-object",
+            "rank": 5,
+            "score": 0.273167
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 6,
+            "score": 0.261147
+          }
+        ]
+      },
+      "task_id": "freeze:v014",
+      "task_name": "freeze",
+      "top1": {
+        "body": "freeze-substance",
+        "flat": "freeze-substance"
+      },
+      "top3": {
+        "body": [
+          "freeze-substance",
+          "melt-substance",
+          "measure-and-classify-temperature"
+        ],
+        "flat": [
+          "freeze-substance",
+          "measure-and-classify-temperature",
+          "melt-substance"
+        ]
+      },
+      "variation": 14
+    },
+    {
+      "gold_rank": {
+        "body": 1,
+        "flat": 1
+      },
+      "gold_skill": "freeze-substance",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "e3fc626bbaa1aa12fcc4361f11cc0cc8e3e45e3956065add82e0ceff026265fb",
+          "3": "0b675fbf345ef2bbbea6683cdcfaf2ea45baf230a66382e720a6e2c3a6297ab5"
+        },
+        "flat": {
+          "1": "e3fc626bbaa1aa12fcc4361f11cc0cc8e3e45e3956065add82e0ceff026265fb",
+          "3": "d015f857d338b45666118c6c4c72acba8e4badb34d2475a3e9250d895db03e8b"
+        }
+      },
+      "query": "Task Description:\nYour task is to freeze ice cream. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+      "query_sha256": "c2fed390184da00b530c63cbd2e1d04c33e9c9e788dde3c40a0fae2d7da9c59f",
+      "ranking": {
+        "body": [
+          {
+            "name": "freeze-substance",
+            "rank": 1,
+            "score": 0.606519
+          },
+          {
+            "name": "melt-substance",
+            "rank": 2,
+            "score": 0.468004
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.385332
+          },
+          {
+            "name": "boil-substance",
+            "rank": 4,
+            "score": 0.383172
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 5,
+            "score": 0.279504
+          },
+          {
+            "name": "find-living-object",
+            "rank": 6,
+            "score": 0.242932
+          }
+        ],
+        "flat": [
+          {
+            "name": "freeze-substance",
+            "rank": 1,
+            "score": 0.630223
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 2,
+            "score": 0.457649
+          },
+          {
+            "name": "melt-substance",
+            "rank": 3,
+            "score": 0.435992
+          },
+          {
+            "name": "boil-substance",
+            "rank": 4,
+            "score": 0.351912
+          },
+          {
+            "name": "find-living-object",
+            "rank": 5,
+            "score": 0.273167
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 6,
+            "score": 0.261147
+          }
+        ]
+      },
+      "task_id": "freeze:v015",
+      "task_name": "freeze",
+      "top1": {
+        "body": "freeze-substance",
+        "flat": "freeze-substance"
+      },
+      "top3": {
+        "body": [
+          "freeze-substance",
+          "melt-substance",
+          "measure-and-classify-temperature"
+        ],
+        "flat": [
+          "freeze-substance",
+          "measure-and-classify-temperature",
+          "melt-substance"
+        ]
+      },
+      "variation": 15
+    },
+    {
+      "gold_rank": {
+        "body": 1,
+        "flat": 1
+      },
+      "gold_skill": "melt-substance",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "06c59c16938d4ac42412648d1edcea914f5e02d9e03fbe5a6a75e71f28babd98",
+          "3": "2eea6cee1aae367fddfff962f3a144d10dba1aad6870a8a815ec7ee17d30ab4b"
+        },
+        "flat": {
+          "1": "06c59c16938d4ac42412648d1edcea914f5e02d9e03fbe5a6a75e71f28babd98",
+          "3": "70777729aef0ebe55cd0d2a17ccad68fd21ed2b0d263a13af46db88187535aea"
+        }
+      },
+      "query": "Task Description:\nYour task is to melt ice cream. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+      "query_sha256": "7f4f4cf0ceee997db59ec53563ad74c6c99ca4171268de19327b2571d84a52a9",
+      "ranking": {
+        "body": [
+          {
+            "name": "melt-substance",
+            "rank": 1,
+            "score": 0.547885
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 2,
+            "score": 0.475091
+          },
+          {
+            "name": "boil-substance",
+            "rank": 3,
+            "score": 0.452945
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 4,
+            "score": 0.400033
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 5,
+            "score": 0.245615
+          },
+          {
+            "name": "find-living-object",
+            "rank": 6,
+            "score": 0.209096
+          }
+        ],
+        "flat": [
+          {
+            "name": "melt-substance",
+            "rank": 1,
+            "score": 0.5516
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 2,
+            "score": 0.492194
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 3,
+            "score": 0.468165
+          },
+          {
+            "name": "boil-substance",
+            "rank": 4,
+            "score": 0.44984
+          },
+          {
+            "name": "find-living-object",
+            "rank": 5,
+            "score": 0.261152
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 6,
+            "score": 0.235714
+          }
+        ]
+      },
+      "task_id": "melt:v014",
+      "task_name": "melt",
+      "top1": {
+        "body": "melt-substance",
+        "flat": "melt-substance"
+      },
+      "top3": {
+        "body": [
+          "melt-substance",
+          "freeze-substance",
+          "boil-substance"
+        ],
+        "flat": [
+          "melt-substance",
+          "measure-and-classify-temperature",
+          "freeze-substance"
+        ]
+      },
+      "variation": 14
+    },
+    {
+      "gold_rank": {
+        "body": 1,
+        "flat": 1
+      },
+      "gold_skill": "melt-substance",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "06c59c16938d4ac42412648d1edcea914f5e02d9e03fbe5a6a75e71f28babd98",
+          "3": "2eea6cee1aae367fddfff962f3a144d10dba1aad6870a8a815ec7ee17d30ab4b"
+        },
+        "flat": {
+          "1": "06c59c16938d4ac42412648d1edcea914f5e02d9e03fbe5a6a75e71f28babd98",
+          "3": "70777729aef0ebe55cd0d2a17ccad68fd21ed2b0d263a13af46db88187535aea"
+        }
+      },
+      "query": "Task Description:\nYour task is to melt ice cream. First, focus on the substance. Then, take actions that will cause it to change its state of matter.",
+      "query_sha256": "7f4f4cf0ceee997db59ec53563ad74c6c99ca4171268de19327b2571d84a52a9",
+      "ranking": {
+        "body": [
+          {
+            "name": "melt-substance",
+            "rank": 1,
+            "score": 0.547885
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 2,
+            "score": 0.475091
+          },
+          {
+            "name": "boil-substance",
+            "rank": 3,
+            "score": 0.452945
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 4,
+            "score": 0.400033
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 5,
+            "score": 0.245615
+          },
+          {
+            "name": "find-living-object",
+            "rank": 6,
+            "score": 0.209096
+          }
+        ],
+        "flat": [
+          {
+            "name": "melt-substance",
+            "rank": 1,
+            "score": 0.5516
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 2,
+            "score": 0.492194
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 3,
+            "score": 0.468165
+          },
+          {
+            "name": "boil-substance",
+            "rank": 4,
+            "score": 0.44984
+          },
+          {
+            "name": "find-living-object",
+            "rank": 5,
+            "score": 0.261152
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 6,
+            "score": 0.235714
+          }
+        ]
+      },
+      "task_id": "melt:v015",
+      "task_name": "melt",
+      "top1": {
+        "body": "melt-substance",
+        "flat": "melt-substance"
+      },
+      "top3": {
+        "body": [
+          "melt-substance",
+          "freeze-substance",
+          "boil-substance"
+        ],
+        "flat": [
+          "melt-substance",
+          "measure-and-classify-temperature",
+          "freeze-substance"
+        ]
+      },
+      "variation": 15
+    },
+    {
+      "gold_rank": {
+        "body": 1,
+        "flat": 1
+      },
+      "gold_skill": "measure-and-classify-temperature",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "1257cf4718c74e032dc2f31985b993dda03a8e68a91e0eec27851df0dbf04a27",
+          "3": "bcf65bb8777b207cf1b9b1594569c7b8f4c8dd338fa3263c4a307b11873dc2a7"
+        },
+        "flat": {
+          "1": "1257cf4718c74e032dc2f31985b993dda03a8e68a91e0eec27851df0dbf04a27",
+          "3": "bcf65bb8777b207cf1b9b1594569c7b8f4c8dd338fa3263c4a307b11873dc2a7"
+        }
+      },
+      "query": "Task Description:\nYour task is to measure the temperature of unknown substance B, which is located around the bathroom. First, focus on the thermometer. Next, focus on the unknown substance B. If the unknown substance B temperature is above 50.0 degrees celsius, place it in the green box. If the unknown substance B temperature is below 50.0 degrees celsius, place it in the blue box. The boxes are located around the bathroom.",
+      "query_sha256": "170f69ac990f28f032781d5fe36cda3309b17c6d3d3e43ab91ae749a914a5b5b",
+      "ranking": {
+        "body": [
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 1,
+            "score": 0.576465
+          },
+          {
+            "name": "melt-substance",
+            "rank": 2,
+            "score": 0.384152
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 3,
+            "score": 0.355256
+          },
+          {
+            "name": "boil-substance",
+            "rank": 4,
+            "score": 0.317945
+          },
+          {
+            "name": "find-living-object",
+            "rank": 5,
+            "score": 0.190873
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 6,
+            "score": 0.18196
+          }
+        ],
+        "flat": [
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 1,
+            "score": 0.555612
+          },
+          {
+            "name": "melt-substance",
+            "rank": 2,
+            "score": 0.29322
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 3,
+            "score": 0.247538
+          },
+          {
+            "name": "boil-substance",
+            "rank": 4,
+            "score": 0.231261
+          },
+          {
+            "name": "find-living-object",
+            "rank": 5,
+            "score": 0.16167
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 6,
+            "score": 0.140785
+          }
+        ]
+      },
+      "task_id": "use-thermometer:v270",
+      "task_name": "use-thermometer",
+      "top1": {
+        "body": "measure-and-classify-temperature",
+        "flat": "measure-and-classify-temperature"
+      },
+      "top3": {
+        "body": [
+          "measure-and-classify-temperature",
+          "melt-substance",
+          "freeze-substance"
+        ],
+        "flat": [
+          "measure-and-classify-temperature",
+          "melt-substance",
+          "freeze-substance"
+        ]
+      },
+      "variation": 270
+    },
+    {
+      "gold_rank": {
+        "body": 1,
+        "flat": 1
+      },
+      "gold_skill": "measure-and-classify-temperature",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "1257cf4718c74e032dc2f31985b993dda03a8e68a91e0eec27851df0dbf04a27",
+          "3": "bcf65bb8777b207cf1b9b1594569c7b8f4c8dd338fa3263c4a307b11873dc2a7"
+        },
+        "flat": {
+          "1": "1257cf4718c74e032dc2f31985b993dda03a8e68a91e0eec27851df0dbf04a27",
+          "3": "bcf65bb8777b207cf1b9b1594569c7b8f4c8dd338fa3263c4a307b11873dc2a7"
+        }
+      },
+      "query": "Task Description:\nYour task is to measure the temperature of unknown substance B, which is located around the bathroom. First, focus on the thermometer. Next, focus on the unknown substance B. If the unknown substance B temperature is above 0.0 degrees celsius, place it in the red box. If the unknown substance B temperature is below 0.0 degrees celsius, place it in the green box. The boxes are located around the bedroom.",
+      "query_sha256": "24f511b626c7dde13cb8d9d2cb30682021687a6f2ed3ff7a1be29a7b70519940",
+      "ranking": {
+        "body": [
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 1,
+            "score": 0.566475
+          },
+          {
+            "name": "melt-substance",
+            "rank": 2,
+            "score": 0.38921
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 3,
+            "score": 0.352609
+          },
+          {
+            "name": "boil-substance",
+            "rank": 4,
+            "score": 0.312197
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 5,
+            "score": 0.190076
+          },
+          {
+            "name": "find-living-object",
+            "rank": 6,
+            "score": 0.189163
+          }
+        ],
+        "flat": [
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 1,
+            "score": 0.547242
+          },
+          {
+            "name": "melt-substance",
+            "rank": 2,
+            "score": 0.300259
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 3,
+            "score": 0.250233
+          },
+          {
+            "name": "boil-substance",
+            "rank": 4,
+            "score": 0.224056
+          },
+          {
+            "name": "find-living-object",
+            "rank": 5,
+            "score": 0.165499
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 6,
+            "score": 0.145001
+          }
+        ]
+      },
+      "task_id": "use-thermometer:v271",
+      "task_name": "use-thermometer",
+      "top1": {
+        "body": "measure-and-classify-temperature",
+        "flat": "measure-and-classify-temperature"
+      },
+      "top3": {
+        "body": [
+          "measure-and-classify-temperature",
+          "melt-substance",
+          "freeze-substance"
+        ],
+        "flat": [
+          "measure-and-classify-temperature",
+          "melt-substance",
+          "freeze-substance"
+        ]
+      },
+      "variation": 271
+    }
+  ],
+  "decision": "review_disagreements_before_any_agent_experiment",
+  "embedding_input_tokens": {
+    "0152450b79490c23111682f75dd78f1683dc2720d3de08b7d1d6e0fda8a7bb31": 24,
+    "02e346f6d42c3b421b9f0061e8a395b75b11986973f6da67ad864c8a3de683c2": 26,
+    "06c59c16938d4ac42412648d1edcea914f5e02d9e03fbe5a6a75e71f28babd98": 147,
+    "1257cf4718c74e032dc2f31985b993dda03a8e68a91e0eec27851df0dbf04a27": 130,
+    "170f69ac990f28f032781d5fe36cda3309b17c6d3d3e43ab91ae749a914a5b5b": 96,
+    "1fce07ad05fbbf84d919a359ddc19654c13f70b80655d52d4f9d6e83a4208dbf": 51,
+    "24f511b626c7dde13cb8d9d2cb30682021687a6f2ed3ff7a1be29a7b70519940": 96,
+    "3d4c1f96f2cf5d0069f9be6242652f423f74fee35228223d888569fe845fe9b8": 112,
+    "41c8e27486fe6cb15cbedea1f5421ae20a9b8ea901ff6bafe7ec331dc411b2d7": 20,
+    "4f8e5c2d28de452669bb9930b2800f76a9c785c7ec784051c778d108737e29a4": 36,
+    "669eb7ed789474339378b5ae9aa9607b964f4269b4053c418b84643b25794eec": 25,
+    "7b4d2f774177ea225b7af693107500e9d6ac88c176bdafaffe845a6e21c988f4": 38,
+    "7f4f4cf0ceee997db59ec53563ad74c6c99ca4171268de19327b2571d84a52a9": 35,
+    "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424": 119,
+    "8f0d79216bc49278617d057beceea4eaa2ee4659e4aa29d3d10328fc7d6b5db9": 38,
+    "ab7a89e9d11287870f3f0df1822e7b4812a31fab9e29911e49644dc59617704d": 36,
+    "c2fed390184da00b530c63cbd2e1d04c33e9c9e788dde3c40a0fae2d7da9c59f": 35,
+    "c638ca4e73248d245847137536f33eb34de001e8fea4f088aa955261f94eb9d2": 188,
+    "e0e69ac23d3726b82c7a9699a4f6f43c0b8157c62de5c37da90603a359426919": 22,
+    "e3fc626bbaa1aa12fcc4361f11cc0cc8e3e45e3956065add82e0ceff026265fb": 183,
+    "e4b4c2b9d125e7df7572d2f76d4da94f39c79b20802c1b4de131c05eff71e5a0": 19
+  },
+  "instance_summary": {
+    "body_hit": 12,
+    "body_hit_at_3": 12,
+    "body_only": 2,
+    "both_hit": 10,
+    "both_miss": 0,
+    "cases": 12,
+    "different_top1": 2,
+    "different_top3_ordered": 8,
+    "different_top3_set": 4,
+    "flat_hit": 10,
+    "flat_hit_at_3": 12,
+    "flat_only": 0,
+    "same_top1_prompt": 10,
+    "same_top3_prompt": 4
+  },
+  "library_version": "v3",
+  "manifest_sha256": "6614825ebd026be006e395393e6ff96ffdde83ee91ac03adc7ddcfd727039aaa",
+  "model": {
+    "batch_size": 16,
+    "device": "cpu",
+    "dimension": 384,
+    "file_sha256": {
+      "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+      "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+      "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+      "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+      "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+      "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+      "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+      "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+      "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+      "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+    },
+    "local_directory_name": "all-MiniLM-L6-v2",
+    "max_seq_length": 256,
+    "normalize_embeddings": true,
+    "packages": {
+      "numpy": "2.0.2",
+      "safetensors": "0.7.0",
+      "sentence-transformers": "3.4.1",
+      "tokenizers": "0.22.2",
+      "torch": "2.8.0",
+      "transformers": "4.57.6"
+    },
+    "python": "3.9.6",
+    "seed": 0,
+    "torch_threads": 2,
+    "use_safetensors": true
+  },
+  "previously_seen_query_instances": 0,
+  "query_file_sha256": "9226c9863bbc6073fed01c44fd448298cc8108f928bc2d5c0a0525d772eeec19",
+  "unique_query_gold_summary": {
+    "body_hit": 9,
+    "body_hit_at_3": 9,
+    "body_only": 2,
+    "both_hit": 7,
+    "both_miss": 0,
+    "cases": 9,
+    "different_top1": 2,
+    "different_top3_ordered": 5,
+    "different_top3_set": 2,
+    "flat_hit": 7,
+    "flat_hit_at_3": 9,
+    "flat_only": 0,
+    "same_top1_prompt": 7,
+    "same_top3_prompt": 4
+  }
+}
