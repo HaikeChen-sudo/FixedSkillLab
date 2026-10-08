@@ -4,6 +4,15 @@
 
 定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v10 发现与确认报告](output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf) · [ScienceWorld v11b 平衡确认报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)
 
+## 最近完成的开发诊断
+
+[ScienceWorld Top-1 机制诊断](docs/research/scienceworld_top1_mechanism_results_2026-10-08.md)已完成 36 个 episode：No Skill 成功 9/12，Semantic Flat Top-1 与 Semantic Body Top-1 均为 12/12。Body 的平均 Total Tokens 比 Flat 少 8.9%，但约四成差额来自加载相同 Skill 的任务，不能全部归因于正文检索。本轮只有四个针对性选择的 dev 实例，不是独立确认。报告保留六项主指标、逐题轨迹解释和下一轮内容机制设计建议；没有启动新的付费实验。
+
+```sh
+python3 scienceworld_top1_analysis.py
+python3 -m unittest test_scienceworld_top1_analysis -v
+```
+
 ## 运行
 
 Mini Lab 需要 Python 3.9+，不安装第三方依赖。

@@ -1,0 +1,1820 @@
+{
+  "schema_version": 1,
+  "run_id": "scienceworld-top1-mechanism-dev-4x3",
+  "episodes": 36,
+  "unique_tasks": 4,
+  "independent_test": false,
+  "condition_summary": [
+    {
+      "condition": "no_skill",
+      "episodes": 12,
+      "successes": 9,
+      "task_success_rate": 0.75,
+      "cost_usd": 0.0038231508000000003,
+      "cost_per_successful_task_usd": 0.0004247945333333334,
+      "average_input_tokens": 10300.833333333334,
+      "average_output_tokens": 371.3333333333333,
+      "average_total_tokens": 10672.166666666666,
+      "average_latency_ms": 7911.916666666667,
+      "average_runner_ms": 8371.083333333334,
+      "average_routing_ms": 0,
+      "average_tool_calls": 6.416666666666667,
+      "average_score": 50,
+      "average_environment_moves": 4,
+      "average_environment_actions": 6.416666666666667,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.07027626380147736
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "episodes": 12,
+      "successes": 12,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0042123872,
+      "cost_per_successful_task_usd": 0.00035103226666666665,
+      "average_input_tokens": 12500.166666666666,
+      "average_output_tokens": 349.6666666666667,
+      "average_total_tokens": 12849.833333333334,
+      "average_latency_ms": 12389.5,
+      "average_runner_ms": 12866.166666666666,
+      "average_routing_ms": 3789.5,
+      "average_tool_calls": 7.416666666666667,
+      "average_score": 100,
+      "average_environment_moves": 5.083333333333333,
+      "average_environment_actions": 7.416666666666667,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.07782202103788635
+    },
+    {
+      "condition": "semantic_body_top1",
+      "episodes": 12,
+      "successes": 12,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0036824704000000003,
+      "cost_per_successful_task_usd": 0.00030687253333333336,
+      "average_input_tokens": 11396.916666666666,
+      "average_output_tokens": 314.5833333333333,
+      "average_total_tokens": 11711.5,
+      "average_latency_ms": 11771.083333333334,
+      "average_runner_ms": 12253.416666666666,
+      "average_routing_ms": 3892.9166666666665,
+      "average_tool_calls": 6.833333333333333,
+      "average_score": 100,
+      "average_environment_moves": 4.5,
+      "average_environment_actions": 6.833333333333333,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.08538615890364172
+    }
+  ],
+  "family_summary": [
+    {
+      "condition": "no_skill",
+      "task_name": "find-living-thing",
+      "episodes": 6,
+      "successes": 3,
+      "task_success_rate": 0.5,
+      "cost_usd": 0.0026008444,
+      "cost_per_successful_task_usd": 0.0008669481333333333,
+      "average_input_tokens": 15630.166666666666,
+      "average_output_tokens": 484.6666666666667,
+      "average_total_tokens": 16114.833333333334,
+      "average_latency_ms": 10608.833333333334,
+      "average_runner_ms": 11057,
+      "average_routing_ms": 0,
+      "average_tool_calls": 8.666666666666666,
+      "average_score": 0,
+      "average_environment_moves": 5.5,
+      "average_environment_actions": 8.666666666666666,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.031027314379091727
+    },
+    {
+      "condition": "no_skill",
+      "task_name": "find-non-living-thing",
+      "episodes": 6,
+      "successes": 6,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0012223064000000002,
+      "cost_per_successful_task_usd": 0.00020371773333333336,
+      "average_input_tokens": 4971.5,
+      "average_output_tokens": 258,
+      "average_total_tokens": 5229.5,
+      "average_latency_ms": 5215,
+      "average_runner_ms": 5685.166666666667,
+      "average_routing_ms": 0,
+      "average_tool_calls": 4.166666666666667,
+      "average_score": 100,
+      "average_environment_moves": 2.5,
+      "average_environment_actions": 4.166666666666667,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.19122287025528253
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "task_name": "find-living-thing",
+      "episodes": 6,
+      "successes": 6,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0030018016,
+      "cost_per_successful_task_usd": 0.0005003002666666667,
+      "average_input_tokens": 20128.666666666668,
+      "average_output_tokens": 491.1666666666667,
+      "average_total_tokens": 20619.833333333332,
+      "average_latency_ms": 16258.166666666666,
+      "average_runner_ms": 16719.5,
+      "average_routing_ms": 3861.6666666666665,
+      "average_tool_calls": 11,
+      "average_score": 100,
+      "average_environment_moves": 7.333333333333333,
+      "average_environment_actions": 11,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.04849699722758832
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "task_name": "find-non-living-thing",
+      "episodes": 6,
+      "successes": 6,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0012105856000000001,
+      "cost_per_successful_task_usd": 0.0002017642666666667,
+      "average_input_tokens": 4871.666666666667,
+      "average_output_tokens": 208.16666666666666,
+      "average_total_tokens": 5079.833333333333,
+      "average_latency_ms": 8520.833333333334,
+      "average_runner_ms": 9012.833333333334,
+      "average_routing_ms": 3717.3333333333335,
+      "average_tool_calls": 3.8333333333333335,
+      "average_score": 100,
+      "average_environment_moves": 2.8333333333333335,
+      "average_environment_actions": 3.8333333333333335,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.19685685225893237
+    },
+    {
+      "condition": "semantic_body_top1",
+      "task_name": "find-living-thing",
+      "episodes": 6,
+      "successes": 6,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0027221096,
+      "cost_per_successful_task_usd": 0.00045368493333333335,
+      "average_input_tokens": 19240.666666666668,
+      "average_output_tokens": 475.5,
+      "average_total_tokens": 19716.166666666668,
+      "average_latency_ms": 15969.833333333334,
+      "average_runner_ms": 16455.666666666668,
+      "average_routing_ms": 3950,
+      "average_tool_calls": 10.666666666666666,
+      "average_score": 100,
+      "average_environment_moves": 7,
+      "average_environment_actions": 10.666666666666666,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.05071979847333406
+    },
+    {
+      "condition": "semantic_body_top1",
+      "task_name": "find-non-living-thing",
+      "episodes": 6,
+      "successes": 6,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0009603608,
+      "cost_per_successful_task_usd": 0.00016006013333333334,
+      "average_input_tokens": 3553.1666666666665,
+      "average_output_tokens": 153.66666666666666,
+      "average_total_tokens": 3706.8333333333335,
+      "average_latency_ms": 7572.333333333333,
+      "average_runner_ms": 8051.166666666667,
+      "average_routing_ms": 3835.8333333333335,
+      "average_tool_calls": 3,
+      "average_score": 100,
+      "average_environment_moves": 2,
+      "average_environment_actions": 3,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.26977204262398274
+    }
+  ],
+  "task_summary": [
+    {
+      "condition": "no_skill",
+      "task_id": "find-living-thing:v150",
+      "skills_loaded": [],
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0021426916,
+      "cost_per_successful_task_usd": 0.0007142305333333334,
+      "average_input_tokens": 28010.333333333332,
+      "average_output_tokens": 754.3333333333334,
+      "average_total_tokens": 28764.666666666668,
+      "average_latency_ms": 16879,
+      "average_runner_ms": 17325,
+      "average_routing_ms": 0,
+      "average_tool_calls": 14.333333333333334,
+      "average_score": 100,
+      "average_environment_moves": 9.333333333333334,
+      "average_environment_actions": 14.333333333333334,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.03476487357174311
+    },
+    {
+      "condition": "no_skill",
+      "task_id": "find-living-thing:v151",
+      "skills_loaded": [],
+      "episodes": 3,
+      "successes": 0,
+      "task_success_rate": 0.0,
+      "cost_usd": 0.00045815280000000003,
+      "cost_per_successful_task_usd": null,
+      "average_input_tokens": 3250,
+      "average_output_tokens": 215,
+      "average_total_tokens": 3465,
+      "average_latency_ms": 4338.666666666667,
+      "average_runner_ms": 4789,
+      "average_routing_ms": 0,
+      "average_tool_calls": 3,
+      "average_score": -100,
+      "average_environment_moves": 1.6666666666666667,
+      "average_environment_actions": 3,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.0
+    },
+    {
+      "condition": "no_skill",
+      "task_id": "find-non-living-thing:v150",
+      "skills_loaded": [],
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0006331360000000001,
+      "cost_per_successful_task_usd": 0.00021104533333333336,
+      "average_input_tokens": 5200.666666666667,
+      "average_output_tokens": 263.6666666666667,
+      "average_total_tokens": 5464.333333333333,
+      "average_latency_ms": 5389.666666666667,
+      "average_runner_ms": 5849.333333333333,
+      "average_routing_ms": 0,
+      "average_tool_calls": 4.333333333333333,
+      "average_score": 100,
+      "average_environment_moves": 2.6666666666666665,
+      "average_environment_actions": 4.333333333333333,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.1830049411334106
+    },
+    {
+      "condition": "no_skill",
+      "task_id": "find-non-living-thing:v151",
+      "skills_loaded": [],
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0005891704000000001,
+      "cost_per_successful_task_usd": 0.00019639013333333337,
+      "average_input_tokens": 4742.333333333333,
+      "average_output_tokens": 252.33333333333334,
+      "average_total_tokens": 4994.666666666667,
+      "average_latency_ms": 5040.333333333333,
+      "average_runner_ms": 5521,
+      "average_routing_ms": 0,
+      "average_tool_calls": 4,
+      "average_score": 100,
+      "average_environment_moves": 2.3333333333333335,
+      "average_environment_actions": 4,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.200213561131874
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "task_id": "find-living-thing:v150",
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0013151935999999999,
+      "cost_per_successful_task_usd": 0.00043839786666666664,
+      "average_input_tokens": 17578.333333333332,
+      "average_output_tokens": 447,
+      "average_total_tokens": 18025.333333333332,
+      "average_latency_ms": 14842.333333333334,
+      "average_runner_ms": 15301,
+      "average_routing_ms": 3861.6666666666665,
+      "average_tool_calls": 10,
+      "average_score": 100,
+      "average_environment_moves": 7,
+      "average_environment_actions": 10,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.055477476144685255
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "task_id": "find-living-thing:v151",
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.001686608,
+      "cost_per_successful_task_usd": 0.0005622026666666667,
+      "average_input_tokens": 22679,
+      "average_output_tokens": 535.3333333333334,
+      "average_total_tokens": 23214.333333333332,
+      "average_latency_ms": 17674,
+      "average_runner_ms": 18138,
+      "average_routing_ms": 3861.6666666666665,
+      "average_tool_calls": 12,
+      "average_score": 100,
+      "average_environment_moves": 7.666666666666667,
+      "average_environment_actions": 12,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.0430768347141852
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "task_id": "find-non-living-thing:v150",
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0006252848000000001,
+      "cost_per_successful_task_usd": 0.0002084282666666667,
+      "average_input_tokens": 5119.333333333333,
+      "average_output_tokens": 212.66666666666666,
+      "average_total_tokens": 5332,
+      "average_latency_ms": 8099.666666666667,
+      "average_runner_ms": 8619.666666666666,
+      "average_routing_ms": 3335.3333333333335,
+      "average_tool_calls": 4,
+      "average_score": 100,
+      "average_environment_moves": 3,
+      "average_environment_actions": 4,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.18754688672168043
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "task_id": "find-non-living-thing:v151",
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0005853008,
+      "cost_per_successful_task_usd": 0.00019510026666666667,
+      "average_input_tokens": 4624,
+      "average_output_tokens": 203.66666666666666,
+      "average_total_tokens": 4827.666666666667,
+      "average_latency_ms": 8942,
+      "average_runner_ms": 9406,
+      "average_routing_ms": 4099.333333333333,
+      "average_tool_calls": 3.6666666666666665,
+      "average_score": 100,
+      "average_environment_moves": 2.6666666666666665,
+      "average_environment_actions": 3.6666666666666665,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.20713940481944348
+    },
+    {
+      "condition": "semantic_body_top1",
+      "task_id": "find-living-thing:v150",
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0012359004,
+      "cost_per_successful_task_usd": 0.0004119668,
+      "average_input_tokens": 17534,
+      "average_output_tokens": 437,
+      "average_total_tokens": 17971,
+      "average_latency_ms": 14919.333333333334,
+      "average_runner_ms": 15382,
+      "average_routing_ms": 3806.3333333333335,
+      "average_tool_calls": 10,
+      "average_score": 100,
+      "average_environment_moves": 7,
+      "average_environment_actions": 10,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.05564520616548884
+    },
+    {
+      "condition": "semantic_body_top1",
+      "task_id": "find-living-thing:v151",
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.0014862092000000001,
+      "cost_per_successful_task_usd": 0.0004954030666666667,
+      "average_input_tokens": 20947.333333333332,
+      "average_output_tokens": 514,
+      "average_total_tokens": 21461.333333333332,
+      "average_latency_ms": 17020.333333333332,
+      "average_runner_ms": 17529.333333333332,
+      "average_routing_ms": 4093.6666666666665,
+      "average_tool_calls": 11.333333333333334,
+      "average_score": 100,
+      "average_environment_moves": 7,
+      "average_environment_actions": 11.333333333333334,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.04659542743538767
+    },
+    {
+      "condition": "semantic_body_top1",
+      "task_id": "find-non-living-thing:v150",
+      "skills_loaded": [
+        "find-nonliving-object"
+      ],
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.000496692,
+      "cost_per_successful_task_usd": 0.000165564,
+      "average_input_tokens": 3552.6666666666665,
+      "average_output_tokens": 152.66666666666666,
+      "average_total_tokens": 3705.3333333333335,
+      "average_latency_ms": 7822.666666666667,
+      "average_runner_ms": 8272.666666666666,
+      "average_routing_ms": 4060.6666666666665,
+      "average_tool_calls": 3,
+      "average_score": 100,
+      "average_environment_moves": 2,
+      "average_environment_actions": 3,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.26988125224901044
+    },
+    {
+      "condition": "semantic_body_top1",
+      "task_id": "find-non-living-thing:v151",
+      "skills_loaded": [
+        "find-nonliving-object"
+      ],
+      "episodes": 3,
+      "successes": 3,
+      "task_success_rate": 1.0,
+      "cost_usd": 0.00046366880000000004,
+      "cost_per_successful_task_usd": 0.00015455626666666667,
+      "average_input_tokens": 3553.6666666666665,
+      "average_output_tokens": 154.66666666666666,
+      "average_total_tokens": 3708.3333333333335,
+      "average_latency_ms": 7322,
+      "average_runner_ms": 7829.666666666667,
+      "average_routing_ms": 3611,
+      "average_tool_calls": 3,
+      "average_score": 100,
+      "average_environment_moves": 2,
+      "average_environment_actions": 3,
+      "average_controller_interventions": 0,
+      "efficiency_per_1k_tokens": 0.2696629213483146
+    }
+  ],
+  "repeat_summary": [
+    {
+      "condition": "no_skill",
+      "repeats": [
+        {
+          "repeat": 0,
+          "episodes": 4,
+          "successes": 3,
+          "task_success_rate": 0.75,
+          "cost_usd": 0.0014660296,
+          "cost_per_successful_task_usd": 0.0004886765333333333,
+          "average_input_tokens": 10347.75,
+          "average_output_tokens": 353,
+          "average_total_tokens": 10700.75,
+          "average_latency_ms": 8224.5,
+          "average_runner_ms": 8671.25,
+          "average_routing_ms": 0,
+          "average_tool_calls": 6.25,
+          "average_score": 50,
+          "average_environment_moves": 4,
+          "average_environment_actions": 6.25,
+          "average_controller_interventions": 0,
+          "efficiency_per_1k_tokens": 0.07008854519543023
+        },
+        {
+          "repeat": 1,
+          "episodes": 4,
+          "successes": 3,
+          "task_success_rate": 0.75,
+          "cost_usd": 0.0011354896000000001,
+          "cost_per_successful_task_usd": 0.00037849653333333336,
+          "average_input_tokens": 9906.75,
+          "average_output_tokens": 370.25,
+          "average_total_tokens": 10277,
+          "average_latency_ms": 7273.5,
+          "average_runner_ms": 7745,
+          "average_routing_ms": 0,
+          "average_tool_calls": 6.25,
+          "average_score": 50,
+          "average_environment_moves": 3.75,
+          "average_environment_actions": 6.25,
+          "average_controller_interventions": 0,
+          "efficiency_per_1k_tokens": 0.07297849566994259
+        },
+        {
+          "repeat": 2,
+          "episodes": 4,
+          "successes": 3,
+          "task_success_rate": 0.75,
+          "cost_usd": 0.0012216316000000001,
+          "cost_per_successful_task_usd": 0.00040721053333333336,
+          "average_input_tokens": 10648,
+          "average_output_tokens": 390.75,
+          "average_total_tokens": 11038.75,
+          "average_latency_ms": 8237.75,
+          "average_runner_ms": 8697,
+          "average_routing_ms": 0,
+          "average_tool_calls": 6.75,
+          "average_score": 50,
+          "average_environment_moves": 4.25,
+          "average_environment_actions": 6.75,
+          "average_controller_interventions": 0,
+          "efficiency_per_1k_tokens": 0.06794247537085268
+        }
+      ],
+      "statistics": {
+        "task_success_rate": {
+          "mean": 0.75,
+          "std": 0.0
+        },
+        "cost_per_successful_task_usd": {
+          "mean": 0.0004247945333333333,
+          "std": 5.715597861991338e-05
+        },
+        "efficiency_per_1k_tokens": {
+          "mean": 0.07033650541207517,
+          "std": 0.002527150235935797
+        },
+        "average_input_tokens": {
+          "mean": 10300.833333333334,
+          "std": 372.8455053146455
+        },
+        "average_output_tokens": {
+          "mean": 371.3333333333333,
+          "std": 18.898302392895857
+        },
+        "average_total_tokens": {
+          "mean": 10672.166666666666,
+          "std": 381.6785569472476
+        },
+        "average_latency_ms": {
+          "mean": 7911.916666666667,
+          "std": 552.9247424680264
+        },
+        "average_runner_ms": {
+          "mean": 8371.083333333334,
+          "std": 542.3569127736212
+        },
+        "average_routing_ms": {
+          "mean": 0,
+          "std": 0.0
+        },
+        "average_tool_calls": {
+          "mean": 6.416666666666667,
+          "std": 0.28867513459481287
+        },
+        "average_score": {
+          "mean": 50,
+          "std": 0.0
+        },
+        "average_environment_moves": {
+          "mean": 4.0,
+          "std": 0.25
+        },
+        "average_environment_actions": {
+          "mean": 6.416666666666667,
+          "std": 0.28867513459481287
+        },
+        "average_controller_interventions": {
+          "mean": 0,
+          "std": 0.0
+        }
+      }
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "repeats": [
+        {
+          "repeat": 0,
+          "episodes": 4,
+          "successes": 4,
+          "task_success_rate": 1.0,
+          "cost_usd": 0.001539328,
+          "cost_per_successful_task_usd": 0.000384832,
+          "average_input_tokens": 11346,
+          "average_output_tokens": 327,
+          "average_total_tokens": 11673,
+          "average_latency_ms": 11255,
+          "average_runner_ms": 11734,
+          "average_routing_ms": 3522.75,
+          "average_tool_calls": 7,
+          "average_score": 100,
+          "average_environment_moves": 5,
+          "average_environment_actions": 7,
+          "average_controller_interventions": 0,
+          "efficiency_per_1k_tokens": 0.08566778034781118
+        },
+        {
+          "repeat": 1,
+          "episodes": 4,
+          "successes": 4,
+          "task_success_rate": 1.0,
+          "cost_usd": 0.0012770296,
+          "cost_per_successful_task_usd": 0.0003192574,
+          "average_input_tokens": 12223,
+          "average_output_tokens": 343,
+          "average_total_tokens": 12566,
+          "average_latency_ms": 12238.5,
+          "average_runner_ms": 12730.5,
+          "average_routing_ms": 3905.75,
+          "average_tool_calls": 7.25,
+          "average_score": 100,
+          "average_environment_moves": 4.75,
+          "average_environment_actions": 7.25,
+          "average_controller_interventions": 0,
+          "efficiency_per_1k_tokens": 0.07957981855801369
+        },
+        {
+          "repeat": 2,
+          "episodes": 4,
+          "successes": 4,
+          "task_success_rate": 1.0,
+          "cost_usd": 0.0013960296000000002,
+          "cost_per_successful_task_usd": 0.00034900740000000006,
+          "average_input_tokens": 13931.5,
+          "average_output_tokens": 379,
+          "average_total_tokens": 14310.5,
+          "average_latency_ms": 13675,
+          "average_runner_ms": 14134,
+          "average_routing_ms": 3940,
+          "average_tool_calls": 8,
+          "average_score": 100,
+          "average_environment_moves": 5.5,
+          "average_environment_actions": 8,
+          "average_controller_interventions": 0,
+          "efficiency_per_1k_tokens": 0.06987876035079138
+        }
+      ],
+      "statistics": {
+        "task_success_rate": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "cost_per_successful_task_usd": {
+          "mean": 0.0003510322666666667,
+          "std": 3.2834160641827475e-05
+        },
+        "efficiency_per_1k_tokens": {
+          "mean": 0.07837545308553875,
+          "std": 0.00796311247315019
+        },
+        "average_input_tokens": {
+          "mean": 12500.166666666666,
+          "std": 1314.845459867179
+        },
+        "average_output_tokens": {
+          "mean": 349.6666666666667,
+          "std": 26.633312473917574
+        },
+        "average_total_tokens": {
+          "mean": 12849.833333333334,
+          "std": 1341.462852013925
+        },
+        "average_latency_ms": {
+          "mean": 12389.5,
+          "std": 1217.0459112128844
+        },
+        "average_runner_ms": {
+          "mean": 12866.166666666666,
+          "std": 1205.7379828691362
+        },
+        "average_routing_ms": {
+          "mean": 3789.5,
+          "std": 231.64614717279457
+        },
+        "average_tool_calls": {
+          "mean": 7.416666666666667,
+          "std": 0.5204164998665333
+        },
+        "average_score": {
+          "mean": 100,
+          "std": 0.0
+        },
+        "average_environment_moves": {
+          "mean": 5.083333333333333,
+          "std": 0.3818813079129867
+        },
+        "average_environment_actions": {
+          "mean": 7.416666666666667,
+          "std": 0.5204164998665333
+        },
+        "average_controller_interventions": {
+          "mean": 0,
+          "std": 0.0
+        }
+      }
+    },
+    {
+      "condition": "semantic_body_top1",
+      "repeats": [
+        {
+          "repeat": 0,
+          "episodes": 4,
+          "successes": 4,
+          "task_success_rate": 1.0,
+          "cost_usd": 0.0013535312,
+          "cost_per_successful_task_usd": 0.0003383828,
+          "average_input_tokens": 11811.75,
+          "average_output_tokens": 319.5,
+          "average_total_tokens": 12131.25,
+          "average_latency_ms": 11762.75,
+          "average_runner_ms": 12243,
+          "average_routing_ms": 3791.75,
+          "average_tool_calls": 7,
+          "average_score": 100,
+          "average_environment_moves": 4.5,
+          "average_environment_actions": 7,
+          "average_controller_interventions": 0,
+          "efficiency_per_1k_tokens": 0.0824317362184441
+        },
+        {
+          "repeat": 1,
+          "episodes": 4,
+          "successes": 4,
+          "task_success_rate": 1.0,
+          "cost_usd": 0.0011256392,
+          "cost_per_successful_task_usd": 0.0002814098,
+          "average_input_tokens": 10562.25,
+          "average_output_tokens": 301,
+          "average_total_tokens": 10863.25,
+          "average_latency_ms": 11306,
+          "average_runner_ms": 11786,
+          "average_routing_ms": 3815,
+          "average_tool_calls": 6.5,
+          "average_score": 100,
+          "average_environment_moves": 4.5,
+          "average_environment_actions": 6.5,
+          "average_controller_interventions": 0,
+          "efficiency_per_1k_tokens": 0.0920534830736658
+        },
+        {
+          "repeat": 2,
+          "episodes": 4,
+          "successes": 4,
+          "task_success_rate": 1.0,
+          "cost_usd": 0.0012033,
+          "cost_per_successful_task_usd": 0.000300825,
+          "average_input_tokens": 11816.75,
+          "average_output_tokens": 323.25,
+          "average_total_tokens": 12140,
+          "average_latency_ms": 12244.5,
+          "average_runner_ms": 12731.25,
+          "average_routing_ms": 4072,
+          "average_tool_calls": 7,
+          "average_score": 100,
+          "average_environment_moves": 4.5,
+          "average_environment_actions": 7,
+          "average_controller_interventions": 0,
+          "efficiency_per_1k_tokens": 0.08237232289950576
+        }
+      ],
+      "statistics": {
+        "task_success_rate": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "cost_per_successful_task_usd": {
+          "mean": 0.0003068725333333333,
+          "std": 2.896394615402626e-05
+        },
+        "efficiency_per_1k_tokens": {
+          "mean": 0.08561918073053855,
+          "std": 0.005572348469693581
+        },
+        "average_input_tokens": {
+          "mean": 11396.916666666666,
+          "std": 722.8468602223664
+        },
+        "average_output_tokens": {
+          "mean": 314.5833333333333,
+          "std": 11.91200374971958
+        },
+        "average_total_tokens": {
+          "mean": 11711.5,
+          "std": 734.6190764607192
+        },
+        "average_latency_ms": {
+          "mean": 11771.083333333334,
+          "std": 469.30549307815835
+        },
+        "average_runner_ms": {
+          "mean": 12253.416666666666,
+          "std": 472.71108600638223
+        },
+        "average_routing_ms": {
+          "mean": 3892.9166666666665,
+          "std": 155.52578832249438
+        },
+        "average_tool_calls": {
+          "mean": 6.833333333333333,
+          "std": 0.28867513459481287
+        },
+        "average_score": {
+          "mean": 100,
+          "std": 0.0
+        },
+        "average_environment_moves": {
+          "mean": 4.5,
+          "std": 0.0
+        },
+        "average_environment_actions": {
+          "mean": 6.833333333333333,
+          "std": 0.28867513459481287
+        },
+        "average_controller_interventions": {
+          "mean": 0,
+          "std": 0.0
+        }
+      }
+    }
+  ],
+  "body_flat_pairs": [
+    {
+      "task_id": "find-living-thing:v150",
+      "repeat": 0,
+      "same_skill_prompt": true,
+      "same_initial_observation": true,
+      "flat_success": true,
+      "body_success": true,
+      "body_minus_flat_total_tokens": -163,
+      "body_minus_flat_tool_calls": 0,
+      "body_minus_flat_runner_ms": 1107
+    },
+    {
+      "task_id": "find-living-thing:v150",
+      "repeat": 1,
+      "same_skill_prompt": true,
+      "same_initial_observation": true,
+      "flat_success": true,
+      "body_success": true,
+      "body_minus_flat_total_tokens": 0,
+      "body_minus_flat_tool_calls": 0,
+      "body_minus_flat_runner_ms": -1066
+    },
+    {
+      "task_id": "find-living-thing:v150",
+      "repeat": 2,
+      "same_skill_prompt": true,
+      "same_initial_observation": true,
+      "flat_success": true,
+      "body_success": true,
+      "body_minus_flat_total_tokens": 0,
+      "body_minus_flat_tool_calls": 0,
+      "body_minus_flat_runner_ms": 202
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 0,
+      "same_skill_prompt": true,
+      "same_initial_observation": true,
+      "flat_success": true,
+      "body_success": true,
+      "body_minus_flat_total_tokens": 5197,
+      "body_minus_flat_tool_calls": 2,
+      "body_minus_flat_runner_ms": 1907
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 1,
+      "same_skill_prompt": true,
+      "same_initial_observation": true,
+      "flat_success": true,
+      "body_success": true,
+      "body_minus_flat_total_tokens": -5087,
+      "body_minus_flat_tool_calls": -2,
+      "body_minus_flat_runner_ms": -1117
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 2,
+      "same_skill_prompt": true,
+      "same_initial_observation": true,
+      "flat_success": true,
+      "body_success": true,
+      "body_minus_flat_total_tokens": -5369,
+      "body_minus_flat_tool_calls": -2,
+      "body_minus_flat_runner_ms": -2616
+    },
+    {
+      "task_id": "find-non-living-thing:v150",
+      "repeat": 0,
+      "same_skill_prompt": false,
+      "same_initial_observation": true,
+      "flat_success": true,
+      "body_success": true,
+      "body_minus_flat_total_tokens": -1604,
+      "body_minus_flat_tool_calls": -1,
+      "body_minus_flat_runner_ms": 185
+    },
+    {
+      "task_id": "find-non-living-thing:v150",
+      "repeat": 1,
+      "same_skill_prompt": false,
+      "same_initial_observation": true,
+      "flat_success": true,
+      "body_success": true,
+      "body_minus_flat_total_tokens": -1648,
+      "body_minus_flat_tool_calls": -1,
+      "body_minus_flat_runner_ms": -521
+    },
+    {
+      "task_id": "find-non-living-thing:v150",
+      "repeat": 2,
+      "same_skill_prompt": false,
+      "same_initial_observation": true,
+      "flat_success": true,
+      "body_success": true,
+      "body_minus_flat_total_tokens": -1628,
+      "body_minus_flat_tool_calls": -1,
+      "body_minus_flat_runner_ms": -705
+    },
+    {
+      "task_id": "find-non-living-thing:v151",
+      "repeat": 0,
+      "same_skill_prompt": false,
+      "same_initial_observation": true,
+      "flat_success": true,
+      "body_success": true,
+      "body_minus_flat_total_tokens": -1597,
+      "body_minus_flat_tool_calls": -1,
+      "body_minus_flat_runner_ms": -1163
+    },
+    {
+      "task_id": "find-non-living-thing:v151",
+      "repeat": 1,
+      "same_skill_prompt": false,
+      "same_initial_observation": true,
+      "flat_success": true,
+      "body_success": true,
+      "body_minus_flat_total_tokens": -76,
+      "body_minus_flat_tool_calls": 0,
+      "body_minus_flat_runner_ms": -1074
+    },
+    {
+      "task_id": "find-non-living-thing:v151",
+      "repeat": 2,
+      "same_skill_prompt": false,
+      "same_initial_observation": true,
+      "flat_success": true,
+      "body_success": true,
+      "body_minus_flat_total_tokens": -1685,
+      "body_minus_flat_tool_calls": -1,
+      "body_minus_flat_runner_ms": -2492
+    }
+  ],
+  "trace_commands": [
+    {
+      "task_id": "find-non-living-thing:v150",
+      "repeat": 0,
+      "condition": "semantic_flat_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        null
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "focus on stopwatch",
+        "pick up stopwatch",
+        "move stopwatch to red box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v150",
+      "repeat": 0,
+      "condition": "no_skill",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "focus on stopwatch",
+        "pick up stopwatch",
+        "move stopwatch to red box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v150",
+      "repeat": 0,
+      "condition": "semantic_body_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-nonliving-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "3d4c1f96f2cf5d0069f9be6242652f423f74fee35228223d888569fe845fe9b8",
+      "commands": [
+        "look around",
+        "focus on lighter",
+        "move lighter to red box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 0,
+      "condition": "semantic_flat_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "go to the hallway",
+        "look around",
+        "go to the greenhouse",
+        "look around",
+        "focus on the pea plant in flower pot 1",
+        "pick up the pea plant",
+        "go to the hallway",
+        "go to the kitchen",
+        "move the pea plant to the green box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 0,
+      "condition": "no_skill",
+      "success": false,
+      "score": -100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "task",
+        "focus on potato"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 0,
+      "condition": "semantic_body_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "go to the hallway",
+        "look around",
+        "go to the greenhouse",
+        "look around",
+        "focus on the pea plant in flower pot 1",
+        "pick up the pea plant",
+        "go to the kitchen",
+        "go to kitchen",
+        "go to the hallway",
+        "go to the kitchen",
+        "move the pea plant to the green box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v150",
+      "repeat": 0,
+      "condition": "semantic_flat_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "go to the hallway",
+        "look around",
+        "go to the greenhouse",
+        "look around",
+        "focus on the pea plant in flower pot 3",
+        "pick up the pea plant",
+        "go to the hallway",
+        "go to the kitchen",
+        "move the pea plant to the red box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v150",
+      "repeat": 0,
+      "condition": "semantic_body_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "go to the hallway",
+        "look around",
+        "go to the greenhouse",
+        "look around",
+        "focus on the pea plant in flower pot 3",
+        "pick up the pea plant",
+        "go to the hallway",
+        "go to the kitchen",
+        "move the pea plant to the red box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v150",
+      "repeat": 0,
+      "condition": "no_skill",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "examine bowl",
+        "go to bathroom",
+        "look around",
+        "go to hallway",
+        "go to kitchen",
+        "go to hallway",
+        "look around",
+        "go to greenhouse",
+        "look around",
+        "focus on pea plant",
+        "pick up pea plant",
+        "go to hallway",
+        "go to kitchen",
+        "move pea plant to red box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v151",
+      "repeat": 0,
+      "condition": "semantic_flat_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        null
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "focus on stopwatch",
+        "pick up stopwatch",
+        "move stopwatch to green box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v151",
+      "repeat": 0,
+      "condition": "semantic_body_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-nonliving-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "3d4c1f96f2cf5d0069f9be6242652f423f74fee35228223d888569fe845fe9b8",
+      "commands": [
+        "look around",
+        "focus on stopwatch",
+        "move stopwatch to green box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v151",
+      "repeat": 0,
+      "condition": "no_skill",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "focus on stopwatch",
+        "move stopwatch to green box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 1,
+      "condition": "no_skill",
+      "success": false,
+      "score": -100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "examine bowl",
+        "focus on potato"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 1,
+      "condition": "semantic_body_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "go to the hallway",
+        "look around",
+        "go to the greenhouse",
+        "look around",
+        "focus on the pea plant in flower pot 1",
+        "pick up the pea plant",
+        "go to the hallway",
+        "go to the kitchen",
+        "move the pea plant to the green box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 1,
+      "condition": "semantic_flat_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "go to the hallway",
+        "look around",
+        "go to the greenhouse",
+        "look around",
+        "focus on the pea plant in flower pot 1",
+        "pick up the pea plant",
+        "go to the kitchen",
+        "go to kitchen",
+        "go to the hallway",
+        "go to the kitchen",
+        "move the pea plant to the green box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v150",
+      "repeat": 1,
+      "condition": "no_skill",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "task",
+        "focus on stopwatch",
+        "move stopwatch to red box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v150",
+      "repeat": 1,
+      "condition": "semantic_body_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-nonliving-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "3d4c1f96f2cf5d0069f9be6242652f423f74fee35228223d888569fe845fe9b8",
+      "commands": [
+        "look around",
+        "focus on stopwatch",
+        "move stopwatch to red box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v150",
+      "repeat": 1,
+      "condition": "semantic_flat_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        null
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "focus on stopwatch",
+        "pick up stopwatch",
+        "move stopwatch to red box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v151",
+      "repeat": 1,
+      "condition": "semantic_body_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-nonliving-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "3d4c1f96f2cf5d0069f9be6242652f423f74fee35228223d888569fe845fe9b8",
+      "commands": [
+        "look around",
+        "focus on stopwatch",
+        "move stopwatch to green box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v151",
+      "repeat": 1,
+      "condition": "no_skill",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "task",
+        "focus on stopwatch",
+        "move stopwatch to green box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v151",
+      "repeat": 1,
+      "condition": "semantic_flat_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        null
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "focus on lighter",
+        "move lighter to green box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v150",
+      "repeat": 1,
+      "condition": "semantic_body_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "go to the hallway",
+        "look around",
+        "go to the greenhouse",
+        "look around",
+        "focus on the pea plant in flower pot 3",
+        "pick up the pea plant",
+        "go to the hallway",
+        "go to the kitchen",
+        "move the pea plant to the red box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v150",
+      "repeat": 1,
+      "condition": "no_skill",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "go to bathroom",
+        "look around",
+        "go to hallway",
+        "go to kitchen",
+        "go to hallway",
+        "look around",
+        "go to greenhouse",
+        "look around",
+        "focus on the pea plant",
+        "pick up the pea plant",
+        "go to hallway",
+        "go to kitchen",
+        "move the pea plant to the red box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v150",
+      "repeat": 1,
+      "condition": "semantic_flat_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "go to the hallway",
+        "look around",
+        "go to the greenhouse",
+        "look around",
+        "focus on the pea plant in flower pot 3",
+        "pick up the pea plant",
+        "go to the hallway",
+        "go to the kitchen",
+        "move the pea plant to the red box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v150",
+      "repeat": 2,
+      "condition": "semantic_body_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-nonliving-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "3d4c1f96f2cf5d0069f9be6242652f423f74fee35228223d888569fe845fe9b8",
+      "commands": [
+        "look around",
+        "focus on stopwatch",
+        "move stopwatch to red box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v150",
+      "repeat": 2,
+      "condition": "semantic_flat_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        null
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "focus on stopwatch",
+        "pick up stopwatch",
+        "move stopwatch to red box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v150",
+      "repeat": 2,
+      "condition": "no_skill",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "task",
+        "focus on stopwatch",
+        "pick up stopwatch",
+        "move stopwatch to red box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v151",
+      "repeat": 2,
+      "condition": "no_skill",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "task",
+        "focus on stopwatch",
+        "pick up stopwatch",
+        "move stopwatch to green box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v151",
+      "repeat": 2,
+      "condition": "semantic_flat_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        null
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "focus on stopwatch",
+        "pick up stopwatch",
+        "move stopwatch to green box"
+      ]
+    },
+    {
+      "task_id": "find-non-living-thing:v151",
+      "repeat": 2,
+      "condition": "semantic_body_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-nonliving-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "3d4c1f96f2cf5d0069f9be6242652f423f74fee35228223d888569fe845fe9b8",
+      "commands": [
+        "look around",
+        "focus on stopwatch",
+        "move stopwatch to green box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v150",
+      "repeat": 2,
+      "condition": "no_skill",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "go to bathroom",
+        "look around",
+        "go to hallway",
+        "go to kitchen",
+        "go to hallway",
+        "look around",
+        "go to greenhouse",
+        "look around",
+        "focus on the pea plant",
+        "pick up the pea plant",
+        "go to hallway",
+        "go to kitchen",
+        "move the pea plant to the red box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v150",
+      "repeat": 2,
+      "condition": "semantic_flat_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "go to the hallway",
+        "look around",
+        "go to the greenhouse",
+        "look around",
+        "focus on the pea plant in flower pot 3",
+        "pick up the pea plant",
+        "go to the hallway",
+        "go to the kitchen",
+        "move the pea plant to the red box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v150",
+      "repeat": 2,
+      "condition": "semantic_body_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "go to the hallway",
+        "look around",
+        "go to the greenhouse",
+        "look around",
+        "focus on the pea plant in flower pot 3",
+        "pick up the pea plant",
+        "go to the hallway",
+        "go to the kitchen",
+        "move the pea plant to the red box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 2,
+      "condition": "semantic_body_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "go to the hallway",
+        "look around",
+        "go to the greenhouse",
+        "look around",
+        "focus on the pea plant in flower pot 1",
+        "pick up the pea plant",
+        "go to the kitchen",
+        "go to kitchen",
+        "go to the hallway",
+        "go to the kitchen",
+        "move the pea plant to the green box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 2,
+      "condition": "semantic_flat_top1",
+      "success": true,
+      "score": 100,
+      "skills_loaded": [
+        "find-living-object"
+      ],
+      "gold_skill_ranks": [
+        1
+      ],
+      "skill_prompt_sha256": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+      "commands": [
+        "look around",
+        "go to the bathroom",
+        "look around",
+        "go to the hallway",
+        "go to kitchen",
+        "go to the hallway",
+        "look around",
+        "go to the greenhouse",
+        "look around",
+        "focus on the pea plant in flower pot 1",
+        "pick up the pea plant",
+        "go to the hallway",
+        "go to the kitchen",
+        "move the pea plant to the green box"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 2,
+      "condition": "no_skill",
+      "success": false,
+      "score": -100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "examine bowl",
+        "focus on potato"
+      ]
+    }
+  ],
+  "failures": [
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 0,
+      "condition": "no_skill",
+      "success": false,
+      "score": -100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "task",
+        "focus on potato"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 1,
+      "condition": "no_skill",
+      "success": false,
+      "score": -100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "examine bowl",
+        "focus on potato"
+      ]
+    },
+    {
+      "task_id": "find-living-thing:v151",
+      "repeat": 2,
+      "condition": "no_skill",
+      "success": false,
+      "score": -100,
+      "skills_loaded": [],
+      "gold_skill_ranks": [],
+      "skill_prompt_sha256": null,
+      "commands": [
+        "look around",
+        "examine bowl",
+        "focus on potato"
+      ]
+    }
+  ],
+  "metric_notes": {
+    "end_to_end": "runner_ms includes environment creation and close",
+    "latency_ms": "legacy scope excludes environment creation and close",
+    "cost": "frozen historical accounting; not a verified provider bill",
+    "uncertainty": "sample std across three repeats; not a confidence interval"
+  },
+  "source_sha256": {
+    "results/scienceworld_top1_pilot.jsonl": "4b2d306460a14ad20a4cc4b0b8d5397ef8d931ec32d5d4a3daa6fd06ece61ff4",
+    "results/scienceworld_top1_pilot_manifest.json": "082c5c7018a6bf6b41df6dae6884eadb0158f8a7c5a844a661ba52ea2990ef41",
+    "scienceworld_top1_analysis.py": "86bd15d48ec658ddb17889f85070ecf86cc7387e040d9904f05d10ddaaa58f6f"
+  }
+}
