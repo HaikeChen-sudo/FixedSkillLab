@@ -1,0 +1,44 @@
+{
+  "api_calls": 0,
+  "cases": [
+    {
+      "initial_observation_sha256": "9d5a14ee4b50e4948076dbe721ed91539377f0d1eddd2ed549705267c9209b1c",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to find a(n) non-living thing. First, focus on the thing. Then, move it to the blue box in the kitchen.",
+      "query_sha256": "d8dc1c6cf75ed0d85ddeafafe82f93b786a4c2eb5cadabb16defd788ec74800e",
+      "task_id": "find-non-living-thing:v152",
+      "task_name": "find-non-living-thing",
+      "variation": 152
+    },
+    {
+      "initial_observation_sha256": "f2fb061defd8bd34b528cce309d1c83aeddc2173c98d711d403891ff7d0300bb",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to find a(n) non-living thing. First, focus on the thing. Then, move it to the orange box in the kitchen.",
+      "query_sha256": "af139f9632c0ffc9e147f2bdbaac41c942881cbe29d1492c615952f7ee047b1c",
+      "task_id": "find-non-living-thing:v153",
+      "task_name": "find-non-living-thing",
+      "variation": 153
+    },
+    {
+      "initial_observation_sha256": "76edd3545c4d3120568d9bac854654cb3d0b11c3ce40c3cfd6fddc4e4e466500",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to find a(n) non-living thing. First, focus on the thing. Then, move it to the yellow box in the kitchen.",
+      "query_sha256": "6620e49ceca27038638374abeb7c0389801c92ae85b31d8498e3890f9669b1b7",
+      "task_id": "find-non-living-thing:v154",
+      "task_name": "find-non-living-thing",
+      "variation": 154
+    },
+    {
+      "initial_observation_sha256": "b04cb773f98712f3f5cdcf85948e5397d10669cda19354e758e62c54ca83c755",
+      "previously_seen_query": false,
+      "query": "Task Description:\nYour task is to find a(n) non-living thing. First, focus on the thing. Then, move it to the purple box in the kitchen.",
+      "query_sha256": "859e7e77acfe2e0130fc11d0c76e18ae774bdf60baecd1a7c3e68063102d3cb5",
+      "task_id": "find-non-living-thing:v155",
+      "task_name": "find-non-living-thing",
+      "variation": 155
+    }
+  ],
+  "environment_actions": 0,
+  "gold_paths_generated": 0,
+  "manifest_sha256": "8942ef7903c73fa6c9a46fbe6a9e50905634009b8651602477c65556dcb2c944"
+}

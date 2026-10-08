@@ -1,6 +1,7 @@
 import copy
 import json
 import unittest
+from unittest.mock import patch
 
 import scienceworld_top1_analysis as analysis
 
@@ -16,6 +17,10 @@ class Top1AnalysisTests(unittest.TestCase):
         self.assertEqual([r["successes"] for r in result["condition_summary"]], [9, 12, 12])
         self.assertEqual({r["task_id"] for r in result["failures"]}, {"find-living-thing:v151"})
         self.assertEqual(sum(r["same_skill_prompt"] for r in result["body_flat_pairs"]), 6)
+
+    def test_historical_analysis_does_not_require_current_agent_hash(self):
+        with patch.object(analysis.pilot, "current_manifest", side_effect=AssertionError("No live protocol rebuild")):
+            self.assertEqual(analysis.build_analysis()["episodes"], 36)
 
     def test_missing_duplicate_and_extra_records_rejected(self):
         for rows in (self.rows[:-1], self.rows[:-1] + [self.rows[0]], self.rows + [self.rows[0]]):

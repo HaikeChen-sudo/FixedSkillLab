@@ -7,7 +7,7 @@ import time
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from agent import DeepSeekChatClient
 from scienceworld_retrieval import EMBEDDER_NAME, retrieve
@@ -84,6 +84,29 @@ class SkillSelection:
     gold_skills: List[str]
     library_version: Optional[str]
     retrieval_metadata: Optional[Dict[str, Any]] = None
+
+
+@dataclass(frozen=True)
+class FixedGuidance:
+    condition: str
+    task_name: str
+    task_description: str
+    names: Tuple[str, ...]
+    prompt: str
+    library_version: Optional[str]
+    library_sha256: Optional[str]
+
+    def validate(self, condition: str, task_name: str) -> None:
+        allowed = {"no_skill", "content_correct", "content_mismatched", "content_pickup_required"}
+        if (condition not in allowed or condition != self.condition or task_name != self.task_name
+                or task_name != "find-non-living-thing" or not self.task_description.strip()):
+            raise ValueError("Fixed content guidance does not match this episode")
+        if condition == "no_skill":
+            if self.names or self.prompt or self.library_version or self.library_sha256:
+                raise ValueError("No Skill must not contain fixed guidance")
+        elif (len(self.names) != 1 or not self.prompt.strip() or not self.library_version
+              or not self.library_sha256 or len(self.library_sha256) != 64):
+            raise ValueError("Fixed guidance needs one complete versioned Skill")
 
 
 def objective_success(score: int) -> bool:
@@ -245,8 +268,11 @@ def run_episode(
     condition: str,
     *,
     environment_max_steps: Optional[int] = None,
+    fixed_guidance: Optional[FixedGuidance] = None,
 ) -> Dict[str, Any]:
     limit = environment_limit(max_steps, environment_max_steps)
+    if fixed_guidance is not None:
+        fixed_guidance.validate(condition, task_name)
     env = make_env(limit)
     started = time.perf_counter()
     trace: List[Dict[str, Any]] = []
@@ -256,7 +282,14 @@ def run_episode(
         task_description = info["taskDesc"]
         initial_observation_sha256 = hashlib.sha256(observation.encode("utf-8")).hexdigest()
         routing_started = time.perf_counter()
-        selection = skill_selection(condition, task_name, task_description)
+        if fixed_guidance is not None:
+            # Reject task drift before creating a paid client.
+            if task_description != fixed_guidance.task_description:
+                raise ValueError("Environment task differs from the frozen content query")
+            selection = SkillSelection(list(fixed_guidance.names), [], [], None,
+                                       [ALL_GOLD_SKILLS[task_name]], fixed_guidance.library_version)
+        else:
+            selection = skill_selection(condition, task_name, task_description)
         routing_ms = round((time.perf_counter() - routing_started) * 1000)
         selected = selection.names
         skill_version = selection.library_version
@@ -266,7 +299,8 @@ def run_episode(
             "oracle_v3_metadata": "metadata_only",
             "oracle_v3_placebo": "placebo",
         }.get(condition, "full")
-        skill_prompt = loaded_skill_text(selected, skill_version, skill_render_mode) if selected else ""
+        skill_prompt = (fixed_guidance.prompt if fixed_guidance is not None else
+                        loaded_skill_text(selected, skill_version, skill_render_mode) if selected else "")
         is_t_condition = condition in {
             "t_horizontal", "t_vertical", "t_full",
             "t2_horizontal", "t2_vertical", "t2_full",
@@ -460,7 +494,9 @@ def run_episode(
             "retrieval": selection.retrieved,
             "retrieval_rank": min((rank for rank in selection.gold_skill_ranks if rank is not None), default=None),
             "skill_library_version": skill_version,
-            "skill_library_sha256": library_hash(skill_version) if skill_version else None,
+            "skill_library_sha256": (fixed_guidance.library_sha256 if fixed_guidance is not None else
+                                    library_hash(skill_version) if skill_version else None),
+            **({"fixed_guidance_version": "fixed-content-v1"} if fixed_guidance is not None else {}),
             "skill_render_mode": skill_render_mode if selected else None,
             "skill_prompt_sha256": hashlib.sha256(skill_prompt.encode("utf-8")).hexdigest() if selected else None,
             "skill_architecture": "t_shaped" if is_t_condition else ("none" if condition == "no_skill" else "flat"),

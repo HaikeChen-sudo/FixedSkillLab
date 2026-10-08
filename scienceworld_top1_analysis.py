@@ -92,8 +92,9 @@ def analyze(rows):
 
 def build_analysis():
     manifest = json.loads(pilot.MANIFEST.read_text())
-    if manifest != pilot.current_manifest():
-        raise ValueError("Frozen protocol or its source files changed")
+    # Read historical evidence against its saved protocol, not today's Agent implementation.
+    if manifest["run_id"] != pilot.RUN_ID or manifest["episode_plan"] != pilot.plan():
+        raise ValueError("Frozen run identity or plan changed")
     records = pilot.saved_records(pilot.RESULTS, manifest, sha(pilot.MANIFEST))
     result = analyze(list(records.values()))
     result["source_sha256"] = {str(p.relative_to(ROOT)): sha(p) for p in

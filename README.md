@@ -4,6 +4,16 @@
 
 定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v10 发现与确认报告](output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf) · [ScienceWorld v11b 平衡确认报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)
 
+## 已准备：固定内容消融
+
+[四组内容消融协议](docs/research/scienceworld_content_dev_protocol_2026-10-08.md)已冻结：非生物任务 v152–v155 × 无 Skill、正确 Skill、固定错配 Skill、仅第三步要求先拾取 × 三次重复，共 48 个 episode。四组都不运行 Router；已通过本地环境核对，付费运行尚未开始。新实例只改变目标盒子颜色，结果应限于这个局部动作机制，不能称为跨任务泛化。
+
+```sh
+python3 scienceworld_content_pilot.py --status
+```
+
+只有显式执行 `--execute --resume` 才调用付费模型。旧原始数据不变；旧执行清单因 Agent 文件哈希变化可能拒绝续跑，应使用对应 Git 版本，不能改写旧清单。Top-1 只读分析已改为对照保存时的清单验证历史记录，不要求当前 Agent 源码与历史版本相同；重新生成分析应指定新输出路径，保留旧文件。
+
 ## 最近完成的开发诊断
 
 [ScienceWorld Top-1 机制诊断](docs/research/scienceworld_top1_mechanism_results_2026-10-08.md)已完成 36 个 episode：No Skill 成功 9/12，Semantic Flat Top-1 与 Semantic Body Top-1 均为 12/12。Body 的平均 Total Tokens 比 Flat 少 8.9%，但约四成差额来自加载相同 Skill 的任务，不能全部归因于正文检索。本轮只有四个针对性选择的 dev 实例，不是独立确认。报告保留六项主指标、逐题轨迹解释和下一轮内容机制设计建议；没有启动新的付费实验。
