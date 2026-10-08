@@ -1,0 +1,748 @@
+{
+  "agent_max_steps": 100,
+  "cases": {
+    "find-living-thing:v150": {
+      "gold_rank": {
+        "body": 1,
+        "flat": 1
+      },
+      "gold_skill": "find-living-object",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+          "3": "244639d4ce0feab9147bef86c22717f512b43f8b420d081018a07e091b931e4d"
+        },
+        "flat": {
+          "1": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+          "3": "244639d4ce0feab9147bef86c22717f512b43f8b420d081018a07e091b931e4d"
+        }
+      },
+      "query": "Task Description:\nYour task is to find a(n) living thing. First, focus on the thing. Then, move it to the red box in the kitchen.",
+      "query_sha256": "ab7a89e9d11287870f3f0df1822e7b4812a31fab9e29911e49644dc59617704d",
+      "ranking": {
+        "body": [
+          {
+            "name": "find-living-object",
+            "rank": 1,
+            "score": 0.558277
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 2,
+            "score": 0.523467
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.293312
+          },
+          {
+            "name": "melt-substance",
+            "rank": 4,
+            "score": 0.266966
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 5,
+            "score": 0.252272
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.203098
+          }
+        ],
+        "flat": [
+          {
+            "name": "find-living-object",
+            "rank": 1,
+            "score": 0.603138
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 2,
+            "score": 0.51303
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.316882
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.205133
+          },
+          {
+            "name": "melt-substance",
+            "rank": 5,
+            "score": 0.161912
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.138479
+          }
+        ]
+      },
+      "task_id": "find-living-thing:v150",
+      "task_name": "find-living-thing",
+      "top1": {
+        "body": "find-living-object",
+        "flat": "find-living-object"
+      },
+      "top3": {
+        "body": [
+          "find-living-object",
+          "find-nonliving-object",
+          "measure-and-classify-temperature"
+        ],
+        "flat": [
+          "find-living-object",
+          "find-nonliving-object",
+          "measure-and-classify-temperature"
+        ]
+      },
+      "variation": 150
+    },
+    "find-living-thing:v151": {
+      "gold_rank": {
+        "body": 1,
+        "flat": 1
+      },
+      "gold_skill": "find-living-object",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+          "3": "244639d4ce0feab9147bef86c22717f512b43f8b420d081018a07e091b931e4d"
+        },
+        "flat": {
+          "1": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+          "3": "244639d4ce0feab9147bef86c22717f512b43f8b420d081018a07e091b931e4d"
+        }
+      },
+      "query": "Task Description:\nYour task is to find a(n) living thing. First, focus on the thing. Then, move it to the green box in the kitchen.",
+      "query_sha256": "4f8e5c2d28de452669bb9930b2800f76a9c785c7ec784051c778d108737e29a4",
+      "ranking": {
+        "body": [
+          {
+            "name": "find-living-object",
+            "rank": 1,
+            "score": 0.588358
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 2,
+            "score": 0.527973
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.279419
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.245411
+          },
+          {
+            "name": "melt-substance",
+            "rank": 5,
+            "score": 0.242254
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.192428
+          }
+        ],
+        "flat": [
+          {
+            "name": "find-living-object",
+            "rank": 1,
+            "score": 0.61081
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 2,
+            "score": 0.509277
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.300334
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.198958
+          },
+          {
+            "name": "melt-substance",
+            "rank": 5,
+            "score": 0.139804
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.130345
+          }
+        ]
+      },
+      "task_id": "find-living-thing:v151",
+      "task_name": "find-living-thing",
+      "top1": {
+        "body": "find-living-object",
+        "flat": "find-living-object"
+      },
+      "top3": {
+        "body": [
+          "find-living-object",
+          "find-nonliving-object",
+          "measure-and-classify-temperature"
+        ],
+        "flat": [
+          "find-living-object",
+          "find-nonliving-object",
+          "measure-and-classify-temperature"
+        ]
+      },
+      "variation": 151
+    },
+    "find-non-living-thing:v150": {
+      "gold_rank": {
+        "body": 1,
+        "flat": 2
+      },
+      "gold_skill": "find-nonliving-object",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "3d4c1f96f2cf5d0069f9be6242652f423f74fee35228223d888569fe845fe9b8",
+          "3": "d203ac244b46d4fe69b7736b22f1c29271d9100386879ddc6cfd4a9a11a6abc5"
+        },
+        "flat": {
+          "1": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+          "3": "244639d4ce0feab9147bef86c22717f512b43f8b420d081018a07e091b931e4d"
+        }
+      },
+      "query": "Task Description:\nYour task is to find a(n) non-living thing. First, focus on the thing. Then, move it to the red box in the kitchen.",
+      "query_sha256": "7b4d2f774177ea225b7af693107500e9d6ac88c176bdafaffe845a6e21c988f4",
+      "ranking": {
+        "body": [
+          {
+            "name": "find-nonliving-object",
+            "rank": 1,
+            "score": 0.586626
+          },
+          {
+            "name": "find-living-object",
+            "rank": 2,
+            "score": 0.557349
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.291176
+          },
+          {
+            "name": "melt-substance",
+            "rank": 4,
+            "score": 0.287207
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 5,
+            "score": 0.273455
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.223629
+          }
+        ],
+        "flat": [
+          {
+            "name": "find-living-object",
+            "rank": 1,
+            "score": 0.603825
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 2,
+            "score": 0.578561
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.328202
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.220203
+          },
+          {
+            "name": "melt-substance",
+            "rank": 5,
+            "score": 0.190316
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.162135
+          }
+        ]
+      },
+      "task_id": "find-non-living-thing:v150",
+      "task_name": "find-non-living-thing",
+      "top1": {
+        "body": "find-nonliving-object",
+        "flat": "find-living-object"
+      },
+      "top3": {
+        "body": [
+          "find-nonliving-object",
+          "find-living-object",
+          "measure-and-classify-temperature"
+        ],
+        "flat": [
+          "find-living-object",
+          "find-nonliving-object",
+          "measure-and-classify-temperature"
+        ]
+      },
+      "variation": 150
+    },
+    "find-non-living-thing:v151": {
+      "gold_rank": {
+        "body": 1,
+        "flat": 2
+      },
+      "gold_skill": "find-nonliving-object",
+      "previously_seen_query": false,
+      "prompt_sha256": {
+        "body": {
+          "1": "3d4c1f96f2cf5d0069f9be6242652f423f74fee35228223d888569fe845fe9b8",
+          "3": "d203ac244b46d4fe69b7736b22f1c29271d9100386879ddc6cfd4a9a11a6abc5"
+        },
+        "flat": {
+          "1": "89666b02160ba073fc7cbca4541996b006032cf46682c1ea5d0893dca3680424",
+          "3": "244639d4ce0feab9147bef86c22717f512b43f8b420d081018a07e091b931e4d"
+        }
+      },
+      "query": "Task Description:\nYour task is to find a(n) non-living thing. First, focus on the thing. Then, move it to the green box in the kitchen.",
+      "query_sha256": "8f0d79216bc49278617d057beceea4eaa2ee4659e4aa29d3d10328fc7d6b5db9",
+      "ranking": {
+        "body": [
+          {
+            "name": "find-nonliving-object",
+            "rank": 1,
+            "score": 0.593547
+          },
+          {
+            "name": "find-living-object",
+            "rank": 2,
+            "score": 0.588802
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.276867
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.266886
+          },
+          {
+            "name": "melt-substance",
+            "rank": 5,
+            "score": 0.261236
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.212516
+          }
+        ],
+        "flat": [
+          {
+            "name": "find-living-object",
+            "rank": 1,
+            "score": 0.612911
+          },
+          {
+            "name": "find-nonliving-object",
+            "rank": 2,
+            "score": 0.578236
+          },
+          {
+            "name": "measure-and-classify-temperature",
+            "rank": 3,
+            "score": 0.311478
+          },
+          {
+            "name": "freeze-substance",
+            "rank": 4,
+            "score": 0.214013
+          },
+          {
+            "name": "melt-substance",
+            "rank": 5,
+            "score": 0.167361
+          },
+          {
+            "name": "boil-substance",
+            "rank": 6,
+            "score": 0.153833
+          }
+        ]
+      },
+      "task_id": "find-non-living-thing:v151",
+      "task_name": "find-non-living-thing",
+      "top1": {
+        "body": "find-nonliving-object",
+        "flat": "find-living-object"
+      },
+      "top3": {
+        "body": [
+          "find-nonliving-object",
+          "find-living-object",
+          "measure-and-classify-temperature"
+        ],
+        "flat": [
+          "find-living-object",
+          "find-nonliving-object",
+          "measure-and-classify-temperature"
+        ]
+      },
+      "variation": 151
+    }
+  },
+  "cost_stop_usd": 0.25,
+  "environment_max_steps": 100,
+  "episode_plan": [
+    {
+      "condition": "semantic_flat_top1",
+      "order_position": 0,
+      "plan_index": 0,
+      "repeat": 0,
+      "task_name": "find-non-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "no_skill",
+      "order_position": 1,
+      "plan_index": 1,
+      "repeat": 0,
+      "task_name": "find-non-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_body_top1",
+      "order_position": 2,
+      "plan_index": 2,
+      "repeat": 0,
+      "task_name": "find-non-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "order_position": 0,
+      "plan_index": 3,
+      "repeat": 0,
+      "task_name": "find-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "no_skill",
+      "order_position": 1,
+      "plan_index": 4,
+      "repeat": 0,
+      "task_name": "find-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "semantic_body_top1",
+      "order_position": 2,
+      "plan_index": 5,
+      "repeat": 0,
+      "task_name": "find-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "order_position": 0,
+      "plan_index": 6,
+      "repeat": 0,
+      "task_name": "find-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_body_top1",
+      "order_position": 1,
+      "plan_index": 7,
+      "repeat": 0,
+      "task_name": "find-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "no_skill",
+      "order_position": 2,
+      "plan_index": 8,
+      "repeat": 0,
+      "task_name": "find-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "order_position": 0,
+      "plan_index": 9,
+      "repeat": 0,
+      "task_name": "find-non-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "semantic_body_top1",
+      "order_position": 1,
+      "plan_index": 10,
+      "repeat": 0,
+      "task_name": "find-non-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "no_skill",
+      "order_position": 2,
+      "plan_index": 11,
+      "repeat": 0,
+      "task_name": "find-non-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "no_skill",
+      "order_position": 0,
+      "plan_index": 12,
+      "repeat": 1,
+      "task_name": "find-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "semantic_body_top1",
+      "order_position": 1,
+      "plan_index": 13,
+      "repeat": 1,
+      "task_name": "find-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "order_position": 2,
+      "plan_index": 14,
+      "repeat": 1,
+      "task_name": "find-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "no_skill",
+      "order_position": 0,
+      "plan_index": 15,
+      "repeat": 1,
+      "task_name": "find-non-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_body_top1",
+      "order_position": 1,
+      "plan_index": 16,
+      "repeat": 1,
+      "task_name": "find-non-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "order_position": 2,
+      "plan_index": 17,
+      "repeat": 1,
+      "task_name": "find-non-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_body_top1",
+      "order_position": 0,
+      "plan_index": 18,
+      "repeat": 1,
+      "task_name": "find-non-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "no_skill",
+      "order_position": 1,
+      "plan_index": 19,
+      "repeat": 1,
+      "task_name": "find-non-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "order_position": 2,
+      "plan_index": 20,
+      "repeat": 1,
+      "task_name": "find-non-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "semantic_body_top1",
+      "order_position": 0,
+      "plan_index": 21,
+      "repeat": 1,
+      "task_name": "find-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "no_skill",
+      "order_position": 1,
+      "plan_index": 22,
+      "repeat": 1,
+      "task_name": "find-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "order_position": 2,
+      "plan_index": 23,
+      "repeat": 1,
+      "task_name": "find-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_body_top1",
+      "order_position": 0,
+      "plan_index": 24,
+      "repeat": 2,
+      "task_name": "find-non-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "order_position": 1,
+      "plan_index": 25,
+      "repeat": 2,
+      "task_name": "find-non-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "no_skill",
+      "order_position": 2,
+      "plan_index": 26,
+      "repeat": 2,
+      "task_name": "find-non-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "no_skill",
+      "order_position": 0,
+      "plan_index": 27,
+      "repeat": 2,
+      "task_name": "find-non-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "order_position": 1,
+      "plan_index": 28,
+      "repeat": 2,
+      "task_name": "find-non-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "semantic_body_top1",
+      "order_position": 2,
+      "plan_index": 29,
+      "repeat": 2,
+      "task_name": "find-non-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "no_skill",
+      "order_position": 0,
+      "plan_index": 30,
+      "repeat": 2,
+      "task_name": "find-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "order_position": 1,
+      "plan_index": 31,
+      "repeat": 2,
+      "task_name": "find-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_body_top1",
+      "order_position": 2,
+      "plan_index": 32,
+      "repeat": 2,
+      "task_name": "find-living-thing",
+      "variation": 150
+    },
+    {
+      "condition": "semantic_body_top1",
+      "order_position": 0,
+      "plan_index": 33,
+      "repeat": 2,
+      "task_name": "find-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "semantic_flat_top1",
+      "order_position": 1,
+      "plan_index": 34,
+      "repeat": 2,
+      "task_name": "find-living-thing",
+      "variation": 151
+    },
+    {
+      "condition": "no_skill",
+      "order_position": 2,
+      "plan_index": 35,
+      "repeat": 2,
+      "task_name": "find-living-thing",
+      "variation": 151
+    }
+  ],
+  "file_sha256": {
+    "agent.py": "5240b3cc1ed4e78eac98a61d02163821f98bf69189c6a18e612cda26c4234a55",
+    "results/scienceworld_retrieval_baselines_2026-09-24/summary.json": "e13119ed889289ba8e6ceb26d523c0f4856562993683502d91925f95a8e9cad2",
+    "scienceworld_agent.py": "41a9a7ed72bfcbfa0ad238de65cac2c9a7713f46429d2108f06dbb0430a0b004",
+    "scienceworld_hash_audit.py": "d893309b0fa75538c424904213cf072a0b1f5f302e69b7186ee57cdb0783b96a",
+    "scienceworld_retrieval.py": "32a1043c422a33516cad720477052a72097019293f39b3596f30f2a581606a6f",
+    "scienceworld_retrieval_baselines.py": "4c3247496dbea78c0ff8cd6fd1ae2523b12dd9d2549c94dcfdfb22d0ace96686",
+    "scienceworld_skills.py": "16566dd84020257ce055d7095689b2aa02dc6f7d541ba401bfb66212445f36b5",
+    "scienceworld_strong_retrieval.py": "04e3793525ae9cd5b53fec9bfd74f5754bf3fa9d30e8aaf72aa62b8765fc29cb",
+    "scienceworld_top1_audit.py": "232fea0318f310e501b5e40e39425aba9ce2215d3aa649c802e7846e077f206d",
+    "scienceworld_top1_pilot.py": "16350c6791de8c0e44114616ccfd3f9f373ad112210276dc9c3c251544e64776"
+  },
+  "library_sha256": "fdd9d917af6528933d71f744e57b88aae6e7e52113354e20bec3ffbf8cd0f322",
+  "model": "deepseek-v4-flash",
+  "order_seed": 20261008,
+  "run_id": "scienceworld-top1-mechanism-dev-4x3",
+  "scienceworld_runtime": {
+    "jar_sha256": "f4e1fdce0cdabe1bab7128a7e78ea820210d9db3c28d7272bcbbc3f3a1c5f0d7",
+    "package_version": "1.2.3",
+    "wrapper_sha256": "23a37a2e9ed8e43d8c5e27d8660ea344d38a544abcd8c7e6af40071c7832ce68"
+  },
+  "simplification": "easy",
+  "source_sha256": {
+    "audit.json": "53aa24730130f7ff6f9e9183be01cd9557356074201abdb869fc19cc7428dabd",
+    "manifest.json": "6614825ebd026be006e395393e6ff96ffdde83ee91ac03adc7ddcfd727039aaa",
+    "queries.json": "9226c9863bbc6073fed01c44fd448298cc8108f928bc2d5c0a0525d772eeec19",
+    "verification.json": "9f77ab913f9366c6f7a91c1ad17d8825d21dc0423c6e2e32920bb314fa9f6900"
+  },
+  "study_type": "targeted_development_diagnostic_not_heldout",
+  "temperature": 0.0,
+  "thinking": "disabled"
+}

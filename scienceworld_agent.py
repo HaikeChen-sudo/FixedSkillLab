@@ -51,6 +51,8 @@ V14B_PROTOCOL_VERSION = "scienceworld-v14b"
 V14B_SYSTEM_PROMPT = SYSTEM_PROMPT + "\nOther available command forms: read <document>, mix <container>."
 V14B_SHARED_CONTROLLER_VERSION = "shared-state-checkpoint-v1"
 
+TOP1_CONDITIONS = {"semantic_flat_top1": False, "semantic_body_top1": True}
+
 CONDITIONS = (
     "no_skill", "all_skills", "flat_retrieval", "body_aware_retrieval",
     "body_metadata_only", "body_placebo", "oracle_skill", "oracle_v2", "oracle_v3",
@@ -60,7 +62,7 @@ CONDITIONS = (
     "t_horizontal", "t_vertical", "t_full",
     "t2_horizontal", "t2_vertical", "t2_full",
     "t3_horizontal", "t3_vertical", "t3_full",
-) + tuple(STRONG_CONDITIONS)
+) + tuple(STRONG_CONDITIONS) + tuple(TOP1_CONDITIONS)
 DEFAULT_CONDITIONS = ("no_skill", "oracle_v2")
 AGENT_PROTOCOL_VERSION = "scienceworld-v2"
 T2_CONTROLLER_VERSION = "repeated-action-guard-v1"
@@ -106,10 +108,17 @@ def skill_selection(condition: str, task_name: str, task_text: str = "") -> Skil
         "v4d" if condition.endswith("_v4d") else "v4c" if condition.endswith("_v4c") else "v4b"
     ) if is_new else "v3"
     gold = [ALL_GOLD_SKILLS[task_name]]
-    if condition in STRONG_CONDITIONS:
-        method, body_aware = STRONG_CONDITIONS[condition]
+    if condition in STRONG_CONDITIONS or condition in TOP1_CONDITIONS:
+        method, body_aware = (("minilm", TOP1_CONDITIONS[condition]) if condition in TOP1_CONDITIONS
+                              else STRONG_CONDITIONS[condition])
         library_version = "v4d" if is_new else "v3"
         result = strong_retrieve(task_text, body_aware, library_version, method)
+        if condition in TOP1_CONDITIONS:
+            # Keep the frozen ranker unchanged; only the number of loaded Skills differs.
+            result = {"hits": result["hits"][:1], "metadata": {
+                **result["metadata"], "top_k": 1, "ranker_returned_top_k": 3,
+                "selection_version": "semantic-top1-v1",
+            }}
         ranks = {hit["name"]: hit["rank"] for hit in result["hits"]}
         return SkillSelection(
             [hit["name"] for hit in result["hits"]], result["hits"],

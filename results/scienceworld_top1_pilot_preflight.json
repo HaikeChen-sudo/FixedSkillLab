@@ -1,0 +1,15 @@
+{
+  "api_calls": 0,
+  "checked_at_utc": "2026-10-08T00:38:31.324228+00:00",
+  "checked_cases": 4,
+  "checked_selections": 8,
+  "completed_paid_episodes": 0,
+  "manifest_sha256": "082c5c7018a6bf6b41df6dae6884eadb0158f8a7c5a844a661ba52ea2990ef41",
+  "planned_episodes": 36,
+  "status": "local_checks_passed",
+  "unit_tests": {
+    "passed": 27,
+    "skipped": 1,
+    "total": 28
+  }
+}
