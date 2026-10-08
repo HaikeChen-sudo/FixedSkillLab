@@ -4,6 +4,10 @@
 
 定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v10 发现与确认报告](output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf) · [ScienceWorld v11b 平衡确认报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)
 
+## 当前研究决策
+
+[下一研究问题与停止边界](docs/research/fixedskilllab_next_question_2026-10-08.md)及[相关工作更新](docs/research/fixed_skill_candidate_prior_art_2026-10-08.md)：暂不启动新方法实验。检索后 LOAD/ABSTAIN、按状态选择 Skill、过程遵循审计已有直接先例；目前没有通过新颖性与可检验性双重检查的新命题。建议先整理现有证据的实证研究草稿，不把旧失败分支换名重开，也不承诺现有结果足以构成论文贡献。
+
 ## 最近完成：固定内容消融结题
 
 [四组内容消融结题报告](docs/research/scienceworld_content_closeout_2026-10-08.md)：48 条记录完整，四组均成功 12/12。正确组相对“必须先拾取”组，在四个实例中没有一道同时减少调用与拾取命令，未达到预先固定的至少三题要求，记为机制未复现。本轮结束，不追加有利题目或重跑择优。
