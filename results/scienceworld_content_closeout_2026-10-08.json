@@ -1,0 +1,1870 @@
+{
+  "schema_version": 1,
+  "content": {
+    "run_id": "scienceworld-content-dev-4x3",
+    "episodes": 48,
+    "independent_tasks": 4,
+    "independent_test": false,
+    "condition_summary": [
+      {
+        "condition": "no_skill",
+        "episodes": 12,
+        "successes": 12,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0055684832,
+        "cost_per_successful_task_usd": 0.00046404026666666665,
+        "average_input_tokens": 13850,
+        "average_output_tokens": 491.5833333333333,
+        "average_total_tokens": 14341.583333333334,
+        "average_runner_ms": 24755.416666666668,
+        "average_latency_ms": 24272,
+        "average_tool_calls": 9.75,
+        "median_runner_ms": 15086.0,
+        "maximum_runner_ms": 111744,
+        "average_pickup_commands": 0.9166666666666666
+      },
+      {
+        "condition": "content_correct",
+        "episodes": 12,
+        "successes": 12,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.004634131600000001,
+        "cost_per_successful_task_usd": 0.0003861776333333334,
+        "average_input_tokens": 11795.25,
+        "average_output_tokens": 399.8333333333333,
+        "average_total_tokens": 12195.083333333334,
+        "average_runner_ms": 14557.083333333334,
+        "average_latency_ms": 14086.583333333334,
+        "average_tool_calls": 8.333333333333334,
+        "median_runner_ms": 10540.0,
+        "maximum_runner_ms": 35453,
+        "average_pickup_commands": 1.1666666666666667
+      },
+      {
+        "condition": "content_mismatched",
+        "episodes": 12,
+        "successes": 12,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.004865336,
+        "cost_per_successful_task_usd": 0.0004054446666666666,
+        "average_input_tokens": 11630.916666666666,
+        "average_output_tokens": 425.1666666666667,
+        "average_total_tokens": 12056.083333333334,
+        "average_runner_ms": 28606.166666666668,
+        "average_latency_ms": 28151.5,
+        "average_tool_calls": 8.333333333333334,
+        "median_runner_ms": 12696.5,
+        "maximum_runner_ms": 185154,
+        "average_pickup_commands": 0.9166666666666666
+      },
+      {
+        "condition": "content_pickup_required",
+        "episodes": 12,
+        "successes": 12,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.004403033600000001,
+        "cost_per_successful_task_usd": 0.00036691946666666674,
+        "average_input_tokens": 10879.416666666666,
+        "average_output_tokens": 381.25,
+        "average_total_tokens": 11260.666666666666,
+        "average_runner_ms": 40151.083333333336,
+        "average_latency_ms": 39696.333333333336,
+        "average_tool_calls": 8,
+        "median_runner_ms": 12832.0,
+        "maximum_runner_ms": 191456,
+        "average_pickup_commands": 1
+      }
+    ],
+    "task_summary": [
+      {
+        "condition": "no_skill",
+        "task_id": "find-non-living-thing:v152",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0014768320000000002,
+        "cost_per_successful_task_usd": 0.0004922773333333334,
+        "average_input_tokens": 15298.666666666666,
+        "average_output_tokens": 485.3333333333333,
+        "average_total_tokens": 15784,
+        "average_runner_ms": 20460.666666666668,
+        "average_latency_ms": 19928,
+        "average_tool_calls": 10.333333333333334,
+        "median_runner_ms": 15289,
+        "maximum_runner_ms": 32952,
+        "average_pickup_commands": 1
+      },
+      {
+        "condition": "no_skill",
+        "task_id": "find-non-living-thing:v153",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0008549632000000001,
+        "cost_per_successful_task_usd": 0.00028498773333333335,
+        "average_input_tokens": 6704,
+        "average_output_tokens": 319,
+        "average_total_tokens": 7023,
+        "average_runner_ms": 43538.666666666664,
+        "average_latency_ms": 43096.666666666664,
+        "average_tool_calls": 6.333333333333333,
+        "median_runner_ms": 9795,
+        "maximum_runner_ms": 111744,
+        "average_pickup_commands": 1
+      },
+      {
+        "condition": "no_skill",
+        "task_id": "find-non-living-thing:v154",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0015259104000000002,
+        "cost_per_successful_task_usd": 0.0005086368000000001,
+        "average_input_tokens": 14311.333333333334,
+        "average_output_tokens": 535.6666666666666,
+        "average_total_tokens": 14847,
+        "average_runner_ms": 13608.333333333334,
+        "average_latency_ms": 13168,
+        "average_tool_calls": 10.333333333333334,
+        "median_runner_ms": 14818,
+        "maximum_runner_ms": 14883,
+        "average_pickup_commands": 1
+      },
+      {
+        "condition": "no_skill",
+        "task_id": "find-non-living-thing:v155",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0017107776,
+        "cost_per_successful_task_usd": 0.0005702592,
+        "average_input_tokens": 19086,
+        "average_output_tokens": 626.3333333333334,
+        "average_total_tokens": 19712.333333333332,
+        "average_runner_ms": 21414,
+        "average_latency_ms": 20895.333333333332,
+        "average_tool_calls": 12,
+        "median_runner_ms": 23789,
+        "maximum_runner_ms": 23870,
+        "average_pickup_commands": 0.6666666666666666
+      },
+      {
+        "condition": "content_correct",
+        "task_id": "find-non-living-thing:v152",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0009811872000000002,
+        "cost_per_successful_task_usd": 0.00032706240000000006,
+        "average_input_tokens": 9284.666666666666,
+        "average_output_tokens": 351.6666666666667,
+        "average_total_tokens": 9636.333333333334,
+        "average_runner_ms": 17618,
+        "average_latency_ms": 17119.333333333332,
+        "average_tool_calls": 7,
+        "median_runner_ms": 12740,
+        "maximum_runner_ms": 30897,
+        "average_pickup_commands": 1
+      },
+      {
+        "condition": "content_correct",
+        "task_id": "find-non-living-thing:v153",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0006604416000000001,
+        "cost_per_successful_task_usd": 0.00022014720000000003,
+        "average_input_tokens": 5251.333333333333,
+        "average_output_tokens": 230.33333333333334,
+        "average_total_tokens": 5481.666666666667,
+        "average_runner_ms": 7186,
+        "average_latency_ms": 6744.666666666667,
+        "average_tool_calls": 5,
+        "median_runner_ms": 7293,
+        "maximum_runner_ms": 7596,
+        "average_pickup_commands": 1
+      },
+      {
+        "condition": "content_correct",
+        "task_id": "find-non-living-thing:v154",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.001181488,
+        "cost_per_successful_task_usd": 0.0003938293333333334,
+        "average_input_tokens": 11196.666666666666,
+        "average_output_tokens": 407.6666666666667,
+        "average_total_tokens": 11604.333333333334,
+        "average_runner_ms": 10393,
+        "average_latency_ms": 9953.333333333334,
+        "average_tool_calls": 8.666666666666666,
+        "median_runner_ms": 10355,
+        "maximum_runner_ms": 10725,
+        "average_pickup_commands": 1
+      },
+      {
+        "condition": "content_correct",
+        "task_id": "find-non-living-thing:v155",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0018110148,
+        "cost_per_successful_task_usd": 0.0006036716,
+        "average_input_tokens": 21448.333333333332,
+        "average_output_tokens": 609.6666666666666,
+        "average_total_tokens": 22058,
+        "average_runner_ms": 23031.333333333332,
+        "average_latency_ms": 22529,
+        "average_tool_calls": 12.666666666666666,
+        "median_runner_ms": 18015,
+        "maximum_runner_ms": 35453,
+        "average_pickup_commands": 1.6666666666666667
+      },
+      {
+        "condition": "content_mismatched",
+        "task_id": "find-non-living-thing:v152",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0012069008000000002,
+        "cost_per_successful_task_usd": 0.00040230026666666674,
+        "average_input_tokens": 11980.666666666666,
+        "average_output_tokens": 401.3333333333333,
+        "average_total_tokens": 12382,
+        "average_runner_ms": 16511.333333333332,
+        "average_latency_ms": 16064,
+        "average_tool_calls": 8.333333333333334,
+        "median_runner_ms": 13831,
+        "maximum_runner_ms": 22805,
+        "average_pickup_commands": 1
+      },
+      {
+        "condition": "content_mismatched",
+        "task_id": "find-non-living-thing:v153",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0010137176000000001,
+        "cost_per_successful_task_usd": 0.0003379058666666667,
+        "average_input_tokens": 8637.333333333334,
+        "average_output_tokens": 357.6666666666667,
+        "average_total_tokens": 8995,
+        "average_runner_ms": 68280.66666666667,
+        "average_latency_ms": 67809.66666666667,
+        "average_tool_calls": 7,
+        "median_runner_ms": 10113,
+        "maximum_runner_ms": 185154,
+        "average_pickup_commands": 1
+      },
+      {
+        "condition": "content_mismatched",
+        "task_id": "find-non-living-thing:v154",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0011735584,
+        "cost_per_successful_task_usd": 0.0003911861333333333,
+        "average_input_tokens": 10374.666666666666,
+        "average_output_tokens": 412,
+        "average_total_tokens": 10786.666666666666,
+        "average_runner_ms": 10845.666666666666,
+        "average_latency_ms": 10401.666666666666,
+        "average_tool_calls": 8,
+        "median_runner_ms": 11075,
+        "maximum_runner_ms": 11120,
+        "average_pickup_commands": 1
+      },
+      {
+        "condition": "content_mismatched",
+        "task_id": "find-non-living-thing:v155",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0014711592,
+        "cost_per_successful_task_usd": 0.0004903864,
+        "average_input_tokens": 15531,
+        "average_output_tokens": 529.6666666666666,
+        "average_total_tokens": 16060.666666666666,
+        "average_runner_ms": 18787,
+        "average_latency_ms": 18330.666666666668,
+        "average_tool_calls": 10,
+        "median_runner_ms": 14675,
+        "maximum_runner_ms": 29191,
+        "average_pickup_commands": 0.6666666666666666
+      },
+      {
+        "condition": "content_pickup_required",
+        "task_id": "find-non-living-thing:v152",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0009655688000000001,
+        "cost_per_successful_task_usd": 0.0003218562666666667,
+        "average_input_tokens": 9233,
+        "average_output_tokens": 338,
+        "average_total_tokens": 9571,
+        "average_runner_ms": 70202,
+        "average_latency_ms": 69743.33333333333,
+        "average_tool_calls": 7,
+        "median_runner_ms": 9936,
+        "maximum_runner_ms": 191456,
+        "average_pickup_commands": 1
+      },
+      {
+        "condition": "content_pickup_required",
+        "task_id": "find-non-living-thing:v153",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0006596016000000001,
+        "cost_per_successful_task_usd": 0.00021986720000000004,
+        "average_input_tokens": 5248,
+        "average_output_tokens": 231,
+        "average_total_tokens": 5479,
+        "average_runner_ms": 57131,
+        "average_latency_ms": 56687.333333333336,
+        "average_tool_calls": 5,
+        "median_runner_ms": 8676,
+        "maximum_runner_ms": 155013,
+        "average_pickup_commands": 1
+      },
+      {
+        "condition": "content_pickup_required",
+        "task_id": "find-non-living-thing:v154",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0012485536,
+        "cost_per_successful_task_usd": 0.0004161845333333334,
+        "average_input_tokens": 11712,
+        "average_output_tokens": 418,
+        "average_total_tokens": 12130,
+        "average_runner_ms": 12337,
+        "average_latency_ms": 11875,
+        "average_tool_calls": 9,
+        "median_runner_ms": 12801,
+        "maximum_runner_ms": 12863,
+        "average_pickup_commands": 1
+      },
+      {
+        "condition": "content_pickup_required",
+        "task_id": "find-non-living-thing:v155",
+        "episodes": 3,
+        "successes": 3,
+        "task_success_rate": 1.0,
+        "cost_usd": 0.0015293096000000002,
+        "cost_per_successful_task_usd": 0.0005097698666666667,
+        "average_input_tokens": 17324.666666666668,
+        "average_output_tokens": 538,
+        "average_total_tokens": 17862.666666666668,
+        "average_runner_ms": 20934.333333333332,
+        "average_latency_ms": 20479.666666666668,
+        "average_tool_calls": 11,
+        "median_runner_ms": 20480,
+        "maximum_runner_ms": 29440,
+        "average_pickup_commands": 1
+      }
+    ],
+    "repeat_summary": [
+      {
+        "condition": "no_skill",
+        "values": [
+          {
+            "repeat": 0,
+            "episodes": 4,
+            "successes": 4,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0019376924000000001,
+            "cost_per_successful_task_usd": 0.00048442310000000003,
+            "average_input_tokens": 14324,
+            "average_output_tokens": 495,
+            "average_total_tokens": 14819,
+            "average_runner_ms": 44902.25,
+            "average_latency_ms": 44387.25,
+            "average_tool_calls": 10,
+            "median_runner_ms": 28370.5,
+            "maximum_runner_ms": 111744
+          },
+          {
+            "repeat": 1,
+            "episodes": 4,
+            "successes": 4,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0017454500000000002,
+            "cost_per_successful_task_usd": 0.00043636250000000004,
+            "average_input_tokens": 11904.25,
+            "average_output_tokens": 466.5,
+            "average_total_tokens": 12370.75,
+            "average_runner_ms": 15959.25,
+            "average_latency_ms": 15518.5,
+            "average_tool_calls": 9,
+            "median_runner_ms": 15086.0,
+            "maximum_runner_ms": 23870
+          },
+          {
+            "repeat": 2,
+            "episodes": 4,
+            "successes": 4,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0018853408,
+            "cost_per_successful_task_usd": 0.0004713352,
+            "average_input_tokens": 15321.75,
+            "average_output_tokens": 513.25,
+            "average_total_tokens": 15835,
+            "average_runner_ms": 13404.75,
+            "average_latency_ms": 12910.25,
+            "average_tool_calls": 10.25,
+            "median_runner_ms": 13979.5,
+            "maximum_runner_ms": 16583
+          }
+        ],
+        "statistics": {
+          "task_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "cost_per_successful_task_usd": {
+            "mean": 0.0004640402666666667,
+            "std": 2.4846878221284312e-05
+          },
+          "average_input_tokens": {
+            "mean": 13850.0,
+            "std": 1757.3655176143636
+          },
+          "average_output_tokens": {
+            "mean": 491.5833333333333,
+            "std": 23.56153291560915
+          },
+          "average_total_tokens": {
+            "mean": 14341.583333333334,
+            "std": 1780.78691056323
+          },
+          "average_runner_ms": {
+            "mean": 24755.416666666668,
+            "std": 17494.357306952814
+          },
+          "average_latency_ms": {
+            "mean": 24272.0,
+            "std": 17469.064197532163
+          },
+          "average_tool_calls": {
+            "mean": 9.75,
+            "std": 0.6614378277661477
+          }
+        }
+      },
+      {
+        "condition": "content_correct",
+        "values": [
+          {
+            "repeat": 0,
+            "episodes": 4,
+            "successes": 4,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0017377024,
+            "cost_per_successful_task_usd": 0.0004344256,
+            "average_input_tokens": 14318.5,
+            "average_output_tokens": 444.75,
+            "average_total_tokens": 14763.25,
+            "average_runner_ms": 20936,
+            "average_latency_ms": 20449.5,
+            "average_tool_calls": 9.25,
+            "median_runner_ms": 20811.0,
+            "maximum_runner_ms": 35453
+          },
+          {
+            "repeat": 1,
+            "episodes": 4,
+            "successes": 4,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0013973736000000001,
+            "cost_per_successful_task_usd": 0.00034934340000000003,
+            "average_input_tokens": 9742.25,
+            "average_output_tokens": 359.25,
+            "average_total_tokens": 10101.5,
+            "average_runner_ms": 12112.5,
+            "average_latency_ms": 11668.25,
+            "average_tool_calls": 7.5,
+            "median_runner_ms": 11419.5,
+            "maximum_runner_ms": 18015
+          },
+          {
+            "repeat": 2,
+            "episodes": 4,
+            "successes": 4,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0014990556000000002,
+            "cost_per_successful_task_usd": 0.00037476390000000005,
+            "average_input_tokens": 11325,
+            "average_output_tokens": 395.5,
+            "average_total_tokens": 11720.5,
+            "average_runner_ms": 10622.75,
+            "average_latency_ms": 10142,
+            "average_tool_calls": 8.25,
+            "median_runner_ms": 9786.0,
+            "maximum_runner_ms": 15626
+          }
+        ],
+        "statistics": {
+          "task_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "cost_per_successful_task_usd": {
+            "mean": 0.00038617763333333334,
+            "std": 4.3674365143220235e-05
+          },
+          "average_input_tokens": {
+            "mean": 11795.25,
+            "std": 2324.084187911445
+          },
+          "average_output_tokens": {
+            "mean": 399.8333333333333,
+            "std": 42.91440123470597
+          },
+          "average_total_tokens": {
+            "mean": 12195.083333333334,
+            "std": 2366.833384679482
+          },
+          "average_runner_ms": {
+            "mean": 14557.083333333334,
+            "std": 5574.2956636541385
+          },
+          "average_latency_ms": {
+            "mean": 14086.583333333334,
+            "std": 5563.037942152951
+          },
+          "average_tool_calls": {
+            "mean": 8.333333333333334,
+            "std": 0.8779711460710616
+          }
+        }
+      },
+      {
+        "condition": "content_mismatched",
+        "values": [
+          {
+            "repeat": 0,
+            "episodes": 4,
+            "successes": 4,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0015312696,
+            "cost_per_successful_task_usd": 0.0003828174,
+            "average_input_tokens": 10382.75,
+            "average_output_tokens": 393.75,
+            "average_total_tokens": 10776.5,
+            "average_runner_ms": 58244,
+            "average_latency_ms": 57770.75,
+            "average_tool_calls": 7.75,
+            "median_runner_ms": 18740.0,
+            "maximum_runner_ms": 185154
+          },
+          {
+            "repeat": 1,
+            "episodes": 4,
+            "successes": 4,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0017179988,
+            "cost_per_successful_task_usd": 0.0004294997,
+            "average_input_tokens": 12606,
+            "average_output_tokens": 452,
+            "average_total_tokens": 13058,
+            "average_runner_ms": 16052.5,
+            "average_latency_ms": 15610.25,
+            "average_tool_calls": 8.75,
+            "median_runner_ms": 12453.0,
+            "maximum_runner_ms": 29191
+          },
+          {
+            "repeat": 2,
+            "episodes": 4,
+            "successes": 4,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0016160676,
+            "cost_per_successful_task_usd": 0.0004040169,
+            "average_input_tokens": 11904,
+            "average_output_tokens": 429.75,
+            "average_total_tokens": 12333.75,
+            "average_runner_ms": 11522,
+            "average_latency_ms": 11073.5,
+            "average_tool_calls": 8.5,
+            "median_runner_ms": 11807.5,
+            "maximum_runner_ms": 12898
+          }
+        ],
+        "statistics": {
+          "task_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "cost_per_successful_task_usd": {
+            "mean": 0.00040544466666666667,
+            "std": 2.3373877974425483e-05
+          },
+          "average_input_tokens": {
+            "mean": 11630.916666666666,
+            "std": 1136.5038586970718
+          },
+          "average_output_tokens": {
+            "mean": 425.1666666666667,
+            "std": 29.39423129345847
+          },
+          "average_total_tokens": {
+            "mean": 12056.083333333334,
+            "std": 1165.8193023935285
+          },
+          "average_runner_ms": {
+            "mean": 28606.166666666668,
+            "std": 25766.88244788906
+          },
+          "average_latency_ms": {
+            "mean": 28151.5,
+            "std": 25751.126248428438
+          },
+          "average_tool_calls": {
+            "mean": 8.333333333333334,
+            "std": 0.5204164998665332
+          }
+        }
+      },
+      {
+        "condition": "content_pickup_required",
+        "values": [
+          {
+            "repeat": 0,
+            "episodes": 4,
+            "successes": 4,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0015056608,
+            "cost_per_successful_task_usd": 0.0003764152,
+            "average_input_tokens": 10923,
+            "average_output_tokens": 383,
+            "average_total_tokens": 11306,
+            "average_runner_ms": 96814,
+            "average_latency_ms": 96334,
+            "average_tool_calls": 8,
+            "median_runner_ms": 92226.5,
+            "maximum_runner_ms": 191456
+          },
+          {
+            "repeat": 1,
+            "episodes": 4,
+            "successes": 4,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0014277116000000001,
+            "cost_per_successful_task_usd": 0.00035692790000000003,
+            "average_input_tokens": 10911,
+            "average_output_tokens": 382,
+            "average_total_tokens": 11293,
+            "average_runner_ms": 12988.75,
+            "average_latency_ms": 12543.5,
+            "average_tool_calls": 8,
+            "median_runner_ms": 11399.5,
+            "maximum_runner_ms": 20480
+          },
+          {
+            "repeat": 2,
+            "episodes": 4,
+            "successes": 4,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0014696612000000002,
+            "cost_per_successful_task_usd": 0.00036741530000000005,
+            "average_input_tokens": 10804.25,
+            "average_output_tokens": 378.75,
+            "average_total_tokens": 11183,
+            "average_runner_ms": 10650.5,
+            "average_latency_ms": 10211.5,
+            "average_tool_calls": 8,
+            "median_runner_ms": 11007.5,
+            "maximum_runner_ms": 12883
+          }
+        ],
+        "statistics": {
+          "task_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "cost_per_successful_task_usd": {
+            "mean": 0.0003669194666666667,
+            "std": 9.753107368594548e-06
+          },
+          "average_input_tokens": {
+            "mean": 10879.416666666666,
+            "std": 65.37217170427591
+          },
+          "average_output_tokens": {
+            "mean": 381.25,
+            "std": 2.222048604328897
+          },
+          "average_total_tokens": {
+            "mean": 11260.666666666666,
+            "std": 67.57465007925185
+          },
+          "average_runner_ms": {
+            "mean": 40151.083333333336,
+            "std": 49085.45046290023
+          },
+          "average_latency_ms": {
+            "mean": 39696.333333333336,
+            "std": 49063.51516232132
+          },
+          "average_tool_calls": {
+            "mean": 8,
+            "std": 0.0
+          }
+        }
+      }
+    ],
+    "movement_gate": {
+      "required_instances": 3,
+      "qualifying_instances": 0,
+      "passed": false,
+      "conclusion": "not_reproduced_or_tradeoff",
+      "comparisons": [
+        {
+          "task_id": "find-non-living-thing:v152",
+          "fewer_calls": false,
+          "fewer_pickup_commands": false,
+          "no_success_loss": true
+        },
+        {
+          "task_id": "find-non-living-thing:v153",
+          "fewer_calls": false,
+          "fewer_pickup_commands": false,
+          "no_success_loss": true
+        },
+        {
+          "task_id": "find-non-living-thing:v154",
+          "fewer_calls": true,
+          "fewer_pickup_commands": false,
+          "no_success_loss": true
+        },
+        {
+          "task_id": "find-non-living-thing:v155",
+          "fewer_calls": false,
+          "fewer_pickup_commands": false,
+          "no_success_loss": true
+        }
+      ]
+    },
+    "longest_episodes": [
+      {
+        "task_id": "find-non-living-thing:v152",
+        "condition": "content_pickup_required",
+        "repeat": 0,
+        "runner_ms": 191456,
+        "tool_calls": 7
+      },
+      {
+        "task_id": "find-non-living-thing:v153",
+        "condition": "content_mismatched",
+        "repeat": 0,
+        "runner_ms": 185154,
+        "tool_calls": 7
+      },
+      {
+        "task_id": "find-non-living-thing:v153",
+        "condition": "content_pickup_required",
+        "repeat": 0,
+        "runner_ms": 155013,
+        "tool_calls": 5
+      },
+      {
+        "task_id": "find-non-living-thing:v153",
+        "condition": "no_skill",
+        "repeat": 0,
+        "runner_ms": 111744,
+        "tool_calls": 6
+      },
+      {
+        "task_id": "find-non-living-thing:v155",
+        "condition": "content_correct",
+        "repeat": 0,
+        "runner_ms": 35453,
+        "tool_calls": 16
+      }
+    ],
+    "initial_observation_matches": 48
+  },
+  "router_review": [
+    {
+      "run_id": "scienceworld-strong-confirm-6x3",
+      "paired_episodes": 18,
+      "same_set_pairs": 15,
+      "same_order_pairs": 12,
+      "same_prompt_pairs": 12,
+      "pairs": [
+        {
+          "task_id": "chemistry-mix:v030",
+          "repeat": 0,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "chemistry-recipe-mix",
+            "melt-substance",
+            "boil-substance"
+          ],
+          "body_skills": [
+            "chemistry-recipe-mix",
+            "melt-substance",
+            "boil-substance"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 111
+        },
+        {
+          "task_id": "chemistry-mix:v030",
+          "repeat": 1,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "chemistry-recipe-mix",
+            "melt-substance",
+            "boil-substance"
+          ],
+          "body_skills": [
+            "chemistry-recipe-mix",
+            "melt-substance",
+            "boil-substance"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": -134211
+        },
+        {
+          "task_id": "chemistry-mix:v030",
+          "repeat": 2,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "chemistry-recipe-mix",
+            "melt-substance",
+            "boil-substance"
+          ],
+          "body_skills": [
+            "chemistry-recipe-mix",
+            "melt-substance",
+            "boil-substance"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 13204
+        },
+        {
+          "task_id": "find-living-thing:v236",
+          "repeat": 0,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "find-living-object",
+            "find-nonliving-object",
+            "measure-and-classify-temperature"
+          ],
+          "body_skills": [
+            "find-living-object",
+            "find-nonliving-object",
+            "measure-and-classify-temperature"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": -986
+        },
+        {
+          "task_id": "find-living-thing:v236",
+          "repeat": 1,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "find-living-object",
+            "find-nonliving-object",
+            "measure-and-classify-temperature"
+          ],
+          "body_skills": [
+            "find-living-object",
+            "find-nonliving-object",
+            "measure-and-classify-temperature"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 12906
+        },
+        {
+          "task_id": "find-living-thing:v236",
+          "repeat": 2,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "find-living-object",
+            "find-nonliving-object",
+            "measure-and-classify-temperature"
+          ],
+          "body_skills": [
+            "find-living-object",
+            "find-nonliving-object",
+            "measure-and-classify-temperature"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": -2502
+        },
+        {
+          "task_id": "find-non-living-thing:v236",
+          "repeat": 0,
+          "same_set": true,
+          "same_order": false,
+          "same_prompt": false,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "find-living-object",
+            "find-nonliving-object",
+            "measure-and-classify-temperature"
+          ],
+          "body_skills": [
+            "find-nonliving-object",
+            "find-living-object",
+            "measure-and-classify-temperature"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": -2087
+        },
+        {
+          "task_id": "find-non-living-thing:v236",
+          "repeat": 1,
+          "same_set": true,
+          "same_order": false,
+          "same_prompt": false,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "find-living-object",
+            "find-nonliving-object",
+            "measure-and-classify-temperature"
+          ],
+          "body_skills": [
+            "find-nonliving-object",
+            "find-living-object",
+            "measure-and-classify-temperature"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": -158
+        },
+        {
+          "task_id": "find-non-living-thing:v236",
+          "repeat": 2,
+          "same_set": true,
+          "same_order": false,
+          "same_prompt": false,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "find-living-object",
+            "find-nonliving-object",
+            "measure-and-classify-temperature"
+          ],
+          "body_skills": [
+            "find-nonliving-object",
+            "find-living-object",
+            "measure-and-classify-temperature"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": -2243
+        },
+        {
+          "task_id": "grow-plant:v096",
+          "repeat": 0,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "grow-plant-from-seed",
+            "find-living-object",
+            "find-nonliving-object"
+          ],
+          "body_skills": [
+            "grow-plant-from-seed",
+            "find-living-object",
+            "find-nonliving-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": -7677
+        },
+        {
+          "task_id": "grow-plant:v096",
+          "repeat": 1,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "grow-plant-from-seed",
+            "find-living-object",
+            "find-nonliving-object"
+          ],
+          "body_skills": [
+            "grow-plant-from-seed",
+            "find-living-object",
+            "find-nonliving-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": -20
+        },
+        {
+          "task_id": "grow-plant:v096",
+          "repeat": 2,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "grow-plant-from-seed",
+            "find-living-object",
+            "find-nonliving-object"
+          ],
+          "body_skills": [
+            "grow-plant-from-seed",
+            "find-living-object",
+            "find-nonliving-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 19
+        },
+        {
+          "task_id": "inclined-plane-determine-angle:v132",
+          "repeat": 0,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "measure-inclined-plane-angle",
+            "measure-and-classify-temperature",
+            "melt-substance"
+          ],
+          "body_skills": [
+            "measure-inclined-plane-angle",
+            "measure-and-classify-temperature",
+            "melt-substance"
+          ],
+          "flat_success": false,
+          "body_success": false,
+          "flat_minus_body_tokens": 259738
+        },
+        {
+          "task_id": "inclined-plane-determine-angle:v132",
+          "repeat": 1,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "measure-inclined-plane-angle",
+            "measure-and-classify-temperature",
+            "melt-substance"
+          ],
+          "body_skills": [
+            "measure-inclined-plane-angle",
+            "measure-and-classify-temperature",
+            "melt-substance"
+          ],
+          "flat_success": false,
+          "body_success": false,
+          "flat_minus_body_tokens": 242834
+        },
+        {
+          "task_id": "inclined-plane-determine-angle:v132",
+          "repeat": 2,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "measure-inclined-plane-angle",
+            "measure-and-classify-temperature",
+            "melt-substance"
+          ],
+          "body_skills": [
+            "measure-inclined-plane-angle",
+            "measure-and-classify-temperature",
+            "melt-substance"
+          ],
+          "flat_success": false,
+          "body_success": false,
+          "flat_minus_body_tokens": 21807
+        },
+        {
+          "task_id": "power-component:v018",
+          "repeat": 0,
+          "same_set": false,
+          "same_order": false,
+          "same_prompt": false,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "power-component-circuit",
+            "measure-and-classify-temperature",
+            "find-living-object"
+          ],
+          "body_skills": [
+            "power-component-circuit",
+            "grow-plant-from-seed",
+            "measure-and-classify-temperature"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 5213
+        },
+        {
+          "task_id": "power-component:v018",
+          "repeat": 1,
+          "same_set": false,
+          "same_order": false,
+          "same_prompt": false,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "power-component-circuit",
+            "measure-and-classify-temperature",
+            "find-living-object"
+          ],
+          "body_skills": [
+            "power-component-circuit",
+            "grow-plant-from-seed",
+            "measure-and-classify-temperature"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": -142018
+        },
+        {
+          "task_id": "power-component:v018",
+          "repeat": 2,
+          "same_set": false,
+          "same_order": false,
+          "same_prompt": false,
+          "same_initial_observation": null,
+          "flat_skills": [
+            "power-component-circuit",
+            "measure-and-classify-temperature",
+            "find-living-object"
+          ],
+          "body_skills": [
+            "power-component-circuit",
+            "grow-plant-from-seed",
+            "measure-and-classify-temperature"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 5353
+        }
+      ],
+      "token_decomposition": [
+        {
+          "same_prompt": true,
+          "pairs": 12,
+          "flat_minus_body_tokens": 405223
+        },
+        {
+          "same_prompt": false,
+          "pairs": 6,
+          "flat_minus_body_tokens": -135940
+        }
+      ],
+      "task_summary": [
+        {
+          "task_id": "chemistry-mix:v030",
+          "flat": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0041552,
+            "cost_per_successful_task_usd": 0.0013850666666666669,
+            "average_input_tokens": 84710,
+            "average_output_tokens": 1269,
+            "average_total_tokens": 85979,
+            "average_runner_ms": 30644,
+            "average_latency_ms": 30146,
+            "average_tool_calls": 27.666666666666668,
+            "median_runner_ms": 29976,
+            "maximum_runner_ms": 32361
+          },
+          "body": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.005148897600000001,
+            "cost_per_successful_task_usd": 0.0017162992000000002,
+            "average_input_tokens": 124724,
+            "average_output_tokens": 1553.6666666666667,
+            "average_total_tokens": 126277.66666666667,
+            "average_runner_ms": 45473.333333333336,
+            "average_latency_ms": 44979,
+            "average_tool_calls": 33.666666666666664,
+            "median_runner_ms": 28315,
+            "maximum_runner_ms": 80241
+          }
+        },
+        {
+          "task_id": "find-living-thing:v236",
+          "flat": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0018426268000000003,
+            "cost_per_successful_task_usd": 0.0006142089333333335,
+            "average_input_tokens": 27058,
+            "average_output_tokens": 560.3333333333334,
+            "average_total_tokens": 27618.333333333332,
+            "average_runner_ms": 15246,
+            "average_latency_ms": 14797.666666666666,
+            "average_tool_calls": 12.666666666666666,
+            "median_runner_ms": 15315,
+            "maximum_runner_ms": 17309
+          },
+          "body": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0017723048,
+            "cost_per_successful_task_usd": 0.0005907682666666667,
+            "average_input_tokens": 23957,
+            "average_output_tokens": 522,
+            "average_total_tokens": 24479,
+            "average_runner_ms": 27067,
+            "average_latency_ms": 26552,
+            "average_tool_calls": 11.666666666666666,
+            "median_runner_ms": 15262,
+            "maximum_runner_ms": 52246
+          }
+        },
+        {
+          "task_id": "find-non-living-thing:v236",
+          "flat": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0011805500000000003,
+            "cost_per_successful_task_usd": 0.00039351666666666675,
+            "average_input_tokens": 14281.333333333334,
+            "average_output_tokens": 369.3333333333333,
+            "average_total_tokens": 14650.666666666666,
+            "average_runner_ms": 11582,
+            "average_latency_ms": 11083.666666666666,
+            "average_tool_calls": 8,
+            "median_runner_ms": 11376,
+            "maximum_runner_ms": 12033
+          },
+          "body": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0013637512000000001,
+            "cost_per_successful_task_usd": 0.0004545837333333334,
+            "average_input_tokens": 15749.666666666666,
+            "average_output_tokens": 397,
+            "average_total_tokens": 16146.666666666666,
+            "average_runner_ms": 12277,
+            "average_latency_ms": 11795.666666666666,
+            "average_tool_calls": 8.666666666666666,
+            "median_runner_ms": 12303,
+            "maximum_runner_ms": 13408
+          }
+        },
+        {
+          "task_id": "grow-plant:v096",
+          "flat": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0042831432,
+            "cost_per_successful_task_usd": 0.0014277144,
+            "average_input_tokens": 85588.33333333333,
+            "average_output_tokens": 1316,
+            "average_total_tokens": 86904.33333333333,
+            "average_runner_ms": 32289.666666666668,
+            "average_latency_ms": 31826.333333333332,
+            "average_tool_calls": 29.666666666666668,
+            "median_runner_ms": 32510,
+            "maximum_runner_ms": 34936
+          },
+          "body": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0044413096,
+            "cost_per_successful_task_usd": 0.0014804365333333333,
+            "average_input_tokens": 88113,
+            "average_output_tokens": 1350.6666666666667,
+            "average_total_tokens": 89463.66666666667,
+            "average_runner_ms": 30985,
+            "average_latency_ms": 30512,
+            "average_tool_calls": 30,
+            "median_runner_ms": 30993,
+            "maximum_runner_ms": 32041
+          }
+        },
+        {
+          "task_id": "inclined-plane-determine-angle:v132",
+          "flat": {
+            "episodes": 3,
+            "successes": 0,
+            "task_success_rate": 0.0,
+            "cost_usd": 0.0088845512,
+            "cost_per_successful_task_usd": null,
+            "average_input_tokens": 258653.66666666666,
+            "average_output_tokens": 2362.3333333333335,
+            "average_total_tokens": 261016,
+            "average_runner_ms": 72880.33333333333,
+            "average_latency_ms": 72385.66666666667,
+            "average_tool_calls": 58.666666666666664,
+            "median_runner_ms": 63928,
+            "maximum_runner_ms": 93557
+          },
+          "body": {
+            "episodes": 3,
+            "successes": 0,
+            "task_success_rate": 0.0,
+            "cost_usd": 0.0042902216000000005,
+            "cost_per_successful_task_usd": null,
+            "average_input_tokens": 84918.33333333333,
+            "average_output_tokens": 1304.6666666666667,
+            "average_total_tokens": 86223,
+            "average_runner_ms": 32322,
+            "average_latency_ms": 31657,
+            "average_tool_calls": 30.333333333333332,
+            "median_runner_ms": 31602,
+            "maximum_runner_ms": 33786
+          }
+        },
+        {
+          "task_id": "power-component:v018",
+          "flat": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0022299704,
+            "cost_per_successful_task_usd": 0.0007433234666666667,
+            "average_input_tokens": 30074.333333333332,
+            "average_output_tokens": 809.6666666666666,
+            "average_total_tokens": 30884,
+            "average_runner_ms": 19281.333333333332,
+            "average_latency_ms": 18762.333333333332,
+            "average_tool_calls": 15,
+            "median_runner_ms": 18973,
+            "maximum_runner_ms": 19921
+          },
+          "body": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0037556904,
+            "cost_per_successful_task_usd": 0.0012518968,
+            "average_input_tokens": 73308.33333333333,
+            "average_output_tokens": 1393,
+            "average_total_tokens": 74701.33333333333,
+            "average_runner_ms": 28971,
+            "average_latency_ms": 28479.333333333332,
+            "average_tool_calls": 23.666666666666668,
+            "median_runner_ms": 18467,
+            "maximum_runner_ms": 52495
+          }
+        }
+      ],
+      "condition_summary": [
+        {
+          "condition": "no_skill",
+          "episodes": 18,
+          "successes": 15,
+          "task_success_rate": 0.8333333333333334,
+          "cost_usd": 0.03861175360000001,
+          "cost_per_successful_task_usd": 0.002574116906666667,
+          "average_input_tokens": 161533.38888888888,
+          "average_output_tokens": 2639.1666666666665,
+          "average_total_tokens": 164172.55555555556,
+          "average_runner_ms": 38904.77777777778,
+          "average_latency_ms": 38349.27777777778,
+          "average_tool_calls": 34.05555555555556,
+          "median_runner_ms": 25343.5,
+          "maximum_runner_ms": 128370
+        },
+        {
+          "condition": "semantic_body_retrieval",
+          "episodes": 18,
+          "successes": 15,
+          "task_success_rate": 0.8333333333333334,
+          "cost_usd": 0.0207721752,
+          "cost_per_successful_task_usd": 0.00138481168,
+          "average_input_tokens": 68461.72222222222,
+          "average_output_tokens": 1086.8333333333333,
+          "average_total_tokens": 69548.55555555556,
+          "average_runner_ms": 29515.88888888889,
+          "average_latency_ms": 28995.833333333332,
+          "average_tool_calls": 23,
+          "median_runner_ms": 29118.0,
+          "maximum_runner_ms": 80241
+        },
+        {
+          "condition": "semantic_flat_retrieval",
+          "episodes": 18,
+          "successes": 15,
+          "task_success_rate": 0.8333333333333334,
+          "cost_usd": 0.022576041600000003,
+          "cost_per_successful_task_usd": 0.0015050694400000001,
+          "average_input_tokens": 83394.27777777778,
+          "average_output_tokens": 1114.4444444444443,
+          "average_total_tokens": 84508.72222222222,
+          "average_runner_ms": 30320.555555555555,
+          "average_latency_ms": 29833.61111111111,
+          "average_tool_calls": 25.27777777777778,
+          "median_runner_ms": 24672.0,
+          "maximum_runner_ms": 93557
+        }
+      ]
+    },
+    {
+      "run_id": "scienceworld-top1-mechanism-dev-4x3",
+      "paired_episodes": 12,
+      "same_set_pairs": 6,
+      "same_order_pairs": 6,
+      "same_prompt_pairs": 6,
+      "pairs": [
+        {
+          "task_id": "find-living-thing:v150",
+          "repeat": 0,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": true,
+          "flat_skills": [
+            "find-living-object"
+          ],
+          "body_skills": [
+            "find-living-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 163
+        },
+        {
+          "task_id": "find-living-thing:v150",
+          "repeat": 1,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": true,
+          "flat_skills": [
+            "find-living-object"
+          ],
+          "body_skills": [
+            "find-living-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 0
+        },
+        {
+          "task_id": "find-living-thing:v150",
+          "repeat": 2,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": true,
+          "flat_skills": [
+            "find-living-object"
+          ],
+          "body_skills": [
+            "find-living-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 0
+        },
+        {
+          "task_id": "find-living-thing:v151",
+          "repeat": 0,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": true,
+          "flat_skills": [
+            "find-living-object"
+          ],
+          "body_skills": [
+            "find-living-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": -5197
+        },
+        {
+          "task_id": "find-living-thing:v151",
+          "repeat": 1,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": true,
+          "flat_skills": [
+            "find-living-object"
+          ],
+          "body_skills": [
+            "find-living-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 5087
+        },
+        {
+          "task_id": "find-living-thing:v151",
+          "repeat": 2,
+          "same_set": true,
+          "same_order": true,
+          "same_prompt": true,
+          "same_initial_observation": true,
+          "flat_skills": [
+            "find-living-object"
+          ],
+          "body_skills": [
+            "find-living-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 5369
+        },
+        {
+          "task_id": "find-non-living-thing:v150",
+          "repeat": 0,
+          "same_set": false,
+          "same_order": false,
+          "same_prompt": false,
+          "same_initial_observation": true,
+          "flat_skills": [
+            "find-living-object"
+          ],
+          "body_skills": [
+            "find-nonliving-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 1604
+        },
+        {
+          "task_id": "find-non-living-thing:v150",
+          "repeat": 1,
+          "same_set": false,
+          "same_order": false,
+          "same_prompt": false,
+          "same_initial_observation": true,
+          "flat_skills": [
+            "find-living-object"
+          ],
+          "body_skills": [
+            "find-nonliving-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 1648
+        },
+        {
+          "task_id": "find-non-living-thing:v150",
+          "repeat": 2,
+          "same_set": false,
+          "same_order": false,
+          "same_prompt": false,
+          "same_initial_observation": true,
+          "flat_skills": [
+            "find-living-object"
+          ],
+          "body_skills": [
+            "find-nonliving-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 1628
+        },
+        {
+          "task_id": "find-non-living-thing:v151",
+          "repeat": 0,
+          "same_set": false,
+          "same_order": false,
+          "same_prompt": false,
+          "same_initial_observation": true,
+          "flat_skills": [
+            "find-living-object"
+          ],
+          "body_skills": [
+            "find-nonliving-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 1597
+        },
+        {
+          "task_id": "find-non-living-thing:v151",
+          "repeat": 1,
+          "same_set": false,
+          "same_order": false,
+          "same_prompt": false,
+          "same_initial_observation": true,
+          "flat_skills": [
+            "find-living-object"
+          ],
+          "body_skills": [
+            "find-nonliving-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 76
+        },
+        {
+          "task_id": "find-non-living-thing:v151",
+          "repeat": 2,
+          "same_set": false,
+          "same_order": false,
+          "same_prompt": false,
+          "same_initial_observation": true,
+          "flat_skills": [
+            "find-living-object"
+          ],
+          "body_skills": [
+            "find-nonliving-object"
+          ],
+          "flat_success": true,
+          "body_success": true,
+          "flat_minus_body_tokens": 1685
+        }
+      ],
+      "token_decomposition": [
+        {
+          "same_prompt": true,
+          "pairs": 6,
+          "flat_minus_body_tokens": 5422
+        },
+        {
+          "same_prompt": false,
+          "pairs": 6,
+          "flat_minus_body_tokens": 8238
+        }
+      ],
+      "task_summary": [
+        {
+          "task_id": "find-living-thing:v150",
+          "flat": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0013151935999999999,
+            "cost_per_successful_task_usd": 0.00043839786666666664,
+            "average_input_tokens": 17578.333333333332,
+            "average_output_tokens": 447,
+            "average_total_tokens": 18025.333333333332,
+            "average_runner_ms": 15301,
+            "average_latency_ms": 14842.333333333334,
+            "average_tool_calls": 10,
+            "median_runner_ms": 15536,
+            "maximum_runner_ms": 15776
+          },
+          "body": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0012359004,
+            "cost_per_successful_task_usd": 0.0004119668,
+            "average_input_tokens": 17534,
+            "average_output_tokens": 437,
+            "average_total_tokens": 17971,
+            "average_runner_ms": 15382,
+            "average_latency_ms": 14919.333333333334,
+            "average_tool_calls": 10,
+            "median_runner_ms": 15698,
+            "maximum_runner_ms": 15978
+          }
+        },
+        {
+          "task_id": "find-living-thing:v151",
+          "flat": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.001686608,
+            "cost_per_successful_task_usd": 0.0005622026666666667,
+            "average_input_tokens": 22679,
+            "average_output_tokens": 535.3333333333334,
+            "average_total_tokens": 23214.333333333332,
+            "average_runner_ms": 18138,
+            "average_latency_ms": 17674,
+            "average_tool_calls": 12,
+            "median_runner_ms": 17818,
+            "maximum_runner_ms": 21303
+          },
+          "body": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0014862092000000001,
+            "cost_per_successful_task_usd": 0.0004954030666666667,
+            "average_input_tokens": 20947.333333333332,
+            "average_output_tokens": 514,
+            "average_total_tokens": 21461.333333333332,
+            "average_runner_ms": 17529.333333333332,
+            "average_latency_ms": 17020.333333333332,
+            "average_tool_calls": 11.333333333333334,
+            "median_runner_ms": 17200,
+            "maximum_runner_ms": 18687
+          }
+        },
+        {
+          "task_id": "find-non-living-thing:v150",
+          "flat": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0006252848000000001,
+            "cost_per_successful_task_usd": 0.0002084282666666667,
+            "average_input_tokens": 5119.333333333333,
+            "average_output_tokens": 212.66666666666666,
+            "average_total_tokens": 5332,
+            "average_runner_ms": 8619.666666666666,
+            "average_latency_ms": 8099.666666666667,
+            "average_tool_calls": 4,
+            "median_runner_ms": 8669,
+            "maximum_runner_ms": 9058
+          },
+          "body": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.000496692,
+            "cost_per_successful_task_usd": 0.000165564,
+            "average_input_tokens": 3552.6666666666665,
+            "average_output_tokens": 152.66666666666666,
+            "average_total_tokens": 3705.3333333333335,
+            "average_runner_ms": 8272.666666666666,
+            "average_latency_ms": 7822.666666666667,
+            "average_tool_calls": 3,
+            "median_runner_ms": 8317,
+            "maximum_runner_ms": 8537
+          }
+        },
+        {
+          "task_id": "find-non-living-thing:v151",
+          "flat": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.0005853008,
+            "cost_per_successful_task_usd": 0.00019510026666666667,
+            "average_input_tokens": 4624,
+            "average_output_tokens": 203.66666666666666,
+            "average_total_tokens": 4827.666666666667,
+            "average_runner_ms": 9406,
+            "average_latency_ms": 8942,
+            "average_tool_calls": 3.6666666666666665,
+            "median_runner_ms": 8920,
+            "maximum_runner_ms": 10788
+          },
+          "body": {
+            "episodes": 3,
+            "successes": 3,
+            "task_success_rate": 1.0,
+            "cost_usd": 0.00046366880000000004,
+            "cost_per_successful_task_usd": 0.00015455626666666667,
+            "average_input_tokens": 3553.6666666666665,
+            "average_output_tokens": 154.66666666666666,
+            "average_total_tokens": 3708.3333333333335,
+            "average_runner_ms": 7829.666666666667,
+            "average_latency_ms": 7322,
+            "average_tool_calls": 3,
+            "median_runner_ms": 7757,
+            "maximum_runner_ms": 8296
+          }
+        }
+      ],
+      "condition_summary": [
+        {
+          "condition": "no_skill",
+          "episodes": 12,
+          "successes": 9,
+          "task_success_rate": 0.75,
+          "cost_usd": 0.0038231508000000003,
+          "cost_per_successful_task_usd": 0.0004247945333333334,
+          "average_input_tokens": 10300.833333333334,
+          "average_output_tokens": 371.3333333333333,
+          "average_total_tokens": 10672.166666666666,
+          "average_runner_ms": 8371.083333333334,
+          "average_latency_ms": 7911.916666666667,
+          "average_tool_calls": 6.416666666666667,
+          "median_runner_ms": 5409.5,
+          "maximum_runner_ms": 20479
+        },
+        {
+          "condition": "semantic_body_top1",
+          "episodes": 12,
+          "successes": 12,
+          "task_success_rate": 1.0,
+          "cost_usd": 0.0036824704000000003,
+          "cost_per_successful_task_usd": 0.00030687253333333336,
+          "average_input_tokens": 11396.916666666666,
+          "average_output_tokens": 314.5833333333333,
+          "average_total_tokens": 11711.5,
+          "average_runner_ms": 12253.416666666666,
+          "average_latency_ms": 11771.083333333334,
+          "average_tool_calls": 6.833333333333333,
+          "median_runner_ms": 11503.5,
+          "maximum_runner_ms": 18687
+        },
+        {
+          "condition": "semantic_flat_top1",
+          "episodes": 12,
+          "successes": 12,
+          "task_success_rate": 1.0,
+          "cost_usd": 0.0042123872,
+          "cost_per_successful_task_usd": 0.00035103226666666665,
+          "average_input_tokens": 12500.166666666666,
+          "average_output_tokens": 349.6666666666667,
+          "average_total_tokens": 12849.833333333334,
+          "average_runner_ms": 12866.166666666666,
+          "average_latency_ms": 12389.5,
+          "average_tool_calls": 7.416666666666667,
+          "median_runner_ms": 12689.5,
+          "maximum_runner_ms": 21303
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "results/scienceworld_content_dev/episodes.jsonl": "dd414a18ebffadafccac13583c503e3d002f8bc56dd3c163b75edbc4e4c7faae",
+    "results/scienceworld_content_dev/manifest.json": "8942ef7903c73fa6c9a46fbe6a9e50905634009b8651602477c65556dcb2c944",
+    "results/scienceworld_content_dev/queries.json": "41b515421e54676cf2d011a2dd869b8ab8f71c31ea7fdce06542bcc9bd574a54",
+    "results/scienceworld_content_dev/preflight.json": "2b7123ee67866c389e764d6de820a184ddbcad7d0d53261cc4ad33f727f1a0ec",
+    "results/scienceworld_strong_confirm_6x3.jsonl": "71770d89acce4fbcc0e691f32f352966cd8f68ff728624bded432382d8ad3103",
+    "results/scienceworld_strong_confirmation_manifest.json": "7767f452fdfbe8268120d7bc2104a427d0fec5fc265fd0a832df45514616c793",
+    "results/scienceworld_top1_pilot.jsonl": "4b2d306460a14ad20a4cc4b0b8d5397ef8d931ec32d5d4a3daa6fd06ece61ff4",
+    "results/scienceworld_top1_pilot_manifest.json": "082c5c7018a6bf6b41df6dae6884eadb0158f8a7c5a844a661ba52ea2990ef41",
+    "scienceworld_content_analysis.py": "b5895b04b4939f1d753954334f4ff4a234c25152ef2a473431b5f1b6361bdecd",
+    "scienceworld_content_pilot.py": "8d0ef9ad35847d7a0fb68c7b7bf03524fc6062ca45c097b2670d27682760c9c9",
+    "scienceworld_strong_confirmation.py": "a1687faf4913d3cae123acec1dac1486efdf7db8171b77262b1494402237d364",
+    "scienceworld_top1_analysis.py": "3be8db45ce0bc7cdaa9e6ebdb5835691a3b44e0075cfc131568a7f64b6941471"
+  },
+  "notes": {
+    "end_to_end": "runner_ms includes environment creation and close",
+    "cost": "historical API estimate, not a verified bill",
+    "repeats": "sample std, not confidence interval",
+    "scope": "Runs remain separate; same-prompt differences do not establish a retrieval-mediated effect",
+    "initial_state": "Missing hashes stay null; matching observations do not prove all hidden states match"
+  }
+}

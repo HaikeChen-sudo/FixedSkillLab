@@ -4,12 +4,17 @@
 
 定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v10 发现与确认报告](output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf) · [ScienceWorld v11b 平衡确认报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)
 
-## 已准备：固定内容消融
+## 最近完成：固定内容消融结题
 
-[四组内容消融协议](docs/research/scienceworld_content_dev_protocol_2026-10-08.md)已冻结：非生物任务 v152–v155 × 无 Skill、正确 Skill、固定错配 Skill、仅第三步要求先拾取 × 三次重复，共 48 个 episode。四组都不运行 Router；已通过本地环境核对，付费运行尚未开始。新实例只改变目标盒子颜色，结果应限于这个局部动作机制，不能称为跨任务泛化。
+[四组内容消融结题报告](docs/research/scienceworld_content_closeout_2026-10-08.md)：48 条记录完整，四组均成功 12/12。正确组相对“必须先拾取”组，在四个实例中没有一道同时减少调用与拾取命令，未达到预先固定的至少三题要求，记为机制未复现。本轮结束，不追加有利题目或重跑择优。
+
+更正先前描述：v152–v155 并非只换目标盒子颜色，初始房间分别为温室、室外、铸造厂和客厅。同题各组的初始观察哈希一致，但跨房间搬运时不能把拾取直接视为多余。冻结的[原协议](docs/research/scienceworld_content_dev_protocol_2026-10-08.md)保持原样。
+
+报告还复核了旧六题 Top-3 和四题 Top-1 检索记录：加载相同提示下的成本差异，不能归因于检索选中了更好的内容。当前暂停扩大这条实验支线，先明确剩余研究命题；本次不启动新付费实验。
 
 ```sh
-python3 scienceworld_content_pilot.py --status
+python3 scienceworld_content_analysis.py
+python3 -m unittest test_scienceworld_content_analysis -v
 ```
 
 只有显式执行 `--execute --resume` 才调用付费模型。旧原始数据不变；旧执行清单因 Agent 文件哈希变化可能拒绝续跑，应使用对应 Git 版本，不能改写旧清单。Top-1 只读分析已改为对照保存时的清单验证历史记录，不要求当前 Agent 源码与历史版本相同；重新生成分析应指定新输出路径，保留旧文件。
