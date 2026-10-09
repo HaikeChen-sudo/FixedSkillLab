@@ -6,6 +6,8 @@
 
 ## 当前研究决策
 
+已整理[完整中文初稿](docs/research/fixedskilllab_paper_draft_2026-10-09.md)，包含摘要、引言、相关工作、方法、结果、讨论与限制。主表保留六项指标，覆盖七批 984 条完成记录；批次分别解释，不合并为独立样本或总体效应。[文献核查记录](docs/research/fixedskilllab_reference_check_2026-10-09.md)列出原文依据。初稿不提出新算法，也不表示已达到投稿条件。
+
 [下一研究问题与停止边界](docs/research/fixedskilllab_next_question_2026-10-08.md)及[相关工作更新](docs/research/fixed_skill_candidate_prior_art_2026-10-08.md)：暂不启动新方法实验。检索后 LOAD/ABSTAIN、按状态选择 Skill、过程遵循审计已有直接先例；目前没有通过新颖性与可检验性双重检查的新命题。建议先整理现有证据的实证研究草稿，不把旧失败分支换名重开，也不承诺现有结果足以构成论文贡献。
 
 ## 最近完成：固定内容消融结题
