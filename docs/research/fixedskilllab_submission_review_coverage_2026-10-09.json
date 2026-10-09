@@ -1,0 +1,1400 @@
+{
+  "version": 1,
+  "artifact": {
+    "identity": "docs/research/fixedskilllab_paper_draft_2026-10-09.md",
+    "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+    "view": "中文全文；七批主结果、保存排名及定向近邻比较"
+  },
+  "categories": [
+    {
+      "id": "usefulness",
+      "label": "用途与完整性",
+      "applicable": true,
+      "assessment": "四个审查问题；近邻差异说明遗漏 SkillSeek 直接索引消融。"
+    },
+    {
+      "id": "clarity",
+      "label": "分析表达",
+      "applicable": true,
+      "assessment": "十个主要部分按窄口径区分观察与因果；建议补集中度。"
+    },
+    {
+      "id": "visual",
+      "label": "视觉与交互一致性",
+      "applicable": true,
+      "assessment": "源结构已检查，实际渲染未验收。"
+    },
+    {
+      "id": "authority",
+      "label": "来源权威性与可信范围",
+      "applicable": true,
+      "assessment": "七批原记录、一份保存排名、五篇指定版本原文；不代表外部结果复现。"
+    },
+    {
+      "id": "values",
+      "label": "数值与定义",
+      "applicable": true,
+      "assessment": "十二张表的口径与主要值核对；没有新显著性检验。"
+    },
+    {
+      "id": "within_chart",
+      "label": "图内一致性",
+      "applicable": false,
+      "assessment": "稿件无图。",
+      "reason": "稿件没有图。"
+    },
+    {
+      "id": "source_detail",
+      "label": "完整来源说明",
+      "applicable": true,
+      "assessment": "八批来源可定位；账单与在线复跑未验证。"
+    },
+    {
+      "id": "cross_artifact",
+      "label": "跨文稿一致性",
+      "applicable": true,
+      "assessment": "七批主指标表与方法结果稿和原始记录一致。"
+    },
+    {
+      "id": "quality",
+      "label": "数据质量控制",
+      "applicable": true,
+      "assessment": "七批在线唯一键、覆盖和 Token 加和；离线单位检查。"
+    },
+    {
+      "id": "conclusions",
+      "label": "结论支持",
+      "applicable": true,
+      "assessment": "四项受限结论有据，不支持通用效果或新算法。"
+    }
+  ],
+  "units": [
+    {
+      "id": "q-novelty",
+      "label": "研究增量与近邻区别",
+      "kind": "question",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "usefulness": {
+          "checks": [
+            {
+              "id": "q-novelty-usefulness",
+              "state": "failed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §2.1",
+                "docs/research/fixedskilllab_submission_novelty_review_2026-10-09.md §3",
+                "https://arxiv.org/html/2609.38822v1"
+              ]
+            }
+          ],
+          "findings": [
+            {
+              "id": "missing-skillseek-body-ablation",
+              "status": "open",
+              "checkIds": [
+                "q-novelty-usefulness"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "q-evidence",
+      "label": "证据范围",
+      "kind": "question",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "usefulness": {
+          "checks": [
+            {
+              "id": "q-evidence-usefulness",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §1、§4"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "q-reproduction",
+      "label": "可复算范围",
+      "kind": "question",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "usefulness": {
+          "checks": [
+            {
+              "id": "q-reproduction-usefulness",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §1、§4"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "q-claims",
+      "label": "结论取舍",
+      "kind": "question",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "usefulness": {
+          "checks": [
+            {
+              "id": "q-claims-usefulness",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §1、§4"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "section-1",
+      "label": "摘要",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "clarity": {
+          "checks": [
+            {
+              "id": "section-1-clarity",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §3–5",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "section-2",
+      "label": "引言",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "clarity": {
+          "checks": [
+            {
+              "id": "section-2-clarity",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §3–5",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "section-3",
+      "label": "相关工作",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "clarity": {
+          "checks": [
+            {
+              "id": "section-3-clarity",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §3–5",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "section-4",
+      "label": "研究设计与测量",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "clarity": {
+          "checks": [
+            {
+              "id": "section-4-clarity",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §3–5",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "section-5",
+      "label": "结果",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "clarity": {
+          "checks": [
+            {
+              "id": "section-5-clarity",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §3–5",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "section-6",
+      "label": "讨论",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "clarity": {
+          "checks": [
+            {
+              "id": "section-6-clarity",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §3–5",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "section-7",
+      "label": "有效性限制",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "clarity": {
+          "checks": [
+            {
+              "id": "section-7-clarity",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §3–5",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "section-8",
+      "label": "结论",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "clarity": {
+          "checks": [
+            {
+              "id": "section-8-clarity",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §3–5",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "section-9",
+      "label": "参考文献",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "clarity": {
+          "checks": [
+            {
+              "id": "section-9-clarity",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §3–5",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "section-10",
+      "label": "附录 A–B",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "clarity": {
+          "checks": [
+            {
+              "id": "section-10-clarity",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §3–5",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "render",
+      "label": "Markdown 发布端渲染",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "visual": {
+          "checks": [
+            {
+              "id": "render-visual",
+              "state": "unverified",
+              "evidence": []
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "source-alf-v5",
+      "label": "results/formal_v5/alfworld-v5-test-30x3.jsonl",
+      "kind": "component",
+      "revision": "5af35e91fb510bbef295f5ba7ef1eab780742b02a8398f53547320f5b79c8b71",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "source-alf-v5-authority",
+              "state": "passed",
+              "revision": "5af35e91fb510bbef295f5ba7ef1eab780742b02a8398f53547320f5b79c8b71",
+              "evidence": [
+                "results/formal_v5/alfworld-v5-test-30x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "source_detail": {
+          "checks": [
+            {
+              "id": "source-alf-v5-source_detail",
+              "state": "passed",
+              "revision": "5af35e91fb510bbef295f5ba7ef1eab780742b02a8398f53547320f5b79c8b71",
+              "evidence": [
+                "results/formal_v5/alfworld-v5-test-30x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "quality": {
+          "checks": [
+            {
+              "id": "source-alf-v5-quality",
+              "state": "passed",
+              "revision": "5af35e91fb510bbef295f5ba7ef1eab780742b02a8398f53547320f5b79c8b71",
+              "evidence": [
+                "results/formal_v5/alfworld-v5-test-30x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "source-alf-v8",
+      "label": "results/formal_v8/alfworld-v8-confirm-20x3.jsonl",
+      "kind": "component",
+      "revision": "210b2f05db7d85fa20210cda624677a37d2cb0059648aa4ae2079ebfb80cdecc",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "source-alf-v8-authority",
+              "state": "passed",
+              "revision": "210b2f05db7d85fa20210cda624677a37d2cb0059648aa4ae2079ebfb80cdecc",
+              "evidence": [
+                "results/formal_v8/alfworld-v8-confirm-20x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "source_detail": {
+          "checks": [
+            {
+              "id": "source-alf-v8-source_detail",
+              "state": "passed",
+              "revision": "210b2f05db7d85fa20210cda624677a37d2cb0059648aa4ae2079ebfb80cdecc",
+              "evidence": [
+                "results/formal_v8/alfworld-v8-confirm-20x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "quality": {
+          "checks": [
+            {
+              "id": "source-alf-v8-quality",
+              "state": "passed",
+              "revision": "210b2f05db7d85fa20210cda624677a37d2cb0059648aa4ae2079ebfb80cdecc",
+              "evidence": [
+                "results/formal_v8/alfworld-v8-confirm-20x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "source-sw-v11",
+      "label": "results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl",
+      "kind": "component",
+      "revision": "fb46b8f603d68f9e4baea76de912d68d1edac54299018b3b3bd51b7923177956",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "source-sw-v11-authority",
+              "state": "passed",
+              "revision": "fb46b8f603d68f9e4baea76de912d68d1edac54299018b3b3bd51b7923177956",
+              "evidence": [
+                "results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "source_detail": {
+          "checks": [
+            {
+              "id": "source-sw-v11-source_detail",
+              "state": "passed",
+              "revision": "fb46b8f603d68f9e4baea76de912d68d1edac54299018b3b3bd51b7923177956",
+              "evidence": [
+                "results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "quality": {
+          "checks": [
+            {
+              "id": "source-sw-v11-quality",
+              "state": "passed",
+              "revision": "fb46b8f603d68f9e4baea76de912d68d1edac54299018b3b3bd51b7923177956",
+              "evidence": [
+                "results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "source-sw-v13",
+      "label": "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl",
+      "kind": "component",
+      "revision": "5e671e5c04d2e92a0041f8e5b74b0a0e89bfbaefd66c13a79314e904798a6692",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "source-sw-v13-authority",
+              "state": "passed",
+              "revision": "5e671e5c04d2e92a0041f8e5b74b0a0e89bfbaefd66c13a79314e904798a6692",
+              "evidence": [
+                "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "source_detail": {
+          "checks": [
+            {
+              "id": "source-sw-v13-source_detail",
+              "state": "passed",
+              "revision": "5e671e5c04d2e92a0041f8e5b74b0a0e89bfbaefd66c13a79314e904798a6692",
+              "evidence": [
+                "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "quality": {
+          "checks": [
+            {
+              "id": "source-sw-v13-quality",
+              "state": "passed",
+              "revision": "5e671e5c04d2e92a0041f8e5b74b0a0e89bfbaefd66c13a79314e904798a6692",
+              "evidence": [
+                "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "source-top3",
+      "label": "results/scienceworld_strong_confirm_6x3.jsonl",
+      "kind": "component",
+      "revision": "71770d89acce4fbcc0e691f32f352966cd8f68ff728624bded432382d8ad3103",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "source-top3-authority",
+              "state": "passed",
+              "revision": "71770d89acce4fbcc0e691f32f352966cd8f68ff728624bded432382d8ad3103",
+              "evidence": [
+                "results/scienceworld_strong_confirm_6x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "source_detail": {
+          "checks": [
+            {
+              "id": "source-top3-source_detail",
+              "state": "passed",
+              "revision": "71770d89acce4fbcc0e691f32f352966cd8f68ff728624bded432382d8ad3103",
+              "evidence": [
+                "results/scienceworld_strong_confirm_6x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "quality": {
+          "checks": [
+            {
+              "id": "source-top3-quality",
+              "state": "passed",
+              "revision": "71770d89acce4fbcc0e691f32f352966cd8f68ff728624bded432382d8ad3103",
+              "evidence": [
+                "results/scienceworld_strong_confirm_6x3.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "source-top1",
+      "label": "results/scienceworld_top1_pilot.jsonl",
+      "kind": "component",
+      "revision": "4b2d306460a14ad20a4cc4b0b8d5397ef8d931ec32d5d4a3daa6fd06ece61ff4",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "source-top1-authority",
+              "state": "passed",
+              "revision": "4b2d306460a14ad20a4cc4b0b8d5397ef8d931ec32d5d4a3daa6fd06ece61ff4",
+              "evidence": [
+                "results/scienceworld_top1_pilot.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "source_detail": {
+          "checks": [
+            {
+              "id": "source-top1-source_detail",
+              "state": "passed",
+              "revision": "4b2d306460a14ad20a4cc4b0b8d5397ef8d931ec32d5d4a3daa6fd06ece61ff4",
+              "evidence": [
+                "results/scienceworld_top1_pilot.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "quality": {
+          "checks": [
+            {
+              "id": "source-top1-quality",
+              "state": "passed",
+              "revision": "4b2d306460a14ad20a4cc4b0b8d5397ef8d931ec32d5d4a3daa6fd06ece61ff4",
+              "evidence": [
+                "results/scienceworld_top1_pilot.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "source-content",
+      "label": "results/scienceworld_content_dev/episodes.jsonl",
+      "kind": "component",
+      "revision": "dd414a18ebffadafccac13583c503e3d002f8bc56dd3c163b75edbc4e4c7faae",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "source-content-authority",
+              "state": "passed",
+              "revision": "dd414a18ebffadafccac13583c503e3d002f8bc56dd3c163b75edbc4e4c7faae",
+              "evidence": [
+                "results/scienceworld_content_dev/episodes.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "source_detail": {
+          "checks": [
+            {
+              "id": "source-content-source_detail",
+              "state": "passed",
+              "revision": "dd414a18ebffadafccac13583c503e3d002f8bc56dd3c163b75edbc4e4c7faae",
+              "evidence": [
+                "results/scienceworld_content_dev/episodes.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "quality": {
+          "checks": [
+            {
+              "id": "source-content-quality",
+              "state": "passed",
+              "revision": "dd414a18ebffadafccac13583c503e3d002f8bc56dd3c163b75edbc4e4c7faae",
+              "evidence": [
+                "results/scienceworld_content_dev/episodes.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "source-ranking",
+      "label": "results/scienceworld_retrieval_baselines_2026-09-24/rankings.jsonl",
+      "kind": "component",
+      "revision": "git:6b0998bdfd9cb86731a873ab8a25424f84565e8f",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "source-ranking-authority",
+              "state": "passed",
+              "revision": "git:6b0998bdfd9cb86731a873ab8a25424f84565e8f",
+              "evidence": [
+                "results/scienceworld_retrieval_baselines_2026-09-24/rankings.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "source_detail": {
+          "checks": [
+            {
+              "id": "source-ranking-source_detail",
+              "state": "passed",
+              "revision": "git:6b0998bdfd9cb86731a873ab8a25424f84565e8f",
+              "evidence": [
+                "results/scienceworld_retrieval_baselines_2026-09-24/rankings.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "quality": {
+          "checks": [
+            {
+              "id": "source-ranking-quality",
+              "state": "passed",
+              "revision": "git:6b0998bdfd9cb86731a873ab8a25424f84565e8f",
+              "evidence": [
+                "results/scienceworld_retrieval_baselines_2026-09-24/rankings.jsonl",
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "paper-2609.00549",
+      "label": "Skill Following",
+      "kind": "component",
+      "revision": "2609.00549v1",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "paper-2609.00549-authority",
+              "state": "passed",
+              "revision": "2609.00549v1",
+              "evidence": [
+                "https://arxiv.org/html/2609.00549v1",
+                "docs/research/fixedskilllab_reference_check_2026-10-09.md",
+                "docs/research/fixedskilllab_submission_novelty_review_2026-10-09.md §3"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "paper-2609.38822",
+      "label": "SkillSeek",
+      "kind": "component",
+      "revision": "2609.38822v1",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "paper-2609.38822-authority",
+              "state": "passed",
+              "revision": "2609.38822v1",
+              "evidence": [
+                "https://arxiv.org/html/2609.38822v1",
+                "docs/research/fixedskilllab_reference_check_2026-10-09.md",
+                "docs/research/fixedskilllab_submission_novelty_review_2026-10-09.md §3"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "paper-2609.26863",
+      "label": "SkillApt",
+      "kind": "component",
+      "revision": "2609.26863v1",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "paper-2609.26863-authority",
+              "state": "passed",
+              "revision": "2609.26863v1",
+              "evidence": [
+                "https://arxiv.org/html/2609.26863v1",
+                "docs/research/fixedskilllab_reference_check_2026-10-09.md"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "paper-2608.11888",
+      "label": "Agent Skills Can Be Harmful",
+      "kind": "component",
+      "revision": "2608.11888v1",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "paper-2608.11888-authority",
+              "state": "passed",
+              "revision": "2608.11888v1",
+              "evidence": [
+                "https://arxiv.org/html/2608.11888v1",
+                "docs/research/fixedskilllab_reference_check_2026-10-09.md",
+                "docs/research/fixedskilllab_submission_novelty_review_2026-10-09.md §3"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "paper-2604.24594",
+      "label": "SRA",
+      "kind": "component",
+      "revision": "2604.24594v1",
+      "categories": {
+        "authority": {
+          "checks": [
+            {
+              "id": "paper-2604.24594-authority",
+              "state": "passed",
+              "revision": "2604.24594v1",
+              "evidence": [
+                "https://arxiv.org/html/2604.24594v1",
+                "docs/research/fixedskilllab_reference_check_2026-10-09.md",
+                "docs/research/fixedskilllab_submission_novelty_review_2026-10-09.md §3"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "table-1",
+      "label": "批次清单",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "values": {
+          "checks": [
+            {
+              "id": "table-1-values",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/formal_v5/alfworld-v5-test-30x3.jsonl",
+                "results/formal_v8/alfworld-v8-confirm-20x3.jsonl",
+                "results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl",
+                "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl",
+                "results/scienceworld_strong_confirm_6x3.jsonl",
+                "results/scienceworld_top1_pilot.jsonl",
+                "results/scienceworld_content_dev/episodes.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "table-2",
+      "label": "六项指标",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "values": {
+          "checks": [
+            {
+              "id": "table-2-values",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/formal_v5/alfworld-v5-test-30x3.jsonl",
+                "results/formal_v8/alfworld-v8-confirm-20x3.jsonl",
+                "results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl",
+                "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl",
+                "results/scienceworld_strong_confirm_6x3.jsonl",
+                "results/scienceworld_top1_pilot.jsonl",
+                "results/scienceworld_content_dev/episodes.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "table-3",
+      "label": "ScienceWorld v11b",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "values": {
+          "checks": [
+            {
+              "id": "table-3-values",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "cross_artifact": {
+          "checks": [
+            {
+              "id": "table-3-cross_artifact",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "table-4",
+      "label": "ALFWorld v5",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "values": {
+          "checks": [
+            {
+              "id": "table-4-values",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/formal_v5/alfworld-v5-test-30x3.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "cross_artifact": {
+          "checks": [
+            {
+              "id": "table-4-cross_artifact",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/formal_v5/alfworld-v5-test-30x3.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "table-5",
+      "label": "ALFWorld v8",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "values": {
+          "checks": [
+            {
+              "id": "table-5-values",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/formal_v8/alfworld-v8-confirm-20x3.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "cross_artifact": {
+          "checks": [
+            {
+              "id": "table-5-cross_artifact",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/formal_v8/alfworld-v8-confirm-20x3.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "table-6",
+      "label": "离线检索",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "values": {
+          "checks": [
+            {
+              "id": "table-6-values",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/scienceworld_retrieval_baselines_2026-09-24/rankings.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "table-7",
+      "label": "语义 Top-3",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "values": {
+          "checks": [
+            {
+              "id": "table-7-values",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/scienceworld_strong_confirm_6x3.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "cross_artifact": {
+          "checks": [
+            {
+              "id": "table-7-cross_artifact",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/scienceworld_strong_confirm_6x3.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "table-8",
+      "label": "同提示差额",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "values": {
+          "checks": [
+            {
+              "id": "table-8-values",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/scienceworld_strong_confirm_6x3.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "table-9",
+      "label": "语义 Top-1",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "values": {
+          "checks": [
+            {
+              "id": "table-9-values",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/scienceworld_top1_pilot.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "cross_artifact": {
+          "checks": [
+            {
+              "id": "table-9-cross_artifact",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/scienceworld_top1_pilot.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "table-10",
+      "label": "内容消融",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "values": {
+          "checks": [
+            {
+              "id": "table-10-values",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/scienceworld_content_dev/episodes.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "cross_artifact": {
+          "checks": [
+            {
+              "id": "table-10-cross_artifact",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/scienceworld_content_dev/episodes.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "table-11",
+      "label": "动作判据",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "values": {
+          "checks": [
+            {
+              "id": "table-11-values",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/scienceworld_content_dev/episodes.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "table-12",
+      "label": "ScienceWorld v13b",
+      "kind": "component",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "values": {
+          "checks": [
+            {
+              "id": "table-12-values",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        },
+        "cross_artifact": {
+          "checks": [
+            {
+              "id": "table-12-cross_artifact",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §4",
+                "docs/research/fixedskilllab_methods_results_2026-10-09.md",
+                "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "conclusion-1",
+      "label": "收益依赖批次",
+      "kind": "claim",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "conclusions": {
+          "checks": [
+            {
+              "id": "conclusion-1-conclusions",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §2–3",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md §7"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "conclusion-2",
+      "label": "强基线限制旧命中差距",
+      "kind": "claim",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "conclusions": {
+          "checks": [
+            {
+              "id": "conclusion-2-conclusions",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §2–3",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md §7"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "conclusion-3",
+      "label": "实际加载限制成本归因",
+      "kind": "claim",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "conclusions": {
+          "checks": [
+            {
+              "id": "conclusion-3-conclusions",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §2–3",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md §7"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    },
+    {
+      "id": "conclusion-4",
+      "label": "动作开发判据未通过",
+      "kind": "claim",
+      "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+      "categories": {
+        "conclusions": {
+          "checks": [
+            {
+              "id": "conclusion-4-conclusions",
+              "state": "passed",
+              "revision": "b3a0cfc803938aa460550024af7e5972e9c504591d2881189cfaf8c9c7201d2e",
+              "evidence": [
+                "docs/research/fixedskilllab_submission_audit_2026-10-09.md §2–3",
+                "docs/research/fixedskilllab_paper_draft_2026-10-09.md §7"
+              ]
+            }
+          ],
+          "findings": []
+        }
+      }
+    }
+  ]
+}
