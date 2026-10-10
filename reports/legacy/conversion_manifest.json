@@ -1,0 +1,135 @@
+{
+  "conversion_date": "2026-10-10",
+  "source_git_commit": "55a7dd995075a2413e75151afb3290f899a06ff3",
+  "reports": [
+    {
+      "source_pdf": "output/pdf/Mini_Lab_阶段科研报告.pdf",
+      "source_pdf_sha256": "70262fdccbc6c35edb94dbf754a6e1ebe3ffd1e8ede6da5d482adaa7de780fc5",
+      "source_word_name": "Mini_Lab_阶段科研报告.docx",
+      "source_word_sha256": "9f37513322c098c513980be003cc45d5e73b9fbce9e84560397c5751c392469b",
+      "markdown": "Mini_Lab_阶段科研报告.md",
+      "markdown_sha256": "ea1a8dec24ad3e6119ee599c88cf986503b3cdbc848014c73a22da9754e85a74",
+      "paragraphs_matched": 52,
+      "nonempty_table_cells_matched": 92,
+      "tables": 5,
+      "images": [],
+      "verification": "Every nonempty source paragraph and table cell matched PDF and Markdown after normalization; images copied byte-for-byte from Word."
+    },
+    {
+      "source_pdf": "output/pdf/ALFWorld_固定Skill研究报告_v7.pdf",
+      "source_pdf_sha256": "79dea4f9b6f1ea67acf4394b2bdf2d4232075f6c8df50f49c06f02549b7924f6",
+      "source_word_name": "ALFWorld_固定Skill研究报告_v7.docx",
+      "source_word_sha256": "6bab22cdc6a9f59aa77fe7fd3eda6194c534ad7bf0541b14c299dbaf42f821f7",
+      "markdown": "ALFWorld_固定Skill研究报告_v7.md",
+      "markdown_sha256": "4bcb763d551e15e062a1a9a1c40e574d218f859f880e8d08476795348ff0405a",
+      "paragraphs_matched": 46,
+      "nonempty_table_cells_matched": 163,
+      "tables": 6,
+      "images": [
+        {
+          "path": "assets/alfworld_v7/figure-01.png",
+          "sha256": "006b2832d2a98bbdfe5c06d5a24699ef993624ce6150c3ae3170bbe8022d7325"
+        },
+        {
+          "path": "assets/alfworld_v7/figure-02.png",
+          "sha256": "3cc94f9f7472656e1cfa1c128570a5791b1354c149cc15474a96a9d525145177"
+        },
+        {
+          "path": "assets/alfworld_v7/figure-03.png",
+          "sha256": "25fce6cfed5b2d639d5ed4e4d15170048a1e448d1456aad54f37af434aa7d3ec"
+        },
+        {
+          "path": "assets/alfworld_v7/figure-04.png",
+          "sha256": "015605ed71dc75a1576686845b40ca82454a142d268afe72e6869b1c8e1453c8"
+        }
+      ],
+      "verification": "Every nonempty source paragraph and table cell matched PDF and Markdown after normalization; images copied byte-for-byte from Word."
+    },
+    {
+      "source_pdf": "output/pdf/ALFWorld_固定Skill研究报告_v8.pdf",
+      "source_pdf_sha256": "bcdc0cb4b9978b3d5d2127d33837c5cc75cc7555e8b1718e4498be04a8d0b5b0",
+      "source_word_name": "ALFWorld_固定Skill研究报告_v8.docx",
+      "source_word_sha256": "25fc13b3621cdbbb8d2cb0a5cbbad26dbfc657cd3a799d08a09d0ccc4104e122",
+      "markdown": "ALFWorld_固定Skill研究报告_v8.md",
+      "markdown_sha256": "da42dd2f7672d1c64dd60bddcde0015c42020f498e3e9c1bad8ff9acfd8d571a",
+      "paragraphs_matched": 52,
+      "nonempty_table_cells_matched": 212,
+      "tables": 7,
+      "images": [
+        {
+          "path": "assets/alfworld_v8/figure-01.png",
+          "sha256": "abf528f486c50be622907aa420ea0a2dcac517dfd6e87eef32c4b96538a78777"
+        },
+        {
+          "path": "assets/alfworld_v8/figure-02.png",
+          "sha256": "f0ef9fb007695f1fc3774148eeacc67fce7e7c9a216b19deeeee42618a13f6d6"
+        },
+        {
+          "path": "assets/alfworld_v8/figure-03.png",
+          "sha256": "6834883733c5fa9c6f8db70dff421598f1c1ca301573446599ec4506ea6ffb08"
+        },
+        {
+          "path": "assets/alfworld_v8/figure-04.png",
+          "sha256": "4ea8e2e39f4d404e2c8c7618f9f79e9c111c0ae924bf020f14123400032731ac"
+        }
+      ],
+      "verification": "Every nonempty source paragraph and table cell matched PDF and Markdown after normalization; images copied byte-for-byte from Word."
+    },
+    {
+      "source_pdf": "output/pdf/ScienceWorld_固定Skill检索正式实验报告_v9.pdf",
+      "source_pdf_sha256": "e4dc29798fb1e64c21127123aea07df5426d5bb4ab4f6f4c7d972e55e522a9c5",
+      "source_word_name": "ScienceWorld_固定Skill检索正式实验报告_v9.docx",
+      "source_word_sha256": "69542aa59707731b2242504c21abe787a8171f2d528cc62cca095a1a600f76c0",
+      "markdown": "ScienceWorld_固定Skill检索正式实验报告_v9.md",
+      "markdown_sha256": "3c5c3ea5eb7237a0d66897003f950759ac7c8e078b370b96fc590c5bf188c734",
+      "paragraphs_matched": 72,
+      "nonempty_table_cells_matched": 237,
+      "tables": 9,
+      "images": [
+        {
+          "path": "assets/scienceworld_v9/figure-01.png",
+          "sha256": "d7180bf7d9aa6e03b362a718b72040fd949edf43c1e2e4b6cc8d98f79d20b23b"
+        },
+        {
+          "path": "assets/scienceworld_v9/figure-02.png",
+          "sha256": "febc318279e1b4fdee3a1d09b4629c1c25a039f85c66b7b1d3e5a1014ab4f0b2"
+        },
+        {
+          "path": "assets/scienceworld_v9/figure-03.png",
+          "sha256": "0a4ef34e583ac53a79abbcab6f87e55cb157a2d3883c833f43c48c1a1a28e758"
+        },
+        {
+          "path": "assets/scienceworld_v9/figure-04.png",
+          "sha256": "e0dbe43b6bc1e3eeec82009012e8aae9c5469d53c267aee869adca85200f5b45"
+        }
+      ],
+      "verification": "Every nonempty source paragraph and table cell matched PDF and Markdown after normalization; images copied byte-for-byte from Word."
+    },
+    {
+      "source_pdf": "output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf",
+      "source_pdf_sha256": "deb1fa37995ba640271942c1bdac473ddf4e9c38362359f9f8c85f59eb6e4049",
+      "source_word_name": "ScienceWorld_固定Skill检索发现与确认报告_v10.docx",
+      "source_word_sha256": "2e59f87558135ea4eb6b9dc98a4365c6438905760d56cf2699328fd19d46d4b3",
+      "markdown": "ScienceWorld_固定Skill检索发现与确认报告_v10.md",
+      "markdown_sha256": "ef5e6a96c23115a171669e13b84e287c56d7b7a5d2ee7477211beaf107603d22",
+      "paragraphs_matched": 57,
+      "nonempty_table_cells_matched": 202,
+      "tables": 8,
+      "images": [
+        {
+          "path": "assets/scienceworld_v10/figure-01.png",
+          "sha256": "7f826c67e123c735857b7e45d20f12268e6776395d5c1ba125b772449e7b7096"
+        }
+      ],
+      "verification": "Every nonempty source paragraph and table cell matched PDF and Markdown after normalization; images copied byte-for-byte from Word."
+    }
+  ],
+  "changes": [
+    "Removed page headers, footers and page breaks.",
+    "Converted Word tables to Markdown, preserving all cell text.",
+    "Restored shell line continuations; no historical commands executed.",
+    "Preserved original report numbers and experimental identifiers.",
+    "Added a clearly separate historical-report notice linking current conclusions."
+  ],
+  "comparison_normalization": "NFKC, removal of whitespace/punctuation and recurring page headers/footers, 口/又 PDF font mapping normalization; this is not a new scientific validation."
+}

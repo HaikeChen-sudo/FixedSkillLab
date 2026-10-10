@@ -187,3 +187,7 @@ results/pilot_scienceworld_v5/*
 ALFWorld_固定Skill阶段实验报告.docx
 Mini_Lab_阶段科研报告.docx
 build_phase1_report_docx.py
+
+# PDF originals stay local; published reports use Markdown.
+.local-report-backups/
+/output/pdf/*.pdf

@@ -21,7 +21,7 @@ python3 datasets/v1/use_dataset.py --batch scienceworld_v11b
 
 这是基于已保存记录的数据整理，没有启动新实验。许可范围和第三方材料边界见[来源说明](datasets/v1/THIRD_PARTY.md)。
 
-定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v10 发现与确认报告](output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf) · [ScienceWorld v11b 平衡确认报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)
+报告：[全部报告目录（Markdown）](reports/README.md) · [Mini Lab 阶段报告](reports/legacy/Mini_Lab_阶段科研报告.md) · [ALFWorld v8 确认研究报告](reports/legacy/ALFWorld_固定Skill研究报告_v8.md) · [ScienceWorld v10 发现与确认报告](reports/legacy/ScienceWorld_固定Skill检索发现与确认报告_v10.md) · [ScienceWorld v11b 平衡确认报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)
 
 ## 项目状态与复核
 
