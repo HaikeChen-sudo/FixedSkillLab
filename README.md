@@ -4,6 +4,21 @@
 
 定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v10 发现与确认报告](output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf) · [ScienceWorld v11b 平衡确认报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)
 
+## 下载并使用实验数据库
+
+[下载完整数据库包](datasets/fixedskilllab-metrics-1.0.0.zip) · [数据库说明与字段口径](datasets/v1/README.md) · [SQLite 数据库](datasets/v1/fixedskilllab.sqlite)
+
+数据库包含七批实验的 **984 次运行（含 77 次失败）**，提供逐次指标、Skill 加载名称与指纹、来源定位和缺失说明。五张表、一个汇总视图，附 CSV／JSONL、SQL 查询与离线校验。用于成本分析、同题配对和结果复核；不是完整轨迹训练集，不包含环境原文或模型回复，也不能跨批次直接混算因果效果。
+
+不需要 API Key、GPU 或模拟器，Python 3.9+ 即可验证并查看全部六项主指标：
+
+```sh
+python3 datasets/v1/use_dataset.py --check
+python3 datasets/v1/use_dataset.py --batch scienceworld_v11b
+```
+
+这是基于已保存记录的数据整理，没有启动新实验。许可范围和第三方材料边界见[来源说明](datasets/v1/THIRD_PARTY.md)。
+
 ## 项目状态与复核
 
 本阶段实验已结束，仓库保留代码、协议、已保存记录和离线分析入口。项目范围、主要观察、六项指标及无需 API 的复核命令见[项目说明与结果复核](docs/PROJECT_SUMMARY.md)。后文保留的“下一轮”和运行命令属于历史说明，不是当前执行计划。

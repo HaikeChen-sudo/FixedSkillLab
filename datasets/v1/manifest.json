@@ -1,0 +1,184 @@
+{
+  "dataset": "FixedSkillLab execution metrics",
+  "version": "1.0.0",
+  "edition": "metrics-only",
+  "prepared_on": "2026-10-10",
+  "source_repository": "https://github.com/HaikeChen-sudo/FixedSkillLab",
+  "source_commit": "95d2e24",
+  "episodes": 984,
+  "primary_key": [
+    "batch_id",
+    "task_id",
+    "condition",
+    "repeat"
+  ],
+  "sources": [
+    {
+      "batch_id": "alfworld_v5",
+      "path": "results/formal_v5/alfworld-v5-test-30x3.jsonl",
+      "sha256": "5af35e91fb510bbef295f5ba7ef1eab780742b02a8398f53547320f5b79c8b71",
+      "episodes": 450,
+      "tasks": 30,
+      "conditions": [
+        "all_skills",
+        "bm25_body_retrieval",
+        "body_aware_retrieval",
+        "no_skill",
+        "oracle_skill"
+      ],
+      "repeats": [
+        0,
+        1,
+        2
+      ],
+      "source_splits": [
+        "valid_unseen"
+      ],
+      "timestamp_min": "2026-09-03T00:39:52.254623+00:00",
+      "timestamp_max": "2026-09-03T12:15:55.445334+00:00"
+    },
+    {
+      "batch_id": "alfworld_v8",
+      "path": "results/formal_v8/alfworld-v8-confirm-20x3.jsonl",
+      "sha256": "210b2f05db7d85fa20210cda624677a37d2cb0059648aa4ae2079ebfb80cdecc",
+      "episodes": 180,
+      "tasks": 20,
+      "conditions": [
+        "no_skill",
+        "oracle_v5",
+        "oracle_v7"
+      ],
+      "repeats": [
+        0,
+        1,
+        2
+      ],
+      "source_splits": [
+        "valid_seen"
+      ],
+      "timestamp_min": "2026-09-07T06:29:45.561699+00:00",
+      "timestamp_max": "2026-09-07T08:22:46.939753+00:00"
+    },
+    {
+      "batch_id": "scienceworld_v11b",
+      "path": "results/formal_scienceworld_v11/scienceworld-v11b-confirm-18x3.jsonl",
+      "sha256": "fb46b8f603d68f9e4baea76de912d68d1edac54299018b3b3bd51b7923177956",
+      "episodes": 162,
+      "tasks": 18,
+      "conditions": [
+        "body_aware_retrieval",
+        "flat_retrieval",
+        "no_skill"
+      ],
+      "repeats": [
+        0,
+        1,
+        2
+      ],
+      "source_splits": [
+        "test"
+      ],
+      "timestamp_min": "2026-09-15T01:26:24.784474+00:00",
+      "timestamp_max": "2026-09-15T05:03:59.584698+00:00"
+    },
+    {
+      "batch_id": "scienceworld_v13b",
+      "path": "results/formal_scienceworld_v13b/scienceworld-v13b-oracle-mechanism-6x3.jsonl",
+      "sha256": "5e671e5c04d2e92a0041f8e5b74b0a0e89bfbaefd66c13a79314e904798a6692",
+      "episodes": 54,
+      "tasks": 6,
+      "conditions": [
+        "oracle_v3_full",
+        "oracle_v3_metadata",
+        "oracle_v3_placebo"
+      ],
+      "repeats": [
+        0,
+        1,
+        2
+      ],
+      "source_splits": [
+        "test"
+      ],
+      "timestamp_min": "2026-09-16T03:08:24.784101+00:00",
+      "timestamp_max": "2026-09-16T04:55:49.960951+00:00"
+    },
+    {
+      "batch_id": "semantic_top3",
+      "path": "results/scienceworld_strong_confirm_6x3.jsonl",
+      "sha256": "71770d89acce4fbcc0e691f32f352966cd8f68ff728624bded432382d8ad3103",
+      "episodes": 54,
+      "tasks": 6,
+      "conditions": [
+        "no_skill",
+        "semantic_body_retrieval",
+        "semantic_flat_retrieval"
+      ],
+      "repeats": [
+        0,
+        1,
+        2
+      ],
+      "source_splits": [
+        "test"
+      ],
+      "timestamp_min": "2026-09-24T03:04:48.434917+00:00",
+      "timestamp_max": "2026-09-24T03:34:11.213303+00:00"
+    },
+    {
+      "batch_id": "semantic_top1_dev",
+      "path": "results/scienceworld_top1_pilot.jsonl",
+      "sha256": "4b2d306460a14ad20a4cc4b0b8d5397ef8d931ec32d5d4a3daa6fd06ece61ff4",
+      "episodes": 36,
+      "tasks": 4,
+      "conditions": [
+        "no_skill",
+        "semantic_body_top1",
+        "semantic_flat_top1"
+      ],
+      "repeats": [
+        0,
+        1,
+        2
+      ],
+      "source_splits": [
+        "dev"
+      ],
+      "timestamp_min": "2026-10-08T00:40:53.542690+00:00",
+      "timestamp_max": "2026-10-08T00:47:27.326482+00:00"
+    },
+    {
+      "batch_id": "content_dev",
+      "path": "results/scienceworld_content_dev/episodes.jsonl",
+      "sha256": "dd414a18ebffadafccac13583c503e3d002f8bc56dd3c163b75edbc4e4c7faae",
+      "episodes": 48,
+      "tasks": 4,
+      "conditions": [
+        "content_correct",
+        "content_mismatched",
+        "content_pickup_required",
+        "no_skill"
+      ],
+      "repeats": [
+        0,
+        1,
+        2
+      ],
+      "source_splits": [
+        "dev"
+      ],
+      "timestamp_min": "2026-10-08T02:03:58.350232+00:00",
+      "timestamp_max": "2026-10-08T02:34:15.505893+00:00"
+    }
+  ],
+  "builder_sha256": "a54fbbfa5c56558304887fdb9fb0f7a6c4c9958c282b69d3ef32548eb19ab133",
+  "excluded_content": [
+    "task instructions",
+    "environment observations",
+    "action commands",
+    "model responses",
+    "Skill bodies",
+    "local paths",
+    "API credentials"
+  ]
+}
