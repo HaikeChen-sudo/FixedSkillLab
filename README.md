@@ -4,11 +4,11 @@
 
 定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v10 发现与确认报告](output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf) · [ScienceWorld v11b 平衡确认报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)
 
-## 当前研究决策
+## 项目状态与复核
 
-已整理[完整中文初稿](docs/research/fixedskilllab_paper_draft_2026-10-09.md)，包含摘要、引言、相关工作、方法、结果、讨论与限制。主表保留六项指标，覆盖七批 984 条完成记录；批次分别解释，不合并为独立样本或总体效应。[文献核查记录](docs/research/fixedskilllab_reference_check_2026-10-09.md)列出原文依据。初稿不提出新算法，也不表示已达到投稿条件。
+本阶段实验已结束，仓库保留代码、协议、已保存记录和离线分析入口。项目范围、主要观察、六项指标及无需 API 的复核命令见[项目说明与结果复核](docs/PROJECT_SUMMARY.md)。后文保留的“下一轮”和运行命令属于历史说明，不是当前执行计划。
 
-[下一研究问题与停止边界](docs/research/fixedskilllab_next_question_2026-10-08.md)及[相关工作更新](docs/research/fixed_skill_candidate_prior_art_2026-10-08.md)：暂不启动新方法实验。检索后 LOAD/ABSTAIN、按状态选择 Skill、过程遵循审计已有直接先例；目前没有通过新颖性与可检验性双重检查的新命题。建议先整理现有证据的实证研究草稿，不把旧失败分支换名重开，也不承诺现有结果足以构成论文贡献。
+[中文技术报告](docs/research/fixedskilllab_paper_draft_2026-10-09.md)覆盖七批 984 条完成记录，按批次解释，不合并为独立样本或总体效应。报告保留局部收益、实际加载审计和未复现结果，不提出新检索算法，也不声称固定 Skill 普遍有效或无效。[主张—证据表](docs/research/fixedskilllab_claim_evidence_2026-10-09.md)提供原始记录、协议及材料缺口的对应关系。
 
 ## 最近完成：固定内容消融结题
 
@@ -30,7 +30,7 @@ python3 -m unittest test_scienceworld_content_analysis -v
 [ScienceWorld Top-1 机制诊断](docs/research/scienceworld_top1_mechanism_results_2026-10-08.md)已完成 36 个 episode：No Skill 成功 9/12，Semantic Flat Top-1 与 Semantic Body Top-1 均为 12/12。Body 的平均 Total Tokens 比 Flat 少 8.9%，但约四成差额来自加载相同 Skill 的任务，不能全部归因于正文检索。本轮只有四个针对性选择的 dev 实例，不是独立确认。报告保留六项主指标、逐题轨迹解释和下一轮内容机制设计建议；没有启动新的付费实验。
 
 ```sh
-python3 scienceworld_top1_analysis.py
+python3 scienceworld_top1_analysis.py --output results/scienceworld_top1_public_recheck.json
 python3 -m unittest test_scienceworld_top1_analysis -v
 ```
 
