@@ -1,12 +1,14 @@
 # FixedSkillLab
 
+## 下载数据库
+
+**[下载完整数据库 ZIP（推荐）](https://github.com/HaikeChen-sudo/FixedSkillLab/raw/refs/heads/main/datasets/fixedskilllab-metrics-1.0.0.zip)** · [仅下载 SQLite](https://github.com/HaikeChen-sudo/FixedSkillLab/raw/refs/heads/main/datasets/v1/fixedskilllab.sqlite) · [查看使用说明](datasets/v1/README.md)
+
+完整包内含 SQLite、CSV／JSONL、字段字典和查询示例。无需 API Key 或 GPU，解压后即可使用。单独下载 SQLite 时，请同时保留 [LICENSE](datasets/v1/LICENSE) 和[来源说明](datasets/v1/THIRD_PARTY.md)。
+
 固定 Skill 加载与检索的 LLM Agent 实验平台。仓库包含一个只用 Python 标准库的确定性 Mini Lab，以及 ALFWorld 和 ScienceWorld 的文字交互实验。成功条件均由程序或环境判断，模型不能给自己打分。
 
-定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v10 发现与确认报告](output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf) · [ScienceWorld v11b 平衡确认报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)
-
-## 下载并使用实验数据库
-
-[下载完整数据库包](datasets/fixedskilllab-metrics-1.0.0.zip) · [数据库说明与字段口径](datasets/v1/README.md) · [SQLite 数据库](datasets/v1/fixedskilllab.sqlite)
+## 数据库使用
 
 数据库包含七批实验的 **984 次运行（含 77 次失败）**，提供逐次指标、Skill 加载名称与指纹、来源定位和缺失说明。五张表、一个汇总视图，附 CSV／JSONL、SQL 查询与离线校验。用于成本分析、同题配对和结果复核；不是完整轨迹训练集，不包含环境原文或模型回复，也不能跨批次直接混算因果效果。
 
@@ -18,6 +20,8 @@ python3 datasets/v1/use_dataset.py --batch scienceworld_v11b
 ```
 
 这是基于已保存记录的数据整理，没有启动新实验。许可范围和第三方材料边界见[来源说明](datasets/v1/THIRD_PARTY.md)。
+
+定稿报告：[Mini Lab 阶段报告](output/pdf/Mini_Lab_阶段科研报告.pdf) · [ALFWorld v8 确认研究报告](output/pdf/ALFWorld_固定Skill研究报告_v8.pdf) · [ScienceWorld v10 发现与确认报告](output/pdf/ScienceWorld_固定Skill检索发现与确认报告_v10.pdf) · [ScienceWorld v11b 平衡确认报告](reports/scienceworld_v11b/ScienceWorld_固定Skill检索平衡确认报告_v11b.md)
 
 ## 项目状态与复核
 
